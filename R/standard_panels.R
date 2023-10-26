@@ -1,4 +1,4 @@
-support_links <- function(
+support_panel <- function(
     team_email = '',
     repo_name = '',
     publication_name = '',
