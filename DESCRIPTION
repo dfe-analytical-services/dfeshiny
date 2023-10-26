@@ -1,0 +1,11 @@
+Package: dfeshiny
+Title: DfE R-Shiny Standards
+Version: 0.0.0.9000
+Authors@R: 
+    person("Rich", "Bielby", , "richard.bielby@education.gov.uk", role = c("aut", "cre"),
+           comment = c(ORCID = "0000-0001-9070-9969"))
+Description: R package containing preferred methods for creating official DfE R-Shiny dashboards.
+License: `use_gpl3_license()`
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.2.3
