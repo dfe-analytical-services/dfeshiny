@@ -1,3 +1,21 @@
+library(shiny)
+library(shinyGovstyle)
+
+#' Support panel
+#'
+#' @description
+#' Create the standard DfE R-Shiny support and feedback dashboard panel.
+#'
+#' @param team_email Provide your team e-mail address as a string
+#' @param repo_name
+#' @param publication_name
+#' @param publication_stub
+#' @param form_url
+#'
+#' @return
+#' @export
+#'
+#' @examples
 support_panel <- function(
     team_email = '',
     repo_name = '',
