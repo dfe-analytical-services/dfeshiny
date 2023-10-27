@@ -18,3 +18,12 @@ This will create a new script within the package R/ folder.
 `usethis::use_r(name = <script_name>)`
 
 This will create a new script within the package R/ folder.
+
+## Updating the package version
+
+Once changes have been completed, reviewed and are ready for use in the wild, you
+can increment the package version using:
+
+`usethis::use_version()`
+
+Once you've incremented the version number, it'll offer to perform a commit on your behalf, so all you then need to do is push to GitHub.
