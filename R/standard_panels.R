@@ -34,15 +34,15 @@ support_panel <- function(
           width = 12,
           h1("Support and feedback"),
           h2("Give us feedback"),
-          p(
             if (!is.null(form_url)) {
               p(
                 "This dashboard is a new service that we are developing. If you have any feedback or suggestions for improvements, please submit them using our ",
                 a(href = form_url, "feedback form", .noWS = c("after"))
               )
             } else {
-              ""
+              p("This dashboard is a new service that we are developing.")
             },
+          p(
             paste0(
               ifelse(
                 !is.null(form_url),
