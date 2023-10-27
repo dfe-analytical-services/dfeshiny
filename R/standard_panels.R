@@ -41,9 +41,9 @@ support_panel <- function(
                 ". Alternatively, i"),
                 'I'
                 ),
-              "f you spot any errors or bugs while using this dashboard, please screenshot and email them to ",
-              a(href = paste0("mailto:", team_email), team_email, .noWS = c("after")), ".")
+              "f you spot any errors or bugs while using this dashboard, please screenshot and email them to "
             ),
+            a(href = paste0("mailto:", team_email), team_email, .noWS = c("after")), "."),
           h2("Find more information on the data"),
           p(
             "The data used to produce the dashboard, along with methodological information can be found on ",
