@@ -34,14 +34,14 @@ support_panel <- function(
           width = 12,
           h1("Support and feedback"),
           h2("Give us feedback"),
-            if (!is.null(form_url)) {
-              p(
-                "This dashboard is a new service that we are developing. If you have any feedback or suggestions for improvements, please submit them using our ",
-                a(href = form_url, "feedback form", .noWS = c("after"))
-              )
-            } else {
-              p("This dashboard is a new service that we are developing.")
-            },
+          if (!is.null(form_url)) {
+            p(
+              "This dashboard is a new service that we are developing. If you have any feedback or suggestions for improvements, please submit them using our ",
+              a(href = form_url, "feedback form", .noWS = c("after"))
+            )
+          } else {
+            p("This dashboard is a new service that we are developing.")
+          },
           p(
             paste0(
               ifelse(
@@ -81,11 +81,11 @@ support_panel <- function(
             "The source code for this dashboard is available in our ",
             a(href = paste0("https://github.com/dfe-analytical-services/", repo_name), "GitHub repository", .noWS = c("after")),
             "."
-          )
-        ),
-        h2("Use of cookies"),
-        textOutput("cookie_status"),
-        actionButton("remove", "Reset cookie consent"),
+          ),
+          h2("Use of cookies"),
+          textOutput("cookie_status"),
+          actionButton("remove", "Reset cookie consent"),
+        )
       )
     )
   )
