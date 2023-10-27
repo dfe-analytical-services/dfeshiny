@@ -9,6 +9,7 @@ License: `use_gpl3_license()`
 Encoding: UTF-8
 Imports: 
     shinyGovstyle,
-    shiny
+    shiny,
+    styler
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.3

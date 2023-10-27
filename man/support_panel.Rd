@@ -9,7 +9,7 @@ support_panel(
   repo_name = "",
   publication_name = "",
   publication_stub = "",
-  form_url = ""
+  form_url = NULL
 )
 }
 \arguments{
