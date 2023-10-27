@@ -21,7 +21,7 @@ support_panel <- function(
     repo_name = '',
     publication_name = '',
     publication_stub = '',
-    form_url = ''
+    form_url = NULL
     ) {
   tabPanel(
     "Support and feedback",
@@ -32,18 +32,18 @@ support_panel <- function(
           h1("Support and feedback"),
           h2("Give us feedback"),
           p(
-            "This dashboard is a new service that we are developing. If you have
-            any feedback or suggestions for improvements, please submit them
-            using our ",
-            a(
-              href = form_url,
-              "feedback form", .noWS = c("after")
-            ), "."
-          ),
-          p(
-            "If you spot any errors or bugs while using this dashboard, please screenshot and email them to ",
-            a(href = paste0("mailto:", team_email), team_email, .noWS = c("after")), "."
-          ),
+            paste0(
+              ifelse(
+                !is.null(form_url),
+                paste0("This dashboard is a new service that we are developing.
+                If you have any feedback or suggestions for improvements, please submit them using our ",
+                a(href = form_url,"feedback form", .noWS = c("after")),
+                ". Alternatively, i"),
+                'I'
+                ),
+              "f you spot any errors or bugs while using this dashboard, please screenshot and email them to ",
+              a(href = paste0("mailto:", team_email), team_email, .noWS = c("after")), ".")
+            ),
           h2("Find more information on the data"),
           p(
             "The data used to produce the dashboard, along with methodological information can be found on ",
