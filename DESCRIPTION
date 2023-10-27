@@ -10,7 +10,6 @@ Encoding: UTF-8
 Imports: 
     shinyGovstyle,
     shiny,
-    styler,
-    bslib
+    styler
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.3

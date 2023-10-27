@@ -28,10 +28,11 @@ support_panel <- function(
     form_url = NULL) {
   tabPanel(
     "Support and feedback",
-    card(
-         card_header(
-          h1("Support and feedback")),
-         card_body(
+    gov_main_layout(
+      gov_row(
+        column(
+          width = 12,
+          h1("Support and feedback"),
           h2("Give us feedback"),
             if (!is.null(form_url)) {
               p(
@@ -80,6 +81,7 @@ support_panel <- function(
             "The source code for this dashboard is available in our ",
             a(href = paste0("https://github.com/dfe-analytical-services/", repo_name), "GitHub repository", .noWS = c("after")),
             "."
+          )
         ),
         h2("Use of cookies"),
         textOutput("cookie_status"),
