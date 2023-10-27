@@ -7,15 +7,27 @@
 support_panel(
   team_email = "",
   repo_name = "",
-  publication_name = "",
+  ees_publication = TRUE,
+  publication_name = NULL,
   publication_stub = "",
+  alt_href = NULL,
   form_url = NULL
 )
 }
 \arguments{
-\item{team_email}{Provide your team e-mail address as a string}
+\item{team_email}{Your team e-mail address as a string}
 
-\item{form_url}{}
+\item{repo_name}{The repository name as listed on GitHub}
+
+\item{ees_publication}{Whether the parent publication is hosted on Explore Education Statistics}
+
+\item{publication_name}{The parent publication name}
+
+\item{publication_stub}{The parent publication stub on Explore Education Statistics}
+
+\item{alt_href}{Alternative link to the parent publication (if not hosted on Explore Education Statistics)}
+
+\item{form_url}{URL to a feedback form for the dashboard}
 }
 \description{
 Create the standard DfE R-Shiny support and feedback dashboard panel.
