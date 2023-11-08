@@ -5,11 +5,11 @@ library(stringr)
 #'
 #' @param ga_code The Google Analytics code
 #'
-#' @return
+#' @return TRUE if written, FALSE if not
 #' @export
 #'
-#' @examples
-initialise_analytics <- function(ga_code = "XXXX") {
+#' @examples initialise_analytics(ga_code = "0123456789")
+initialise_analytics <- function(ga_code = "0123456789") {
   html_script <- "<script>
 // Define dataLayer and the gtag function.
 window.dataLayer = window.dataLayer || [];
@@ -90,4 +90,5 @@ The custom trackers below can be tailored to match the inputs used in your dashb
   if (overwrite) {
     cat(html_script, file = "google-analytics.html")
   }
+  return(permission_to_write)
 }
