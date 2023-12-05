@@ -27,3 +27,6 @@ can increment the package version using:
 `usethis::use_version()`
 
 Once you've incremented the version number, it'll offer to perform a commit on your behalf, so all you then need to do is push to GitHub.
+
+# Installing the package
+To install, run `renv::install("dfe-analytical-services/dfeshiny")`
