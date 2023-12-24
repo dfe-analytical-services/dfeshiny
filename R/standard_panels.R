@@ -26,6 +26,17 @@ support_panel <- function(
     publication_stub = "",
     alt_href = NULL,
     form_url = NULL) {
+  # Check that the team_email is a valid email
+
+  is_valid_email <- function(email) {
+    grepl("\\<[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,}\\>", as.character(email), ignore.case = TRUE)
+  }
+
+  if (is_valid_email(team_email) == FALSE) {
+    stop("You have entered an invalid email in the team_email argument.")
+  }
+
+
   tabPanel(
     "Support and feedback",
     gov_main_layout(
