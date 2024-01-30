@@ -3,7 +3,25 @@ R package containing preferred methods for creating official DfE R-Shiny dashboa
 
 # Contributing
 
-** Try and make use of the `usethis` package wherever relevant: (https://usethis.r-lib.org/)[https://usethis.r-lib.org/].
+Try and make use of the `usethis` package wherever relevant: (https://usethis.r-lib.org/)[https://usethis.r-lib.org/]
+
+When you initially clone the package, the first thing you'll need to do is install `devtools`:
+
+`install.packages("devtools")`
+
+Then to load in the package in its current form:
+
+`devtools::load_all()`
+
+## Run the unit tests
+
+Once the package is loaded in you can run the tests locally in a couple of ways:
+
+`Ctrl-Shft-T`
+
+or via the function that triggers
+
+`devtools::check_test()`
 
 
 ## Adding a package/dependency
@@ -18,6 +36,7 @@ This will create a new script within the package R/ folder.
 `usethis::use_r(name = <script_name>)`
 
 This will create a new script within the package R/ folder.
+
 
 ## Updating the package version
 
