@@ -1,5 +1,4 @@
 test_that("email needs to follow standard pattern", {
-
   # Testing that it will pass if it follows the something@domain.ending pattern
   expect_no_error(support_panel(team_email = "thisshouldpass@something.com"))
   expect_no_error(support_panel(team_email = "this.should.pass@something.com"))
@@ -13,5 +12,4 @@ test_that("email needs to follow standard pattern", {
 
   # Test that it fails if there is no @ symbol
   expect_error(support_panel(team_email = "team.team"))
-
 })

@@ -29,7 +29,11 @@ support_panel <- function(
   # Check that the team_email is a valid email
 
   is_valid_email <- function(email) {
-    grepl("\\<[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,}\\>", as.character(email), ignore.case = TRUE)
+    grepl(
+      "\\<[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,}\\>",
+      as.character(email),
+      ignore.case = TRUE
+    )
   }
 
   if (is_valid_email(team_email) == FALSE) {
