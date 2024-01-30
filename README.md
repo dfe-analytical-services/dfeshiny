@@ -21,7 +21,7 @@ Once the package is loaded in you can run the tests locally in a couple of ways:
 
 or via the function that triggers
 
-`devtools::check_test()`
+`devtools::test()`
 
 
 ## Adding a package/dependency
