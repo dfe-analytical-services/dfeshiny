@@ -13,7 +13,8 @@ dfe_cookie_script <- function() {
         "dist/js.cookie.min.js"
       )
     ),
-    tags$script(src = "cookie-consent.js")
+    tags$script(src = "cookie-consent.js") # Tried using a copy in the repo
+    # here, but it all stopped working at that point.
   )
 }
 
