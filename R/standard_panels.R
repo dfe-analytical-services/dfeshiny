@@ -54,38 +54,38 @@ support_panel <- function(
             tags$a(href = paste0("mailto:", team_email), team_email, .noWS = c("after")), "."
           ),
           h2("Find more information on the data"),
-            if (ees_publication) {
-              p(
-                "The parent statistical release of this dashboard, along with methodological information, is available at the following link: ",
-                tags$a(
-                  href = paste0("https://explore-education-statistics.service.gov.uk/find-statistics/", publication_stub),
-                  ifelse(!is.null(publication_name), publication_name, "Explore Education Statistics"),
-                  .noWS = c("after")
-                ),
-                ". The statistical release provides additional ",
-                tags$a(
-                  href = paste0("https://explore-education-statistics.service.gov.uk/find-statistics/", publication_stub, "/data guidance"),
-                  "data guidance",
-                  .noWS = c("after")
-                ),
-                " and ",
-                tags$a(
-                  href = paste0("https://explore-education-statistics.service.gov.uk/find-statistics/", publication_stub,'#explore-data-and-files'),
-                  "tools to access and interogate the underling data",
-                  .noWS = c("after")
-                ),
+          if (ees_publication) {
+            p(
+              "The parent statistical release of this dashboard, along with methodological information, is available at the following link: ",
+              tags$a(
+                href = paste0("https://explore-education-statistics.service.gov.uk/find-statistics/", publication_stub),
+                ifelse(!is.null(publication_name), publication_name, "Explore Education Statistics"),
+                .noWS = c("after")
+              ),
+              ". The statistical release provides additional ",
+              tags$a(
+                href = paste0("https://explore-education-statistics.service.gov.uk/find-statistics/", publication_stub, "/data guidance"),
+                "data guidance",
+                .noWS = c("after")
+              ),
+              " and ",
+              tags$a(
+                href = paste0("https://explore-education-statistics.service.gov.uk/find-statistics/", publication_stub, "#explore-data-and-files"),
+                "tools to access and interogate the underling data",
+                .noWS = c("after")
+              ),
               " contained in this dashboard."
-              )
-            } else {
-              p(
-                "The parent statistical release of this dashboard, along with methodological information, is available at the following link: ",
-                a(
+            )
+          } else {
+            p(
+              "The parent statistical release of this dashboard, along with methodological information, is available at the following link: ",
+              a(
                 href = alt_href,
                 publication_name,
                 .noWS = c("after")
               )
-              )
-            },
+            )
+          },
           h2("Contact us"),
           p(
             "If you have questions about the dashboard or data within it, please contact us at ",

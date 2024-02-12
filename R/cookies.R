@@ -1,3 +1,22 @@
+#' cookieHeaderUI
+#'
+#' @return tags$head()
+#' @export
+#'
+#' @examples
+#' cookieHeaderUI()
+cookieHeaderUI <- function() {
+  tags$head(
+    tags$script(
+      src = paste0(
+        "https://cdn.jsdelivr.net/npm/js-cookie@rc/",
+        "dist/js.cookie.min.js"
+      )
+    ),
+    tags$script(src = "cookie-consent.js")
+  )
+}
+
 #' cookieBannerUI
 #'
 #' @description
@@ -13,31 +32,32 @@
 #' @export
 #'
 #' @examples
-#' cookieBannerUI("cookies", name='My DfE R-Shiny data dashboard')
-cookieBannerUI <- function(id, name = "DfE R-Shiny dashboard template"){
+#' cookieBannerUI("cookies", name = "My DfE R-Shiny data dashboard")
+cookieBannerUI <- function(id, name = "DfE R-Shiny dashboard template") {
   tags$div(
-    id=NS(id,"cookieDiv"),
-    class="govuk-cookie-banner",
-    `data-nosnippet role`="region",
-    `aria-label`="Cookies on name",
+    id = NS(id, "cookieDiv"),
+    class = "govuk-cookie-banner",
+    `data-nosnippet role` = "region",
+    `aria-label` = "Cookies on name",
     tags$div(
-      id=NS(id,"cookieMain"),
-      class="govuk-cookie-banner__message govuk-width-container",
+      id = NS(id, "cookieMain"),
+      class = "govuk-cookie-banner__message govuk-width-container",
       tags$div(
-        class="govuk-grid-row",
+        class = "govuk-grid-row",
         tags$div(
-          class="govuk-grid-column-two-thirds",
+          class = "govuk-grid-column-two-thirds",
           tags$h2(
-            class="govuk-cookie-banner__heading govuk-heading-m",
-            name),
+            class = "govuk-cookie-banner__heading govuk-heading-m",
+            name
+          ),
           tags$div(
-            class="govuk-cookie-banner__content",
+            class = "govuk-cookie-banner__content",
             tags$p(
-              class="govuk-body",
+              class = "govuk-body",
               "We use some essential cookies to make this service work."
             ),
             tags$p(
-              class="govuk-body",
+              class = "govuk-body",
               "We'd also like to use analytics cookies so we can understand
               how you use the service and make improvements."
             )
@@ -45,10 +65,10 @@ cookieBannerUI <- function(id, name = "DfE R-Shiny dashboard template"){
         )
       ),
       tags$div(
-        class="govuk-button-group",
-        actionButton(NS(id,"cookieAccept"), label = "Accept analytics cookies"),
-        actionButton(NS(id,"cookieReject"), label =  "Reject analytics cookies"),
-        actionButton(NS(id,"cookieLink"), label = "View cookies")
+        class = "govuk-button-group",
+        actionButton(NS(id, "cookieAccept"), label = "Accept analytics cookies"),
+        actionButton(NS(id, "cookieReject"), label = "Reject analytics cookies"),
+        actionButton(NS(id, "cookieLink"), label = "View cookies")
       )
     )
   )
@@ -74,7 +94,7 @@ cookieBannerUI <- function(id, name = "DfE R-Shiny dashboard template"){
 #'
 #' @examples
 #' cookieBannerServer("cookies", input.cookies = reactive(input$cookies), input.remove = reactive(input$remove))
-cookieBannerServer <- function(id, input.cookies=NULL, input.remove=NULL) {
+cookieBannerServer <- function(id, input.cookies = NULL, input.remove = NULL) {
   moduleServer(id, function(input, output, session) {
     observeEvent(input.cookies(), {
       print(input.cookies()$`_ga_Z967JJVQQX`)
@@ -144,6 +164,5 @@ cookieBannerServer <- function(id, input.cookies=NULL, input.remove=NULL) {
       session$sendCustomMessage("analytics-consent", msg)
       print(input$cookies)
     })
-
   })
 }
