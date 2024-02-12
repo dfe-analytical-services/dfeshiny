@@ -1,11 +1,11 @@
-#' cookieHeaderUI
+#' cookie_script
 #'
 #' @return tags$head()
 #' @export
 #'
 #' @examples
-#' cookieHeaderUI()
-cookieHeaderUI <- function() {
+#' dfe_cookie_load_script()
+cookie_script <- function() {
   tags$head(
     tags$script(
       src = paste0(
