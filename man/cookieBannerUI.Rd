@@ -7,8 +7,19 @@
 cookieBannerUI(id, name = "DfE R-Shiny dashboard template")
 }
 \arguments{
-\item{name}{}
+\item{id}{Shiny tag shared with cookieBannerServer()}
+
+\item{name}{Name of the dashboard on which the cookie authorisation is being
+applied}
+}
+\value{
+tags$div()
 }
 \description{
-cookieBannerUI
+This function provides a cookie authorisation banner on DfE R-Shiny
+dashboards for users to be able to accept or reject cookies. The server side
+functionality is provided by cookieBannerServer()
+}
+\examples{
+cookieBannerUI("cookies", name='My DfE R-Shiny data dashboard')
 }

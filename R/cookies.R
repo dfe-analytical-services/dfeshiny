@@ -1,12 +1,19 @@
 #' cookieBannerUI
 #'
-#' @param id
-#' @param name
+#' @description
+#' This function provides a cookie authorisation banner on DfE R-Shiny
+#' dashboards for users to be able to accept or reject cookies. The server side
+#' functionality is provided by cookieBannerServer()
 #'
-#' @return
+#' @param id Shiny tag shared with cookieBannerServer()
+#' @param name Name of the dashboard on which the cookie authorisation is being
+#' applied
+#'
+#' @return tags$div()
 #' @export
 #'
 #' @examples
+#' cookieBannerUI("cookies", name='My DfE R-Shiny data dashboard')
 cookieBannerUI <- function(id, name = "DfE R-Shiny dashboard template"){
   tags$div(
     id=NS(id,"cookieDiv"),
@@ -49,14 +56,24 @@ cookieBannerUI <- function(id, name = "DfE R-Shiny dashboard template"){
 
 #' cookieBannerServer
 #'
-#' @param id
-#' @param input.cookies
-#' @param input.remove
+#' @description
+#' cookieBannerServer() provides the server module to be used alongside
+#' cookieBannerUI(). Place cookieBannerServer() as a call in your server.R file
+#' to provide the server functions to control users being able to accept or
+#' reject cookie consent for the provision of Google Analytics tracking on DfE
+#' R-Shiny dashboards.
 #'
-#' @return
+#' @param id Shiny tag shared with cookieBannerUI()
+#' @param input.cookies The cookie input passed from cookies.js (should always
+#' be reactive(input$cookies))
+#' @param input.remove The state of the cookie reset button provided by
+#' dfeshiny::support_panel(). Should always be set to reactive(input$remove).
+#'
+#' @return NULL
 #' @export
 #'
 #' @examples
+#' cookieBannerServer("cookies", input.cookies = reactive(input$cookies), input.remove = reactive(input$remove))
 cookieBannerServer <- function(id, input.cookies=NULL, input.remove=NULL) {
   moduleServer(id, function(input, output, session) {
     observeEvent(input.cookies(), {

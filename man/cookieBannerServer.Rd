@@ -7,8 +7,21 @@
 cookieBannerServer(id, input.cookies = NULL, input.remove = NULL)
 }
 \arguments{
-\item{input.remove}{}
+\item{id}{Shiny tag shared with cookieBannerUI()}
+
+\item{input.cookies}{The cookie input passed from cookies.js (should always
+be reactive(input$cookies))}
+
+\item{input.remove}{The state of the cookie reset button provided by
+dfeshiny::support_panel(). Should always be set to reactive(input$remove).}
 }
 \description{
-cookieBannerServer
+cookieBannerServer() provides the server module to be used alongside
+cookieBannerUI(). Place cookieBannerServer() as a call in your server.R file
+to provide the server functions to control users being able to accept or
+reject cookie consent for the provision of Google Analytics tracking on DfE
+R-Shiny dashboards.
+}
+\examples{
+cookieBannerServer("cookies", input.cookies = reactive(input$cookies), input.remove = reactive(input$remove))
 }
