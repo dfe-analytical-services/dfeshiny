@@ -58,8 +58,10 @@ cookieBannerUI <- function(id, name = "DfE R-Shiny dashboard template"){
 #'
 #' @examples
 cookieBannerServer <- function(id, input.cookies=NULL, input.remove=NULL) {
-  shiny::moduleServer(id, function(input, output, session) {
-    shiny::observeEvent(input.cookies(), {
+  moduleServer(id, function(input, output, session) {
+    observeEvent(input.cookies(), {
+      print(input.cookies()$`_ga_Z967JJVQQX`)
+      print(input.cookies()$dfe_analytics)
       if (!is.null(input.cookies())) {
         if (!("dfe_analytics" %in% names(input.cookies()))) {
           shinyjs::show(id = "cookieMain")
@@ -86,7 +88,7 @@ cookieBannerServer <- function(id, input.cookies=NULL, input.remove=NULL) {
     })
 
     # Check for the cookies being authorised
-    shiny::observeEvent(input$cookieAccept, {
+    observeEvent(input$cookieAccept, {
       print("cookieAccept pressed")
       msg <- list(
         name = "dfe_analytics",
