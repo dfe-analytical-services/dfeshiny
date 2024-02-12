@@ -2,6 +2,6 @@
 
 export(cookieBannerServer)
 export(cookieBannerUI)
-export(cookie_script)
+export(dfe_cookie_script)
 export(support_panel)
 export(tidy_code)

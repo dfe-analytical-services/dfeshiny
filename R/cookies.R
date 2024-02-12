@@ -1,11 +1,11 @@
-#' cookie_script
+#' dfe_cookie_script
 #'
 #' @return tags$head()
 #' @export
 #'
 #' @examples
-#' dfe_cookie_load_script()
-cookie_script <- function() {
+#' dfe_cookie_script()
+dfe_cookie_script <- function() {
   tags$head(
     tags$script(
       src = paste0(
@@ -22,7 +22,8 @@ cookie_script <- function() {
 #' @description
 #' This function provides a cookie authorisation banner on DfE R-Shiny
 #' dashboards for users to be able to accept or reject cookies. The server side
-#' functionality is provided by cookieBannerServer()
+#' functionality is provided by cookieBannerServer(), whilst users will also
+#' need to include the dfe_cookie_script() function in their ui.R file.
 #'
 #' @param id Shiny tag shared with cookieBannerServer()
 #' @param name Name of the dashboard on which the cookie authorisation is being

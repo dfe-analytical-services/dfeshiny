@@ -18,7 +18,8 @@ tags$div()
 \description{
 This function provides a cookie authorisation banner on DfE R-Shiny
 dashboards for users to be able to accept or reject cookies. The server side
-functionality is provided by cookieBannerServer()
+functionality is provided by cookieBannerServer(), whilst users will also
+need to include the dfe_cookie_script() function in their ui.R file.
 }
 \examples{
 cookieBannerUI("cookies", name = "My DfE R-Shiny data dashboard")
