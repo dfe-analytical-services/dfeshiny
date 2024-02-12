@@ -1,3 +1,12 @@
+#' cookieBannerUI
+#'
+#' @param id
+#' @param name
+#'
+#' @return
+#' @export
+#'
+#' @examples
 cookieBannerUI <- function(id, name = "DfE R-Shiny dashboard template"){
   tags$div(
     id=NS(id,"cookieDiv"),
@@ -38,6 +47,16 @@ cookieBannerUI <- function(id, name = "DfE R-Shiny dashboard template"){
   )
 }
 
+#' cookieBannerServer
+#'
+#' @param id
+#' @param input.cookies
+#' @param input.remove
+#'
+#' @return
+#' @export
+#'
+#' @examples
 cookieBannerServer <- function(id, input.cookies=NULL, input.remove=NULL) {
   moduleServer(id, function(input, output, session) {
     observeEvent(input.cookies(), {
