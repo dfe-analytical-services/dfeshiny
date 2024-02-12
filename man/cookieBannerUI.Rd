@@ -21,5 +21,5 @@ dashboards for users to be able to accept or reject cookies. The server side
 functionality is provided by cookieBannerServer()
 }
 \examples{
-cookieBannerUI("cookies", name='My DfE R-Shiny data dashboard')
+cookieBannerUI("cookies", name = "My DfE R-Shiny data dashboard")
 }

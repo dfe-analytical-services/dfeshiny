@@ -2,5 +2,6 @@
 
 export(cookieBannerServer)
 export(cookieBannerUI)
+export(cookieHeaderUI)
 export(support_panel)
 export(tidy_code)
