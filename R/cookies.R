@@ -13,7 +13,7 @@ cookie_script <- function() {
         "dist/js.cookie.min.js"
       )
     ),
-    tags$script(src = "cookie-consent.js")
+    tags$script(src = "https://raw.githubusercontent.com/dfe-analytical-services/dfeshiny/cookie-module/js/cookie-consent.js")
   )
 }
 
