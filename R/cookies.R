@@ -98,8 +98,6 @@ cookieBannerUI <- function(id, name = "DfE R-Shiny dashboard template") {
 cookieBannerServer <- function(id, input.cookies = NULL, input.remove = NULL) {
   moduleServer(id, function(input, output, session) {
     observeEvent(input.cookies(), {
-      print(input.cookies()$`_ga_Z967JJVQQX`)
-      print(input.cookies()$dfe_analytics)
       if (!is.null(input.cookies())) {
         if (!("dfe_analytics" %in% names(input.cookies()))) {
           shinyjs::show(id = "cookieMain")
@@ -127,7 +125,6 @@ cookieBannerServer <- function(id, input.cookies = NULL, input.remove = NULL) {
 
     # Check for the cookies being authorised
     observeEvent(input$cookieAccept, {
-      print("cookieAccept pressed")
       msg <- list(
         name = "dfe_analytics",
         value = "granted"
@@ -140,7 +137,6 @@ cookieBannerServer <- function(id, input.cookies = NULL, input.remove = NULL) {
 
     # Check for the cookies being rejected
     observeEvent(input$cookieReject, {
-      print("cookieReject pressed")
       msg <- list(
         name = "dfe_analytics",
         value = "denied"
@@ -154,7 +150,6 @@ cookieBannerServer <- function(id, input.cookies = NULL, input.remove = NULL) {
     observeEvent(input$cookieLink, {
       # Need to link here to where further info is located.  You can
       # updateTabsetPanel to have a cookie page for instance
-      print("cookieLink pressed")
       updateTabsetPanel(session, "navlistPanel", selected = "Support and feedback")
     })
 
@@ -163,7 +158,6 @@ cookieBannerServer <- function(id, input.cookies = NULL, input.remove = NULL) {
       msg <- list(name = "dfe_analytics", value = "denied")
       session$sendCustomMessage("cookie-remove", msg)
       session$sendCustomMessage("analytics-consent", msg)
-      print(input$cookies)
     })
   })
 }
