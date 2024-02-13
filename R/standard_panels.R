@@ -27,6 +27,7 @@ support_panel <- function(
     alt_href = NULL,
     form_url = NULL) {
   tabPanel(
+    value = "support_panel",
     "Support and feedback",
     gov_main_layout(
       gov_row(
