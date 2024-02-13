@@ -19,6 +19,10 @@ This will create a new script within the package R/ folder.
 
 This will create a new script within the package R/ folder.
 
+## Testing an update to the package in a host dashboard
+
+
+
 ## Updating the package version
 
 Once changes have been completed, reviewed and are ready for use in the wild, you

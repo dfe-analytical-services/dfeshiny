@@ -70,12 +70,7 @@ cookieBannerUI <- function(id, name = "DfE R-Shiny dashboard template") {
         class = "govuk-button-group",
         button_Input(NS(id, "cookieAccept"), "Accept analytics cookies"),
         button_Input(NS(id, "cookieReject"), "Reject analytics cookies"),
-        shiny::tags$button(
-          "View cookies",
-          NS(id, "cookieLink"),
-          class = paste0("govuk-link", " action-button"),
-          `data-val` = value
-        )
+        actionLink(NS(id, "cookieLink"), "View cookie information")
       )
     )
   )
