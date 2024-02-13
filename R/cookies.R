@@ -95,7 +95,7 @@ cookieBannerUI <- function(id, name = "DfE R-Shiny dashboard template") {
 #' @export
 #'
 #' @examples
-#' cookieBannerServer(
+#' output$cookie_status <- cookieBannerServer(
 #'   "cookies",
 #'   input.cookies = reactive(input$cookies),
 #'   input.remove = reactive(input$remove),
@@ -173,10 +173,10 @@ cookieBannerServer <- function(id, input.cookies, input.remove, parent_session) 
     return(renderText({
       cookie_text_stem <- "You have chosen to"
       cookie_text_tail <- "the use of cookies on this website."
-      message(paste("Cookie status:", input.cookies))
-      if (!is.null(input.cookies)) {
-        if ("dfe_analytics" %in% names(input.cookies)) {
-          if (input.cookies$dfe_analytics == "granted") {
+      message(paste("Cookie status:", input.cookies()))
+      if (!is.null(input.cookies())) {
+        if ("dfe_analytics" %in% names(input.cookies())) {
+          if (input.cookies()$dfe_analytics == "granted") {
             paste(cookie_text_stem, "accept", cookie_text_tail)
           } else {
             paste(cookie_text_stem, "reject", cookie_text_tail)
