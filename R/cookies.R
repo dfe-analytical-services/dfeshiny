@@ -100,7 +100,7 @@ cookieBannerUI <- function(id, name = "DfE R-Shiny dashboard template") {
 #'   input.cookies = reactive(input$cookies),
 #'   input.remove = reactive(input$remove),
 #'   parent_session = session
-#'   )
+#' )
 cookieBannerServer <- function(id, input.cookies, input.remove, parent_session) {
   moduleServer(id, function(input, output, session) {
     observeEvent(input.cookies(), {
@@ -157,10 +157,10 @@ cookieBannerServer <- function(id, input.cookies, input.remove, parent_session) 
       # Need to link here to where further info is located.  You can
       # updateTabsetPanel to have a cookie page for instance
       updateTabsetPanel(
-        session=parent_session,
+        session = parent_session,
         "navlistPanel",
         selected = "support_panel"
-        )
+      )
     })
 
     observeEvent(input.remove(), {
@@ -169,5 +169,23 @@ cookieBannerServer <- function(id, input.cookies, input.remove, parent_session) 
       session$sendCustomMessage("cookie-remove", msg)
       session$sendCustomMessage("analytics-consent", msg)
     })
+
+    return(renderText({
+      cookie_text_stem <- "To better understand the reach of our dashboard tools,
+    this site uses cookies to identify numbers of unique users as part of Google
+    Analytics. You have chosen to"
+      cookie_text_tail <- "the use of cookies on this website."
+      if ("cookies" %in% names(input)) {
+        if ("dfe_analytics" %in% names(input$cookies)) {
+          if (input$cookies$dfe_analytics == "granted") {
+            paste(cookie_text_stem, "accept", cookie_text_tail)
+          } else {
+            paste(cookie_text_stem, "reject", cookie_text_tail)
+          }
+        }
+      } else {
+        "Cookies consent has not been confirmed."
+      }
+    }))
   })
 }
