@@ -32,12 +32,13 @@ dfe_cookie_script <- function() {
 #' dfe_cookie_script()
 #' cookieBannerUI("cookies", name = "My DfE R-Shiny data dashboard")
 #'
-#' And add the following in server.R:
+#' And add the following in server.R (after updating the google analytics key):
 #'   output$cookie_status <- dfeshiny::cookieBannerServer(
 #'   "cookies",
 #'   input.cookies = reactive(input$cookies),
 #'   input.remove = reactive(input$remove),
-#'   parent_session = session
+#'   parent_session = session,
+#'   google_analytics_key = "ABCDE12345"
 #'   )
 #'
 #' Note that you should also include dfeshiny::support_panel() in your
@@ -108,12 +109,13 @@ cookieBannerUI <- function(id, name = "DfE R-Shiny dashboard template") {
 #' dfe_cookie_script()
 #' cookieBannerUI("cookies", name = "My DfE R-Shiny data dashboard")
 #'
-#' And add the following in server.R:
+#' And add the following in server.R (after updating the google analytics key):
 #'   output$cookie_status <- dfeshiny::cookieBannerServer(
 #'   "cookies",
 #'   input.cookies = reactive(input$cookies),
 #'   input.remove = reactive(input$remove),
-#'   parent_session = session
+#'   parent_session = session,
+#'   google_analytics_key = "ABCDE12345"
 #'   )
 #'
 #' Note that you should also include dfeshiny::support_panel() in your
@@ -124,6 +126,9 @@ cookieBannerUI <- function(id, name = "DfE R-Shiny dashboard template") {
 #' be reactive(input$cookies))
 #' @param input.remove The state of the cookie reset button provided by
 #' dfeshiny::support_panel(). Should always be set to reactive(input$remove).
+#' @param parent_session This should be the R Shiny app session
+#' @param google_analytics_key Provide the GA 10 digit key of the form
+#' "ABCDE12345"
 #'
 #' @return NULL
 #' @export
@@ -133,11 +138,21 @@ cookieBannerUI <- function(id, name = "DfE R-Shiny dashboard template") {
 #'   "cookies",
 #'   input.cookies = reactive(input$cookies),
 #'   input.remove = reactive(input$remove),
-#'   parent_session = session
+#'   parent_session = session,
+#'   google_analytics_key = ''
 #' )
-cookieBannerServer <- function(id, input.cookies, input.remove, parent_session) {
-  moduleServer(id, function(input, output, session) {
-    observeEvent(input.cookies(), {
+cookieBannerServer <- function(
+    id,
+    input.cookies,
+    input.remove,
+    parent_session,
+    google_analytics_key = NULL
+    ) {
+  shiny::moduleServer(id, function(input, output, session) {
+    if(is.null(google_analytics_key)){
+      warning("Please provide a valid Google Analytics key")
+      }
+    shiny::observeEvent(input.cookies(), {
       if (!is.null(input.cookies())) {
         if (!("dfe_analytics" %in% names(input.cookies()))) {
           shinyjs::show(id = "cookieMain")
@@ -164,7 +179,7 @@ cookieBannerServer <- function(id, input.cookies, input.remove, parent_session) 
     })
 
     # Check for the cookies being authorised
-    observeEvent(input$cookieAccept, {
+    shiny::observeEvent(input$cookieAccept, {
       msg <- list(
         name = "dfe_analytics",
         value = "granted"
@@ -176,7 +191,7 @@ cookieBannerServer <- function(id, input.cookies, input.remove, parent_session) 
     })
 
     # Check for the cookies being rejected
-    observeEvent(input$cookieReject, {
+    shiny::observeEvent(input$cookieReject, {
       msg <- list(
         name = "dfe_analytics",
         value = "denied"
@@ -187,24 +202,24 @@ cookieBannerServer <- function(id, input.cookies, input.remove, parent_session) 
       shinyjs::show(id = "cookieRejectDiv", asis = TRUE)
     })
 
-    observeEvent(input$cookieLink, {
+    shiny::observeEvent(input$cookieLink, {
       # Need to link here to where further info is located.  You can
       # updateTabsetPanel to have a cookie page for instance
-      updateTabsetPanel(
+      shiny::updateTabsetPanel(
         session = parent_session,
         "navlistPanel",
         selected = "support_panel"
       )
     })
 
-    observeEvent(input.remove(), {
+    shiny::observeEvent(input.remove(), {
       shinyjs::toggle(id = "cookieMain")
       msg <- list(name = "dfe_analytics", value = "denied")
       session$sendCustomMessage("cookie-remove", msg)
       session$sendCustomMessage("analytics-consent", msg)
     })
 
-    return(renderText({
+    return(shiny::renderText({
       cookie_text_stem <- "You have chosen to"
       cookie_text_tail <- "the use of cookies on this website."
       if (!is.null(input.cookies())) {
