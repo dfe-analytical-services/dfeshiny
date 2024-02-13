@@ -15,7 +15,7 @@ Analytics key that's both unique to your app and stored within the DfE Google
 Analytics domain. You can request a key from the 
 [Statistics Development team](mailto:statistics.development@education.gov.uk). 
 This should then be added as a variable to your dashboard's 
-[global.R](https://github.com/dfe-analytical-services/shiny-template/blob/3e9548256ffb5506729f02930ad69bcff78e482d/global.R#L91) 
+[global.R](https://github.com/dfe-analytical-services/dfeshiny/blob/cookie-module/tests/test_dashboard/global.R) 
 file (replacing `ABCDE12345` below with the key provided by the Statistics 
 Development team):
 
@@ -41,7 +41,7 @@ Putting these on the lines *just before* the `shinyGovstyle::header(...)` line
 should work well.
 
 Then add the following code to your
-[server.R](https://github.com/dfe-analytical-services/shiny-template/blob/3e9548256ffb5506729f02930ad69bcff78e482d/server.R#L79) 
+[server.R](https://github.com/dfe-analytical-services/dfeshiny/blob/cookie-module/tests/test_dashboard/server.R) 
 script somewhere *inside* the `server <- function(input, output, session) {...}` 
 function (you shouldn't need 
 to change anything in this one):
@@ -50,7 +50,7 @@ to change anything in this one):
 output$cookie_status <- dfeshiny::cookie_banner_server(
   "cookies",
   input_cookies = reactive(input$cookies),
-  input_remove = reactive(input$remove),
+  input_clear = reactive(input$cookie_consent_clear),
   parent_session = session,
   google_analytics_key = google_analytics_key
 )
@@ -58,7 +58,7 @@ output$cookie_status <- dfeshiny::cookie_banner_server(
 
 Finally, you should make sure you're using the `dfeshiny::support_panel()` 
 function within the `navListPanel(...)` in your 
-[ui.R](https://github.com/dfe-analytical-services/shiny-template/blob/3e9548256ffb5506729f02930ad69bcff78e482d/ui.R#L126) 
+[ui.R](https://github.com/dfe-analytical-services/dfeshiny/blob/cookie-module/tests/test_dashboard/ui.R) 
 script as this will provide
 users with the necessary explanatory text on how we use cookies and the ability 
 to change their decision on whether or not to accept the use of cookies.
