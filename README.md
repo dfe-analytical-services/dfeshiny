@@ -14,9 +14,10 @@ Before adding the cookie consent banner, you will need to obtain a Google
 Analytics key that's both unique to your app and stored within the DfE Google
 Analytics domain. You can request a key from the 
 [Statistics Development team](mailto:statistics.development@education.gov.uk). 
-This should then be added as a variable to your dashboard's `global.R` file 
-(replacing `ABCDE12345` with the key provided by the Statistics Development 
-team):
+This should then be added as a variable to your dashboard's 
+[global.R](https://github.com/dfe-analytical-services/shiny-template/blob/3e9548256ffb5506729f02930ad69bcff78e482d/global.R#L91) 
+file (replacing `ABCDE12345` below with the key provided by the Statistics 
+Development team):
 
 ```
 google_analytics_key <- 'ABCDE12345'
