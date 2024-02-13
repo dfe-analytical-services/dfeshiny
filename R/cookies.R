@@ -171,13 +171,11 @@ cookieBannerServer <- function(id, input.cookies, input.remove, parent_session) 
     })
 
     return(renderText({
-      cookie_text_stem <- "To better understand the reach of our dashboard tools,
-    this site uses cookies to identify numbers of unique users as part of Google
-    Analytics. You have chosen to"
+      cookie_text_stem <- "You have chosen to"
       cookie_text_tail <- "the use of cookies on this website."
       if ("cookies" %in% names(input)) {
-        if ("dfe_analytics" %in% names(input$cookies)) {
-          if (input$cookies$dfe_analytics == "granted") {
+        if ("dfe_analytics" %in% names(input.cookies)) {
+          if (input.cookies$dfe_analytics == "granted") {
             paste(cookie_text_stem, "accept", cookie_text_tail)
           } else {
             paste(cookie_text_stem, "reject", cookie_text_tail)

@@ -99,6 +99,9 @@ support_panel <- function(
             "."
           ),
           h2("Use of cookies"),
+          p("To better understand the reach of our dashboard tools, this site
+            uses cookies to identify numbers of unique users as part of Google
+            Analytics."),
           textOutput("cookie_status"),
           actionButton("remove", "Reset cookie consent"),
         )
