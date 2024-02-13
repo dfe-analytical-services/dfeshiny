@@ -17,13 +17,13 @@ app$wait_for_idle(500)
 app$click("cookie_consent_clear")
 test_that("App loads", {
   # Capture initial values
-  app$expect_values(  )
+  app$expect_values()
 })
 
 app$click("cookies-cookie_accept")
 test_that("Cookies accepted", {
   # Capture initial values
-  app$expect_values(  )
+  app$expect_values()
 })
 
 app$click("cookie_consent_clear")
@@ -35,5 +35,5 @@ test_that("Cookies reset", {
 app$click("cookies-cookie_reject")
 test_that("Cookies rejected", {
   # Capture initial values
-  app$expect_values(  )
+  app$expect_values()
 })
