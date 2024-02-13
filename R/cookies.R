@@ -1,19 +1,19 @@
 #' dfe_cookie_script
 #'
-#' @return tags$head()
+#' @return shiny$agshead()
 #' @export
 #'
 #' @examples
 #' dfe_cookie_script()
 dfe_cookie_script <- function() {
-  tags$head(
-    tags$script(
+  shiny$agshead(
+    shiny$agsscript(
       src = paste0(
         "https://cdn.jsdelivr.net/npm/js-cookie@rc/",
         "dist/js.cookie.min.js"
       )
     ),
-    tags$script(src = "cookie-consent.js") # Tried using a copy in the repo
+    shiny$agsscript(src = "cookie-consent.js") # Tried using a copy in the repo
     # here, but it all stopped working at that point.
   )
 }
@@ -47,35 +47,35 @@ dfe_cookie_script <- function() {
 #' @param name Name of the dashboard on which the cookie authorisation is being
 #' applied
 #'
-#' @return tags$div()
+#' @return shiny$agsdiv()
 #' @export
 #'
 #' @examples
 #' cookieBannerUI("cookies", name = "My DfE R-Shiny data dashboard")
 cookieBannerUI <- function(id, name = "DfE R-Shiny dashboard template") {
-  tags$div(
+  shiny::tags$div(
     id = NS(id, "cookieDiv"),
     class = "govuk-cookie-banner",
     `data-nosnippet role` = "region",
     `aria-label` = "Cookies on name",
-    tags$div(
+    shiny::tags$div(
       id = NS(id, "cookieMain"),
       class = "govuk-cookie-banner__message govuk-width-container",
-      tags$div(
+      shiny$agsdiv(
         class = "govuk-grid-row",
-        tags$div(
+        shiny$agsdiv(
           class = "govuk-grid-column-two-thirds",
-          tags$h2(
+          shiny$agsh2(
             class = "govuk-cookie-banner__heading govuk-heading-m",
             name
           ),
-          tags$div(
+          shiny$agsdiv(
             class = "govuk-cookie-banner__content",
-            tags$p(
+            shiny$agsp(
               class = "govuk-body",
               "We use some essential cookies to make this service work."
             ),
-            tags$p(
+            shiny$agsp(
               class = "govuk-body",
               "We'd also like to use analytics cookies so we can understand
               how you use the service and make improvements."
@@ -83,7 +83,7 @@ cookieBannerUI <- function(id, name = "DfE R-Shiny dashboard template") {
           )
         )
       ),
-      tags$div(
+      shiny$agsdiv(
         class = "govuk-button-group",
         button_Input(NS(id, "cookieAccept"), "Accept analytics cookies"),
         button_Input(NS(id, "cookieReject"), "Reject analytics cookies"),
