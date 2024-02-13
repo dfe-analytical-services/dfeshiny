@@ -95,8 +95,13 @@ cookieBannerUI <- function(id, name = "DfE R-Shiny dashboard template") {
 #' @export
 #'
 #' @examples
-#' cookieBannerServer("cookies", input.cookies = reactive(input$cookies), input.remove = reactive(input$remove))
-cookieBannerServer <- function(id, input.cookies = NULL, input.remove = NULL) {
+#' cookieBannerServer(
+#'   "cookies",
+#'   input.cookies = reactive(input$cookies),
+#'   input.remove = reactive(input$remove),
+#'   parent_session = session
+#'   )
+cookieBannerServer <- function(id, input.cookies, input.remove, parent_session) {
   moduleServer(id, function(input, output, session) {
     observeEvent(input.cookies(), {
       if (!is.null(input.cookies())) {
@@ -151,7 +156,11 @@ cookieBannerServer <- function(id, input.cookies = NULL, input.remove = NULL) {
     observeEvent(input$cookieLink, {
       # Need to link here to where further info is located.  You can
       # updateTabsetPanel to have a cookie page for instance
-      updateTabsetPanel(session, ns("navlistPanel"), selected = "support_panel")
+      updateTabsetPanel(
+        session=parent_session,
+        "navlistPanel",
+        selected = "support_panel"
+        )
     })
 
     observeEvent(input.remove(), {
