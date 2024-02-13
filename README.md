@@ -27,8 +27,9 @@ Next, you should copy the javascript file
 necessary for controlling the cookie storage in the user's browser to the `www/` 
 folder in your dashboards repository.
 
-Once you've made the above updates, add the following lines to your `ui.R` script 
-(updating "My DfE R Shiny data dashboard" with the name of your app):
+Once you've made the above updates, add the following lines to your 
+[ui.R](https://github.com/dfe-analytical-services/shiny-template/blob/3e9548256ffb5506729f02930ad69bcff78e482d/ui.R#L95) 
+script (updating "My DfE R Shiny data dashboard" with the name of your app):
 
 ```
 dfe_cookie_script()
@@ -38,8 +39,10 @@ cookie_banner_ui("cookies", name = "My DfE R Shiny data dashboard")
 Putting these on the lines *just before* the `shinyGovstyle::header(...)` line 
 should work well.
 
-Then add the following code to your `server.R` script somewhere *inside* the 
-`server <- function(input, output, session) {...}` function (you shouldn't need 
+Then add the following code to your
+[server.R](https://github.com/dfe-analytical-services/shiny-template/blob/3e9548256ffb5506729f02930ad69bcff78e482d/server.R#L79) 
+script somewhere *inside* the `server <- function(input, output, session) {...}` 
+function (you shouldn't need 
 to change anything in this one):
 
 ```
@@ -53,7 +56,9 @@ output$cookie_status <- dfeshiny::cookie_banner_server(
 ```
 
 Finally, you should make sure you're using the `dfeshiny::support_panel()` 
-function within the `navListPanel(...)` in your dashboard as this will provide
+function within the `navListPanel(...)` in your 
+[ui.R](https://github.com/dfe-analytical-services/shiny-template/blob/3e9548256ffb5506729f02930ad69bcff78e482d/ui.R#L126) 
+script as this will provide
 users with the necessary explanatory text on how we use cookies and the ability 
 to change their decision on whether or not to accept the use of cookies.
 
