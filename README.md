@@ -1,9 +1,10 @@
 # dfeshiny
+
 R package containing preferred methods for creating official DfE R-Shiny dashboards 
 
-# Using this package in a DfE data dashboard
+## Using this package in a DfE data dashboard
 
-## Adding cookies to your dashboard
+### Adding cookies to your dashboard
 
 dfeshiny provides the facility to add a gov.uk styled cookie banner to your 
 site, which is fully functional in terms of controlling the user permissions for
@@ -56,25 +57,25 @@ function within the `navListPanel(...)` in your dashboard as this will provide
 users with the necessary explanatory text on how we use cookies and the ability 
 to change their decision on whether or not to accept the use of cookies.
 
-# Contributing
+## Contributing
 
 ** Try and make use of the `usethis` package wherever relevant: (https://usethis.r-lib.org/)[https://usethis.r-lib.org/].
 
 
-## Adding a package/dependency
+### Adding a package/dependency
 
 `usethis::use_package(<package_name>)`
 
 This will create a new script within the package R/ folder.
 
 
-## Creating a new script
+### Creating a new script
 
 `usethis::use_r(name = <script_name>)`
 
 This will create a new script within the package R/ folder.
 
-## Updating the package version
+### Updating the package version
 
 Once changes have been completed, reviewed and are ready for use in the wild, you
 can increment the package version using:
