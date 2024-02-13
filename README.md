@@ -29,7 +29,7 @@ necessary for controlling the cookie storage in the user's browser to the `www/`
 folder in your dashboards repository.
 
 Once you've made the above updates, add the following lines to your 
-[ui.R](https://github.com/dfe-analytical-services/shiny-template/blob/3e9548256ffb5506729f02930ad69bcff78e482d/ui.R#L95) 
+[ui.R](https://github.com/dfe-analytical-services/dfeshiny/blob/cookie-module/tests/test_dashboard/ui.R) 
 script (updating "My DfE R Shiny data dashboard" with the name of your app):
 
 ```
