@@ -7,7 +7,7 @@
 dfe_cookie_script()
 }
 \value{
-tags$head()
+shiny::tags$head()
 }
 \description{
 dfe_cookie_script
