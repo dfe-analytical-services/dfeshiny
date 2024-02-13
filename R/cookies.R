@@ -36,56 +36,49 @@ dfe_cookie_script <- function() {
 #' @examples
 #' cookieBannerUI("cookies", name = "My DfE R-Shiny data dashboard")
 cookieBannerUI <- function(id, name = "DfE R-Shiny dashboard template") {
-  value <- shiny::restoreInput(id = NS(id, "cookieLink"), default = NULL)
-  govCookieLink <- shiny::tags$button(
-    "View cookies",
-    NS(id, "cookieLink"),
-    class = paste0("govuk-link", " action-button"),
-    `data-val` = value
-  )
-
-  attachDependency(govCookieLink)
-
-  cookieBanner_Input <-
+  tags$div(
+    id = NS(id, "cookieDiv"),
+    class = "govuk-cookie-banner",
+    `data-nosnippet role` = "region",
+    `aria-label` = "Cookies on name",
     tags$div(
-      id = NS(id, "cookieDiv"),
-      class = "govuk-cookie-banner",
-      `data-nosnippet role` = "region",
-      `aria-label` = "Cookies on name",
+      id = NS(id, "cookieMain"),
+      class = "govuk-cookie-banner__message govuk-width-container",
       tags$div(
-        id = NS(id, "cookieMain"),
-        class = "govuk-cookie-banner__message govuk-width-container",
+        class = "govuk-grid-row",
         tags$div(
-          class = "govuk-grid-row",
+          class = "govuk-grid-column-two-thirds",
+          tags$h2(
+            class = "govuk-cookie-banner__heading govuk-heading-m",
+            name
+          ),
           tags$div(
-            class = "govuk-grid-column-two-thirds",
-            tags$h2(
-              class = "govuk-cookie-banner__heading govuk-heading-m",
-              name
+            class = "govuk-cookie-banner__content",
+            tags$p(
+              class = "govuk-body",
+              "We use some essential cookies to make this service work."
             ),
-            tags$div(
-              class = "govuk-cookie-banner__content",
-              tags$p(
-                class = "govuk-body",
-                "We use some essential cookies to make this service work."
-              ),
-              tags$p(
-                class = "govuk-body",
-                "We'd also like to use analytics cookies so we can understand
+            tags$p(
+              class = "govuk-body",
+              "We'd also like to use analytics cookies so we can understand
               how you use the service and make improvements."
-              )
             )
           )
-        ),
-        tags$div(
-          class = "govuk-button-group",
-          button_Input(NS(id, "cookieAccept"), "Accept analytics cookies"),
-          button_Input(NS(id, "cookieReject"), "Reject analytics cookies"),
-          govCookieLink
+        )
+      ),
+      tags$div(
+        class = "govuk-button-group",
+        button_Input(NS(id, "cookieAccept"), "Accept analytics cookies"),
+        button_Input(NS(id, "cookieReject"), "Reject analytics cookies"),
+        shiny::tags$button(
+          "View cookies",
+          NS(id, "cookieLink"),
+          class = paste0("govuk-link", " action-button"),
+          `data-val` = value
         )
       )
     )
-  attachDependency(cookieBanner_Input)
+  )
 }
 
 #' cookieBannerServer
