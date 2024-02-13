@@ -30,8 +30,8 @@ cookie_banner_ui("cookies", name = "My DfE R-Shiny data dashboard")
 And add the following in server.R (after updating the google analytics key):
 output$cookie_status <- dfeshiny::cookie_banner_server(
 "cookies",
-input.cookies = reactive(input$cookies),
-input.remove = reactive(input$remove),
+input_cookies = reactive(input$cookies),
+input_clear = reactive(input$cookie_consent_clear),
 parent_session = session,
 google_analytics_key = "ABCDE12345"
 )

@@ -6,8 +6,8 @@
 \usage{
 cookie_banner_server(
   id,
-  input.cookies,
-  input.remove,
+  input_cookies,
+  input_clear,
   parent_session,
   google_analytics_key = NULL
 )
@@ -15,11 +15,11 @@ cookie_banner_server(
 \arguments{
 \item{id}{Shiny tag shared with cookie_banner_ui()}
 
-\item{input.cookies}{The cookie input passed from cookies.js (should always
+\item{input_cookies}{The cookie input passed from cookies.js (should always
 be reactive(input$cookies))}
 
-\item{input.remove}{The state of the cookie reset button provided by
-dfeshiny::support_panel(). Should always be set to reactive(input$remove).}
+\item{input_clear}{The state of the cookie reset button provided by
+dfeshiny::support_panel(). Should always be set to reactive(input$cookie_consent_clear).}
 
 \item{parent_session}{This should be the R Shiny app session}
 
@@ -28,8 +28,8 @@ dfeshiny::support_panel(). Should always be set to reactive(input$remove).}
 }
 \description{
 cookie_banner_server() provides the server module to be used alongside
-cookie_banner_ui(). Place cookie_banner_server() as a call in your server.R file
-to provide the server functions to control users being able to accept or
+cookie_banner_ui(). Place cookie_banner_server() as a call in your server.R
+file to provide the server functions to control users being able to accept or
 reject cookie consent for the provision of Google Analytics tracking on DfE
 R-Shiny dashboards.
 
@@ -42,8 +42,8 @@ cookie_banner_ui("cookies", name = "My DfE R-Shiny data dashboard")
 And add the following in server.R (after updating the google analytics key):
 output$cookie_status <- dfeshiny::cookie_banner_server(
 "cookies",
-input.cookies = reactive(input$cookies),
-input.remove = reactive(input$remove),
+input_cookies = reactive(input$cookies),
+input_clear = reactive(input$cookie_consent_clear),
 parent_session = session,
 google_analytics_key = "ABCDE12345"
 )
@@ -54,8 +54,8 @@ navListPanel()
 \examples{
 output$cookie_status <- cookie_banner_server(
   "cookies",
-  input.cookies = reactive(input$cookies),
-  input.remove = reactive(input$remove),
+  input_cookies = reactive(input$cookies),
+  input_clear = reactive(input$cookie_consent_clear),
   parent_session = session,
   google_analytics_key = ""
 )
