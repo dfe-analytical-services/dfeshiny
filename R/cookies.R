@@ -26,6 +26,23 @@ dfe_cookie_script <- function() {
 #' functionality is provided by cookieBannerServer(), whilst users will also
 #' need to include the dfe_cookie_script() function in their ui.R file.
 #'
+#' To use the banner, first copy the file cookie-consent.js from the js/ folder
+#' of this package to the www/ folder of your R-Shiny app. Then add the
+#' following lines to your ui.R:
+#' dfe_cookie_script()
+#' cookieBannerUI("cookies", name = "My DfE R-Shiny data dashboard")
+#'
+#' And add the following in server.R:
+#'   output$cookie_status <- dfeshiny::cookieBannerServer(
+#'   "cookies",
+#'   input.cookies = reactive(input$cookies),
+#'   input.remove = reactive(input$remove),
+#'   parent_session = session
+#'   )
+#'
+#' Note that you should also include dfeshiny::support_panel() in your
+#' navListPanel()
+#'
 #' @param id Shiny tag shared with cookieBannerServer()
 #' @param name Name of the dashboard on which the cookie authorisation is being
 #' applied
@@ -84,6 +101,23 @@ cookieBannerUI <- function(id, name = "DfE R-Shiny dashboard template") {
 #' to provide the server functions to control users being able to accept or
 #' reject cookie consent for the provision of Google Analytics tracking on DfE
 #' R-Shiny dashboards.
+#'
+#' To use the banner, first copy the file cookie-consent.js from the js/ folder
+#' of this package to the www/ folder of your R-Shiny app. Then add the
+#' following lines to your ui.R:
+#' dfe_cookie_script()
+#' cookieBannerUI("cookies", name = "My DfE R-Shiny data dashboard")
+#'
+#' And add the following in server.R:
+#'   output$cookie_status <- dfeshiny::cookieBannerServer(
+#'   "cookies",
+#'   input.cookies = reactive(input$cookies),
+#'   input.remove = reactive(input$remove),
+#'   parent_session = session
+#'   )
+#'
+#' Note that you should also include dfeshiny::support_panel() in your
+#' navListPanel()
 #'
 #' @param id Shiny tag shared with cookieBannerUI()
 #' @param input.cookies The cookie input passed from cookies.js (should always
@@ -173,7 +207,6 @@ cookieBannerServer <- function(id, input.cookies, input.remove, parent_session) 
     return(renderText({
       cookie_text_stem <- "You have chosen to"
       cookie_text_tail <- "the use of cookies on this website."
-      message(paste("Cookie status:", input.cookies()))
       if (!is.null(input.cookies())) {
         if ("dfe_analytics" %in% names(input.cookies())) {
           if (input.cookies()$dfe_analytics == "granted") {

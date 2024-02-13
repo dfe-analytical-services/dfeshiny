@@ -4,7 +4,7 @@
 \alias{cookieBannerServer}
 \title{cookieBannerServer}
 \usage{
-cookieBannerServer(id, input.cookies = NULL, input.remove = NULL)
+cookieBannerServer(id, input.cookies, input.remove, parent_session)
 }
 \arguments{
 \item{id}{Shiny tag shared with cookieBannerUI()}
@@ -21,7 +21,29 @@ cookieBannerUI(). Place cookieBannerServer() as a call in your server.R file
 to provide the server functions to control users being able to accept or
 reject cookie consent for the provision of Google Analytics tracking on DfE
 R-Shiny dashboards.
+
+To use the banner, first copy the file cookie-consent.js from the js/ folder
+of this package to the www/ folder of your R-Shiny app. Then add the
+following lines to your ui.R:
+dfe_cookie_script()
+cookieBannerUI("cookies", name = "My DfE R-Shiny data dashboard")
+
+And add the following in server.R:
+output$cookie_status <- dfeshiny::cookieBannerServer(
+"cookies",
+input.cookies = reactive(input$cookies),
+input.remove = reactive(input$remove),
+parent_session = session
+)
+
+Note that you should also include dfeshiny::support_panel() in your
+navListPanel()
 }
 \examples{
-cookieBannerServer("cookies", input.cookies = reactive(input$cookies), input.remove = reactive(input$remove))
+output$cookie_status <- cookieBannerServer(
+  "cookies",
+  input.cookies = reactive(input$cookies),
+  input.remove = reactive(input$remove),
+  parent_session = session
+)
 }

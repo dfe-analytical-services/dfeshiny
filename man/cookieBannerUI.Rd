@@ -20,6 +20,23 @@ This function provides a cookie authorisation banner on DfE R-Shiny
 dashboards for users to be able to accept or reject cookies. The server side
 functionality is provided by cookieBannerServer(), whilst users will also
 need to include the dfe_cookie_script() function in their ui.R file.
+
+To use the banner, first copy the file cookie-consent.js from the js/ folder
+of this package to the www/ folder of your R-Shiny app. Then add the
+following lines to your ui.R:
+dfe_cookie_script()
+cookieBannerUI("cookies", name = "My DfE R-Shiny data dashboard")
+
+And add the following in server.R:
+output$cookie_status <- dfeshiny::cookieBannerServer(
+"cookies",
+input.cookies = reactive(input$cookies),
+input.remove = reactive(input$remove),
+parent_session = session
+)
+
+Note that you should also include dfeshiny::support_panel() in your
+navListPanel()
 }
 \examples{
 cookieBannerUI("cookies", name = "My DfE R-Shiny data dashboard")
