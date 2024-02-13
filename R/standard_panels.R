@@ -137,7 +137,7 @@ support_panel <- function(
             uses cookies to identify numbers of unique users as part of Google
             Analytics."),
           textOutput("cookie_status"),
-          actionButton("remove", "Reset cookie consent"),
+          actionButton("cookie_consent_clear", "Reset cookie consent"),
         )
       )
     )

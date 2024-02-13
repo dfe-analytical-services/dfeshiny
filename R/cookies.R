@@ -36,7 +36,7 @@ dfe_cookie_script <- function() {
 #'   output$cookie_status <- dfeshiny::cookie_banner_server(
 #'   "cookies",
 #'   input_cookies = reactive(input$cookies),
-#'   input_remove = reactive(input$remove),
+#'   input_clear = reactive(input$cookie_consent_clear),
 #'   parent_session = session,
 #'   google_analytics_key = "ABCDE12345"
 #'   )
@@ -122,7 +122,7 @@ cookie_banner_ui <- function(id, name = "DfE R-Shiny dashboard template") {
 #'   output$cookie_status <- dfeshiny::cookie_banner_server(
 #'   "cookies",
 #'   input_cookies = reactive(input$cookies),
-#'   input_remove = reactive(input$remove),
+#'   input_clear = reactive(input$cookie_consent_clear),
 #'   parent_session = session,
 #'   google_analytics_key = "ABCDE12345"
 #'   )
@@ -133,8 +133,8 @@ cookie_banner_ui <- function(id, name = "DfE R-Shiny dashboard template") {
 #' @param id Shiny tag shared with cookie_banner_ui()
 #' @param input_cookies The cookie input passed from cookies.js (should always
 #' be reactive(input$cookies))
-#' @param input_remove The state of the cookie reset button provided by
-#' dfeshiny::support_panel(). Should always be set to reactive(input$remove).
+#' @param input_clear The state of the cookie reset button provided by
+#' dfeshiny::support_panel(). Should always be set to reactive(input$cookie_consent_clear).
 #' @param parent_session This should be the R Shiny app session
 #' @param google_analytics_key Provide the GA 10 digit key of the form
 #' "ABCDE12345"
@@ -146,14 +146,14 @@ cookie_banner_ui <- function(id, name = "DfE R-Shiny dashboard template") {
 #' output$cookie_status <- cookie_banner_server(
 #'   "cookies",
 #'   input_cookies = reactive(input$cookies),
-#'   input_remove = reactive(input$remove),
+#'   input_clear = reactive(input$cookie_consent_clear),
 #'   parent_session = session,
 #'   google_analytics_key = ""
 #' )
 cookie_banner_server <- function(
     id,
     input_cookies,
-    input_remove,
+    input_clear,
     parent_session,
     google_analytics_key = NULL) {
   shiny::moduleServer(id, function(input, output, session) {
@@ -175,7 +175,7 @@ cookie_banner_server <- function(
             if ("dfe_analytics" %in% names(input_cookies())) {
               if (input_cookies()$dfe_analytics == "denied") {
                 ga_msg <- list(name = paste0("_ga_", google_analytics_key))
-                session$sendCustomMessage("cookie-remove", ga_msg)
+                session$sendCustomMessage("cookie-clear", ga_msg)
               }
             }
           }
@@ -218,10 +218,10 @@ cookie_banner_server <- function(
       )
     })
 
-    shiny::observeEvent(input_remove(), {
+    shiny::observeEvent(input_clear(), {
       shinyjs::toggle(id = "cookie_main")
       msg <- list(name = "dfe_analytics", value = "denied")
-      session$sendCustomMessage("cookie-remove", msg)
+      session$sendCustomMessage("cookie-clear", msg)
       session$sendCustomMessage("analytics-consent", msg)
     })
 
