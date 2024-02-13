@@ -151,7 +151,7 @@ cookieBannerServer <- function(id, input.cookies = NULL, input.remove = NULL) {
     observeEvent(input$cookieLink, {
       # Need to link here to where further info is located.  You can
       # updateTabsetPanel to have a cookie page for instance
-      updateTabsetPanel(session, "navlistPanel", selected = "support_panel")
+      updateTabsetPanel(session, ns("navlistPanel"), selected = "support_panel")
     })
 
     observeEvent(input.remove(), {
