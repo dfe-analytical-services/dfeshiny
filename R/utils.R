@@ -24,22 +24,26 @@ customDisconnectMessage <- function(refresh = "Refresh page",
                                     publication_link = ees_publication) {
   # Check links are valid
 
-  is_valid_sites_list <- function(sites){
+  is_valid_sites_list <- function(sites) {
     lapply(str_trim(sites), startsWith, "https://department-for-education.shinyapps.io/")
   }
 
-  if(FALSE %in% is_valid_sites_list(links)) {
+  if (FALSE %in% is_valid_sites_list(links) | links == "https://department-for-education.shinyapps.io/") {
     stop("You have entered an invalid site link in the sites_list argument.")
   }
 
-  is_valid_publication_link <- function(link){
-    startswith <- startsWith(str_trim(link), c("https://explore-education-statistics.service.gov.uk/find-statistics/",
-                                     "https://www.explore-education-statistics.service.gov.uk/find-statistics/",
-                                     "https://www.gov.uk/",
-                                     "https://gov.uk/"))
+  pub_prefix <- c("https://explore-education-statistics.service.gov.uk/find-statistics/",
+                  "https://www.explore-education-statistics.service.gov.uk/find-statistics/",
+                  "https://www.gov.uk/",
+                  "https://gov.uk/")
+
+  is_valid_publication_link <- function(link) {
+    startsWith(str_trim(link), pub_prefix)
   }
 
-  if(url.exists(publication_link) == FALSE | (TRUE %in% is_valid_publication_link(publication_link)) == FALSE) {
+  if (url.exists(publication_link) == FALSE |
+      (TRUE %in% is_valid_publication_link(publication_link)) == FALSE |
+      publication_link %in% pub_prefix) {
     stop("You have entered an invalid publication link in the ees_publication argument.")
   }
 
