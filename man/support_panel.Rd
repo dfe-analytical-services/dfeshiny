@@ -15,7 +15,7 @@ support_panel(
 )
 }
 \arguments{
-\item{team_email}{Your team e-mail address as a string}
+\item{team_email}{Your team e-mail address as a string, this must be a education.gov.uk email}
 
 \item{repo_name}{The repository name as listed on GitHub}
 
@@ -29,6 +29,16 @@ support_panel(
 
 \item{form_url}{URL to a feedback form for the dashboard}
 }
+\value{
+a standardised panel for a public R Shiny dashboard in DfE
+}
 \description{
 Create the standard DfE R-Shiny support and feedback dashboard panel.
+}
+\examples{
+support_panel(
+  team_email = "my.team@education.gov.uk",
+  repo_name = "https://github.com/dfe-analytical-services/my-repo",
+  publication_stub = ?
+  )
 }

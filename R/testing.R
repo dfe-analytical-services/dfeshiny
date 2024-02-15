@@ -1,8 +1,10 @@
 #' Tidy code
 #'
-#' @description Script to apply styler code styling to scripts within the shiny directory structure.
+#' @description Script to apply styler code styling to scripts
+#' within the shiny directory structure.
 #'
-#' @param subdirs List of sub-directories to (recursively search for R scripts to be styled)
+#' @param subdirs List of sub-directories to
+#' recursively search for R scripts to be styled
 #'
 #' @return
 #' @export
@@ -23,7 +25,10 @@ tidy_code <- function(subdirs = c("R", "tests")) {
     }
   }
   if (any(script_changes)) {
-    message("Styling changes have been made to your scripts, please review any changes made.")
+    message(
+      "Styling changes have been made to your scripts,
+           please review any changes made."
+    )
   }
   return(any(script_changes))
 }
