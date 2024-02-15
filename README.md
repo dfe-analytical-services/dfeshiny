@@ -33,8 +33,8 @@ Once you've made the above updates, add the following lines to your
 script (updating "My DfE R Shiny data dashboard" with the name of your app):
 
 ```
-dfe_cookie_script()
-cookie_banner_ui("cookies", name = "My DfE R Shiny data dashboard")
+dfe_cookie_script(),
+cookie_banner_ui("cookies", name = "My DfE R Shiny data dashboard"),
 ```
 
 Putting these on the lines *just before* the `shinyGovstyle::header(...)` line 
