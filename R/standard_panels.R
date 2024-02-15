@@ -179,9 +179,7 @@ support_panel <- function(
           shiny::tags$p(
             "The source code for this dashboard is available in our ",
             shiny::tags$a(
-              href = paste0(
-                "https://github.com/dfe-analytical-services/", repo_name
-              ),
+              href = repo_name,
               "GitHub repository",
               .noWS = c("after")
             ),
