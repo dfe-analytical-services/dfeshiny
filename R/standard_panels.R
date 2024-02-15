@@ -6,7 +6,7 @@ library(shinyGovstyle)
 #' @description
 #' Create the standard DfE R-Shiny support and feedback dashboard panel.
 #'
-#' @param team_email Your team e-mail address as a string
+#' @param team_email Your team e-mail address as a string, this must be a education.gov.uk email
 #' @param repo_name The repository name as listed on GitHub
 #' @param ees_publication Whether the parent publication is hosted on Explore Education Statistics
 #' @param publication_name The parent publication name
@@ -28,16 +28,16 @@ support_panel <- function(
     form_url = NULL) {
   # Check that the team_email is a valid email
 
-  is_valid_email <- function(email) {
+  is_valid_dfe_email <- function(email) {
     grepl(
-      "\\<[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,}\\>",
+      "\\<[A-Z0-9._%+-]+@education.gov.uk\\>",
       as.character(email),
       ignore.case = TRUE
     )
   }
 
-  if (is_valid_email(team_email) == FALSE) {
-    stop("You have entered an invalid email in the team_email argument.")
+  if (is_valid_dfe_email(team_email) == FALSE) {
+    stop("You have entered an invalid email in the team_email argument. Please enter a @education.gov.uk email.")
   }
 
 
