@@ -66,26 +66,41 @@ support_panel <- function(
               ),
               "f you spot any errors or bugs while using this dashboard, please screenshot and email them to "
             ),
-            a(href = paste0("mailto:", team_email), team_email, .noWS = c("after")), "."
+            tags$a(href = paste0("mailto:", team_email), team_email, .noWS = c("after")), "."
           ),
           h2("Find more information on the data"),
-          p(
-            "The data used to produce the dashboard, along with methodological information can be found in ",
             if (ees_publication) {
-              a(
-                href = paste0("https://explore-education-statistics.service.gov.uk/", publication_stub),
-                ifelse(!is.null(publication_name), publication_name, "Explore Education Statistics"),
-                .noWS = c("after")
+              p(
+                "The parent statistical release of this dashboard, along with methodological information, is available at the following link: ",
+                tags$a(
+                  href = paste0("https://explore-education-statistics.service.gov.uk/find-statistics/", publication_stub),
+                  ifelse(!is.null(publication_name), publication_name, "Explore Education Statistics"),
+                  .noWS = c("after")
+                ),
+                ". The statistical release provides additional ",
+                tags$a(
+                  href = paste0("https://explore-education-statistics.service.gov.uk/find-statistics/", publication_stub, "/data guidance"),
+                  "data guidance",
+                  .noWS = c("after")
+                ),
+                " and ",
+                tags$a(
+                  href = paste0("https://explore-education-statistics.service.gov.uk/find-statistics/", publication_stub,'#explore-data-and-files'),
+                  "tools to access and interogate the underling data",
+                  .noWS = c("after")
+                ),
+              " contained in this dashboard."
               )
             } else {
-              a(
+              p(
+                "The parent statistical release of this dashboard, along with methodological information, is available at the following link: ",
+                a(
                 href = alt_href,
                 publication_name,
                 .noWS = c("after")
               )
+              )
             },
-            "."
-          ),
           h2("Contact us"),
           p(
             "If you have questions about the dashboard or data within it, please contact us at ",
