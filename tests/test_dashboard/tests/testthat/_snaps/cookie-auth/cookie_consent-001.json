@@ -1,0 +1,18 @@
+{
+  "input": {
+    "cookie_consent_clear": 1,
+    "cookies": {
+
+    },
+    "cookies-cookie_accept": 0,
+    "cookies-cookie_link": 0,
+    "cookies-cookie_reject": 0,
+    "navlistPanel": "support_panel"
+  },
+  "output": {
+    "cookie_status": ""
+  },
+  "export": {
+
+  }
+}

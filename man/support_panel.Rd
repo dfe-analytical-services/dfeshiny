@@ -20,16 +20,29 @@ support_panel(
 
 \item{repo_name}{The repository name as listed on GitHub}
 
+<<<<<<< HEAD
 \item{ees_publication}{Whether the source publication is hosted on
 Explore Education Statistics}
+=======
+\item{ees_publication}{Whether the parent publication is hosted on Explore
+Education Statistics}
+>>>>>>> origin/cookie-module
 
 \item{publication_name}{The source publication title}
 
+<<<<<<< HEAD
 \item{publication_slug}{The source publication slug on
 Explore Education Statistics}
 
 \item{alt_href}{Alternative link to the parent publication
 (if not hosted on Explore Education Statistics)}
+=======
+\item{publication_stub}{The parent publication stub on Explore Education
+Statistics}
+
+\item{alt_href}{Alternative link to the parent publication (if not hosted on
+Explore Education Statistics)}
+>>>>>>> origin/cookie-module
 
 \item{form_url}{URL to a feedback form for the dashboard}
 

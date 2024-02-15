@@ -1,0 +1,18 @@
+{
+  "input": {
+    "cookie_consent_clear": 1,
+    "cookies": {
+      "dfe_analytics": "granted"
+    },
+    "cookies-cookie_accept": 1,
+    "cookies-cookie_link": 0,
+    "cookies-cookie_reject": 0,
+    "navlistPanel": "support_panel"
+  },
+  "output": {
+    "cookie_status": "You have chosen to accept the use of cookies on this website."
+  },
+  "export": {
+
+  }
+}

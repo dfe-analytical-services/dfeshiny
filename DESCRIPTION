@@ -16,5 +16,7 @@ Imports:
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.1
 Suggests: 
-    testthat (>= 3.0.0)
+    testthat (>= 3.0.0),
+    shinytest2,
+    diffviewer
 Config/testthat/edition: 3
