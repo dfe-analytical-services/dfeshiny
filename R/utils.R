@@ -1,5 +1,7 @@
 library(shiny)
 library(shinyGovstyle)
+library(RCurl)
+library(stringr)
 
 #' Custom disconnect message
 #'
@@ -20,6 +22,27 @@ customDisconnectMessage <- function(refresh = "Refresh page",
                                     links = sites_list,
                                     publication_name = ees_pub_name,
                                     publication_link = ees_publication) {
+  # Check links are valid
+
+  is_valid_sites_list <- function(sites){
+    lapply(str_trim(sites), startsWith, "https://department-for-education.shinyapps.io/")
+  }
+
+  if(FALSE %in% is_valid_sites_list(links)) {
+    stop("You have entered an invalid site link in the sites_list argument.")
+  }
+
+  is_valid_publication_link <- function(link){
+    startswith <- startsWith(str_trim(link), c("https://explore-education-statistics.service.gov.uk/find-statistics/",
+                                     "https://www.explore-education-statistics.service.gov.uk/find-statistics/",
+                                     "https://www.gov.uk/",
+                                     "https://gov.uk/"))
+  }
+
+  if(url.exists(publication_link) == FALSE | (TRUE %in% is_valid_publication_link(publication_link)) == FALSE) {
+    stop("You have entered an invalid publication link in the ees_publication argument.")
+  }
+
   checkmate::assert_string(refresh)
   htmltools::tagList(
     htmltools::tags$script(
