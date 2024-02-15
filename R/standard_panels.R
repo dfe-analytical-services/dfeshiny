@@ -10,8 +10,8 @@ library(shinyGovstyle)
 #' @param repo_name The repository name as listed on GitHub
 #' @param ees_publication Whether the source publication is hosted on
 #' Explore Education Statistics
-#' @param publication_name The source publication name
-#' @param publication_stub The source publication stub on
+#' @param publication_name The source publication title
+#' @param publication_slug The source publication slug on
 #' Explore Education Statistics
 #' @param alt_href Alternative link to the parent publication
 #' (if not hosted on Explore Education Statistics)
@@ -22,14 +22,20 @@ library(shinyGovstyle)
 #' @export
 #'
 #' @examples
-#' # TODO: add basic example of EES publication
-#' # TODO: add basic example of non-EES publication
+#' support_panel(
+#'   team_email = "my.team@@education.gov.uk",
+#'   repo_name = "https://github.com/dfe-analytical-services/my-repo",
+#'   publication_name = "My publication title",
+#'   publication_slug = "my-publication-title",
+#'   form_url = "www.myform.com",
+#'   cookie_status_output = "cookie_status"
+#' )
 support_panel <- function(
     team_email = "",
     repo_name = "",
     ees_publication = TRUE,
     publication_name = NULL,
-    publication_stub = "",
+    publication_slug = "",
     alt_href = NULL,
     form_url = NULL,
     cookie_status_output = "") {
@@ -115,7 +121,7 @@ support_panel <- function(
                 href = paste0(
                   "https://explore-education-statistics.service.gov.uk
                 /find-statistics/",
-                  publication_stub
+                  publication_slug
                 ),
                 ifelse(!is.null(publication_name),
                   publication_name,
@@ -128,7 +134,7 @@ support_panel <- function(
                 href = paste0(
                   "https://explore-education-statistics
                               .service.gov.uk/find-statistics/",
-                  publication_stub,
+                  publication_slug,
                   "/data guidance"
                 ),
                 "data guidance",
@@ -139,7 +145,7 @@ support_panel <- function(
                 href = paste0(
                   "https://explore-education-statistics
                               .service.gov.uk/find-statistics/",
-                  publication_stub,
+                  publication_slug,
                   "#explore-data-and-files"
                 ),
                 "tools to access and interogate the underling data",
