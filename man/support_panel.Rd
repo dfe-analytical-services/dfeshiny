@@ -19,13 +19,16 @@ support_panel(
 
 \item{repo_name}{The repository name as listed on GitHub}
 
-\item{ees_publication}{Whether the parent publication is hosted on Explore Education Statistics}
+\item{ees_publication}{Whether the parent publication is hosted on Explore
+Education Statistics}
 
 \item{publication_name}{The parent publication name}
 
-\item{publication_stub}{The parent publication stub on Explore Education Statistics}
+\item{publication_stub}{The parent publication stub on Explore Education
+Statistics}
 
-\item{alt_href}{Alternative link to the parent publication (if not hosted on Explore Education Statistics)}
+\item{alt_href}{Alternative link to the parent publication (if not hosted on
+Explore Education Statistics)}
 
 \item{form_url}{URL to a feedback form for the dashboard}
 }
