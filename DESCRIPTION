@@ -7,7 +7,7 @@ Authors@R: c(
     person("Cameron", "Race", , "cameron.race@education.gov.uk", role = c("aut"))
     )
 Description: R package containing preferred methods for creating official DfE R-Shiny dashboards.
-License: `use_gpl3_license()`
+License: GPL (>= 3)
 Encoding: UTF-8
 Imports: 
     shinyGovstyle,
