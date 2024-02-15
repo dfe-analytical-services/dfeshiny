@@ -1,3 +1,7 @@
+ <!-- badges: start -->
+  [![R-CMD-check](https://github.com/dfe-analytical-services/dfeshiny/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/dfe-analytical-services/dfeshiny/actions/workflows/R-CMD-check.yaml)
+  <!-- badges: end -->
+
 # dfeshiny
 R package containing preferred methods for creating official DfE R-Shiny dashboards 
 
