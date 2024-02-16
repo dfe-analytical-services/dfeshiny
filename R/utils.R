@@ -29,7 +29,7 @@ customDisconnectMessage <- function(refresh = "Refresh page",
   }
 
   if (FALSE %in% is_valid_sites_list(links) | links == "https://department-for-education.shinyapps.io/") {
-    stop("You have entered an invalid site link in the sites_list argument.")
+    stop("You have entered an invalid site link in the links argument.")
   }
 
   pub_prefix <- c("https://explore-education-statistics.service.gov.uk/find-statistics/",
@@ -44,7 +44,7 @@ customDisconnectMessage <- function(refresh = "Refresh page",
   if (url.exists(publication_link) == FALSE |
       (TRUE %in% is_valid_publication_link(publication_link)) == FALSE |
       publication_link %in% pub_prefix) {
-    stop("You have entered an invalid publication link in the ees_publication argument.")
+    stop("You have entered an invalid publication link in the publication_link argument.")
   }
 
   checkmate::assert_string(refresh)
