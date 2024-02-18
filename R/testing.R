@@ -4,10 +4,11 @@
 #'
 #' @param subdirs List of sub-directories to (recursively search for R scripts to be styled)
 #'
-#' @return
+#' @return True or False value based on if scripts were changed
 #' @export
 #'
 #' @examples
+#' tidy_code()
 tidy_code <- function(subdirs = c("R", "tests")) {
   message("----------------------------------------")
   message("App scripts")
