@@ -9,7 +9,8 @@ app <- AppDriver$new(
   width = 1445,
   load_timeout = 45 * 1000,
   timeout = 20 * 1000,
-  wait = TRUE
+  wait = TRUE,
+  expect_values_screenshot_args = FALSE
 )
 
 app$wait_for_idle(500)

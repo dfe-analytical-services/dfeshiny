@@ -81,6 +81,7 @@ support_panel <- function(
 
   # Build the support page ----------------------------------------------------
   shiny::tabPanel(
+    value = "support_panel",
     "Support and feedback",
     shinyGovstyle::gov_main_layout(
       shinyGovstyle::gov_row(
