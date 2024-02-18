@@ -115,5 +115,3 @@ shinytest2::test_app("tests/test_dashboard") # important as not currently ran in
 styler::style_pkg() # currently has a known error on cookies.R
 lintr::lint_package()
 ```
-
-

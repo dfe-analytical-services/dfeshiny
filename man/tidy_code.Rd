@@ -7,13 +7,15 @@
 tidy_code(subdirs = c("R", "tests"))
 }
 \arguments{
-\item{subdirs}{List of sub-directories to (recursively search for R scripts to be styled)}
+\item{subdirs}{List of sub-directories to
+(recursively search for R scripts to be styled)}
 }
 \value{
 True or False value based on if scripts were changed
 }
 \description{
-Script to apply styler code styling to scripts within the shiny directory structure.
+Script to apply styler code styling to scripts within the
+shiny directory structure.
 }
 \examples{
 tidy_code()

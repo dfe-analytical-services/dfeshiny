@@ -132,7 +132,7 @@ cookie_banner_ui <- function(id, name = "DfE R-Shiny dashboard template") {
 #' @examples
 #' \donttest{
 #' #' To use the banner, first copy the file cookie-consent.js from the
-#' # js/ folder of this package to the www/ folder of your R-Shiny app.
+#' # inst/ folder of this package to the www/ folder of your R-Shiny app.
 #' # Then add the following lines to your ui.R:
 #' \dontrun{dfe_cookie_script(),}
 #' \dontrun{
