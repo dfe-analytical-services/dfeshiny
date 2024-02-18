@@ -7,6 +7,16 @@
 
 R package containing preferred methods for creating official DfE R-Shiny dashboards 
 
+# Installing the package
+To install, run `renv::install("dfe-analytical-services/dfeshiny")`.
+
+## Potential errors when installing
+If you get `ERROR [curl: (22) The requested URL returned error: 401]`, and don't know why, try running `Sys.unsetenv("GITHUB_PAT")` to temporarily clear your GitHub PAT variable.
+
+Then try to install again. 
+
+If this works, then you will need to look for where that "GITHUB_PAT" variable is being set from and remove it to permanently fix the issue, contact us for support if you need help with this or have any other issues installing.
+
 ## Using this package in a DfE data dashboard
 
 ### Adding cookies to your dashboard
@@ -93,12 +103,17 @@ can increment the package version using:
 
 Once you've incremented the version number, it'll offer to perform a commit on your behalf, so all you then need to do is push to GitHub.
 
-# Installing the package
-To install, run `renv::install("dfe-analytical-services/dfeshiny")`.
+### Running tests
 
-## Potential errors when installing
-If you get `ERROR [curl: (22) The requested URL returned error: 401]`, and don't know why, try running `Sys.unsetenv("GITHUB_PAT")` to temporarily clear your GitHub PAT variable.
+You should run the following lines to test the package locally:
+``` 
+# To check functionality
+devtools::check()
+shinytest2::test_app("tests/test_dashboard") # important as not currently ran in CI checks, need to move this over
 
-Then try to install again. 
+# For code styling
+styler::style_pkg() # currently has a known error on cookies.R
+lintr::lint_package()
+```
 
-If this works, then you will need to look for where that "GITHUB_PAT" variable is being set from and remove it to permanently fix the issue, contact us for support if you need help with this or have any other issues installing.
+

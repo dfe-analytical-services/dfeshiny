@@ -19,7 +19,8 @@ cookie_banner_server(
 be reactive(input$cookies))}
 
 \item{input_clear}{The state of the cookie reset button provided by
-dfeshiny::support_panel(). Should always be set to reactive(input$cookie_consent_clear).}
+dfeshiny::support_panel().
+Should always be set to reactive(input$cookie_consent_clear).}
 
 \item{parent_session}{This should be the R Shiny app session}
 
@@ -37,8 +38,7 @@ R-Shiny dashboards.
 \donttest{
 #' To use the banner, first copy the file cookie-consent.js from the
 # js/ folder of this package to the www/ folder of your R-Shiny app.
-# Then add the
-# following lines to your ui.R:
+# Then add the following lines to your ui.R:
 \dontrun{dfe_cookie_script(),}
 \dontrun{
 cookie_banner_ui("cookies", name = "My DfE R-Shiny data dashboard")

@@ -23,11 +23,13 @@ need to include the dfe_cookie_script() function in their ui.R file.
 }
 \examples{
 \donttest{
-# To use the banner, first copy the file cookie-consent.js from the js/ folder
-# of this package to the www/ folder of your R-Shiny app. Then add the
-# following lines to your ui.R:
+# To use the banner, first copy the file cookie-consent.js from the
+# js/ folder of this package to the www/ folder of your R-Shiny app.
+# Then add the following lines to your ui.R:
 \dontrun{dfe_cookie_script(),}
-\dontrun{cookie_banner_ui("cookies", name = "My DfE R-Shiny data dashboard")}
+\dontrun{
+cookie_banner_ui("cookies", name = "My DfE R-Shiny data dashboard")
+}
 
 # And add the following in server.R
 # (after updating the google analytics key):

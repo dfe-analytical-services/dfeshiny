@@ -68,7 +68,7 @@ support_panel <- function(
 
   if (repo_name == "") {
     stop(
-    "The repo_name argument is empty, please specify a value for repo_name"
+      "The repo_name argument is empty, please specify a value for repo_name"
     )
   }
 
@@ -94,10 +94,16 @@ support_panel <- function(
               "This dashboard is a new service that we are developing. If you
               have any feedback or suggestions for improvements, please submit
               them using our ",
-              shiny::tags$a(href = form_url, "feedback form", .noWS = c("after"))
+              shiny::tags$a(
+                href = form_url,
+                "feedback form",
+                .noWS = c("after")
+              )
             )
           } else {
-            shiny::tags$p("This dashboard is a new service that we are developing.")
+            shiny::tags$p(
+              "This dashboard is a new service that we are developing."
+            )
           },
           shiny::tags$p(
             paste0(
@@ -119,10 +125,12 @@ support_panel <- function(
           if (ees_publication) {
             shiny::tags$p(
               "The parent statistical release of this dashboard, along with
-              methodological information, is available at the following link: ",
+              methodological information,
+              is available at the following link: ",
               shiny::tags$a(
                 href = paste0(
-                  "https://explore-education-statistics.service.gov.uk/find-statistics/",
+                  "https://explore-education-statistics.service.gov.uk/
+                  find-statistics/",
                   publication_slug
                 ),
                 ifelse(
@@ -135,7 +143,8 @@ support_panel <- function(
               ". The statistical release provides additional ",
               shiny::tags$a(
                 href = paste0(
-                  "https://explore-education-statistics.service.gov.uk/find-statistics/",
+                  "https://explore-education-statistics.service.gov.uk/
+                  find-statistics/",
                   publication_slug, "/data guidance"
                 ),
                 "data guidance",
@@ -144,7 +153,8 @@ support_panel <- function(
               " and ",
               shiny::tags$a(
                 href = paste0(
-                  "https://explore-education-statistics.service.gov.uk/find-statistics/",
+                  "https://explore-education-statistics.service.gov.uk/
+                  find-statistics/",
                   publication_slug, "#explore-data-and-files"
                 ),
                 "tools to access and interogate the underling data",
@@ -155,7 +165,8 @@ support_panel <- function(
           } else {
             shiny::tags$p(
               "The parent statistical release of this dashboard, along with
-              methodological information, is available at the following link: ",
+              methodological information,
+              is available at the following link: ",
               shiny::tags$a(
                 href = alt_href,
                 publication_name,
@@ -165,8 +176,8 @@ support_panel <- function(
           },
           shiny::tags$h2("Contact us"),
           shiny::tags$p(
-            "If you have questions about the dashboard or data within it, please
-            contact us at ",
+            "If you have questions about the dashboard or data within it,
+            please contact us at ",
             shiny::tags$a(
               href = paste0("mailto:", team_email),
               team_email, .noWS = c("after")
@@ -184,9 +195,9 @@ support_panel <- function(
             "."
           ),
           shiny::tags$h2("Use of cookies"),
-          shiny::tags$p("To better understand the reach of our dashboard tools, this site
-            uses cookies to identify numbers of unique users as part of Google
-            Analytics."),
+          shiny::tags$p("To better understand the reach of our dashboard tools,
+            this site uses cookies to identify numbers of unique users
+            as part of Google Analytics."),
           shiny::textOutput(cookie_status_output),
           shiny::actionButton("cookie_consent_clear", "Reset cookie consent"),
         )

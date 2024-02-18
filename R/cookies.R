@@ -35,11 +35,13 @@ dfe_cookie_script <- function() {
 #'
 #' @examples
 #' \donttest{
-#' # To use the banner, first copy the file cookie-consent.js from the js/ folder
-#' # of this package to the www/ folder of your R-Shiny app. Then add the
-#' # following lines to your ui.R:
+#' # To use the banner, first copy the file cookie-consent.js from the
+#' # js/ folder of this package to the www/ folder of your R-Shiny app.
+#' # Then add the following lines to your ui.R:
 #' \dontrun{dfe_cookie_script(),}
-#' \dontrun{cookie_banner_ui("cookies", name = "My DfE R-Shiny data dashboard")}
+#' \dontrun{
+#' cookie_banner_ui("cookies", name = "My DfE R-Shiny data dashboard")
+#' }
 #'
 #' # And add the following in server.R
 #' # (after updating the google analytics key):
@@ -118,7 +120,8 @@ cookie_banner_ui <- function(id, name = "DfE R-Shiny dashboard template") {
 #' @param input_cookies The cookie input passed from cookies.js (should always
 #' be reactive(input$cookies))
 #' @param input_clear The state of the cookie reset button provided by
-#' dfeshiny::support_panel(). Should always be set to reactive(input$cookie_consent_clear).
+#' dfeshiny::support_panel().
+#' Should always be set to reactive(input$cookie_consent_clear).
 #' @param parent_session This should be the R Shiny app session
 #' @param google_analytics_key Provide the GA 10 digit key of the form
 #' "ABCDE12345"
@@ -130,8 +133,7 @@ cookie_banner_ui <- function(id, name = "DfE R-Shiny dashboard template") {
 #' \donttest{
 #' #' To use the banner, first copy the file cookie-consent.js from the
 #' # js/ folder of this package to the www/ folder of your R-Shiny app.
-#' # Then add the
-#' # following lines to your ui.R:
+#' # Then add the following lines to your ui.R:
 #' \dontrun{dfe_cookie_script(),}
 #' \dontrun{
 #' cookie_banner_ui("cookies", name = "My DfE R-Shiny data dashboard")
