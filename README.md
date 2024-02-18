@@ -82,17 +82,35 @@ to change their decision on whether or not to accept the use of cookies.
 
 Try and make use of the [usethis](https://usethis.r-lib.org/) package wherever possible.
 
+When you initially clone the package, the first thing you'll need to do is install [devtools](https://devtools.r-lib.org/):
+
+```
+install.packages("devtools")
+```
+
+Then to load in the package in its current form:
+
+```
+devtools::load_all()
+```
+
 ### Adding a package/dependency
 
 `usethis::use_package(<package_name>)`
 
 This will create a new script within the package R/ folder.
 
-### Creating a new script
+### Creating a new function script
 
 `usethis::use_r(name = <script_name>)`
 
 This will create a new script within the package R/ folder.
+
+### Creating a new function test script
+
+`usethis::use_test(name = <script_name>)`
+
+This will create a new test script within the package testthat/ folder.
 
 ### Updating the package version
 
@@ -101,14 +119,18 @@ can increment the package version using:
 
 `usethis::use_version()`
 
-Once you've incremented the version number, it'll offer to perform a commit on your behalf, so all you then need to do is push to GitHub.
+Once you've incremented the version number, it'll add a new heading to news.md.
+
+Add a summary under news.md and then accept it's offer to commit on your behalf.
+
+Once pushed and on the main branch, create a new release in GitHub itself.
 
 ### Running tests
 
 You should run the following lines to test the package locally:
 ``` 
 # To check functionality
-devtools::check()
+devtools::check() # Ctrl-Shft-E
 shinytest2::test_app("tests/test_dashboard") # important as not currently ran in CI checks, need to move this over
 
 # For code styling
