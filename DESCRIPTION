@@ -12,6 +12,7 @@ License: GPL (>= 3)
 Imports: 
     shiny,
     shinyGovstyle,
+    shinyjs,
     styler
 Suggests: 
     diffviewer,
