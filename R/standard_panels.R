@@ -52,7 +52,7 @@ support_panel <- function(
   if (is_valid_dfe_email(team_email) == FALSE) {
     stop(
       "You have entered an invalid email in the team_email argument.
-           Please enter a @education.gov.uk email."
+      Please enter an @education.gov.uk email."
     )
   }
 
@@ -66,9 +66,15 @@ support_panel <- function(
     )
   }
 
+  if (repo_name == "") {
+    stop(
+    "The repo_name argument is empty, please specify a value for repo_name"
+    )
+  }
+
   if (is_valid_repo_name(repo_name) == FALSE) {
     stop(
-      "Please ensure the repo URL points to a repository on the
+      "Please ensure the repo_name argument points to a repository on the
       dfe-analytical-services GitHub area."
     )
   }
@@ -102,7 +108,7 @@ support_panel <- function(
               "f you spot any errors or bugs while using this dashboard, please
               screenshot and email them to "
             ),
-            shiny::tags$tags$a(
+            shiny::tags$a(
               href = paste0("mailto:", team_email),
               team_email,
               .noWS = c("after")
@@ -170,7 +176,7 @@ support_panel <- function(
             "The source code for this dashboard is available in our ",
             shiny::tags$a(
               href = paste0(
-                "https://github.com/dfe-analytical-services/", repo_name
+                repo_name
               ),
               "GitHub repository", .noWS = c("after")
             ),
