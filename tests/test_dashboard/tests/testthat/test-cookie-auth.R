@@ -1,7 +1,8 @@
 library(shinytest2)
 
 # To run the diffviewer on these tests, you need to add the path:
-# testthat::snapshot_review('cookie-auth/', path='tests/test_dashboard/')
+# Doesn't work? testthat::snapshot_review('cookie-auth/',
+#                                        path='tests/test_dashboard/')
 
 app <- AppDriver$new(
   name = "cookie_consent",
@@ -9,7 +10,8 @@ app <- AppDriver$new(
   width = 1445,
   load_timeout = 45 * 1000,
   timeout = 20 * 1000,
-  wait = TRUE
+  wait = TRUE,
+  expect_values_screenshot_args = FALSE
 )
 
 app$wait_for_idle(500)

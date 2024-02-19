@@ -1,20 +1,24 @@
 Package: dfeshiny
 Title: DfE R-Shiny Standards
 Version: 0.1.1
-Authors@R: 
+Authors@R: c(
     person("Rich", "Bielby", , "richard.bielby@education.gov.uk", role = c("aut", "cre"),
-           comment = c(ORCID = "0000-0001-9070-9969"))
-Description: R package containing preferred methods for creating official DfE R-Shiny dashboards.
-License: `use_gpl3_license()`
-Encoding: UTF-8
+           comment = c(ORCID = "0000-0001-9070-9969")),
+    person("Cam", "Race", , "cameron.race@education.gov.uk", role = "aut")
+  )
+Description: R package containing preferred methods for creating official
+    DfE R-Shiny dashboards.
+License: GPL (>= 3)
 Imports: 
-    shinyGovstyle,
     shiny,
+    shinyGovstyle,
+    shinyjs,
     styler
-Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.2.3
 Suggests: 
-    testthat (>= 3.0.0),
+    diffviewer,
     shinytest2,
-    diffviewer
+    testthat (>= 3.0.0)
 Config/testthat/edition: 3
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.1
