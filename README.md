@@ -100,6 +100,18 @@ devtools::load_all()
 
 This will create a new script within the package R/ folder.
 
+Note that when adding a function from another package into one of the dfeshiny functions you will need to explicitly state the package in the function call, e.g.:
+
+```package::function()```
+
+Alternatively, if there's a lot of uses of a single function within one of our R scripts, you can call that function once at the top of the R script, e.g:
+
+```
+@' importFrom package function
+```
+
+For more information see the [roxygen2 documentation on declaring dependencies](https://roxygen2.r-lib.org/articles/namespace.html).
+
 ### Creating a new function script
 
 `usethis::use_r(name = <script_name>)`
