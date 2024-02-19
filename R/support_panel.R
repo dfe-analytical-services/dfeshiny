@@ -1,6 +1,3 @@
-library(shiny)
-library(shinyGovstyle)
-
 #' Support panel
 #'
 #' @description
