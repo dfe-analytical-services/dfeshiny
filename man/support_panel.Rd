@@ -18,7 +18,7 @@ support_panel(
 \arguments{
 \item{team_email}{Your team e-mail address, must be a education.gov.uk email}
 
-\item{repo_name}{The repository URL, must be a valid URL on the
+\item{repo_name}{The repository URL, must be a valid URL for the
 dfe-analytical-services GitHub area}
 
 \item{ees_publication}{Whether the parent publication is hosted on Explore
@@ -32,7 +32,7 @@ Statistics}
 \item{alt_href}{Alternative link to the parent publication (if not hosted on
 Explore Education Statistics)}
 
-\item{form_url}{URL to a feedback form for the dashboard}
+\item{form_url}{URL for a feedback form for the dashboard}
 
 \item{cookie_status_output}{Name of cookie status output object, often
 "cookie_status"}

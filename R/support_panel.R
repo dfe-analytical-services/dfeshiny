@@ -4,7 +4,7 @@
 #' Create the standard DfE R-Shiny support and feedback dashboard panel.
 #'
 #' @param team_email Your team e-mail address, must be a education.gov.uk email
-#' @param repo_name The repository URL, must be a valid URL on the
+#' @param repo_name The repository URL, must be a valid URL for the
 #' dfe-analytical-services GitHub area
 #' @param ees_publication Whether the parent publication is hosted on Explore
 #' Education Statistics
@@ -13,7 +13,7 @@
 #' Statistics
 #' @param alt_href Alternative link to the parent publication (if not hosted on
 #' Explore Education Statistics)
-#' @param form_url URL to a feedback form for the dashboard
+#' @param form_url URL for a feedback form for the dashboard
 #' @param cookie_status_output Name of cookie status output object, often
 #' "cookie_status"
 #'
@@ -72,7 +72,7 @@ support_panel <- function(
 
   if (is_valid_repo_name(repo_name) == FALSE) {
     stop(
-      "Please ensure the repo_name argument is a valid URl to a repository on
+      "Please ensure the repo_name argument is a valid URL for a repository on
       the dfe-analytical-services GitHub area. For example:
       repo_name = 'https://github.com/dfe-analytical-services/dfeR'.
       "
