@@ -18,7 +18,8 @@ support_panel(
 \arguments{
 \item{team_email}{Your team e-mail address, must be a education.gov.uk email}
 
-\item{repo_name}{The repository name as listed on GitHub}
+\item{repo_name}{The repository URL, must be a valid URL on the
+dfe-analytical-services GitHub area}
 
 \item{ees_publication}{Whether the parent publication is hosted on Explore
 Education Statistics}

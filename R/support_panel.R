@@ -4,7 +4,8 @@
 #' Create the standard DfE R-Shiny support and feedback dashboard panel.
 #'
 #' @param team_email Your team e-mail address, must be a education.gov.uk email
-#' @param repo_name The repository name as listed on GitHub
+#' @param repo_name The repository URL, must be a valid URL on the
+#' dfe-analytical-services GitHub area
 #' @param ees_publication Whether the parent publication is hosted on Explore
 #' Education Statistics
 #' @param publication_name The parent publication name
@@ -71,8 +72,10 @@ support_panel <- function(
 
   if (is_valid_repo_name(repo_name) == FALSE) {
     stop(
-      "Please ensure the repo_name argument points to a repository on the
-      dfe-analytical-services GitHub area."
+      "Please ensure the repo_name argument is a valid URl to a repository on
+      the dfe-analytical-services GitHub area. For example:
+      repo_name = 'https://github.com/dfe-analytical-services/dfeR'.
+      "
     )
   }
 
