@@ -25,7 +25,7 @@ custom_disconnect_message <- function(refresh = "Refresh page",
     lapply(stringr::str_trim(sites), startsWith, "https://department-for-education.shinyapps.io/")
   }
 
-  if (FALSE %in% is_valid_sites_list(links) | links == "https://department-for-education.shinyapps.io/") {
+  if (FALSE %in% is_valid_sites_list(links) || links == "https://department-for-education.shinyapps.io/") {
     stop("You have entered an invalid site link in the links argument.")
   }
 
@@ -38,8 +38,8 @@ custom_disconnect_message <- function(refresh = "Refresh page",
     startsWith(stringr::str_trim(link), pub_prefix)
   }
 
-  if (RCurl::url.exists(publication_link) == FALSE |
-      (TRUE %in% is_valid_publication_link(publication_link)) == FALSE |
+  if (RCurl::url.exists(publication_link) == FALSE ||
+      (TRUE %in% is_valid_publication_link(publication_link)) == FALSE ||
       publication_link %in% pub_prefix) {
     stop("You have entered an invalid publication link in the publication_link argument.")
   }
