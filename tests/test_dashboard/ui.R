@@ -10,7 +10,7 @@ ui <- function(input, output, session) {
       well = FALSE,
       support_panel(
         team_email = "statistics.development@education.gov.uk",
-        repo_name = "dfeshiny",
+        repo_name = "https://github.com/dfe-analytical-services/dfeshiny/",
         form_url = "https://forms.office.com"
       )
     )

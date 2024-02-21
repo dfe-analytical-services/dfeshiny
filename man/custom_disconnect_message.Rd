@@ -6,9 +6,9 @@
 \usage{
 custom_disconnect_message(
   refresh = "Refresh page",
-  links = sites_list,
-  publication_name = ees_pub_name,
-  publication_link = ees_publication
+  links = NULL,
+  publication_name = NULL,
+  publication_link = NULL
 )
 }
 \arguments{

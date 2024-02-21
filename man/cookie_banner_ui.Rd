@@ -22,22 +22,27 @@ functionality is provided by cookie_banner_server(), whilst users will also
 need to include the dfe_cookie_script() function in their ui.R file.
 }
 \examples{
-To use the banner, first copy the file cookie-consent.js from the js/ folder
-of this package to the www/ folder of your R-Shiny app. Then add the
-following lines to your ui.R:
-dfe_cookie_script(),
-cookie_banner_ui("cookies", name = "My DfE R-Shiny data dashboard"),
+\donttest{
+# To use the banner, first copy the file cookie-consent.js from the
+# js/ folder of this package to the www/ folder of your R-Shiny app.
+# Then add the following lines to your ui.R:
+\dontrun{dfe_cookie_script(),}
+\dontrun{
+cookie_banner_ui("cookies", name = "My DfE R-Shiny data dashboard")
+}
 
-And add the following in server.R (after updating the google analytics key):
-  output$cookie_status <- dfeshiny::cookie_banner_server(
+# And add the following in server.R
+# (after updating the google analytics key):
+\dontrun{output$cookie_status <- dfeshiny::cookie_banner_server(
   "cookies",
   input_cookies = reactive(input$cookies),
   input_clear = reactive(input$cookie_consent_clear),
   parent_session = session,
   google_analytics_key = "ABCDE12345"
   )
+ }
 
-Note that you should also include dfeshiny::support_panel() in your
-navListPanel()
-
+# Note that you should also include dfeshiny::support_panel() in your
+# navListPanel()
+}
 }
