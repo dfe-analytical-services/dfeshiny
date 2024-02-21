@@ -16,9 +16,9 @@
 #'
 #' @examples
 custom_disconnect_message <- function(refresh = "Refresh page",
-                                    links = sites_list,
-                                    publication_name = ees_pub_name,
-                                    publication_link = ees_publication) {
+                                    links = NULL,
+                                    publication_name = NULL,
+                                    publication_link = NULL) {
   # Check links are valid
 
   is_valid_sites_list <- function(sites) {
