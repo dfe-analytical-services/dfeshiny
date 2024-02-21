@@ -76,7 +76,7 @@ The following parameters should be defined and up-to-date in the global.R script
 To include a custom disconnect message, you should insert the following line into the ui.R script: 
 
 ```
-customDisconnectMessage( 
+custom_disconnect_message( 
    links=sites_list, 
    publication_name = ees_pub_name, 
    publication_link = ees_publication

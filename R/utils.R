@@ -1,8 +1,3 @@
-library(shiny)
-library(shinyGovstyle)
-library(RCurl)
-library(stringr)
-
 #' Custom disconnect message
 #'
 #'
@@ -14,18 +9,20 @@ library(stringr)
 #' @param publication_name The parent publication name
 #' @param publication_link The link to the publication on Explore Education Statistics
 #'
+#' @importFrom htmltools tags tagslist
+#'
 #' @return
 #' @export
 #'
 #' @examples
-customDisconnectMessage <- function(refresh = "Refresh page",
+custom_disconnect_message <- function(refresh = "Refresh page",
                                     links = sites_list,
                                     publication_name = ees_pub_name,
                                     publication_link = ees_publication) {
   # Check links are valid
 
   is_valid_sites_list <- function(sites) {
-    lapply(str_trim(sites), startsWith, "https://department-for-education.shinyapps.io/")
+    lapply(stringr::str_trim(sites), startsWith, "https://department-for-education.shinyapps.io/")
   }
 
   if (FALSE %in% is_valid_sites_list(links) | links == "https://department-for-education.shinyapps.io/") {
@@ -38,18 +35,18 @@ customDisconnectMessage <- function(refresh = "Refresh page",
                   "https://gov.uk/")
 
   is_valid_publication_link <- function(link) {
-    startsWith(str_trim(link), pub_prefix)
+    startsWith(stringr::str_trim(link), pub_prefix)
   }
 
-  if (url.exists(publication_link) == FALSE |
+  if (RCurl::url.exists(publication_link) == FALSE |
       (TRUE %in% is_valid_publication_link(publication_link)) == FALSE |
       publication_link %in% pub_prefix) {
     stop("You have entered an invalid publication link in the publication_link argument.")
   }
 
   checkmate::assert_string(refresh)
-  htmltools::tagList(
-    htmltools::tags$script(
+  tagList(
+    tags$script(
       paste0(
         "$(function() {",
         "  $(document).on('shiny:disconnected', function(event) {",
@@ -59,10 +56,10 @@ customDisconnectMessage <- function(refresh = "Refresh page",
         "});"
       )
     ),
-    htmltools::tags$div(
+    tags$div(
       id = "custom-disconnect-dialog",
       style = "display: none !important;",
-      htmltools::tags$div(
+      tags$div(
         id = "ss-connect-refresh",
         tags$p("You've lost connection to the dashboard server - please try refreshing the page:"),
         tags$p(tags$a(
@@ -105,8 +102,8 @@ customDisconnectMessage <- function(refresh = "Refresh page",
         # htmltools::tags$p("If this persists, you can view tables and data via the ",htmltools::tags$a(href ='https://explore-education-statistics.service.gov.uk/find-statistics/pupil-attendance-in-schools', "Pupil attendance in schools")," release on Explore Education Statistics and please contact statistics.development@education.gov.uk with details of what you were trying to do.")
       )
     ),
-    htmltools::tags$div(id = "ss-overlay", style = "display: none;"),
-    htmltools::tags$head(htmltools::tags$style(
+    tags$div(id = "ss-overlay", style = "display: none;"),
+    tags$head(htmltools::tags$style(
       glue::glue(
         .open = "{{", .close = "}}",
         "#custom-disconnect-dialog a {
