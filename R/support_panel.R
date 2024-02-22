@@ -4,7 +4,8 @@
 #' Create the standard DfE R-Shiny support and feedback dashboard panel.
 #'
 #' @param team_email Your team e-mail address, must be a education.gov.uk email
-#' @param repo_name The repository name as listed on GitHub
+#' @param repo_name The repository URL, must be a valid URL for the
+#' dfe-analytical-services GitHub area
 #' @param ees_publication Whether the parent publication is hosted on Explore
 #' Education Statistics
 #' @param publication_name The parent publication name
@@ -12,7 +13,7 @@
 #' Statistics
 #' @param alt_href Alternative link to the parent publication (if not hosted on
 #' Explore Education Statistics)
-#' @param form_url URL to a feedback form for the dashboard
+#' @param form_url URL for a feedback form for the dashboard
 #' @param cookie_status_output Name of cookie status output object, often
 #' "cookie_status"
 #'
@@ -71,8 +72,10 @@ support_panel <- function(
 
   if (is_valid_repo_name(repo_name) == FALSE) {
     stop(
-      "Please ensure the repo_name argument points to a repository on the
-      dfe-analytical-services GitHub area."
+      "Please ensure the repo_name argument is a valid URL for a repository on
+      the dfe-analytical-services GitHub area. For example:
+      repo_name = 'https://github.com/dfe-analytical-services/dfeR'.
+      "
     )
   }
 
@@ -126,8 +129,7 @@ support_panel <- function(
               is available at the following link: ",
               shiny::tags$a(
                 href = paste0(
-                  "https://explore-education-statistics.service.gov.uk/
-                  find-statistics/",
+                  "https://explore-education-statistics.service.gov.uk/find-statistics/",
                   publication_slug
                 ),
                 ifelse(
@@ -140,9 +142,8 @@ support_panel <- function(
               ". The statistical release provides additional ",
               shiny::tags$a(
                 href = paste0(
-                  "https://explore-education-statistics.service.gov.uk/
-                  find-statistics/",
-                  publication_slug, "/data guidance"
+                  "https://explore-education-statistics.service.gov.uk/find-statistics/",
+                  publication_slug, "/data-guidance"
                 ),
                 "data guidance",
                 .noWS = c("after")
@@ -150,8 +151,7 @@ support_panel <- function(
               " and ",
               shiny::tags$a(
                 href = paste0(
-                  "https://explore-education-statistics.service.gov.uk/
-                  find-statistics/",
+                  "https://explore-education-statistics.service.gov.uk/find-statistics/",
                   publication_slug, "#explore-data-and-files"
                 ),
                 "tools to access and interogate the underling data",
