@@ -12,12 +12,26 @@ custom_disconnect_message(
 )
 }
 \arguments{
+\item{refresh}{the text to appear that will refresh the page when clicked}
+
 \item{links}{A list of mirros or alternative links to the dashboard}
 
 \item{publication_name}{The parent publication name}
 
 \item{publication_link}{The link to the publication on Explore Education Statistics}
 }
+\value{
+A html overlay panel that appears when RSConnect disconnects for a public R Shiny dashboard in DfE
+}
 \description{
 Create the html overlay panel to appear when RSConnect disconnects
+}
+\examples{
+custom_disconnect_message(
+  refresh = "Refresh page",
+  links = c("https://department-for-education.shinyapps.io/dfe-shiny-template/",
+            "https://department-for-education.shinyapps.io/dfe-shiny-template-overflow/"),
+  publication_name = "Explore Education Statistics Publication",
+  publication_link = "https://explore-education-statistics.service.gov.uk/")
+
 }
