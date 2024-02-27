@@ -38,6 +38,17 @@ test_that("publication link is valid", {
     )
   )
 
+  # Test that just linking to EES homepage fails
+
+  expect_error(
+    custom_disconnect_message(
+      refresh = "Refresh page",
+      links = "https://department-for-education.shinyapps.io/dfe-shiny-template/?_inputs_&navlistPanel=%22dashboard%22&tabsetpanels=%22Valuebox%20example%22&cookieAccept=1&cookieReject=0&cookieLink=0&hideAccept=1&hideReject=0&remove=0&selectPhase=%22All%20LA%20maintained%20schools%22&selectArea=%22England%22&selectBenchLAs=null",
+      publication_name = "Pupil attendance in schools",
+      publication_link = "https://explore-education-statistics.service.gov.uk/"
+    )
+  )
+
 })
 
 test_that("site links are valid", {
@@ -88,6 +99,17 @@ test_that("site links are valid", {
       refresh = "Refresh page",
       links = c("https://explore-education-statistics.service.gov.uk/find-statistics/pupil-attendance-in-schools",
                 "https://department-for-education.shinyapps.io/dfe-shiny-template/"),
+      publication_name = "Pupil attendance in schools",
+      publication_link = "https://explore-education-statistics.service.gov.uk/find-statistics/pupil-attendance-in-schools"
+    )
+  )
+
+  # Test that it fails for a link to shinyapps.io with no suffix
+  expect_error(
+    custom_disconnect_message(
+      refresh = "Refresh page",
+      links = c("https://department-for-education.shinyapps.io/dfe-shiny-template/",
+                "https://department-for-education.shinyapps.io/"),
       publication_name = "Pupil attendance in schools",
       publication_link = "https://explore-education-statistics.service.gov.uk/find-statistics/pupil-attendance-in-schools"
     )

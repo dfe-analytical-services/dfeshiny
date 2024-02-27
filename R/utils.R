@@ -11,6 +11,7 @@
 #'
 #' @importFrom htmltools tags tagList
 #'
+#'
 #' @return A html overlay panel that appears when RSConnect disconnects for a public R Shiny dashboard in DfE
 #' @export
 #'
@@ -20,7 +21,7 @@
 #'   links = c("https://department-for-education.shinyapps.io/dfe-shiny-template/",
 #'             "https://department-for-education.shinyapps.io/dfe-shiny-template-overflow/"),
 #'   publication_name = "Explore Education Statistics Publication",
-#'   publication_link = "https://explore-education-statistics.service.gov.uk/")
+#'   publication_link = "https://explore-education-statistics.service.gov.uk/find-statistics/pupil-attendance-in-schools")
 #'
 custom_disconnect_message <- function(refresh = "Refresh page",
                                     links = NULL,
@@ -32,7 +33,7 @@ custom_disconnect_message <- function(refresh = "Refresh page",
     lapply(stringr::str_trim(sites), startsWith, "https://department-for-education.shinyapps.io/")
   }
 
-  if (FALSE %in% is_valid_sites_list(links) || links == "https://department-for-education.shinyapps.io/") {
+  if (FALSE %in% is_valid_sites_list(links) || "https://department-for-education.shinyapps.io/" %in% links) {
     stop("You have entered an invalid site link in the links argument.")
   }
 

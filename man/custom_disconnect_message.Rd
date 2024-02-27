@@ -32,6 +32,6 @@ custom_disconnect_message(
   links = c("https://department-for-education.shinyapps.io/dfe-shiny-template/",
             "https://department-for-education.shinyapps.io/dfe-shiny-template-overflow/"),
   publication_name = "Explore Education Statistics Publication",
-  publication_link = "https://explore-education-statistics.service.gov.uk/")
+  publication_link = "https://explore-education-statistics.service.gov.uk/find-statistics/pupil-attendance-in-schools")
 
 }
