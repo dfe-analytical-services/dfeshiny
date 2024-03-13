@@ -10,6 +10,10 @@ library(stringr)
 #'
 #' @examples initialise_analytics(ga_code = "0123456789")
 initialise_analytics <- function(ga_code = "0123456789") {
+  is_valid_ga4_code <- function(ga_code) {
+    stringr::str_length(ga_code) == 10 & typeof(ga_code) == "character"
+  }
+
   html_script <- "<script>
 // Define dataLayer and the gtag function.
 window.dataLayer = window.dataLayer || [];
