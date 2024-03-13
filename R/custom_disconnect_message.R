@@ -5,7 +5,7 @@
 #' Create the html overlay panel to appear when RSConnect disconnects
 #'
 #' @param refresh the text to appear that will refresh the page when clicked
-#' @param links A list of mirros or alternative links to the dashboard
+#' @param links A list of mirrors or alternative links to the dashboard
 #' @param publication_name The parent publication name
 #' @param publication_link The link to the publication on Explore Education Statistics
 #'
@@ -21,7 +21,8 @@
 #'   links = c("https://department-for-education.shinyapps.io/dfe-shiny-template/",
 #'             "https://department-for-education.shinyapps.io/dfe-shiny-template-overflow/"),
 #'   publication_name = "Explore Education Statistics Publication",
-#'   publication_link = "https://explore-education-statistics.service.gov.uk/find-statistics/pupil-attendance-in-schools")
+#'   publication_link =
+#'   "https://explore-education-statistics.service.gov.uk/find-statistics/pupil-attendance-in-schools")
 #'
 custom_disconnect_message <- function(refresh = "Refresh page",
                                     links = NULL,

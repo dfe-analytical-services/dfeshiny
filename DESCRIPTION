@@ -17,7 +17,9 @@ Imports:
     styler,
     RCurl,
     stringr,
-    htmltools
+    htmltools,
+    checkmate,
+    glue
 Suggests: 
     diffviewer,
     shinytest2,
