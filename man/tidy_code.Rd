@@ -11,17 +11,11 @@ tidy_code(subdirs = c("R", "tests"))
 (recursively search for R scripts to be styled)}
 }
 \value{
-True or False value based on if scripts were changed
-}
-\value{
 TRUE if any changes have been made to any scripts, FALSE if all passed.
 }
 \description{
 Script to apply styler code styling to scripts within the
 shiny directory structure.
-}
-\examples{
-tidy_code()
 }
 \examples{
 tidy_code()

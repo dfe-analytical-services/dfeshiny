@@ -4,7 +4,7 @@
 \alias{initialise_analytics}
 \title{initialise_analytics}
 \usage{
-initialise_analytics(ga_code = "0123456789")
+initialise_analytics(ga_code)
 }
 \arguments{
 \item{ga_code}{The Google Analytics code}
