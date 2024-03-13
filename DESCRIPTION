@@ -11,6 +11,7 @@ Description: R package containing preferred methods for creating official
 License: GPL (>= 3)
 Imports: 
     dplyr,
+    magrittr,
     shiny,
     shinyGovstyle,
     shinyjs,
