@@ -87,7 +87,7 @@ The custom trackers below can be tailored to match the inputs used in your dashb
       " %>% gsub("XXXXXXXXXX", ga_code, .)
   if (file.exists("google-analytics.html")) {
     message("Analytics file already exists. If you have any customisations in that file, make sure you've backed those up before over-writing.")
-    user_input <- str_trim(readline(prompt = "Are you happy to overwrite the existing analytics script (y/N) "))
+    user_input <- stringr::str_trim(readline(prompt = "Are you happy to overwrite the existing analytics script (y/N) "))
     if (user_input %in% c("y", "Y")) {
       write_out <- TRUE
     } else {
