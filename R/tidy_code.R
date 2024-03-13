@@ -15,7 +15,12 @@ tidy_code <- function(subdirs = c("R", "tests")) {
   message("----------------------------------------")
   message("App scripts")
   message("----------------------------------------")
-  script_changes <- eval(styler::style_dir(recursive = FALSE)$changed)
+  script_changes <- eval(
+    styler::style_dir(
+      recursive = FALSE,
+      exclude_files = c("dfeshiny-Ex.R")
+    )$changed
+  )
   for (dir in subdirs) {
     if (dir.exists(dir)) {
       message(paste(dir, "scripts"))
