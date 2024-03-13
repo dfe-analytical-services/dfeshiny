@@ -9,9 +9,17 @@ library(stringr)
 #' @export
 #'
 #' @examples initialise_analytics(ga_code = "0123456789")
-initialise_analytics <- function(ga_code = "0123456789") {
+initialise_analytics <- function(ga_code) {
   is_valid_ga4_code <- function(ga_code) {
     stringr::str_length(ga_code) == 10 & typeof(ga_code) == "character"
+  }
+
+  if (is_valid_ga4_code(ga_code) == FALSE) {
+    stop(
+      'You have entered an invalid GA4 code in the ga_code argument.
+      Please enter a 10 digit code as a character string.
+      e.g. "0123QWERTY"'
+    )
   }
 
   html_script <- "<script>
@@ -81,18 +89,23 @@ The custom trackers below can be tailored to match the inputs used in your dashb
 </script>
       " %>% gsub("XXXXXXXXXX", ga_code, .)
   if (file.exists("google-analytics.html")) {
-    warning("Analytics file already exists. If you have any customisations in that file, make sure you've backed those up before over-writing.")
-    user_input <- str_trim(readline(prompt = "Are you happy to overwrite the existing analytics script (y/N)"))
+    message("Analytics file already exists. If you have any customisations in that file, make sure you've backed those up before over-writing.")
+    user_input <- str_trim(readline(prompt = "Are you happy to overwrite the existing analytics script (y/N) "))
     if (user_input %in% c("y", "Y")) {
-      permission_to_write <- TRUE
+      write_out <- TRUE
     } else {
-      permission_to_write <- FALSE
+      write_out <- FALSE
     }
   } else {
-    permission_to_write <- TRUE
+    write_out <- TRUE
   }
-  if (overwrite) {
+  if (write_out) {
     cat(html_script, file = "google-analytics.html")
+    message("Google analytics script created in google-analytics.html.")
+    message("You'll need to add the following line to your ui.R script to start
+            recording analytics:")
+    message('tags$head(includeHTML(("google-analytics.html"))),')
+  } else {
+    message("Original Google analytics html script left in place.")
   }
-  return(permission_to_write)
 }

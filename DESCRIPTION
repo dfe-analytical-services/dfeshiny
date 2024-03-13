@@ -10,7 +10,7 @@ Description: R package containing preferred methods for creating official
     DfE R-Shiny dashboards.
 License: GPL (>= 3)
 Imports: 
-    dplyr
+    dplyr,
     shiny,
     shinyGovstyle,
     shinyjs,
