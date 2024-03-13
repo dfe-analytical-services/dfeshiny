@@ -1,10 +1,7 @@
-library(dplyr)
-library(stringr)
-
 #' initialise_analytics
 #'
 #' @param ga_code The Google Analytics code
-#'
+#' @importFrom magrittr %>%
 #' @return TRUE if written, FALSE if not
 #' @export
 #'
