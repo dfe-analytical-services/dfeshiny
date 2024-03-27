@@ -6,7 +6,8 @@
 #' @param subdirs List of sub-directories to
 #' (recursively search for R scripts to be styled)
 #'
-#' @return TRUE if any changes have been made to any scripts, FALSE if all passed.
+#' @return TRUE if any changes have been made to any scripts, FALSE if all
+#'   passed.
 #' @export
 #'
 #' @examples
