@@ -11,15 +11,15 @@ Description: R package containing preferred methods for creating official
     DfE R-Shiny dashboards.
 License: GPL (>= 3)
 Imports: 
+    checkmate,
+    glue,
+    htmltools,
+    RCurl,
     shiny,
     shinyGovstyle,
     shinyjs,
-    styler,
-    RCurl,
     stringr,
-    htmltools,
-    checkmate,
-    glue
+    styler
 Suggests: 
     diffviewer,
     shinytest2,
