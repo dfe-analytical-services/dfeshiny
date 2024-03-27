@@ -2,6 +2,9 @@
 
 export(cookie_banner_server)
 export(cookie_banner_ui)
+export(custom_disconnect_message)
 export(dfe_cookie_script)
 export(support_panel)
 export(tidy_code)
+importFrom(htmltools,tagList)
+importFrom(htmltools,tags)

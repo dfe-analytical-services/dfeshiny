@@ -78,6 +78,30 @@ script as this will provide
 users with the necessary explanatory text on how we use cookies and the ability 
 to change their decision on whether or not to accept the use of cookies.
 
+### Adding a custom disconect message to your dashboard
+
+dfeshiny provides a function to add a custom disconnect message to your dashboard - this will appear when a dashboard would otherwise 'grey-screen' and will include options to refresh the page, go to overflow sites or visit the publication directly on Explore education statistics. 
+
+The following parameters should be defined and up-to-date in the global.R script: 
+
+- sites_list
+- ees_pub_name
+- ees_publication
+
+To include a custom disconnect message, you should insert the following line into the ui.R script: 
+
+```
+custom_disconnect_message( 
+   links = sites_list, 
+   publication_name = ees_pub_name, 
+   publication_link = ees_publication
+ ),
+```
+
+Putting this on the lines *just before* the `shinyGovstyle::header(...)` line 
+should work well.
+
+
 ## Contributing
 
 Try and make use of the [usethis](https://usethis.r-lib.org/) package wherever possible.
