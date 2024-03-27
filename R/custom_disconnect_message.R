@@ -18,16 +18,19 @@
 #' @examples
 #' custom_disconnect_message(
 #'   refresh = "Refresh page",
-#'   links = c("https://department-for-education.shinyapps.io/dfe-shiny-template/",
-#'             "https://department-for-education.shinyapps.io/dfe-shiny-template-overflow/"),
+#'   links = c(
+#'     "https://department-for-education.shinyapps.io/dfe-shiny-template/",
+#'     "https://department-for-education.shinyapps.io/dfe-shiny-template-overflow/"
+#'   ),
 #'   publication_name = "Explore Education Statistics Publication",
 #'   publication_link =
-#'   "https://explore-education-statistics.service.gov.uk/find-statistics/pupil-attendance-in-schools")
+#'     "https://explore-education-statistics.service.gov.uk/find-statistics/pupil-attendance-in-schools"
+#' )
 #'
 custom_disconnect_message <- function(refresh = "Refresh page",
-                                    links = NULL,
-                                    publication_name = NULL,
-                                    publication_link = NULL) {
+                                      links = NULL,
+                                      publication_name = NULL,
+                                      publication_link = NULL) {
   # Check links are valid
 
   is_valid_sites_list <- function(sites) {
@@ -38,18 +41,20 @@ custom_disconnect_message <- function(refresh = "Refresh page",
     stop("You have entered an invalid site link in the links argument.")
   }
 
-  pub_prefix <- c("https://explore-education-statistics.service.gov.uk/find-statistics/",
-                  "https://www.explore-education-statistics.service.gov.uk/find-statistics/",
-                  "https://www.gov.uk/",
-                  "https://gov.uk/")
+  pub_prefix <- c(
+    "https://explore-education-statistics.service.gov.uk/find-statistics/",
+    "https://www.explore-education-statistics.service.gov.uk/find-statistics/",
+    "https://www.gov.uk/",
+    "https://gov.uk/"
+  )
 
   is_valid_publication_link <- function(link) {
     startsWith(stringr::str_trim(link), pub_prefix)
   }
 
   if (RCurl::url.exists(publication_link) == FALSE ||
-      (TRUE %in% is_valid_publication_link(publication_link)) == FALSE ||
-      publication_link %in% pub_prefix) {
+    (TRUE %in% is_valid_publication_link(publication_link)) == FALSE ||
+    publication_link %in% pub_prefix) {
     stop("You have entered an invalid publication link in the publication_link argument.")
   }
 
