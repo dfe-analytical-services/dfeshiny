@@ -4,6 +4,7 @@ Version: 0.1.1
 Authors@R: c(
     person("Rich", "Bielby", , "richard.bielby@education.gov.uk", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0001-9070-9969")),
+    person("Charlotte", "Foster", , "charlotte.foster@education.gov.uk", role = "aut"),
     person("Cam", "Race", , "cameron.race@education.gov.uk", role = "aut")
   )
 Description: R package containing preferred methods for creating official
@@ -11,6 +12,10 @@ Description: R package containing preferred methods for creating official
 License: GPL (>= 3)
 Imports: 
     magrittr,
+    checkmate,
+    glue,
+    htmltools,
+    RCurl,
     shiny,
     shinyGovstyle,
     shinyjs,
