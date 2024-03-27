@@ -11,7 +11,8 @@ tidy_code(subdirs = c("R", "tests"))
 (recursively search for R scripts to be styled)}
 }
 \value{
-TRUE if any changes have been made to any scripts, FALSE if all passed.
+TRUE if any changes have been made to any scripts, FALSE if all
+passed.
 }
 \description{
 Script to apply styler code styling to scripts within the

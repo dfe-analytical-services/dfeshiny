@@ -88,7 +88,7 @@ dashboard.
       " %>% gsub("XXXXXXXXXX", ga_code, .)
   if (file.exists("google-analytics.html")) {
     message("Analytics file already exists.")
-    mesage("If you have any customisations in that file, make sure you've backed
+    message("If you have any customisations in that file, make sure you've backed
            those up before over-writing.")
     user_input <- stringr::str_trim(
     readline(
