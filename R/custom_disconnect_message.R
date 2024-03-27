@@ -36,12 +36,14 @@ custom_disconnect_message <- function(refresh = "Refresh page",
   # Check links are valid
 
   is_valid_sites_list <- function(sites) {
-    lapply(stringr::str_trim(sites), startsWith,
-           "https://department-for-education.shinyapps.io/")
+    lapply(
+      stringr::str_trim(sites), startsWith,
+      "https://department-for-education.shinyapps.io/"
+    )
   }
 
   if (FALSE %in% is_valid_sites_list(links) ||
-      "https://department-for-education.shinyapps.io/" %in% links) {
+    "https://department-for-education.shinyapps.io/" %in% links) {
     stop("You have entered an invalid site link in the links argument.")
   }
 
@@ -117,8 +119,10 @@ custom_disconnect_message <- function(refresh = "Refresh page",
         },
         tags$p(
           "Please contact",
-          tags$a(href = "mailto:statistics.development@education.gov.uk",
-                 "statistics.development@education.gov.uk"),
+          tags$a(
+            href = "mailto:statistics.development@education.gov.uk",
+            "statistics.development@education.gov.uk"
+          ),
           "with details of any problems with this resource."
         )
       )

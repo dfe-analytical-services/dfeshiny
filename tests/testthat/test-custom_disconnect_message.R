@@ -3,9 +3,9 @@ test_that("publication link is valid", {
   expect_no_error(
     custom_disconnect_message(
       refresh = "Refresh page",
-      links = "https://department-for-education.shinyapps.io/dfe-shiny-template/",
+      links = "https://department-for-education.shinyapps.io/dfe-shiny-template/", # nolint: [line_length_linter]
       publication_name = "Pupil attendance in schools",
-      publication_link = "https://explore-education-statistics.service.gov.uk/find-statistics/pupil-attendance-in-schools"
+      publication_link = "https://explore-education-statistics.service.gov.uk/find-statistics/pupil-attendance-in-schools" # nolint: [line_length_linter]
     )
   )
 
@@ -13,9 +13,9 @@ test_that("publication link is valid", {
   expect_no_error(
     custom_disconnect_message(
       refresh = "Refresh page",
-      links = "https://department-for-education.shinyapps.io/dfe-shiny-template/",
+      links = "https://department-for-education.shinyapps.io/dfe-shiny-template/", # nolint: [line_length_linter]
       publication_name = "Pupil attendance in schools",
-      publication_link = "https://www.gov.uk/government/collections/job-and-skills-data"
+      publication_link = "https://www.gov.uk/government/collections/job-and-skills-data" # nolint: [line_length_linter]
     )
   )
 
@@ -23,16 +23,16 @@ test_that("publication link is valid", {
   expect_error(
     custom_disconnect_message(
       refresh = "Refresh page",
-      links = "https://department-for-education.shinyapps.io/dfe-shiny-template/",
+      links = "https://department-for-education.shinyapps.io/dfe-shiny-template/", # nolint: [line_length_linter]
       publication_name = "Pupil attendance in schools",
-      publication_link = "https://explore-education-statistics.service.gov.uk/find-statistics/hello"
+      publication_link = "https://explore-education-statistics.service.gov.uk/find-statistics/hello" # nolint: [line_length_linter]
     )
   )
 
   expect_error(
     custom_disconnect_message(
       refresh = "Refresh page",
-      links = "https://department-for-education.shinyapps.io/dfe-shiny-template/",
+      links = "https://department-for-education.shinyapps.io/dfe-shiny-template/", # nolint: [line_length_linter]
       publication_name = "Pupil attendance in schools",
       publication_link = "https://www.bbc.com/news"
     )
@@ -43,9 +43,9 @@ test_that("publication link is valid", {
   expect_error(
     custom_disconnect_message(
       refresh = "Refresh page",
-      links = "https://department-for-education.shinyapps.io/dfe-shiny-template/",
+      links = "https://department-for-education.shinyapps.io/dfe-shiny-template/", # nolint: [line_length_linter]
       publication_name = "Pupil attendance in schools",
-      publication_link = "https://explore-education-statistics.service.gov.uk/"
+      publication_link = "https://explore-education-statistics.service.gov.uk/" # nolint: [line_length_linter]
     )
   )
 })
@@ -55,9 +55,9 @@ test_that("site links are valid", {
   expect_no_error(
     custom_disconnect_message(
       refresh = "Refresh page",
-      links = "https://department-for-education.shinyapps.io/dfe-shiny-template/",
+      links = "https://department-for-education.shinyapps.io/dfe-shiny-template/", # nolint: [line_length_linter]
       publication_name = "Pupil attendance in schools",
-      publication_link = "https://explore-education-statistics.service.gov.uk/find-statistics/pupil-attendance-in-schools"
+      publication_link = "https://explore-education-statistics.service.gov.uk/find-statistics/pupil-attendance-in-schools" # nolint: [line_length_linter]
     )
   )
 
@@ -65,9 +65,9 @@ test_that("site links are valid", {
   expect_no_error(
     custom_disconnect_message(
       refresh = "Refresh page",
-      links = "https://department-for-education.shinyapps.io/dfe-shiny-template/",
+      links = "https://department-for-education.shinyapps.io/dfe-shiny-template/", # nolint: [line_length_linter]
       publication_name = "Pupil attendance in schools",
-      publication_link = "https://explore-education-statistics.service.gov.uk/find-statistics/pupil-attendance-in-schools"
+      publication_link = "https://explore-education-statistics.service.gov.uk/find-statistics/pupil-attendance-in-schools" # nolint: [line_length_linter]
     )
   )
 
@@ -76,12 +76,12 @@ test_that("site links are valid", {
     custom_disconnect_message(
       refresh = "Refresh page",
       links = c(
-        "https://department-for-education.shinyapps.io/dfe-shiny-template/",
-        "https://department-for-education.shinyapps.io/dfe-shiny-template-overflow/",
-        "https://department-for-education.shinyapps.io/dfe-shiny-template/"
+        "https://department-for-education.shinyapps.io/dfe-shiny-template/", # nolint: [line_length_linter]
+        "https://department-for-education.shinyapps.io/dfe-shiny-template-overflow/", # nolint: [line_length_linter]
+        "https://department-for-education.shinyapps.io/dfe-shiny-template/" # nolint: [line_length_linter]
       ),
       publication_name = "Pupil attendance in schools",
-      publication_link = "https://explore-education-statistics.service.gov.uk/find-statistics/pupil-attendance-in-schools"
+      publication_link = "https://explore-education-statistics.service.gov.uk/find-statistics/pupil-attendance-in-schools" # nolint: [line_length_linter]
     )
   )
 
@@ -89,9 +89,9 @@ test_that("site links are valid", {
   expect_error(
     custom_disconnect_message(
       refresh = "Refresh page",
-      links = "https://explore-education-statistics.service.gov.uk/find-statistics/pupil-attendance-in-schools",
+      links = "https://explore-education-statistics.service.gov.uk/find-statistics/pupil-attendance-in-schools", # nolint: [line_length_linter]
       publication_name = "Pupil attendance in schools",
-      publication_link = "https://explore-education-statistics.service.gov.uk/find-statistics/pupil-attendance-in-schools"
+      publication_link = "https://explore-education-statistics.service.gov.uk/find-statistics/pupil-attendance-in-schools" # nolint: [line_length_linter]
     )
   )
 
@@ -99,11 +99,11 @@ test_that("site links are valid", {
     custom_disconnect_message(
       refresh = "Refresh page",
       links = c(
-        "https://explore-education-statistics.service.gov.uk/find-statistics/pupil-attendance-in-schools",
-        "https://department-for-education.shinyapps.io/dfe-shiny-template/"
+        "https://explore-education-statistics.service.gov.uk/find-statistics/pupil-attendance-in-schools", # nolint: [line_length_linter]
+        "https://department-for-education.shinyapps.io/dfe-shiny-template/" # nolint: [line_length_linter]
       ),
       publication_name = "Pupil attendance in schools",
-      publication_link = "https://explore-education-statistics.service.gov.uk/find-statistics/pupil-attendance-in-schools"
+      publication_link = "https://explore-education-statistics.service.gov.uk/find-statistics/pupil-attendance-in-schools" # nolint: [line_length_linter]
     )
   )
 
@@ -116,7 +116,7 @@ test_that("site links are valid", {
         "https://department-for-education.shinyapps.io/"
       ),
       publication_name = "Pupil attendance in schools",
-      publication_link = "https://explore-education-statistics.service.gov.uk/find-statistics/pupil-attendance-in-schools"
+      publication_link = "https://explore-education-statistics.service.gov.uk/find-statistics/pupil-attendance-in-schools" # nolint: [line_length_linter]
     )
   )
 })
