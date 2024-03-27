@@ -43,7 +43,7 @@ custom_disconnect_message <- function(refresh = "Refresh page",
   }
 
   if (FALSE %in% is_valid_sites_list(links) ||
-    "https://department-for-education.shinyapps.io/" %in% links) {
+    "https://department-for-education.shinyapps.io/" %in% links) { # nolint: [indentation_linter]
     stop("You have entered an invalid site link in the links argument.")
   }
 
@@ -59,7 +59,7 @@ custom_disconnect_message <- function(refresh = "Refresh page",
   }
 
   if (RCurl::url.exists(publication_link) == FALSE ||
-    (TRUE %in% is_valid_publication_link(publication_link)) == FALSE ||
+    (TRUE %in% is_valid_publication_link(publication_link)) == FALSE || # nolint: [indentation_linter]
     publication_link %in% pub_prefix) {
     stop("You have entered an invalid publication link in the publication_link
          argument.")
