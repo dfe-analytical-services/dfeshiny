@@ -33,8 +33,9 @@ For analytics to function on your dashboard, you will need to:
 
 - request a Google Analytics key from the [Statistics Development Team](mailto:statistics.development@education.gov.uk)
 - create a html file with the javascript required for your dashboard to connect to Google Analytics
+- add the line: `tags$head(includeHTML(("google-analytics.html"))),` to the ui.R file.
 
-To create the latter, we provide the function `dfeshiny::initialise_analytics()`. You should run this code from the R console providing your Google Analytics code as follows (replacing `ABCDE12345` with the code obtained from the Statistics Devlopment team):
+To create the latter, we provide the function `dfeshiny::initialise_analytics()`. You should run this code from the R console providing your Google Analytics code as follows (replacing `ABCDE12345` with the code obtained from the Statistics Development team):
 
 ```
 initialise_analytics("ABCDE12345")
