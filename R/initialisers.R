@@ -43,7 +43,8 @@ gtag('consent', 'default', {
   gtag('config', 'G-XXXXXXXXXX');
 
 /*
-The custom trackers below can be tailored to match the inputs used in your dashboard.
+The custom trackers below can be tailored to match the inputs used in your
+dashboard.
 */
 
   $(document).on('change', 'select#selectPhase', function(e) {
