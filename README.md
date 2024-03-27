@@ -19,6 +19,21 @@ If this works, then you will need to look for where that "GITHUB_PAT" variable i
 
 ## Using this package in a DfE data dashboard
 
+### Adding analytics to your dashboard
+
+For analytics to function on your dashboard, you will need to:
+
+- request a Google Analytics key from the [Statistics Development Team](mailto:statistics.development@education.gov.uk)
+- create a html file with the javascript required for your dashboard to connect to Google Analytics
+
+To create the latter, we provide the function `dfeshiny::initialise_analytics()`. You should run this code from the R console providing your Google Analytics code as follows:
+
+```
+initialise_analytics("ABCDE12345")
+```
+
+This will create the file [google-analytics.html](google-analytics.html) within the home directory of your R project. This html file can be edited to add customised analytics recorders for different shiny elements in your dashboard. Feel free to contact our team if you need support in adding additional functionality.
+
 ### Adding cookies to your dashboard
 
 dfeshiny provides the facility to add a gov.uk styled cookie banner to your 
