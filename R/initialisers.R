@@ -105,6 +105,7 @@ dashboard.
   }
   if (write_out) {
     cat(html_script, file = "google-analytics.html")
+    message("")
     message("Google analytics script created in google-analytics.html.")
     message("You'll need to add the following line to your ui.R script to start
             recording analytics:")
