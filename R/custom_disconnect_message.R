@@ -7,12 +7,14 @@
 #' @param refresh the text to appear that will refresh the page when clicked
 #' @param links A list of mirrors or alternative links to the dashboard
 #' @param publication_name The parent publication name
-#' @param publication_link The link to the publication on Explore Education Statistics
+#' @param publication_link The link to the publication on Explore Education
+#' Statistics
 #'
 #' @importFrom htmltools tags tagList
 #'
 #'
-#' @return A html overlay panel that appears when RSConnect disconnects for a public R Shiny dashboard in DfE
+#' @return A html overlay panel that appears when RSConnect disconnects for a
+#' public R Shiny dashboard in DfE
 #' @export
 #'
 #' @examples
@@ -20,11 +22,11 @@
 #'   refresh = "Refresh page",
 #'   links = c(
 #'     "https://department-for-education.shinyapps.io/dfe-shiny-template/",
-#'     "https://department-for-education.shinyapps.io/dfe-shiny-template-overflow/"
+#'     "https://department-for-education.shinyapps.io/dfe-shiny-template-overflow/" # nolint: [line_length_linter]
 #'   ),
 #'   publication_name = "Explore Education Statistics Publication",
 #'   publication_link =
-#'     "https://explore-education-statistics.service.gov.uk/find-statistics/pupil-attendance-in-schools"
+#'     "https://explore-education-statistics.service.gov.uk/find-statistics/pupil-attendance-in-schools" # nolint: [line_length_linter]
 #' )
 #'
 custom_disconnect_message <- function(refresh = "Refresh page",
@@ -34,10 +36,12 @@ custom_disconnect_message <- function(refresh = "Refresh page",
   # Check links are valid
 
   is_valid_sites_list <- function(sites) {
-    lapply(stringr::str_trim(sites), startsWith, "https://department-for-education.shinyapps.io/")
+    lapply(stringr::str_trim(sites), startsWith,
+           "https://department-for-education.shinyapps.io/")
   }
 
-  if (FALSE %in% is_valid_sites_list(links) || "https://department-for-education.shinyapps.io/" %in% links) {
+  if (FALSE %in% is_valid_sites_list(links) ||
+      "https://department-for-education.shinyapps.io/" %in% links) {
     stop("You have entered an invalid site link in the links argument.")
   }
 
@@ -55,7 +59,8 @@ custom_disconnect_message <- function(refresh = "Refresh page",
   if (RCurl::url.exists(publication_link) == FALSE ||
     (TRUE %in% is_valid_publication_link(publication_link)) == FALSE ||
     publication_link %in% pub_prefix) {
-    stop("You have entered an invalid publication link in the publication_link argument.")
+    stop("You have entered an invalid publication link in the publication_link
+         argument.")
   }
 
   checkmate::assert_string(refresh)
@@ -75,7 +80,8 @@ custom_disconnect_message <- function(refresh = "Refresh page",
       style = "display: none !important;",
       tags$div(
         id = "ss-connect-refresh",
-        tags$p("You've lost connection to the dashboard server - please try refreshing the page:"),
+        tags$p("You've lost connection to the dashboard server - please try
+               refreshing the page:"),
         tags$p(tags$a(
           id = "ss-reload-link",
           href = "#", "Refresh page",
@@ -83,7 +89,8 @@ custom_disconnect_message <- function(refresh = "Refresh page",
         )),
         if (length(links) > 1) {
           tags$p(
-            "If this persists, you can also view the dashboard at one of our mirror sites:",
+            "If this persists, you can also view the dashboard at one of our
+            mirror sites:",
             tags$p(
               tags$a(href = links[1], "Site 1"),
               " - ",
@@ -99,7 +106,8 @@ custom_disconnect_message <- function(refresh = "Refresh page",
         },
         if (!is.null(publication_name)) {
           tags$p(
-            "All the data used in this dashboard can also be viewed or downloaded via the ",
+            "All the data used in this dashboard can also be viewed or
+            downloaded via the ",
             tags$a(
               href = publication_link,
               publication_name
@@ -109,7 +117,8 @@ custom_disconnect_message <- function(refresh = "Refresh page",
         },
         tags$p(
           "Please contact",
-          tags$a(href = "mailto:statistics.development@education.gov.uk", "statistics.development@education.gov.uk"),
+          tags$a(href = "mailto:statistics.development@education.gov.uk",
+                 "statistics.development@education.gov.uk"),
           "with details of any problems with this resource."
         )
       )
