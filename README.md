@@ -3,7 +3,9 @@
 [![Codecov test coverage](https://codecov.io/gh/dfe-analytical-services/dfeshiny/branch/main/graph/badge.svg)](https://app.codecov.io/gh/dfe-analytical-services/dfeshiny?branch=main)
 <!-- badges: end -->
 
-# dfeshiny
+<a href="http://dfe-analytical-services.github.io/dfeshiny/"><img src="man/figures/dfeshiny.png" align="right" width="120" /></a>
+
+# dfeshiny  
 
 An R package to support analysts in developing official DfE dashboards and help 
 them meet the necessary standards required of public facing government services.
