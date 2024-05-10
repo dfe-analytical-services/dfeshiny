@@ -1,6 +1,15 @@
 ui <- function(input, output, session) {
-  fluidPage(
+  shiny::fluidPage(
     shinyjs::useShinyjs(),
+    custom_disconnect_message(
+      refresh = "Refresh page",
+      links = c(
+        "https://department-for-education.shinyapps.io/dfe-shiny-template/",
+        "https://department-for-education.shinyapps.io/dfe-shiny-template-overflow/" # nolint: [line_length_linter]
+      ),
+      publication_name = "Explore Education Statistics Publication",
+      publication_link = "https://explore-education-statistics.service.gov.uk/find-statistics/pupil-attendance-in-schools" # nolint: [line_length_linter]
+    ),
     dfe_cookie_script(),
     cookie_banner_ui("cookies"),
     shiny::navlistPanel(
