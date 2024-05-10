@@ -1,7 +1,7 @@
 url: https://dfe-analytical-services.github.io/dfeshiny/
 template:
   bootstrap: 5
-  bootswatch: yeti
+  bootswatch: cyborg
   bslib:
     pkgdown-nav-height: 81.4468px
 

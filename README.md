@@ -5,12 +5,15 @@
 
 # dfeshiny
 
-R package containing preferred methods for creating official DfE R-Shiny dashboards 
+An R package to support analysts in developing official DfE dashboards and help 
+them meet the necessary standards required of public facing government services.
 
-# Installing the package
+## Installing the package
+
 To install, run `renv::install("dfe-analytical-services/dfeshiny")`.
 
-## Potential errors when installing
+### Potential errors when installing
+
 If you get `ERROR [curl: (22) The requested URL returned error: 401]`, and don't know why, try running `Sys.unsetenv("GITHUB_PAT")` to temporarily clear your GitHub PAT variable.
 
 Then try to install again. 
