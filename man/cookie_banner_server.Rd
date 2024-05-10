@@ -35,7 +35,6 @@ reject cookie consent for the provision of Google Analytics tracking on DfE
 R-Shiny dashboards.
 }
 \examples{
-\donttest{
 \dontrun{
 output$cookie_status <- dfeshiny::cookie_banner_server(
   "cookies",
@@ -44,6 +43,5 @@ output$cookie_status <- dfeshiny::cookie_banner_server(
   parent_session = session,
   google_analytics_key = "ABCDE12345"
 )
-}
 }
 }

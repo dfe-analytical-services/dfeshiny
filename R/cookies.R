@@ -108,7 +108,6 @@ cookie_banner_ui <- function(id, name = "DfE R-Shiny dashboard template") {
 #' @export
 #'
 #' @examples
-#' \donttest{
 #' \dontrun{
 #' output$cookie_status <- dfeshiny::cookie_banner_server(
 #'   "cookies",
@@ -117,7 +116,6 @@ cookie_banner_ui <- function(id, name = "DfE R-Shiny dashboard template") {
 #'   parent_session = session,
 #'   google_analytics_key = "ABCDE12345"
 #' )
-#' }
 #' }
 cookie_banner_server <- function(
     id,
