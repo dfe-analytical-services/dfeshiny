@@ -16,4 +16,6 @@ reference:
 - title: Standard panels
   contents:
   - support_panel
-
+- title: Connectivity
+  contents:
+  - custom_disconnect_message
