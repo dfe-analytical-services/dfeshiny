@@ -24,7 +24,18 @@ cookies_panel <- function(
         shiny::column(
           width = 12,
           shiny::tags$h1("Cookies"),
+          shiny::tags$p("Cookies are small files saved on your phone, tablet or computer when you visit a website."),
+          shiny::tags$p("We use cookies to collect information about how you use our service."),
           shiny::tags$h2("Essential cookies"),
+          shinyGovstyle::govTable(inputId = "essential_cookies_table",
+            df = data.frame(Name = "dfe_analytics",
+                       Purpose = "Saves your cookie consent settings",
+                       Expires = "365 days"),
+            caption = "",
+            caption_size = "s",
+            num_col = NULL,
+            width_overwrite = c("one-quarter", "one-quarter", "one-quarter")
+          ),
           shiny::tags$h2("Analytics cookies"),
           shiny::tags$h2("Use of cookies"),
           shiny::tags$p("To better understand the reach of our dashboard tools,
