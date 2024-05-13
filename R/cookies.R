@@ -44,8 +44,9 @@
 #' }
 #'
 #' # This is just an example of how to run the minimal app in this example
-#' if (interactive())
+#' if (interactive()) {
 #'   shinyApp(ui, server)
+#' }
 #'
 dfe_cookie_script <- function() {
   shiny::tags$head(
