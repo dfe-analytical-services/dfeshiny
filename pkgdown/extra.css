@@ -1,0 +1,38 @@
+h1 {
+  font-size: 2.4em;
+  color: #6BACE6;
+}
+
+h2 {
+  font-size: 1.6em;
+}
+
+h3 {
+  font-size: 1.2em;
+}
+
+h4 {
+  font-size: 1.1em;
+}
+
+.navbar-dark input[type="search"] {
+    border-color: #12436D;
+    background-color: #f1f3f5;
+    color: #12436D;
+}
+
+.navbar-dark .navbar-nav .active>.nav-link {
+    background: #6BACE6;
+    color: #060606;
+}
+
+.navbar-dark .navbar-nav .nav-item>.nav-link:hover {
+    background: #12436D;
+    color: #f1f3f5;
+}
+
+/* This is set to make sure the citation box text is visible */
+pre {
+    background-color: #f1f3f5;
+    color: #12436D;
+}

@@ -1,0 +1,21 @@
+url: https://dfe-analytical-services.github.io/dfeshiny/
+template:
+  bootstrap: 5
+  bootswatch: cyborg
+  bslib:
+    pkgdown-nav-height: 81.4468px
+
+reference:
+- title: Maintenance
+  contents:
+  - tidy_code
+- title: Cookies
+  contents:
+  - starts_with("cookie")
+  - dfe_cookie_script
+- title: Standard panels
+  contents:
+  - support_panel
+- title: Connectivity
+  contents:
+  - custom_disconnect_message
