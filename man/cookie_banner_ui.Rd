@@ -22,5 +22,42 @@ functionality is provided by cookie_banner_server(), whilst users will also
 need to include the dfe_cookie_script() function in their ui.R file.
 }
 \examples{
-cookie_banner_ui("cookies", name = "My DfE R-Shiny data dashboard")
+# This will be in your global.R script
+
+library(shiny)
+library(shinyjs)
+library(dfeshiny)
+
+# This will be what is in your ui.R script
+
+ui <- fluidPage(
+  # Place these lines above your header
+
+  dfe_cookie_script(),
+  useShinyjs(),
+  cookie_banner_ui("cookies", name = "My DfE R-Shiny data dashboard"),
+
+  # Use the cookies panel under the head but in the main content
+
+  cookies_panel(
+    cookie_status_output = "cookie_status"
+  )
+)
+
+# This will be in your server.R file
+
+server <- function(input, output, session) {
+  output$cookie_status <- dfeshiny::cookie_banner_server(
+    "cookies",
+    input_cookies = reactive(input$cookies),
+    input_clear = reactive(input$cookie_consent_clear),
+    parent_session = session,
+    google_analytics_key = "ABCDE12345"
+  )
+}
+
+# This is just an example of how to run the minimal app in this example
+if (interactive())
+  shinyApp(ui, server)
+
 }

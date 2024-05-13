@@ -1,10 +1,52 @@
 #' dfe_cookie_script
 #'
+#' Calls in JavaScript dependencies to the shiny app. Function should be placed
+#' in the ui.R script.
+#'
+#' @name cookies
 #' @return shiny::tags$head()
 #' @export
 #'
+#' @family cookies
 #' @examples
-#' dfe_cookie_script()
+#' # This will be in your global.R script
+#'
+#' library(shiny)
+#' library(shinyjs)
+#' library(dfeshiny)
+#'
+#' # This will be what is in your ui.R script
+#'
+#' ui <- fluidPage(
+#'   # Place these lines above your header
+#'
+#'   dfe_cookie_script(),
+#'   useShinyjs(),
+#'   cookie_banner_ui("cookies", name = "My DfE R-Shiny data dashboard"),
+#'
+#'   # Use the cookies panel under the head but in the main content
+#'
+#'   cookies_panel(
+#'     cookie_status_output = "cookie_status"
+#'   )
+#' )
+#'
+#' # This will be in your server.R file
+#'
+#' server <- function(input, output, session) {
+#'   output$cookie_status <- dfeshiny::cookie_banner_server(
+#'     "cookies",
+#'     input_cookies = reactive(input$cookies),
+#'     input_clear = reactive(input$cookie_consent_clear),
+#'     parent_session = session,
+#'     google_analytics_key = "ABCDE12345"
+#'   )
+#' }
+#'
+#' # This is just an example of how to run the minimal app in this example
+#' if (interactive())
+#'   shinyApp(ui, server)
+#'
 dfe_cookie_script <- function() {
   shiny::tags$head(
     shiny::tags$script(
@@ -30,11 +72,10 @@ dfe_cookie_script <- function() {
 #' @param name Name of the dashboard on which the cookie authorisation is being
 #' applied
 #'
+#' @family cookies
 #' @return shiny::tags$div()
 #' @export
-#'
-#' @examples
-#' cookie_banner_ui("cookies", name = "My DfE R-Shiny data dashboard")
+#' @inherit cookies examples
 cookie_banner_ui <- function(id, name = "DfE R-Shiny dashboard template") {
   shiny::tags$div(
     id = shiny::NS(id, "cookie_div"),
@@ -104,19 +145,11 @@ cookie_banner_ui <- function(id, name = "DfE R-Shiny dashboard template") {
 #' @param google_analytics_key Provide the GA 10 digit key of the form
 #' "ABCDE12345"
 #'
+#' @family cookies
 #' @return NULL
 #' @export
 #'
-#' @examples
-#' \dontrun{
-#' output$cookie_status <- dfeshiny::cookie_banner_server(
-#'   "cookies",
-#'   input_cookies = reactive(input$cookies),
-#'   input_clear = reactive(input$cookie_consent_clear),
-#'   parent_session = session,
-#'   google_analytics_key = "ABCDE12345"
-#' )
-#' }
+#' @inherit cookies examples
 cookie_banner_server <- function(
     id,
     input_cookies,
