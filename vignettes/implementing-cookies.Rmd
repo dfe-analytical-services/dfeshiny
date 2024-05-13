@@ -18,6 +18,10 @@ Cookie consent is a mandatory requirement for any dashboard when using cookies.
 Typically, all DfE dashboards will be using cookies as part of tracking with
 Google Analytics and so will require cookie consent.
 
+> Note that to activate Google Analytics on your data dashboard, you will need 
+to contact the Statistics Development team at 
+[statistics.development@education.gov.uk](mailto:statistics.development@education.gov.uk) and request a Google Analytics key.
+
 dfeshiny provides a standard GDS compliant banner, plus the underlying code, to
 allow end users to give or withhold their consent for cookies to be used. If 
 they withhold their consent, then tracking with Google Analytics will be halted.
