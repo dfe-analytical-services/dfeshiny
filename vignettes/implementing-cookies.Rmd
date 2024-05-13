@@ -1,0 +1,78 @@
+---
+title: "Implementing cookie consent"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Implementing cookie consent}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+Cookie consent is a mandatory requirement for any dashboard when using cookies. 
+Typically, all DfE dashboards will be using cookies as part of tracking with
+Google Analytics and so will require cookie consent.
+
+dfeshiny provides a standard GDS compliant banner, plus the underlying code, to
+allow end users to give or withhold their consent for cookies to be used. If 
+they withhold their consent, then tracking with Google Analytics will be halted.
+
+Implementing cookie control on your dashboard is handled by several functions 
+in dfeshiny, with the process outlined below.
+
+The cookie control requires some underlying javascript to remove and create 
+cookies as well as switch Google Analytics on and off. This javascript needs 
+including in your dashboard's www/ folder, which can be achieved by running the 
+following command from the R console:
+
+```{r eval=FALSE}
+dfeshiny::init_cookies()
+```
+
+You will then need to add the necessary code to your ui.R file to a) run the 
+javascript, b) create the consent banner and c) add a cookies information panel:
+
+
+```{r eval=FALSE}
+ui <- function(input, output, session) {
+  shinyjs::useShinyjs(),
+  dfe_cookie_script()
+  cookie_banner_ui("Your dashboard name"),
+  shiny::navlistPanel(
+    "",
+    id = "navlistPanel",
+    widths = c(2, 8),
+    well = FALSE,
+    dashboard_panel(),
+    homepage_panel(),
+    a11y_panel(),
+    support_panel(
+      team_email = "publication.team@education.gov.uk",
+      repo_name = "https://github.com/dfe-analytical-services/your-dashboard-name",
+      form_url = "https://forms.office.com"
+    ),
+    cookie_panel()
+  )
+}
+```
+
+You should then add the `cookie_banner_server` function to your server.R script:
+
+```{r eval=FALSE}
+cookie_banner_server(
+   "cookies",
+   input_cookies = reactive(input$cookies),
+   input_clear = reactive(input$cookie_consent_clear),
+   parent_session = session,
+   google_analytics_key = "ABCDE12345"
+)
+```
+
+In the above you should keep all of the flags as they are shown except for 
+`google_analytics_key`, which you should update to your own 10 digit GA4 code.
+
