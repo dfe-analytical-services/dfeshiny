@@ -37,6 +37,8 @@ cookies_panel <- function(
             width_overwrite = c("one-quarter", "one-quarter", "one-quarter")
           ),
           shiny::tags$h2("Analytics cookies"),
+          shiny::tags$p("With your permission, we use Google Analytics to collect data about how you use this service. This information helps us improve our service"),
+          shiny::tags$p("Google is not allowed to share our analytics data with anyone."),
           shiny::tags$h2("Use of cookies"),
           shiny::tags$p("To better understand the reach of our dashboard tools,
             this site uses cookies to identify numbers of unique users
