@@ -26,9 +26,7 @@
 #'
 #'   # Use the cookies panel under the head but in the main content
 #'
-#'   cookies_panel(
-#'     cookie_status_output = "cookie_status"
-#'   )
+#'   cookies_panel()
 #' )
 #'
 #' # This will be in your server.R file
