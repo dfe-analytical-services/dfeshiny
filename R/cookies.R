@@ -154,6 +154,19 @@ cookie_banner_ui <- function(id, name = "DfE R-Shiny dashboard template") {
 #' # `navListPanel()`
 #' }
 
+init_cookies <- function() {
+
+  if ((file.exists("inst/cookie-consent.js") == TRUE))
+    {
+    print("Cookie script already downloaded")
+  } else if ((file.exists("inst/cookie-consent.js") == FALSE))
+  {
+    download.file(url = "https://raw.githubusercontent.com/dfe-analytical-services/dfeshiny/main/inst/cookie-consent.js", destfile = "inst/cookie-consent.js")
+  }
+
+}
+
+
 cookie_banner_server <- function(
     id,
     input_cookies,
