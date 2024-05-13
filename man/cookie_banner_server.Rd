@@ -19,7 +19,7 @@ cookie_banner_server(
 be reactive(input$cookies))}
 
 \item{input_clear}{The state of the cookie reset button provided by
-dfeshiny::support_panel().
+dfeshiny::cookies_panel().
 Should always be set to reactive(input$cookie_consent_clear).}
 
 \item{parent_session}{This should be the R Shiny app session}
