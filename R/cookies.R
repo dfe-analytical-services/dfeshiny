@@ -156,12 +156,25 @@ cookie_banner_ui <- function(id, name = "DfE R-Shiny dashboard template") {
 
 init_cookies <- function() {
 
-  if ((file.exists("inst/cookie-consent.js") == TRUE))
+  sub_dir <- "www"
+
+  output_dir <- file.path(sub_dir)
+
+  if (!dir.exists(output_dir)){
+    dir.create(output_dir)
+  } else {
+    print("www folder already exists!")
+  }
+
+  if ((file.exists("www/cookie-consent.js") == TRUE))
     {
     print("Cookie script already downloaded")
-  } else if ((file.exists("inst/cookie-consent.js") == FALSE))
+  } else if ((file.exists("www/cookie-consent.js") == FALSE))
   {
-    download.file(url = "https://raw.githubusercontent.com/dfe-analytical-services/dfeshiny/main/inst/cookie-consent.js", destfile = "inst/cookie-consent.js")
+    tryCatch(
+      download.file(url = "https://raw.githubusercontent.com/dfe-analytical-services/dfeshiny/main/inst/cookie-consent.js", destfile = "www/cookie-consent.js"),
+      error = function(e) return("Download failed")
+    )
   }
 
 }
