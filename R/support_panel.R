@@ -14,8 +14,6 @@
 #' @param alt_href Alternative link to the parent publication (if not hosted on
 #' Explore Education Statistics)
 #' @param form_url URL for a feedback form for the dashboard
-#' @param cookie_status_output Name of cookie status output object, often
-#' "cookie_status"
 #'
 #' @return a standardised panel for a public R Shiny dashboard in DfE
 #' @export
@@ -26,8 +24,7 @@
 #'   repo_name = "https://github.com/dfe-analytical-services/my-repo",
 #'   publication_name = "My publication title",
 #'   publication_slug = "my-publication-title",
-#'   form_url = "www.myform.com",
-#'   cookie_status_output = "cookie_status"
+#'   form_url = "www.myform.com"
 #' )
 support_panel <- function(
     team_email = "",
@@ -36,8 +33,7 @@ support_panel <- function(
     publication_name = NULL,
     publication_slug = "",
     alt_href = NULL,
-    form_url = NULL,
-    cookie_status_output = "cookie_status") {
+    form_url = NULL) {
   # Check that the team_email is a valid dfe email ----------------------------
   is_valid_dfe_email <- function(email) {
     grepl(
@@ -190,13 +186,7 @@ support_panel <- function(
               "GitHub repository", .noWS = c("after")
             ),
             "."
-          ),
-          shiny::tags$h2("Use of cookies"),
-          shiny::tags$p("To better understand the reach of our dashboard tools,
-            this site uses cookies to identify numbers of unique users
-            as part of Google Analytics."),
-          shiny::textOutput(cookie_status_output),
-          shiny::actionButton("cookie_consent_clear", "Reset cookie consent"),
+          )
         )
       )
     )
