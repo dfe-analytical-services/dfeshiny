@@ -16,7 +16,7 @@
 
 
 
-support_panel <- function(
+cookies_panel <- function(
     cookie_status_output = "cookie_status") {
   # Build the support page ----------------------------------------------------
   shiny::tabPanel(
