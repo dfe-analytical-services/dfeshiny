@@ -18,6 +18,10 @@ Cookie consent is a mandatory requirement for any dashboard when using cookies.
 Typically, all DfE dashboards will be using cookies as part of tracking with
 Google Analytics and so will require cookie consent.
 
+> Note that to activate Google Analytics on your data dashboard, you will need 
+to contact the Statistics Development team at 
+[statistics.development@education.gov.uk](mailto:statistics.development@education.gov.uk) and request a Google Analytics key.
+
 dfeshiny provides a standard GDS compliant banner, plus the underlying code, to
 allow end users to give or withhold their consent for cookies to be used. If 
 they withhold their consent, then tracking with Google Analytics will be halted.
@@ -34,6 +38,15 @@ following command from the R console:
 dfeshiny::init_cookies()
 ```
 
+Before adding the cookie consent banner, we recommend adding your Google 
+Analytics key as a variable to your dashboard's [global.R](https://github.com/dfe-analytical-services/dfeshiny/blob/cookie-module/tests/test_dashboard/global.R) 
+file (replacing `ABCDE12345` below with the key provided by the Statistics 
+Development team):
+
+```
+google_analytics_key <- 'ABCDE12345'
+```
+
 You will then need to add the necessary code to your ui.R file to a) run the 
 javascript, b) create the consent banner and c) add a cookies information panel:
 
@@ -43,21 +56,8 @@ ui <- function(input, output, session) {
   shinyjs::useShinyjs(),
   dfe_cookie_script()
   cookie_banner_ui("Your dashboard name"),
-  shiny::navlistPanel(
-    "",
-    id = "navlistPanel",
-    widths = c(2, 8),
-    well = FALSE,
-    dashboard_panel(),
-    homepage_panel(),
-    a11y_panel(),
-    support_panel(
-      team_email = "publication.team@education.gov.uk",
-      repo_name = "https://github.com/dfe-analytical-services/your-dashboard-name",
-      form_url = "https://forms.office.com"
-    ),
-    cookie_panel()
-  )
+  ...
+  cookies_panel()
 }
 ```
 
@@ -69,10 +69,19 @@ cookie_banner_server(
    input_cookies = reactive(input$cookies),
    input_clear = reactive(input$cookie_consent_clear),
    parent_session = session,
-   google_analytics_key = "ABCDE12345"
+   google_analytics_key = google_analytics_key
 )
 ```
 
-In the above you should keep all of the flags as they are shown except for 
-`google_analytics_key`, which you should update to your own 10 digit GA4 code.
+In the above you should keep all of the flags as they are shown. Note that this 
+assumes you have added `google_analytics_key` as a declared variable in your 
+global.R file. If you've not done this, you'll need to replace 
+`google_analytics_key = google_analytics_key` to 
+`google_analytics_key = "ABCDE12345"` (replacing "ABCDE12345" with your own 
+key).
 
+With the above included, when the user's preference will itself be stored in a
+cookie (`dfe_analytics`), which by default expires after 365 days. The user can
+then also find information about the cookies stored by your dashboard and change 
+their consent preference on a specific cookie consent panel on your dashboard 
+that's created by the `cookies_panel()` function.
