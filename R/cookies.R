@@ -154,31 +154,6 @@ cookie_banner_ui <- function(id, name = "DfE R-Shiny dashboard template") {
 #' # `navListPanel()`
 #' }
 
-init_cookies <- function() {
-
-  sub_dir <- "www"
-
-  output_dir <- file.path(sub_dir)
-
-  if (!dir.exists(output_dir)){
-    dir.create(output_dir)
-  } else {
-    print("www folder already exists!")
-  }
-
-  if ((file.exists("www/cookie-consent.js") == TRUE))
-    {
-    print("Cookie script already downloaded")
-  } else if ((file.exists("www/cookie-consent.js") == FALSE))
-  {
-    tryCatch(
-      download.file(url = "https://raw.githubusercontent.com/dfe-analytical-services/dfeshiny/main/inst/cookie-consent.js", destfile = "www/cookie-consent.js"),
-      error = function(e) return("Download failed")
-    )
-  }
-
-}
-
 
 cookie_banner_server <- function(
     id,
@@ -271,4 +246,44 @@ cookie_banner_server <- function(
       }
     }))
   })
+}
+
+#' init_cookies
+#'
+#' @description
+#' init_cookies() creates a local copy of the JavaScript file required for cookies to work.
+#' It checks whether there is already a www/ folder and if not, it creates one
+#' It then checks whether the cookie-consent.js file exists in the www/ folder
+#' If the file exists, it will print a message in the console to let you know
+#' If the file doesn't exist, it will pull a copy from the GitHub repo
+#' If it cannot connect to the repo then it will print "Download failed".
+#' No input parameters are required
+#'
+#' Call init_cookies() in the console to run the function
+#'
+
+
+init_cookies <- function() {
+
+  sub_dir <- "www"
+
+  output_dir <- file.path(sub_dir)
+
+  if (!dir.exists(output_dir)){
+    dir.create(output_dir)
+  } else {
+    print("www folder already exists!")
+  }
+
+  if ((file.exists("www/cookie-consent.js") == TRUE))
+  {
+    print("Cookie script already downloaded")
+  } else if ((file.exists("www/cookie-consent.js") == FALSE))
+  {
+    tryCatch(
+      download.file(url = "https://raw.githubusercontent.com/dfe-analytical-services/dfeshiny/main/inst/cookie-consent.js", destfile = "/cookie-consent.js"),
+      error = function(e) return("Download failed")
+    )
+  }
+
 }
