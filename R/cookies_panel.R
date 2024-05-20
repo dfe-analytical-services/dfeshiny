@@ -39,14 +39,65 @@ cookies_panel <- function(
           shiny::tags$h2("Analytics cookies"),
           shiny::tags$p("With your permission, we use Google Analytics to collect data about how you use this service. This information helps us improve our service"),
           shiny::tags$p("Google is not allowed to share our analytics data with anyone."),
-          shiny::tags$h2("Use of cookies"),
-          shiny::tags$p("To better understand the reach of our dashboard tools,
-            this site uses cookies to identify numbers of unique users
-            as part of Google Analytics."),
-          shiny::textOutput(cookie_status_output),
-          shiny::actionButton("cookie_consent_clear", "Reset cookie consent"),
+          shiny::tags$p("Google Analytics stores anonymised information about:"),
+          shiny::tags$li("How you got to this service"),
+          shiny::tags$li("The pages you visit on this service and how long you spend on them"),
+          shiny::tags$li("How you interact with these pages"),
+          shinyGovstyle::govTable(inputId = "ga_cookies_table",
+                                  df = data.frame(Name = c("_ga", paste0("_ga_", google_analytics_key)),
+                                                  Purpose = c("Used to distinguish users", "Used to persist session state"),
+                                                  Expires = c("13 months", "13 month")),
+                                  caption = "",
+                                  caption_size = "s",
+                                  num_col = NULL,
+                                  width_overwrite = c("one-quarter", "one-quarter", "one-quarter")
+          ),
+          # shiny::tags$h2("Cookie status"),
+          # shiny::textOutput(cookie_status_output),
+          br(),
+          #shiny::actionButton("cookie_consent_clear", "Reset cookie consent"),
+          div(class = "govuk-grid-row",
+              div(class = "govuk-grid-column-two-thirds",
+                  h2(class = "govuk-heading-l", "Change your cookie settings"),
+                  div(class = "govuk-form-group",
+                      tags$fieldset(class = "govuk-fieldset",
+                                    tags$legend(class = "govuk-fieldset__legend govuk-fieldset__legend--s",
+                                                "Do you want to accept functional cookies?"),
+                                    div(class = "govuk-radios",
+                                        `data-module` = "govuk-radios",
+                                        div(class = "govuk-radios__item",
+                                            radioButtons("cookies_functional",
+                                                         label = NULL,
+                                                         choices = list("Yes" = "yes", "No" = "no"),
+                                                         selected = "no",
+                                                         inline = TRUE)
+                                        )
+                                    )
+                      )
+                  ),
+                  div(class = "govuk-form-group",
+                      tags$fieldset(class = "govuk-fieldset",
+                                    tags$legend(class = "govuk-fieldset__legend govuk-fieldset__legend--s",
+                                                "Do you want to accept analytics cookies?"),
+                                    div(class = "govuk-radios",
+                                        `data-module` = "govuk-radios",
+                                        div(class = "govuk-radios__item",
+                                            radioButtons("cookies_analytics",
+                                                         label = NULL,
+                                                         choices = list("Yes" = "yes", "No" = "no"),
+                                                         selected = "no",
+                                                         inline = TRUE)
+                                        )
+                                    )
+                      )
+                  ),
+            actionButton("submit_btn", "Save cookie settings", class = "govuk-button")
+          ),
+          h3("Selected Cookie Settings:"),
+          verbatimTextOutput("cookieSettings")
         )
       )
     )
   )
+)
 }
