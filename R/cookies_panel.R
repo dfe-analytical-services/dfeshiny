@@ -30,8 +30,10 @@ cookies_panel_ui <- function(
         shiny::column(
           width = 12,
           shiny::tags$h1("Cookies"),
-          shiny::tags$p("Cookies are small files saved on your phone, tablet or computer when you visit a website."),
-          shiny::tags$p("We use cookies to collect information about how you use our service."),
+          shiny::tags$p("Cookies are small files saved on your phone, tablet or
+                        computer when you visit a website."),
+          shiny::tags$p("We use cookies to collect information about how you
+                        use our service."),
           shiny::tags$h2("Essential cookies"),
           shinyGovstyle::govTable(
             inputId = "essential_cookies_table",
@@ -46,17 +48,22 @@ cookies_panel_ui <- function(
             width_overwrite = c("one-quarter", "one-quarter", "one-quarter")
           ),
           shiny::tags$h2("Analytics cookies"),
-          shiny::tags$p("With your permission, we use Google Analytics to collect data about how you use this service. This information helps us improve our service"),
-          shiny::tags$p("Google is not allowed to share our analytics data with anyone."),
+          shiny::tags$p("With your permission, we use Google Analytics to
+                        collect data about how you use this service. This
+                        information helps us improve our service"),
+          shiny::tags$p("Google is not allowed to share our analytics data with
+                        anyone."),
           shiny::tags$p("Google Analytics stores anonymised information about:"),
           shiny::tags$li("How you got to this service"),
-          shiny::tags$li("The pages you visit on this service and how long you spend on them"),
+          shiny::tags$li("The pages you visit on this service and how long you
+                         spend on them"),
           shiny::tags$li("How you interact with these pages"),
           shinyGovstyle::govTable(
             inputId = "ga_cookies_table",
             df = data.frame(
               Name = c("_ga", paste0("_ga_", google_analytics_key)),
-              Purpose = c("Used to distinguish users", "Used to persist session state"),
+              Purpose = c("Used to distinguish users", "Used to persist
+                          session state"),
               Expires = c("13 months", "13 months")
             ),
             caption = "",
@@ -64,10 +71,7 @@ cookies_panel_ui <- function(
             num_col = NULL,
             width_overwrite = c("one-quarter", "one-quarter", "one-quarter")
           ),
-          # shiny::tags$h2("Cookie status"),
-          # shiny::textOutput(cookie_status_output),
           br(),
-          # shiny::actionButton("cookie_consent_clear", "Reset cookie consent"),
           div(
             class = "govuk-grid-row",
             div(
@@ -119,7 +123,9 @@ cookies_panel_ui <- function(
                   )
                 )
               ),
-              actionButton(NS(id, "submit_btn"), "Save cookie settings", class = "govuk-button")
+              actionButton(NS(id, "submit_btn"), "Save cookie settings",
+                class = "govuk-button"
+              )
             )
           )
         )
