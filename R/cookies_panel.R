@@ -1,23 +1,29 @@
-#' Cookies panel
+#' cookies_panel_ui
 #'
 #' @description
-#' Create the standard DfE R-Shiny cookies dashboard panel.
+#' Create the standard DfE R-Shiny cookies dashboard panel in the ui. The server
+#' side functionality is provided by cookies_panel_server()
 #'
 #' @param cookie_status_output Name of cookie status output object, often
 #' "cookie_status"
+#' @param id ID shared with cookies_panel_server()
 #'
 #' @return a standardised panel for a public R Shiny dashboard in DfE
 #' @export
 #'
 #' @examples
-#' cookies_panel(
-#'   cookie_status_output = "cookie_status"
+#' \dontrun{
+#' cookies_panel_ui(
+#'   "cookies_panel", cookie_status_output = "cookie_status"
 #' )
-cookies_panel <- function(
-    cookie_status_output = "cookie_status") {
+#' }
+
+cookies_panel_ui <- function(
+    id, cookie_status_output = "cookie_status") {
   # Build the support page ----------------------------------------------------
   shiny::tabPanel(
-    value = "cookies_panel",
+    id = shiny::NS(id, "cookies_panel"),
+    value = "cookies_panel_ui",
     "Cookies",
     shinyGovstyle::gov_main_layout(
       shinyGovstyle::gov_row(
@@ -46,7 +52,7 @@ cookies_panel <- function(
           shinyGovstyle::govTable(inputId = "ga_cookies_table",
                                   df = data.frame(Name = c("_ga", paste0("_ga_", google_analytics_key)),
                                                   Purpose = c("Used to distinguish users", "Used to persist session state"),
-                                                  Expires = c("13 months", "13 month")),
+                                                  Expires = c("13 months", "13 months")),
                                   caption = "",
                                   caption_size = "s",
                                   num_col = NULL,
@@ -66,7 +72,7 @@ cookies_panel <- function(
                                     div(class = "govuk-radios",
                                         `data-module` = "govuk-radios",
                                         div(class = "govuk-radios__item",
-                                            radioButtons("cookies_functional",
+                                            radioButtons(NS(id, "cookies_functional"),
                                                          label = NULL,
                                                          choices = list("Yes" = "yes", "No" = "no"),
                                                          selected = "no",
@@ -82,7 +88,7 @@ cookies_panel <- function(
                                     div(class = "govuk-radios",
                                         `data-module` = "govuk-radios",
                                         div(class = "govuk-radios__item",
-                                            radioButtons("cookies_analytics",
+                                            radioButtons(NS(id, "cookies_analytics"),
                                                          label = NULL,
                                                          choices = list("Yes" = "yes", "No" = "no"),
                                                          selected = "no",
@@ -91,13 +97,48 @@ cookies_panel <- function(
                                     )
                       )
                   ),
-            actionButton("submit_btn", "Save cookie settings", class = "govuk-button")
-          ),
-          h3("Selected Cookie Settings:"),
-          verbatimTextOutput("cookieSettings")
+            actionButton(NS(id, "submit_btn"), "Save cookie settings", class = "govuk-button")
+          )
         )
       )
     )
   )
 )
+}
+
+#' cookies_panel_server
+#'
+#' @description
+#' Create the server module of DfE R-Shiny cookies dashboard panel to be used
+#' alongside cookies_panel_ui().
+#'
+#' @param id ID shared with cookies_panel_ui()
+#'
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#' cookies_panel_server(
+#'   "cookies_panel"
+#' )
+#' }
+
+
+cookies_panel_server <- function(
+    id){
+  shiny::moduleServer(id, module = function(input, output, session){
+    # Reactive values to store form inputs
+    cookie_settings <- reactiveValues(
+      functional = "no",  # Default values
+      analytics = "no"    # Default values
+    )
+
+    # Observe form submission button
+    observeEvent(input$submit_btn, {
+      # Update reactive values based on the selected radio buttons
+      cookie_settings$functional <- input$cookies_functional
+      cookie_settings$analytics <- input$cookies_analytics
+    })
+
+  })
 }

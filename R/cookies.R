@@ -181,7 +181,7 @@ cookie_banner_server <- function(
       shiny::updateTabsetPanel(
         session = parent_session,
         "navlistPanel",
-        selected = "cookies_panel"
+        selected = "cookies_panel_ui"
       )
     })
 

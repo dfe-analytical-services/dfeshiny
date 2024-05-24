@@ -22,7 +22,7 @@ ui <- function(input, output, session) {
         repo_name = "https://github.com/dfe-analytical-services/dfeshiny/",
         form_url = "https://forms.office.com"
       ),
-      cookies_panel()
+      cookies_panel_ui(id = "cookies_panel")
     )
   )
 }
