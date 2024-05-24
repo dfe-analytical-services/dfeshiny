@@ -8,7 +8,7 @@ server <- function(input, output, session) {
   )
 
 
- cookies_panel_server(
+  cookies_panel_server(
     id = "cookies_panel"
   )
 }
