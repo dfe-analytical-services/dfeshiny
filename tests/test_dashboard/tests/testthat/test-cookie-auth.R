@@ -16,7 +16,8 @@ app <- AppDriver$new(
 
 app$wait_for_idle(500)
 
-app$click("cookie_consent_clear")
+app$set_inputs(`cookies_panel-cookies_analytics` = "no")
+app$click("cookies_panel-submit_btn")
 test_that("App loads", {
   # Capture initial values
   app$expect_values()
@@ -28,7 +29,8 @@ test_that("Cookies accepted", {
   app$expect_values()
 })
 
-app$click("cookie_consent_clear")
+app$set_inputs(`cookies_panel-cookies_analytics` = "no")
+app$click("cookies_panel-submit_btn")
 test_that("Cookies reset", {
   # Capture initial values
   app$expect_values()
