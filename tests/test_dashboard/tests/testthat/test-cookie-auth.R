@@ -24,20 +24,27 @@ test_that("App loads", {
 })
 
 app$click("cookies-cookie_accept")
-test_that("Cookies accepted", {
+test_that("Cookies accepted banner", {
   # Capture initial values
   app$expect_values()
 })
 
 app$set_inputs(`cookies_panel-cookies_analytics` = "no")
 app$click("cookies_panel-submit_btn")
-test_that("Cookies reset", {
+test_that("Cookies rejected page", {
   # Capture initial values
   app$expect_values()
 })
 
 app$click("cookies-cookie_reject")
-test_that("Cookies rejected", {
+test_that("Cookies rejected banner", {
+  # Capture initial values
+  app$expect_values()
+})
+
+app$set_inputs(`cookies_panel-cookies_analytics` = "yes")
+app$click("cookies_panel-submit_btn")
+test_that("Cookies accepted page", {
   # Capture initial values
   app$expect_values()
 })
