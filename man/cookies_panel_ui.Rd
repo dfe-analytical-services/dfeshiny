@@ -22,7 +22,8 @@ side functionality is provided by cookies_panel_server()
 \examples{
 \dontrun{
 cookies_panel_ui(
-  "cookies_panel", cookie_status_output = "cookie_status"
+  "cookies_panel",
+  cookie_status_output = "cookie_status"
 )
 }
 }

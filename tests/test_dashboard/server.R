@@ -9,6 +9,8 @@ server <- function(input, output, session) {
 
 
   cookies_panel_server(
-    id = "cookies_panel"
+    id = "cookies_panel",
+    input_cookies = shiny::reactive(input$cookies),
+    google_analytics_key = google_analytics_key # # nolint: [object_usage_linter]
   )
 }

@@ -79,26 +79,6 @@ cookies_panel_ui <- function(
               h2(class = "govuk-heading-l", "Change your cookie settings"),
               div(
                 class = "govuk-form-group",
-                tags$fieldset(
-                  class = "govuk-fieldset",
-                  tags$legend(
-                    class = "govuk-fieldset__legend govuk-fieldset__legend--s",
-                    "Do you want to accept functional cookies?"
-                  ),
-                  div(
-                    class = "govuk-radios",
-                    `data-module` = "govuk-radios",
-                    div(
-                      class = "govuk-radios__item",
-                      radioButtons(NS(id, "cookies_functional"),
-                        label = NULL,
-                        choices = list("Yes" = "yes", "No" = "no"),
-                        selected = "no",
-                        inline = TRUE
-                      )
-                    )
-                  )
-                )
               ),
               div(
                 class = "govuk-form-group",
@@ -147,23 +127,55 @@ cookies_panel_ui <- function(
 #' @examples
 #' \dontrun{
 #' cookies_panel_server(
-#'   "cookies_panel"
+#'   "cookies_panel",
+#'   input_cookies = reactive(input$cookies),
+#'   google_analytics_key = "ABCDE12345"
 #' )
 #' }
 cookies_panel_server <- function(
-    id) {
+    id,
+    input_cookies,
+    google_analytics_key = NULL) {
   shiny::moduleServer(id, module = function(input, output, session) {
-    # Reactive values to store form inputs
-    cookie_settings <- reactiveValues(
-      functional = "no", # Default values
-      analytics = "no" # Default values
-    )
+
+    shiny::observeEvent(input_cookies(), {
+      if (!is.null(input_cookies())) {
+        message("Found input cookies")
+        if (!("dfe_analytics" %in% names(input_cookies()))) {
+          message("updating radio button to no")
+          updateRadioButtons(session, "cookies_analytics", selected = "no")
+        } else {
+          print(input_cookies())
+              message("Found permission cookie")
+              if (input_cookies()$dfe_analytics == "denied") {
+                message("updating radio button to no (2)")
+                updateRadioButtons(session, "cookies_analytics", selected = "no")
+              } else if (input_cookies()$dfe_analytics == "granted"){
+                message("updating radio button to yes")
+                updateRadioButtons(session, "cookies_analytics", selected = "yes")
+              }
+        }
+      }
+    })
 
     # Observe form submission button
     observeEvent(input$submit_btn, {
       # Update reactive values based on the selected radio buttons
-      cookie_settings$functional <- input$cookies_functional
-      cookie_settings$analytics <- input$cookies_analytics
+      if(input$cookies_analytics == "yes"){
+        msg <- list(
+          name = "dfe_analytics",
+          value = "granted"
+        )
+      } else if(input$cookies_analytics == "no"){
+        msg <- list(
+          name = "dfe_analytics",
+          value = "denied"
+        )
+        ga_msg <- list(name = paste0("_ga_", google_analytics_key))
+        session$sendCustomMessage("cookie-clear", ga_msg)
+      }
+      session$sendCustomMessage("cookie-set", msg)
+      session$sendCustomMessage("analytics-consent", msg)
     })
   })
 }
