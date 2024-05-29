@@ -112,7 +112,6 @@ cookie_banner_ui <- function(id, name = "DfE R-Shiny dashboard template") {
 #' output$cookie_status <- dfeshiny::cookie_banner_server(
 #'   "cookies",
 #'   input_cookies = reactive(input$cookies),
-#'   input_clear = reactive(input$cookie_consent_clear),
 #'   parent_session = session,
 #'   google_analytics_key = "ABCDE12345"
 #' )
@@ -120,7 +119,6 @@ cookie_banner_ui <- function(id, name = "DfE R-Shiny dashboard template") {
 cookie_banner_server <- function(
     id,
     input_cookies,
-    input_clear,
     parent_session,
     google_analytics_key = NULL) {
   shiny::moduleServer(id, function(input, output, session) {
@@ -183,13 +181,6 @@ cookie_banner_server <- function(
         "navlistPanel",
         selected = "cookies_panel_ui"
       )
-    })
-
-    shiny::observeEvent(input_clear(), {
-      shinyjs::toggle(id = "cookie_main")
-      msg <- list(name = "dfe_analytics", value = "denied")
-      session$sendCustomMessage("cookie-clear", msg)
-      session$sendCustomMessage("analytics-consent", msg)
     })
 
     return(shiny::renderText({
