@@ -125,7 +125,7 @@ support_panel <- function(
               is available at the following link: ",
               shiny::tags$a(
                 href = paste0(
-                  "https://explore-education-statistics.service.gov.uk/find-statistics/",
+                  "https://explore-education-statistics.service.gov.uk/find-statistics/", # nolint: [line_length_linter]
                   publication_slug
                 ),
                 ifelse(
@@ -138,7 +138,7 @@ support_panel <- function(
               ". The statistical release provides additional ",
               shiny::tags$a(
                 href = paste0(
-                  "https://explore-education-statistics.service.gov.uk/find-statistics/",
+                  "https://explore-education-statistics.service.gov.uk/find-statistics/", # nolint: [line_length_linter]
                   publication_slug, "/data-guidance"
                 ),
                 "data guidance",
@@ -147,7 +147,7 @@ support_panel <- function(
               " and ",
               shiny::tags$a(
                 href = paste0(
-                  "https://explore-education-statistics.service.gov.uk/find-statistics/",
+                  "https://explore-education-statistics.service.gov.uk/find-statistics/", # nolint: [line_length_linter]
                   publication_slug, "#explore-data-and-files"
                 ),
                 "tools to access and interogate the underling data",

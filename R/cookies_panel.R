@@ -7,6 +7,9 @@
 #' @param cookie_status_output Name of cookie status output object, often
 #' "cookie_status"
 #' @param id ID shared with cookies_panel_server()
+#' @param google_analytics_key Provide the GA 10 digit key of the form
+#' "ABCDE12345"
+#'
 #'
 #' @return a standardised panel for a public R Shiny dashboard in DfE
 #' @export
@@ -14,12 +17,13 @@
 #' @examples
 #' \dontrun{
 #' cookies_panel_ui(
-#'   "cookies_panel",
-#'   cookie_status_output = "cookie_status"
+#'   id = "cookies_panel",
+#'   cookie_status_output = "cookie_status",
+#'   google_analytics_key = "ABCDE12345"
 #' )
 #' }
 cookies_panel_ui <- function(
-    id, cookie_status_output = "cookie_status") {
+    id, cookie_status_output = "cookie_status", google_analytics_key = NULL) {
   # Build the support page ----------------------------------------------------
   shiny::tabPanel(
     id = shiny::NS(id, "cookies_panel"),
@@ -53,7 +57,8 @@ cookies_panel_ui <- function(
                         information helps us improve our service"),
           shiny::tags$p("Google is not allowed to share our analytics data with
                         anyone."),
-          shiny::tags$p("Google Analytics stores anonymised information about:"),
+          shiny::tags$p("Google Analytics stores anonymised information
+                        about:"),
           shiny::tags$li("How you got to this service"),
           shiny::tags$li("The pages you visit on this service and how long you
                          spend on them"),
@@ -121,13 +126,17 @@ cookies_panel_ui <- function(
 #' alongside cookies_panel_ui().
 #'
 #' @param id ID shared with cookies_panel_ui()
+#' @param input_cookies The cookie input passed from cookies.js (should always
+#' be reactive(input$cookies))
+#' @param google_analytics_key Provide the GA 10 digit key of the form
+#' "ABCDE12345"
 #'
 #' @export
 #'
 #' @examples
 #' \dontrun{
 #' cookies_panel_server(
-#'   "cookies_panel",
+#'   id = "cookies_panel",
 #'   input_cookies = reactive(input$cookies),
 #'   google_analytics_key = "ABCDE12345"
 #' )
@@ -137,7 +146,6 @@ cookies_panel_server <- function(
     input_cookies,
     google_analytics_key = NULL) {
   shiny::moduleServer(id, module = function(input, output, session) {
-
     shiny::observeEvent(input_cookies(), {
       if (!is.null(input_cookies())) {
         message("Found input cookies")
@@ -146,14 +154,18 @@ cookies_panel_server <- function(
           updateRadioButtons(session, "cookies_analytics", selected = "no")
         } else {
           print(input_cookies())
-              message("Found permission cookie")
-              if (input_cookies()$dfe_analytics == "denied") {
-                message("updating radio button to no (2)")
-                updateRadioButtons(session, "cookies_analytics", selected = "no")
-              } else if (input_cookies()$dfe_analytics == "granted"){
-                message("updating radio button to yes")
-                updateRadioButtons(session, "cookies_analytics", selected = "yes")
-              }
+          message("Found permission cookie")
+          if (input_cookies()$dfe_analytics == "denied") {
+            message("updating radio button to no (2)")
+            updateRadioButtons(session, "cookies_analytics",
+              selected = "no"
+            )
+          } else if (input_cookies()$dfe_analytics == "granted") {
+            message("updating radio button to yes")
+            updateRadioButtons(session, "cookies_analytics",
+              selected = "yes"
+            )
+          }
         }
       }
     })
@@ -161,12 +173,12 @@ cookies_panel_server <- function(
     # Observe form submission button
     observeEvent(input$submit_btn, {
       # Update reactive values based on the selected radio buttons
-      if(input$cookies_analytics == "yes"){
+      if (input$cookies_analytics == "yes") {
         msg <- list(
           name = "dfe_analytics",
           value = "granted"
         )
-      } else if(input$cookies_analytics == "no"){
+      } else if (input$cookies_analytics == "no") {
         msg <- list(
           name = "dfe_analytics",
           value = "denied"

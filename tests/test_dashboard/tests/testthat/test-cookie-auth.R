@@ -46,7 +46,3 @@ test_that("Cookies rejected page", {
   # Capture initial values
   app$expect_values()
 })
-
-
-
-

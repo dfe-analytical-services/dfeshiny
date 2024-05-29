@@ -22,7 +22,11 @@ ui <- function(input, output, session) {
         repo_name = "https://github.com/dfe-analytical-services/dfeshiny/",
         form_url = "https://forms.office.com"
       ),
-      cookies_panel_ui(id = "cookies_panel")
+      cookies_panel_ui(
+        id = "cookies_panel",
+        cookie_status_output = "cookie_status",
+        google_analytics_key = google_analytics_key
+      ) # # nolint: [object_usage_linter]
     )
   )
 }

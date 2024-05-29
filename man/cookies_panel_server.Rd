@@ -4,10 +4,16 @@
 \alias{cookies_panel_server}
 \title{cookies_panel_server}
 \usage{
-cookies_panel_server(id)
+cookies_panel_server(id, input_cookies, google_analytics_key = NULL)
 }
 \arguments{
 \item{id}{ID shared with cookies_panel_ui()}
+
+\item{input_cookies}{The cookie input passed from cookies.js (should always
+be reactive(input$cookies))}
+
+\item{google_analytics_key}{Provide the GA 10 digit key of the form
+"ABCDE12345"}
 }
 \description{
 Create the server module of DfE R-Shiny cookies dashboard panel to be used
@@ -16,7 +22,9 @@ alongside cookies_panel_ui().
 \examples{
 \dontrun{
 cookies_panel_server(
-  "cookies_panel"
+  id = "cookies_panel",
+  input_cookies = reactive(input$cookies),
+  google_analytics_key = "ABCDE12345"
 )
 }
 }

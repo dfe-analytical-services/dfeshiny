@@ -1,8 +1,7 @@
 server <- function(input, output, session) {
-
   shinyjs::runjs(
-  'Cookies.remove("dfe_analytics");
-  getCookies();'
+    'Cookies.remove("dfe_analytics");
+    getCookies();'
   )
 
   output$cookie_status <- cookie_banner_server(

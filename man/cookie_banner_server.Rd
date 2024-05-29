@@ -7,7 +7,6 @@
 cookie_banner_server(
   id,
   input_cookies,
-  input_clear,
   parent_session,
   google_analytics_key = NULL
 )
@@ -16,10 +15,7 @@ cookie_banner_server(
 \item{id}{Shiny tag shared with cookie_banner_ui()}
 
 \item{input_cookies}{The cookie input passed from cookies.js (should always
-be reactive(input$cookies))}
-
-\item{input_clear}{The state of the cookie reset button provided by
-dfeshiny::cookies_panel().
+be reactive(input$cookies))
 Should always be set to reactive(input$cookie_consent_clear).}
 
 \item{parent_session}{This should be the R Shiny app session}
@@ -39,7 +35,6 @@ R-Shiny dashboards.
 output$cookie_status <- dfeshiny::cookie_banner_server(
   "cookies",
   input_cookies = reactive(input$cookies),
-  input_clear = reactive(input$cookie_consent_clear),
   parent_session = session,
   google_analytics_key = "ABCDE12345"
 )

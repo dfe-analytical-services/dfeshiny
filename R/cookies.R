@@ -97,8 +97,6 @@ cookie_banner_ui <- function(id, name = "DfE R-Shiny dashboard template") {
 #' @param id Shiny tag shared with cookie_banner_ui()
 #' @param input_cookies The cookie input passed from cookies.js (should always
 #' be reactive(input$cookies))
-#' @param input_clear The state of the cookie reset button provided by
-#' dfeshiny::cookies_panel().
 #' Should always be set to reactive(input$cookie_consent_clear).
 #' @param parent_session This should be the R Shiny app session
 #' @param google_analytics_key Provide the GA 10 digit key of the form
