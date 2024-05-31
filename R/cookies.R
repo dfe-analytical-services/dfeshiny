@@ -258,9 +258,16 @@ cookie_banner_server <- function(
 #' If the file doesn't exist, it will pull a copy from the GitHub repo
 #' If it cannot connect to the repo then it will print "Download failed".
 #' No input parameters are required
-#'
 #' Call init_cookies() in the console to run the function
 #'
+#' @return NULL
+#' @export
+#'
+#' @examples
+#' if (interactive()) {
+#' init_cookies()
+#' }
+
 
 
 init_cookies <- function() {
@@ -275,15 +282,11 @@ init_cookies <- function() {
     print("www folder already exists!")
   }
 
-  if ((file.exists("www/cookie-consent.js") == TRUE))
-  {
-    print("Cookie script already downloaded")
-  } else if ((file.exists("www/cookie-consent.js") == FALSE))
-  {
     tryCatch(
-      download.file(url = "https://raw.githubusercontent.com/dfe-analytical-services/dfeshiny/main/inst/cookie-consent.js", destfile = "/cookie-consent.js"),
-      error = function(e) return("Download failed")
+      download.file(url = "https://raw.githubusercontent.com/dfe-analytical-services/dfeshiny/main/inst/cookie-consent.js", destfile = "www/cookie-consent.js"),
+      error = function(e) return("Download failed"),
+      print("Cookie script updated")
     )
-  }
+
 
 }

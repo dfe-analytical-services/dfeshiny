@@ -14,6 +14,10 @@ If the file exists, it will print a message in the console to let you know
 If the file doesn't exist, it will pull a copy from the GitHub repo
 If it cannot connect to the repo then it will print "Download failed".
 No input parameters are required
-
 Call init_cookies() in the console to run the function
+}
+\examples{
+if (interactive()) {
+init_cookies()
+}
 }
