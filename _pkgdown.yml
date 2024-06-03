@@ -19,3 +19,8 @@ reference:
 - title: Connectivity
   contents:
   - custom_disconnect_message
+  - title: Initialisation functions
+  desc: One time functions used to set up or update standardised scripts and workflows needed for your dashboard
+  contents:
+  - starts_with("init")
+
