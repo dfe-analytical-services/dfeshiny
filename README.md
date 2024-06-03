@@ -3,14 +3,19 @@
 [![Codecov test coverage](https://codecov.io/gh/dfe-analytical-services/dfeshiny/branch/main/graph/badge.svg)](https://app.codecov.io/gh/dfe-analytical-services/dfeshiny?branch=main)
 <!-- badges: end -->
 
-# dfeshiny
+<a href="http://dfe-analytical-services.github.io/dfeshiny/"><img src="man/figures/dfeshiny.png" align="right" width="120" /></a>
 
-R package containing preferred methods for creating official DfE R-Shiny dashboards 
+# dfeshiny  
 
-# Installing the package
+An R package to support analysts in developing official DfE dashboards and help 
+them meet the necessary standards required of public facing government services.
+
+## Installing the package
+
 To install, run `renv::install("dfe-analytical-services/dfeshiny")`.
 
-## Potential errors when installing
+### Potential errors when installing
+
 If you get `ERROR [curl: (22) The requested URL returned error: 401]`, and don't know why, try running `Sys.unsetenv("GITHUB_PAT")` to temporarily clear your GitHub PAT variable.
 
 Then try to install again. 

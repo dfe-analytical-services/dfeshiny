@@ -34,29 +34,7 @@ dfe_cookie_script <- function() {
 #' @export
 #'
 #' @examples
-#' \donttest{
-#' # To use the banner, first copy the file cookie-consent.js from the
-#' # js/ folder of this package to the www/ folder of your R-Shiny app.
-#' # Then add the following lines to your ui.R:
-#' \dontrun{dfe_cookie_script(),}
-#' \dontrun{
 #' cookie_banner_ui("cookies", name = "My DfE R-Shiny data dashboard")
-#' }
-#'
-#' # And add the following in server.R
-#' # (after updating the google analytics key):
-#' \dontrun{output$cookie_status <- dfeshiny::cookie_banner_server(
-#'   "cookies",
-#'   input_cookies = reactive(input$cookies),
-#'   input_clear = reactive(input$cookie_consent_clear),
-#'   parent_session = session,
-#'   google_analytics_key = "ABCDE12345"
-#'   )
-#'  }
-#'
-#' # Note that you should also include dfeshiny::support_panel() in your
-#' # navListPanel()
-#' }
 cookie_banner_ui <- function(id, name = "DfE R-Shiny dashboard template") {
   shiny::tags$div(
     id = shiny::NS(id, "cookie_div"),
@@ -130,31 +108,15 @@ cookie_banner_ui <- function(id, name = "DfE R-Shiny dashboard template") {
 #' @export
 #'
 #' @examples
-#' \donttest{
-#' #' To use the banner, first copy the file cookie-consent.js from the
-#' # inst/ folder of this package to the www/ folder of your R-Shiny app.
-#' # Then add the following lines to your ui.R:
-#' \dontrun{dfe_cookie_script(),}
 #' \dontrun{
-#' cookie_banner_ui("cookies", name = "My DfE R-Shiny data dashboard")
-#' }
-#'
-#' # And add the following in server.R
-#' # (after updating the google analytics key):
-#' \dontrun{output$cookie_status <- dfeshiny::cookie_banner_server(
+#' output$cookie_status <- dfeshiny::cookie_banner_server(
 #'   "cookies",
 #'   input_cookies = reactive(input$cookies),
 #'   input_clear = reactive(input$cookie_consent_clear),
 #'   parent_session = session,
 #'   google_analytics_key = "ABCDE12345"
-#'   )
-#'   }
-#'
-#' # Note that you should also include `dfeshiny::support_panel()` in your
-#' # `navListPanel()`
+#' )
 #' }
-
-
 cookie_banner_server <- function(
     id,
     input_cookies,
@@ -267,9 +229,6 @@ cookie_banner_server <- function(
 #' if (interactive()) {
 #' init_cookies()
 #' }
-
-
-
 init_cookies <- function() {
 
   sub_dir <- "www"
