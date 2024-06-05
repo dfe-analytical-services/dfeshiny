@@ -148,20 +148,15 @@ cookies_panel_server <- function(
   shiny::moduleServer(id, module = function(input, output, session) {
     shiny::observeEvent(input_cookies(), {
       if (!is.null(input_cookies())) {
-        message("Found input cookies")
         if (!("dfe_analytics" %in% names(input_cookies()))) {
-          message("updating radio button to no")
           updateRadioButtons(session, "cookies_analytics", selected = "no")
         } else {
           print(input_cookies())
-          message("Found permission cookie")
           if (input_cookies()$dfe_analytics == "denied") {
-            message("updating radio button to no (2)")
             updateRadioButtons(session, "cookies_analytics",
               selected = "no"
             )
           } else if (input_cookies()$dfe_analytics == "granted") {
-            message("updating radio button to yes")
             updateRadioButtons(session, "cookies_analytics",
               selected = "yes"
             )
