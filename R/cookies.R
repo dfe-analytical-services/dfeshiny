@@ -356,7 +356,6 @@ cookies_panel_server <- function(
           shiny::updateRadioButtons(session, "cookies_analytics",
                                     selected = "no")
         } else {
-          print(input_cookies())
           if (input_cookies()$dfe_analytics == "denied") {
             shiny::updateRadioButtons(session, "cookies_analytics",
               selected = "no"
