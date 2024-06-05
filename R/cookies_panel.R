@@ -4,8 +4,6 @@
 #' Create the standard DfE R-Shiny cookies dashboard panel in the ui. The server
 #' side functionality is provided by cookies_panel_server()
 #'
-#' @param cookie_status_output Name of cookie status output object, often
-#' "cookie_status"
 #' @param id ID shared with cookies_panel_server()
 #' @param google_analytics_key Provide the GA 10 digit key of the form
 #' "ABCDE12345"
@@ -18,12 +16,11 @@
 #' \dontrun{
 #' cookies_panel_ui(
 #'   id = "cookies_panel",
-#'   cookie_status_output = "cookie_status",
 #'   google_analytics_key = "ABCDE12345"
 #' )
 #' }
 cookies_panel_ui <- function(
-    id, cookie_status_output = "cookie_status", google_analytics_key = NULL) {
+    id, google_analytics_key = NULL) {
   # Build the support page ----------------------------------------------------
   shiny::tabPanel(
     id = shiny::NS(id, "cookies_panel"),
