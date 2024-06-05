@@ -101,6 +101,8 @@ cookie_banner_ui <- function(id, name = "DfE R-Shiny dashboard template") {
 #' @param parent_session This should be the R Shiny app session
 #' @param google_analytics_key Provide the GA 10 digit key of the form
 #' "ABCDE12345"
+#' @param cookie_link_panel name of the navlistPanel that the cookie banner
+#' provides a link to, usually "cookies_panel_ui"
 #'
 #' @return NULL
 #' @export
@@ -111,14 +113,16 @@ cookie_banner_ui <- function(id, name = "DfE R-Shiny dashboard template") {
 #'   "cookies",
 #'   input_cookies = reactive(input$cookies),
 #'   parent_session = session,
-#'   google_analytics_key = "ABCDE12345"
+#'   google_analytics_key = "ABCDE12345",
+#'   cookie_link_panel = "cookies_panel_ui"
 #' )
 #' }
 cookie_banner_server <- function(
     id,
     input_cookies,
     parent_session,
-    google_analytics_key = NULL) {
+    google_analytics_key = NULL,
+    cookie_link_panel) {
   shiny::moduleServer(id, function(input, output, session) {
     if (is.null(google_analytics_key)) {
       warning("Please provide a valid Google Analytics key")
@@ -177,7 +181,7 @@ cookie_banner_server <- function(
       shiny::updateTabsetPanel(
         session = parent_session,
         "navlistPanel",
-        selected = "cookies_panel_ui"
+        selected = cookie_link_panel
       )
     })
 
