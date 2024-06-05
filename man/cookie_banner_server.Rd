@@ -8,7 +8,8 @@ cookie_banner_server(
   id,
   input_cookies,
   parent_session,
-  google_analytics_key = NULL
+  google_analytics_key = NULL,
+  cookie_link_panel
 )
 }
 \arguments{
@@ -22,6 +23,9 @@ Should always be set to reactive(input$cookie_consent_clear).}
 
 \item{google_analytics_key}{Provide the GA 10 digit key of the form
 "ABCDE12345"}
+
+\item{cookie_link_panel}{name of the navlistPanel that the cookie banner
+provides a link to, usually "cookies_panel_ui"}
 }
 \description{
 cookie_banner_server() provides the server module to be used alongside
@@ -36,7 +40,8 @@ output$cookie_status <- dfeshiny::cookie_banner_server(
   "cookies",
   input_cookies = reactive(input$cookies),
   parent_session = session,
-  google_analytics_key = "ABCDE12345"
+  google_analytics_key = "ABCDE12345",
+  cookie_link_panel = "cookies_panel_ui"
 )
 }
 }

@@ -278,16 +278,17 @@ cookies_panel_ui <- function(
             num_col = NULL,
             width_overwrite = c("one-quarter", "one-quarter", "one-quarter")
           ),
-          br(),
-          div(
+          shiny::br(),
+          shiny::tags$div(
             class = "govuk-grid-row",
-            div(
+            shiny::tags$div(
               class = "govuk-grid-column-two-thirds",
-              h2(class = "govuk-heading-l", "Change your cookie settings"),
-              div(
+              shiny::tags$h2(class = "govuk-heading-l",
+                             "Change your cookie settings"),
+              shiny::tags$div(
                 class = "govuk-form-group",
               ),
-              div(
+              shiny::tags$div(
                 class = "govuk-form-group",
                 tags$fieldset(
                   class = "govuk-fieldset",
@@ -295,23 +296,24 @@ cookies_panel_ui <- function(
                     class = "govuk-fieldset__legend govuk-fieldset__legend--s",
                     "Do you want to accept analytics cookies?"
                   ),
-                  div(
+                  shiny::tags$div(
                     class = "govuk-radios",
                     `data-module` = "govuk-radios",
-                    div(
+                    shiny::tags$div(
                       class = "govuk-radios__item",
-                      radioButtons(NS(id, "cookies_analytics"),
-                                   label = NULL,
-                                   choices = list("Yes" = "yes", "No" = "no"),
-                                   selected = "no",
-                                   inline = TRUE
+                      shiny::radioButtons(shiny::NS(id, "cookies_analytics"),
+                        label = NULL,
+                        choices = list("Yes" = "yes", "No" = "no"),
+                        selected = "no",
+                        inline = TRUE
                       )
                     )
                   )
                 )
               ),
-              actionButton(NS(id, "submit_btn"), "Save cookie settings",
-                           class = "govuk-button"
+              shiny::actionButton(shiny::NS(id, "submit_btn"),
+                "Save cookie settings",
+                class = "govuk-button"
               )
             )
           )
@@ -351,16 +353,17 @@ cookies_panel_server <- function(
     shiny::observeEvent(input_cookies(), {
       if (!is.null(input_cookies())) {
         if (!("dfe_analytics" %in% names(input_cookies()))) {
-          updateRadioButtons(session, "cookies_analytics", selected = "no")
+          shiny::updateRadioButtons(session, "cookies_analytics",
+                                    selected = "no")
         } else {
           print(input_cookies())
           if (input_cookies()$dfe_analytics == "denied") {
-            updateRadioButtons(session, "cookies_analytics",
-                               selected = "no"
+            shiny::updateRadioButtons(session, "cookies_analytics",
+              selected = "no"
             )
           } else if (input_cookies()$dfe_analytics == "granted") {
-            updateRadioButtons(session, "cookies_analytics",
-                               selected = "yes"
+            shiny::updateRadioButtons(session, "cookies_analytics",
+              selected = "yes"
             )
           }
         }
@@ -368,7 +371,7 @@ cookies_panel_server <- function(
     })
 
     # Observe form submission button
-    observeEvent(input$submit_btn, {
+    shiny::observeEvent(input$submit_btn, {
       # Update reactive values based on the selected radio buttons
       if (input$cookies_analytics == "yes") {
         msg <- list(
@@ -388,4 +391,3 @@ cookies_panel_server <- function(
     })
   })
 }
-
