@@ -213,7 +213,8 @@ cookie_banner_server <- function(
 #' init_cookies
 #'
 #' @description
-#' init_cookies() creates a local copy of the JavaScript file required for cookies to work.
+#' init_cookies() creates a local copy of the JavaScript file
+#' required for cookies to work.
 #' It checks whether there is already a www/ folder and if not, it creates one
 #' It then checks whether the cookie-consent.js file exists in the www/ folder
 #' If the file exists, it will print a message in the console to let you know
@@ -227,25 +228,24 @@ cookie_banner_server <- function(
 #'
 #' @examples
 #' if (interactive()) {
-#' init_cookies()
+#'   init_cookies()
 #' }
 init_cookies <- function() {
-
   sub_dir <- "www"
 
   output_dir <- file.path(sub_dir)
 
-  if (!dir.exists(output_dir)){
+  if (!dir.exists(output_dir)) {
     dir.create(output_dir)
   } else {
     print("www folder already exists!")
   }
 
-    tryCatch(
-      download.file(url = "https://raw.githubusercontent.com/dfe-analytical-services/dfeshiny/main/inst/cookie-consent.js", destfile = "www/cookie-consent.js"),
-      error = function(e) return("Download failed"),
-      print("Cookie script updated")
-    )
-
-
+  tryCatch(
+    download.file(url = "https://raw.githubusercontent.com/dfe-analytical-services/dfeshiny/main/inst/cookie-consent.js", destfile = "www/cookie-consent.js"), # nolint: [line_length_linter]
+    error = function(e) {
+      return("Download failed")
+    },
+    print("Cookie script updated")
+  )
 }
