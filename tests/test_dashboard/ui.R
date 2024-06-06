@@ -21,7 +21,11 @@ ui <- function(input, output, session) {
         team_email = "statistics.development@education.gov.uk",
         repo_name = "https://github.com/dfe-analytical-services/dfeshiny/",
         form_url = "https://forms.office.com"
-      )
+      ),
+      cookies_panel_ui(
+        id = "cookies_panel",
+        google_analytics_key = google_analytics_key
+      ) # # nolint: [object_usage_linter]
     )
   )
 }
