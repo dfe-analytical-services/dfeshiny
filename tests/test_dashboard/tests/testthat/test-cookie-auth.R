@@ -11,31 +11,38 @@ app <- AppDriver$new(
   load_timeout = 45 * 1000,
   timeout = 20 * 1000,
   wait = TRUE,
-  expect_values_screenshot_args = FALSE
+  expect_values_screenshot_args = TRUE
 )
 
 app$wait_for_idle(500)
 
-app$click("cookie_consent_clear")
 test_that("App loads", {
   # Capture initial values
   app$expect_values()
 })
 
 app$click("cookies-cookie_accept")
-test_that("Cookies accepted", {
-  # Capture initial values
-  app$expect_values()
-})
-
-app$click("cookie_consent_clear")
-test_that("Cookies reset", {
+test_that("Cookies accepted banner", {
   # Capture initial values
   app$expect_values()
 })
 
 app$click("cookies-cookie_reject")
-test_that("Cookies rejected", {
+test_that("Cookies rejected banner", {
+  # Capture initial values
+  app$expect_values()
+})
+
+app$set_inputs(`cookies_panel-cookies_analytics` = "yes")
+app$click("cookies_panel-submit_btn")
+test_that("Cookies accepted page", {
+  # Capture initial values
+  app$expect_values()
+})
+
+app$set_inputs(`cookies_panel-cookies_analytics` = "no")
+app$click("cookies_panel-submit_btn")
+test_that("Cookies rejected page", {
   # Capture initial values
   app$expect_values()
 })
