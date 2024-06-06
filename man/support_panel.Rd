@@ -11,8 +11,7 @@ support_panel(
   publication_name = NULL,
   publication_slug = "",
   alt_href = NULL,
-  form_url = NULL,
-  cookie_status_output = "cookie_status"
+  form_url = NULL
 )
 }
 \arguments{
@@ -33,9 +32,6 @@ Statistics}
 Explore Education Statistics)}
 
 \item{form_url}{URL for a feedback form for the dashboard}
-
-\item{cookie_status_output}{Name of cookie status output object, often
-"cookie_status"}
 }
 \value{
 a standardised panel for a public R Shiny dashboard in DfE
@@ -49,7 +45,6 @@ support_panel(
   repo_name = "https://github.com/dfe-analytical-services/my-repo",
   publication_name = "My publication title",
   publication_slug = "my-publication-title",
-  form_url = "www.myform.com",
-  cookie_status_output = "cookie_status"
+  form_url = "www.myform.com"
 )
 }
