@@ -116,6 +116,6 @@ devtools::check() # Ctrl-Shft-E
 shinytest2::test_app("tests/test_dashboard") # important as not currently ran in CI checks, need to move this over
 
 # For code styling
-styler::style_pkg() # currently has a known error on cookies.R
+styler::style_pkg() 
 lintr::lint_package()
 ```
