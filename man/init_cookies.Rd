@@ -7,7 +7,8 @@
 init_cookies()
 }
 \description{
-init_cookies() creates a local copy of the JavaScript file required for cookies to work.
+init_cookies() creates a local copy of the JavaScript file
+required for cookies to work.
 It checks whether there is already a www/ folder and if not, it creates one
 It then checks whether the cookie-consent.js file exists in the www/ folder
 If the file exists, it will print a message in the console to let you know
@@ -18,6 +19,6 @@ Call init_cookies() in the console to run the function
 }
 \examples{
 if (interactive()) {
-init_cookies()
+  init_cookies()
 }
 }

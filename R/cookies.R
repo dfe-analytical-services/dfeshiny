@@ -241,6 +241,7 @@ init_cookies <- function() {
     },
     print("Cookie script updated")
   )
+}
 
   #' cookies_panel_ui
   #'
@@ -263,6 +264,8 @@ init_cookies <- function() {
   #'   google_analytics_key = "ABCDE12345"
   #' )
   #' }
+  #'
+  #'
   cookies_panel_ui <- function(
       id, google_analytics_key = NULL) {
     # Build the support page ----------------------------------------------------
@@ -432,4 +435,4 @@ init_cookies <- function() {
       })
     })
   }
-}
+
