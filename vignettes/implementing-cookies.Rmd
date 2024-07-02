@@ -56,10 +56,10 @@ javascript (`dfe_cookie_script`), b) create the consent banner
 
 ```{r eval=FALSE}
 ui <- function(input, output, session) {
-  fluidPage(
+  shiny::fluidPage(
     shinyjs::useShinyjs(),
-    dfe_cookie_script(),
-    cookie_banner_ui(
+    dfeshiny::dfe_cookie_script(),
+    dfeshiny::cookie_banner_ui(
       "cookie-banner",
       "Your dashboard name"
     ),
@@ -68,7 +68,7 @@ ui <- function(input, output, session) {
       id = "navlistPanel",
       widths = c(2, 8),
       well = FALSE,
-      cookies_panel_ui(
+      dfeshiny::cookies_panel_ui(
         id = "cookie-panel",
         google_analytics_key = google_analytics_key
       )
@@ -81,7 +81,7 @@ You should then add the `cookie_banner_server` and `cookies_panel_server`
 functions to your **server.R** script:
 
 ```{r eval=FALSE}
-output$cookie_status <- cookie_banner_server(
+output$cookie_status <- dfeshiny::cookie_banner_server(
   "cookie-banner",
   input_cookies = shiny::reactive(input$cookies),
   parent_session = session,
@@ -89,7 +89,7 @@ output$cookie_status <- cookie_banner_server(
   cookie_link_panel = "cookies_panel_ui"
 )
 
-cookies_panel_server(
+dfeshiny::cookies_panel_server(
   id = "cookie-panel",
   input_cookies = shiny::reactive(input$cookies),
   google_analytics_key = google_analytics_key
