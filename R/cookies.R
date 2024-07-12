@@ -208,10 +208,10 @@ cookie_banner_server <- function(
 #' @description
 #' init_cookies() creates a local copy of the JavaScript file
 #' required for cookies to work.
-#' It checks whether there is already a www/ folder and if not, it creates one
-#' It then checks whether the cookie-consent.js file exists in the www/ folder
-#' If the file exists, it will print a message in the console to let you know
-#' If the file doesn't exist, it will pull a copy from the GitHub repo
+#' It checks whether there is already a www/ folder and if not, it creates one.
+#' It then checks whether the cookie-consent.js file exists in the www/ folder.
+#' If the file exists, it will print a message in the console to let you know.
+#' If the file doesn't exist, it will pull a copy from the GitHub repo.
 #' If it cannot connect to the repo then it will print "Download failed".
 #' No input parameters are required
 #' Call init_cookies() in the console to run the function
@@ -231,7 +231,7 @@ init_cookies <- function() {
   if (!dir.exists(output_dir)) {
     dir.create(output_dir)
   } else {
-    print("www folder already exists!")
+    message("www folder already exists!")
   }
 
   tryCatch(
@@ -239,7 +239,7 @@ init_cookies <- function() {
     error = function(e) {
       return("Download failed")
     },
-    print("Cookie script updated")
+    message("Cookie script updated")
   )
 }
 
