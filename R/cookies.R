@@ -283,8 +283,10 @@ cookies_panel_ui <- function(
             class = "govuk-grid-row",
             shiny::tags$div(
               class = "govuk-grid-column-two-thirds",
-              shiny::tags$h2(class = "govuk-heading-l",
-                             "Change your cookie settings"),
+              shiny::tags$h2(
+                class = "govuk-heading-l",
+                "Change your cookie settings"
+              ),
               shiny::tags$div(
                 class = "govuk-form-group",
               ),
@@ -354,7 +356,8 @@ cookies_panel_server <- function(
       if (!is.null(input_cookies())) {
         if (!("dfe_analytics" %in% names(input_cookies()))) {
           shiny::updateRadioButtons(session, "cookies_analytics",
-                                    selected = "no")
+            selected = "no"
+          )
         } else {
           if (input_cookies()$dfe_analytics == "denied") {
             shiny::updateRadioButtons(session, "cookies_analytics",

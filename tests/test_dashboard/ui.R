@@ -5,7 +5,7 @@ ui <- function(input, output, session) {
       refresh = "Refresh page",
       links = c(
         "https://department-for-education.shinyapps.io/dfe-shiny-template/",
-        "https://department-for-education.shinyapps.io/dfe-shiny-template-overflow/" # nolint: [line_length_linter]
+        "https://department-for-education.shinyapps.io/dfe-shiny-template-overflow/"
       ),
       publication_name = "Explore Education Statistics Publication",
       publication_link = "https://explore-education-statistics.service.gov.uk/find-statistics/pupil-attendance-in-schools" # nolint: [line_length_linter]
@@ -24,8 +24,8 @@ ui <- function(input, output, session) {
       ),
       cookies_panel_ui(
         id = "cookies_panel",
-        google_analytics_key = google_analytics_key
-      ) # # nolint: [object_usage_linter]
+        google_analytics_key = google_analytics_key # nolint: [object_usage_linter]
+      )
     )
   )
 }
