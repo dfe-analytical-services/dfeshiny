@@ -14,21 +14,28 @@ knitr::opts_chunk$set(
 )
 ```
 
-Cookie consent is a mandatory requirement for any dashboard when using cookies 
-and typically all DfE dashboards will be using cookies as part of tracking with
-Google Analytics and so will require cookie consent.
+Cookies are chunks of data that are stored by browsers to help websites store 
+user preferences and other information. Most of our DfE data dashboards 
+generally store two cookies, one to allow Google Analytics to differentiate 
+between unique users and returning users and the second to store a user's 
+preference on whether they allow the use of the Google Analytics (or any 
+additional custom) cookies.
+
+Assuming a dashboard is set up with at least the Google Analytics cookie, then 
+gaining user consent is a mandatory requirement.
 
 > Note that to activate Google Analytics on your data dashboard, you will need 
 to contact the Statistics Development team at 
-[statistics.development@education.gov.uk](mailto:statistics.development@education.gov.uk) and request a Google Analytics key.
+[explore.statistics@education.gov.uk](mailto:explore.statistics@education.gov.uk) and request a Google Analytics key.
 
-dfeshiny provides a standard GDS compliant banner, a cookie information panel 
-and the underlying code required to allow end users to give or withhold their 
-consent for cookies to be used. If they withhold their consent, then tracking 
-with Google Analytics will be halted.
+`dfeshiny` provides a standard Government Digital Service (GDS) compliant 
+banner, a cookie information panel and the underlying code required to allow end 
+users to give or withhold their consent for cookies to be used. If they withhold 
+their consent, then tracking with Google Analytics will be halted (note that 
+this will lead to your analytics underestimating your user base to some degree).
 
 Implementing cookie control on your dashboard is handled by several functions 
-in dfeshiny, with the process outlined below.
+in `dfeshiny`, with the process outlined below.
 
 The cookie control requires some underlying javascript to remove and create 
 cookies as well as switch Google Analytics on and off. This javascript needs 
@@ -41,8 +48,7 @@ dfeshiny::init_cookies()
 
 Before adding the cookie consent banner, we recommend adding your Google 
 Analytics key as a variable to your dashboard's **[global.R](https://github.com/dfe-analytical-services/dfeshiny/blob/cookie-module/tests/test_dashboard/global.R)**
-file (replacing `ABCDE12345` below with the key provided by the Statistics 
-Development team):
+file (replacing `ABCDE12345` below with the key provided by the Explore Education Statistics Plaforms team):
 
 ```{r eval=FALSE}
 google_analytics_key <- "ABCDE12345"
@@ -50,7 +56,7 @@ google_analytics_key <- "ABCDE12345"
 
 You will then need to add the necessary code to your **ui.R** file to a) run the 
 javascript (`dfe_cookie_script`), b) create the consent banner 
-(`cookie_banner_ui`) and c) add a cookies information panel 
+(`cookie_banner_ui`), editing the dashboard name to match your own and c) add a cookies information panel 
 (`cookies_panel_ui`):
 
 
@@ -103,7 +109,7 @@ global.R file. If you've not done this, you'll need to replace
 `google_analytics_key = "ABCDE12345"` (replacing "ABCDE12345" with your own 
 key).
 
-With the above included, when the user's preference will itself be stored in a
+With the above included, the user's preference will itself be stored in a
 cookie (`dfe_analytics`), which by default expires after 365 days. The user can
 then also find information about the cookies stored by your dashboard and change 
 their consent preference on a specific cookie consent panel on your dashboard 
