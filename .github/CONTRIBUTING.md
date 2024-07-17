@@ -14,7 +14,7 @@ Then to load in the package in its current form:
 devtools::load_all()
 ```
 
-### Adding a package/dependency
+## Adding a package/dependency
 
 `usethis::use_package(<package_name>)`
 
@@ -32,19 +32,19 @@ Alternatively, if there's a lot of uses of a single function within one of our R
 
 For more information see the [roxygen2 documentation on declaring dependencies](https://roxygen2.r-lib.org/articles/namespace.html).
 
-### Creating a new function script
+## Creating a new function script
 
 `usethis::use_r(name = <script_name>)`
 
 This will create a new script within the package R/ folder.
 
-### Creating a new function test script
+## Creating a new function test script
 
 `usethis::use_test(name = <script_name>)`
 
 This will create a new test script within the package testthat/ folder.
 
-### Updating the package version
+## Updating the package version
 
 Once changes have been completed, reviewed and are ready for use in the wild, you
 can increment the package version using:
@@ -57,15 +57,15 @@ Add a summary under news.md and then accept it's offer to commit on your behalf.
 
 Once pushed and on the main branch, create a new release in GitHub itself.
 
-### Running tests
+## Running tests
 
 You should run the following lines to test the package locally:
 ``` 
 # To check functionality
 devtools::check() # Ctrl-Shft-E
-shinytest2::test_app("tests/test_dashboard") # important as not currently ran in CI checks, need to move this over
+shinytest2::test_app("tests/test_dashboard") # important as not currently ran in CI checks
 
 # For code styling
-styler::style_pkg() # currently has a known error on cookies.R
+styler::style_pkg()
 lintr::lint_package()
 ```
