@@ -46,7 +46,3 @@ test_that("Cookies rejected page", {
   # Capture initial values
   app$expect_values()
 })
-
-test_that("I can make the GitHub action fail", {
-  expect_equal(2+2, 5)
-})
