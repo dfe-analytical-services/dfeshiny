@@ -1,45 +1,18 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://dfe-analytical-services.github.io/dfeshiny/404.html</loc>
-  </url>
-  <url>
-    <loc>https://dfe-analytical-services.github.io/dfeshiny/LICENSE.html</loc>
-  </url>
-  <url>
-    <loc>https://dfe-analytical-services.github.io/dfeshiny/authors.html</loc>
-  </url>
-  <url>
-    <loc>https://dfe-analytical-services.github.io/dfeshiny/index.html</loc>
-  </url>
-  <url>
-    <loc>https://dfe-analytical-services.github.io/dfeshiny/news/index.html</loc>
-  </url>
-  <url>
-    <loc>https://dfe-analytical-services.github.io/dfeshiny/reference/cookie_banner_server.html</loc>
-  </url>
-  <url>
-    <loc>https://dfe-analytical-services.github.io/dfeshiny/reference/cookie_banner_ui.html</loc>
-  </url>
-  <url>
-    <loc>https://dfe-analytical-services.github.io/dfeshiny/reference/cookies_panel_server.html</loc>
-  </url>
-  <url>
-    <loc>https://dfe-analytical-services.github.io/dfeshiny/reference/cookies_panel_ui.html</loc>
-  </url>
-  <url>
-    <loc>https://dfe-analytical-services.github.io/dfeshiny/reference/custom_disconnect_message.html</loc>
-  </url>
-  <url>
-    <loc>https://dfe-analytical-services.github.io/dfeshiny/reference/dfe_cookie_script.html</loc>
-  </url>
-  <url>
-    <loc>https://dfe-analytical-services.github.io/dfeshiny/reference/index.html</loc>
-  </url>
-  <url>
-    <loc>https://dfe-analytical-services.github.io/dfeshiny/reference/support_panel.html</loc>
-  </url>
-  <url>
-    <loc>https://dfe-analytical-services.github.io/dfeshiny/reference/tidy_code.html</loc>
-  </url>
+<urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
+<url><loc>https://dfe-analytical-services.github.io/dfeshiny/404.html</loc></url>
+<url><loc>https://dfe-analytical-services.github.io/dfeshiny/LICENSE.html</loc></url>
+<url><loc>https://dfe-analytical-services.github.io/dfeshiny/authors.html</loc></url>
+<url><loc>https://dfe-analytical-services.github.io/dfeshiny/index.html</loc></url>
+<url><loc>https://dfe-analytical-services.github.io/dfeshiny/news/index.html</loc></url>
+<url><loc>https://dfe-analytical-services.github.io/dfeshiny/reference/cookie_banner_server.html</loc></url>
+<url><loc>https://dfe-analytical-services.github.io/dfeshiny/reference/cookie_banner_ui.html</loc></url>
+<url><loc>https://dfe-analytical-services.github.io/dfeshiny/reference/cookies_panel_server.html</loc></url>
+<url><loc>https://dfe-analytical-services.github.io/dfeshiny/reference/cookies_panel_ui.html</loc></url>
+<url><loc>https://dfe-analytical-services.github.io/dfeshiny/reference/custom_disconnect_message.html</loc></url>
+<url><loc>https://dfe-analytical-services.github.io/dfeshiny/reference/dfe_cookie_script.html</loc></url>
+<url><loc>https://dfe-analytical-services.github.io/dfeshiny/reference/index.html</loc></url>
+<url><loc>https://dfe-analytical-services.github.io/dfeshiny/reference/init_cookies.html</loc></url>
+<url><loc>https://dfe-analytical-services.github.io/dfeshiny/reference/support_panel.html</loc></url>
+<url><loc>https://dfe-analytical-services.github.io/dfeshiny/reference/tidy_code.html</loc></url>
 </urlset>
+

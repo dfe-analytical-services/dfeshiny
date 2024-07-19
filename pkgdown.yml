@@ -1,9 +1,8 @@
 pandoc: 3.1.11
-pkgdown: 2.0.9
+pkgdown: 2.1.0
 pkgdown_sha: ~
 articles: {}
-last_built: 2024-06-06T08:11Z
+last_built: 2024-07-19T06:40Z
 urls:
   reference: https://dfe-analytical-services.github.io/dfeshiny/reference
   article: https://dfe-analytical-services.github.io/dfeshiny/articles
-
