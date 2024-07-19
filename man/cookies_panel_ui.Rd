@@ -27,5 +27,4 @@ cookies_panel_ui(
 )
 }
 
-
 }

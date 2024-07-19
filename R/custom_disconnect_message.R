@@ -12,7 +12,6 @@
 #'
 #' @importFrom htmltools tags tagList
 #'
-#'
 #' @return A html overlay panel that appears when RSConnect disconnects for a
 #' public R Shiny dashboard in DfE
 #' @export
