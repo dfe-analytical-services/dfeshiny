@@ -39,6 +39,12 @@
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto">
 <li class="nav-item"><a class="nav-link" href="reference/index.html">Reference</a></li>
+<li class="nav-item dropdown">
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
+<li><a class="dropdown-item" href="articles/implementing-cookies.html">Implementing cookie consent</a></li>
+  </ul>
+</li>
 <li class="nav-item"><a class="nav-link" href="news/index.html">Changelog</a></li>
       </ul>
 <ul class="navbar-nav">
@@ -73,27 +79,6 @@
 <div class="section level2">
 <h2 id="using-this-package-in-a-dfe-data-dashboard">Using this package in a DfE data dashboard<a class="anchor" aria-label="anchor" href="#using-this-package-in-a-dfe-data-dashboard"></a>
 </h2>
-<div class="section level3">
-<h3 id="adding-cookies-to-your-dashboard">Adding cookies to your dashboard<a class="anchor" aria-label="anchor" href="#adding-cookies-to-your-dashboard"></a>
-</h3>
-<p>dfeshiny provides the facility to add a gov.uk styled cookie banner to your site, which is fully functional in terms of controlling the user permissions for tracking their use of the site via Google Analytics.</p>
-<p>Before adding the cookie consent banner, you will need to obtain a Google Analytics key that’s both unique to your app and stored within the DfE Google Analytics domain. You can request a key from the <a href="mailto:statistics.development@education.gov.uk">Statistics Development team</a>. This should then be added as a variable to your dashboard’s <a href="https://github.com/dfe-analytical-services/dfeshiny/blob/cookie-module/tests/test_dashboard/global.R" class="external-link">global.R</a> file (replacing <code>ABCDE12345</code> below with the key provided by the Statistics Development team):</p>
-<pre><code><span><span class="va">google_analytics_key</span> <span class="op">&lt;-</span> <span class="st">'ABCDE12345'</span></span></code></pre>
-<p>Next, you should copy the javascript file (<a href="https://raw.githubusercontent.com/dfe-analytical-services/dfeshiny/cookie-module/js/cookie-consent.js" class="external-link">cookie_consent.js</a>) necessary for controlling the cookie storage in the user’s browser to the <code>www/</code> folder in your dashboards repository.</p>
-<p>Once you’ve made the above updates, add the following lines to your <a href="https://github.com/dfe-analytical-services/dfeshiny/blob/cookie-module/tests/test_dashboard/ui.R" class="external-link">ui.R</a> script (updating “My DfE R Shiny data dashboard” with the name of your app):</p>
-<pre><code>dfe_cookie_script(),
-cookie_banner_ui("cookies", name = "My DfE R Shiny data dashboard"),</code></pre>
-<p>Putting these on the lines <em>just before</em> the <code>shinyGovstyle::header(...)</code> line should work well.</p>
-<p>Then add the following code to your <a href="https://github.com/dfe-analytical-services/dfeshiny/blob/cookie-module/tests/test_dashboard/server.R" class="external-link">server.R</a> script somewhere <em>inside</em> the <code>server &lt;- function(input, output, session) {...}</code> function (you shouldn’t need to change anything in this one):</p>
-<pre><code><span><span class="va">output</span><span class="op">$</span><span class="va">cookie_status</span> <span class="op">&lt;-</span> <span class="fu">dfeshiny</span><span class="fu">::</span><span class="fu"><a href="reference/cookie_banner_server.html">cookie_banner_server</a></span><span class="op">(</span></span>
-<span>  <span class="st">"cookies"</span>,</span>
-<span>  input_cookies <span class="op">=</span> <span class="fu">reactive</span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">cookies</span><span class="op">)</span>,</span>
-<span>  input_clear <span class="op">=</span> <span class="fu">reactive</span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">cookie_consent_clear</span><span class="op">)</span>,</span>
-<span>  parent_session <span class="op">=</span> <span class="va">session</span>,</span>
-<span>  google_analytics_key <span class="op">=</span> <span class="va">google_analytics_key</span></span>
-<span><span class="op">)</span></span></code></pre>
-<p>Finally, you should make sure you’re using the <code><a href="reference/support_panel.html">dfeshiny::support_panel()</a></code> function within the <code>navListPanel(...)</code> in your <a href="https://github.com/dfe-analytical-services/dfeshiny/blob/cookie-module/tests/test_dashboard/ui.R" class="external-link">ui.R</a> script as this will provide users with the necessary explanatory text on how we use cookies and the ability to change their decision on whether or not to accept the use of cookies.</p>
-</div>
 <div class="section level3">
 <h3 id="adding-a-custom-disconect-message-to-your-dashboard">Adding a custom disconect message to your dashboard<a class="anchor" aria-label="anchor" href="#adding-a-custom-disconect-message-to-your-dashboard"></a>
 </h3>
@@ -162,7 +147,7 @@ cookie_banner_ui("cookies", name = "My DfE R Shiny data dashboard"),</code></pre
 <span><span class="fu">shinytest2</span><span class="fu">::</span><span class="fu"><a href="https://rstudio.github.io/shinytest2/reference/test_app.html" class="external-link">test_app</a></span><span class="op">(</span><span class="st">"tests/test_dashboard"</span><span class="op">)</span> <span class="co"># important as not currently ran in CI checks, need to move this over</span></span>
 <span></span>
 <span><span class="co"># For code styling</span></span>
-<span><span class="fu">styler</span><span class="fu">::</span><span class="fu"><a href="https://styler.r-lib.org/reference/style_pkg.html" class="external-link">style_pkg</a></span><span class="op">(</span><span class="op">)</span> <span class="co"># currently has a known error on cookies.R</span></span>
+<span><span class="fu">styler</span><span class="fu">::</span><span class="fu"><a href="https://styler.r-lib.org/reference/style_pkg.html" class="external-link">style_pkg</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="fu">lintr</span><span class="fu">::</span><span class="fu">lint_package</span><span class="op">(</span><span class="op">)</span></span></code></pre>
 </div>
 </div>
