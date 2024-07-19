@@ -3,9 +3,9 @@
     "cookies": {
       "dfe_analytics": "granted"
     },
-    "cookies-cookie_accept": 1,
-    "cookies-cookie_link": 0,
-    "cookies-cookie_reject": 1,
+    "cookies_banner-cookie_accept": 1,
+    "cookies_banner-cookie_link": 0,
+    "cookies_banner-cookie_reject": 1,
     "cookies_panel-cookies_analytics": "yes",
     "cookies_panel-submit_btn": 1,
     "navlistPanel": "support_panel"

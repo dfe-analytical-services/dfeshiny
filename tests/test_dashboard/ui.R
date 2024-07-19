@@ -11,7 +11,7 @@ ui <- function(input, output, session) {
       publication_link = "https://explore-education-statistics.service.gov.uk/find-statistics/pupil-attendance-in-schools" # nolint: [line_length_linter]
     ),
     dfe_cookie_script(),
-    cookie_banner_ui("cookies"),
+    cookie_banner_ui(name = "My DfE R-Shiny data dashboard"),
     shiny::navlistPanel(
       "",
       id = "navlistPanel",
@@ -22,10 +22,7 @@ ui <- function(input, output, session) {
         repo_name = "https://github.com/dfe-analytical-services/dfeshiny/",
         form_url = "https://forms.office.com"
       ),
-      cookies_panel_ui(
-        id = "cookies_panel",
-        google_analytics_key = google_analytics_key
-      ) # # nolint: [object_usage_linter]
+      cookies_panel_ui(google_analytics_key = ga_key) # nolint: [object_usage_linter]
     )
   )
 }

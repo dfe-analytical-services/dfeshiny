@@ -49,10 +49,16 @@ ui <- fluidPage(
 
 server <- function(input, output, session) {
   # Server logic for the pop up banner, can be placed anywhere in server.R -
-  output$cookie_status <- dfeshiny::cookie_banner_server(google_analytics_key = ga_key)
+  output$cookie_status <- dfeshiny::cookie_banner_server(
+    input_cookies = reactive(input$cookies),
+    google_analytics_key = ga_key
+  )
 
   # Server logic for the panel, can be placed anywhere in server.R ---------
-  cookies_panel_server(google_analytics_key = ga_key)
+  cookies_panel_server(
+    input_cookies = reactive(input$cookies),
+    google_analytics_key = ga_key
+  )
 }
 
 # How to run the minimal app give in this example ==========================

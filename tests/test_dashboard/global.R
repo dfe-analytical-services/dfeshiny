@@ -1,4 +1,4 @@
 library(shiny)
 devtools::load_all(path = "../../")
 
-google_analytics_key <- "ABCDE12345"
+ga_key <- "ABCDE12345"
