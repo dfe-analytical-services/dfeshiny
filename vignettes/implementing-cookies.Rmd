@@ -48,7 +48,7 @@ dfeshiny::init_cookies()
 
 Before adding the cookie consent banner, we recommend adding your Google 
 Analytics key as a variable to your dashboard's **[global.R](https://github.com/dfe-analytical-services/dfeshiny/blob/cookie-module/tests/test_dashboard/global.R)**
-file (replacing `ABCDE12345` below with the key provided by the Explore Education Statistics Plaforms team):
+file (replacing `ABCDE12345` below with the key provided by the Explore Education Statistics Platforms team):
 
 ```{r eval=FALSE}
 google_analytics_key <- "ABCDE12345"
