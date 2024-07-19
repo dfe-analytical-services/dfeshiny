@@ -7,25 +7,25 @@
 cookie_banner_server(
   id,
   input_cookies,
-  input_clear,
   parent_session,
-  google_analytics_key = NULL
+  google_analytics_key = NULL,
+  cookie_link_panel
 )
 }
 \arguments{
 \item{id}{Shiny tag shared with cookie_banner_ui()}
 
 \item{input_cookies}{The cookie input passed from cookies.js (should always
-be reactive(input$cookies))}
-
-\item{input_clear}{The state of the cookie reset button provided by
-dfeshiny::support_panel().
+be reactive(input$cookies))
 Should always be set to reactive(input$cookie_consent_clear).}
 
 \item{parent_session}{This should be the R Shiny app session}
 
 \item{google_analytics_key}{Provide the GA 10 digit key of the form
 "ABCDE12345"}
+
+\item{cookie_link_panel}{name of the navlistPanel that the cookie banner
+provides a link to, usually "cookies_panel_ui"}
 }
 \description{
 cookie_banner_server() provides the server module to be used alongside

@@ -1,13 +1,13 @@
 {
   "input": {
     "cookies": {
-      "dfe_analytics": "granted"
+      "dfe_analytics": "denied"
     },
     "cookies-cookie_accept": 1,
     "cookies-cookie_link": 0,
     "cookies-cookie_reject": 1,
-    "cookies_panel-cookies_analytics": "yes",
-    "cookies_panel-submit_btn": 1,
+    "cookies_panel-cookies_analytics": "no",
+    "cookies_panel-submit_btn": 2,
     "navlistPanel": "support_panel"
   },
   "output": {
