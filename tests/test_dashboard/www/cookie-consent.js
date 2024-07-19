@@ -4,7 +4,7 @@ function getCookies(){
 }
 
 Shiny.addCustomMessageHandler('cookie-set', function(msg){
-  Cookies.set(msg.name, msg.value);
+  Cookies.set(msg.name, msg.value, { expires: 365 });
   getCookies();
 })
 
