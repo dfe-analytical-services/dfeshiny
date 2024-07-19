@@ -36,7 +36,7 @@ jobs:
       - name: Run tests
         shell: Rscript {0}
         run: |
-          shiny::runTests("tests/test_dashboard" assert = TRUE)
+          shiny::runTests("tests/test_dashboard", assert = TRUE)
       - name: Upload test results
         if: failure()
         uses: actions/upload-artifact@master
