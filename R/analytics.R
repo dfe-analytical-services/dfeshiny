@@ -47,11 +47,10 @@ init_analytics <- function(ga_code) {
     message("Analytics file already exists.")
     message("If you have any customisations in that file, make sure you've
     backed those up before over-writing.")
-    user_input <- stringr::str_trim(
-      readline(
-        prompt = "Are you happy to overwrite the existing analytics script (y/N) "
-      )
-    )
+    user_input <- readline(
+      prompt = "Are you happy to overwrite the existing analytics script (y/N) "
+      ) |>
+      stringr::str_trim()
     if (user_input %in% c("y", "Y")) {
       write_out <- TRUE
     } else {
@@ -61,7 +60,7 @@ init_analytics <- function(ga_code) {
     write_out <- TRUE
   }
   if (write_out) {
-    cat(html_script, file = "google-analytics.html", sep = '\n')
+    cat(html_script, file = "google-analytics.html", sep = "\n")
     message("")
     message("Google analytics script created in google-analytics.html.")
     message("You'll need to add the following line to your ui.R script to start
