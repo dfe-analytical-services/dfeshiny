@@ -1,4 +1,8 @@
 #' init_analytics
+#' @description
+#' Creates the google-analytics.html script in order to allow the activation of
+#' analytics via GA4. For the full steps required to set up analytics, please
+#' refer to the documentation in the readme.
 #'
 #' @param ga_code The Google Analytics code
 #' @importFrom magrittr %>%
@@ -19,14 +23,24 @@ init_analytics <- function(ga_code) {
     )
   }
 
-  webpage <- getURL("https://raw.githubusercontent.com/dfe-analytical-services/dfeshiny/analytsics-init/inst/google-analytics.hml")
-  html_script <- readLines(tc <- textConnection(webpage)) %>%
-    gsub("XXXXXXXXXX", ga_code, .)
+  webpage <- RCurl::getURL("https://raw.githubusercontent.com/dfe-analytical-services/dfeshiny/analytsics-init/inst/google-analytics.hml")
+  tryCatch(
+  html_script <- gsub(
+    "XXXXXXXXXX",
+    ga_code,
+    readLines(tc <- textConnection(webpage))
+  ),
+  error = function(e) {
+    return("Download failed")
+  },
+  message("Downloaded analytics template script")
+  )
+
   close(tc)
   if (file.exists("google-analytics.html")) {
     message("Analytics file already exists.")
-    message("If you have any customisations in that file, make sure you've backed
-           those up before over-writing.")
+    message("If you have any customisations in that file, make sure you've
+    backed those up before over-writing.")
     user_input <- stringr::str_trim(
     readline(
       prompt = "Are you happy to overwrite the existing analytics script (y/N) "

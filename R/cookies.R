@@ -235,7 +235,9 @@ init_cookies <- function() {
   }
 
   tryCatch(
-    download.file(url = "https://raw.githubusercontent.com/dfe-analytical-services/dfeshiny/main/inst/cookie-consent.js", destfile = "www/cookie-consent.js"), # nolint: [line_length_linter]
+    utils::download.file(
+      url = "https://raw.githubusercontent.com/dfe-analytical-services/dfeshiny/main/inst/cookie-consent.js",  # nolint: [line_length_linter]
+      destfile = "www/cookie-consent.js"),
     error = function(e) {
       return("Download failed")
     },

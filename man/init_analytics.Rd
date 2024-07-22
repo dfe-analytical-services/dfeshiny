@@ -13,7 +13,9 @@ init_analytics(ga_code)
 TRUE if written, FALSE if not
 }
 \description{
-init_analytics
+Creates the google-analytics.html script in order to allow the activation of
+analytics via GA4. For the full steps required to set up analytics, please
+refer to the documentation in the readme.
 }
 \examples{
 init_analytics(ga_code = "0123456789")
