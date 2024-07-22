@@ -19,5 +19,7 @@ Script to apply styler code styling to scripts within the
 shiny directory structure.
 }
 \examples{
+\dontrun{
 tidy_code()
+}
 }

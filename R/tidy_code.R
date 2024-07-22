@@ -11,7 +11,9 @@
 #' @export
 #'
 #' @examples
+#' \dontrun{
 #' tidy_code()
+#' }
 tidy_code <- function(subdirs = c("R", "tests")) {
   message("----------------------------------------")
   message("App scripts")

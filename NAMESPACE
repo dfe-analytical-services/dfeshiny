@@ -2,9 +2,12 @@
 
 export(cookie_banner_server)
 export(cookie_banner_ui)
+export(cookies_panel_server)
+export(cookies_panel_ui)
 export(custom_disconnect_message)
 export(dfe_cookie_script)
 export(initialise_analytics)
+export(init_cookies)
 export(support_panel)
 export(tidy_code)
 importFrom(magrittr,"%>%")

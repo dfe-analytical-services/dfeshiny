@@ -3,3 +3,6 @@
 .RData
 .Ruserdata
 google_analytics.html
+docs
+inst/doc
+www/
