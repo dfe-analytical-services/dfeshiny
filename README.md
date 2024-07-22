@@ -14,7 +14,15 @@ them meet the necessary standards required of public facing government services.
 
 To install, run `renv::install("dfe-analytical-services/dfeshiny")`.
 
-### Potential errors when installing
+## Installing functionality in development from a branch
+
+It can be useful when developing the package in particular to trial new or updated functionality in a shiny app. To do this, you can install the required branch using (replacing `branch-name` with the name of the branch you wish to install):
+
+`renv::install("dfe-analytical-services/dfeshiny@branch-name")`
+
+That will install the code from the named branch as dfeshiny in your app. You will need to restart your R session before it will start using the latest version that you've installed.
+
+## Potential errors when installing
 
 If you get `ERROR [curl: (22) The requested URL returned error: 401]`, and don't know why, try running `Sys.unsetenv("GITHUB_PAT")` to temporarily clear your GitHub PAT variable.
 
@@ -23,6 +31,22 @@ Then try to install again.
 If this works, then you will need to look for where that "GITHUB_PAT" variable is being set from and remove it to permanently fix the issue, contact us for support if you need help with this or have any other issues installing.
 
 ## Using this package in a DfE data dashboard
+
+### Adding analytics to your dashboard
+
+For analytics to function on your dashboard, you will need to:
+
+- request a Google Analytics key from the [Explore Educaion Statisics platforms team](mailto:explore.statistics@education.gov.uk)
+- create a html file with the javascript required for your dashboard to connect to Google Analytics
+- add the line: `tags$head(includeHTML(("google-analytics.html"))),` to the ui.R file.
+
+To create the latter, we provide the function `dfeshiny::init_analytics()`. You should run this code from the R console providing your Google Analytics code as follows (replacing `ABCDE12345` with the code obtained from the [Explore Education Statistics platforms](explore.statistics@education.gov.uk) team):
+
+```
+init_analytics("ABCDE12345")
+```
+
+This will create the file [google-analytics.html](google-analytics.html) within the home directory of your R project. This html file can be edited to add customised analytics recorders for different shiny elements in your dashboard. Feel free to contact our team if you need support in adding additional functionality.
 
 ### Adding a custom disconect message to your dashboard
 

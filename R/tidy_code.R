@@ -6,7 +6,8 @@
 #' @param subdirs List of sub-directories to
 #' (recursively search for R scripts to be styled)
 #'
-#' @return True or False value based on if scripts were changed
+#' @return TRUE if any changes have been made to any scripts, FALSE if all
+#'   passed.
 #' @export
 #'
 #' @examples
@@ -17,7 +18,12 @@ tidy_code <- function(subdirs = c("R", "tests")) {
   message("----------------------------------------")
   message("App scripts")
   message("----------------------------------------")
-  script_changes <- eval(styler::style_dir(recursive = FALSE)$changed)
+  script_changes <- eval(
+    styler::style_dir(
+      recursive = FALSE,
+      exclude_files = c("dfeshiny-Ex.R")
+    )$changed
+  )
   for (dir in subdirs) {
     if (dir.exists(dir)) {
       message(paste(dir, "scripts"))
