@@ -27,7 +27,7 @@ init_analytics <- function(ga_code) {
   webpage <- RCurl::getURL(
     paste0(
       github_area,
-      "dfeshiny/analytsics-init/inst/google-analytics.hml"
+      "dfeshiny/main/inst/google-analytics.html"
     )
   )
   tryCatch(
