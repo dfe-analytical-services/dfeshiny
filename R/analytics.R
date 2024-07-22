@@ -23,17 +23,23 @@ init_analytics <- function(ga_code) {
     )
   }
 
-  webpage <- RCurl::getURL("https://raw.githubusercontent.com/dfe-analytical-services/dfeshiny/analytsics-init/inst/google-analytics.hml")
+  github_area <- "https://raw.githubusercontent.com/dfe-analytical-services/"
+  webpage <- RCurl::getURL(
+    paste0(
+      github_area,
+      "dfeshiny/analytsics-init/inst/google-analytics.hml"
+    )
+  )
   tryCatch(
-  html_script <- gsub(
-    "XXXXXXXXXX",
-    ga_code,
-    readLines(tc <- textConnection(webpage))
-  ),
-  error = function(e) {
-    return("Download failed")
-  },
-  message("Downloaded analytics template script")
+    html_script <- gsub(
+      "XXXXXXXXXX",
+      ga_code,
+      readLines(tc <- textConnection(webpage))
+    ),
+    error = function(e) {
+      return("Download failed")
+    },
+    message("Downloaded analytics template script")
   )
 
   close(tc)
@@ -42,8 +48,8 @@ init_analytics <- function(ga_code) {
     message("If you have any customisations in that file, make sure you've
     backed those up before over-writing.")
     user_input <- stringr::str_trim(
-    readline(
-      prompt = "Are you happy to overwrite the existing analytics script (y/N) "
+      readline(
+        prompt = "Are you happy to overwrite the existing analytics script (y/N) "
       )
     )
     if (user_input %in% c("y", "Y")) {
@@ -55,7 +61,7 @@ init_analytics <- function(ga_code) {
     write_out <- TRUE
   }
   if (write_out) {
-    cat(html_script, file = "google-analytics.html")
+    cat(html_script, file = "google-analytics.html", sep = '\n')
     message("")
     message("Google analytics script created in google-analytics.html.")
     message("You'll need to add the following line to your ui.R script to start
