@@ -1,4 +1,4 @@
-init_analytics
+#' init_analytics
 #'
 #' @param ga_code The Google Analytics code
 #' @importFrom magrittr %>%
@@ -20,8 +20,8 @@ init_analytics <- function(ga_code) {
   }
 
   webpage <- getURL("https://raw.githubusercontent.com/dfe-analytical-services/dfeshiny/analytsics-init/inst/google-analytics.hml")
-  html_script <- readLines(tc <- textConnection(webpage))
-    %>% gsub("XXXXXXXXXX", ga_code, .)
+  html_script <- readLines(tc <- textConnection(webpage)) %>%
+    gsub("XXXXXXXXXX", ga_code, .)
   close(tc)
   if (file.exists("google-analytics.html")) {
     message("Analytics file already exists.")
