@@ -40,10 +40,10 @@ For analytics to function on your dashboard, you will need to:
 - create a html file with the javascript required for your dashboard to connect to Google Analytics
 - add the line: `tags$head(includeHTML(("google-analytics.html"))),` to the ui.R file.
 
-To create the latter, we provide the function `dfeshiny::initialise_analytics()`. You should run this code from the R console providing your Google Analytics code as follows (replacing `ABCDE12345` with the code obtained from the Statistics Development team):
+To create the latter, we provide the function `dfeshiny::init_analytics()`. You should run this code from the R console providing your Google Analytics code as follows (replacing `ABCDE12345` with the code obtained from the Statistics Development team):
 
 ```
-initialise_analytics("ABCDE12345")
+init_analytics("ABCDE12345")
 ```
 
 This will create the file [google-analytics.html](google-analytics.html) within the home directory of your R project. This html file can be edited to add customised analytics recorders for different shiny elements in your dashboard. Feel free to contact our team if you need support in adding additional functionality.
