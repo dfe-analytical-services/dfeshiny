@@ -29,11 +29,6 @@ Otherwise:
 devtools::install_github("dfe-analytical-services/dfeR")
 ```
 
-To install a specific branch, use @<branch> for example:
-```r
-renv::install("dfe-analytical-services/dfeshiny@branch_name")
-```
-
 ## Installing functionality in development from a branch
 
 It can be useful when developing the package in particular to trial new or updated functionality in a shiny app. To do this, you can install the required branch using (replacing `branch-name` with the name of the branch you wish to install):
