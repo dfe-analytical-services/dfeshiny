@@ -55,11 +55,11 @@ R-Shiny dashboards.</p>
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">cookie_banner_server</span><span class="op">(</span></span>
-<span>  <span class="va">id</span>,</span>
-<span>  <span class="va">input_cookies</span>,</span>
-<span>  <span class="va">parent_session</span>,</span>
+<span>  id <span class="op">=</span> <span class="st">"cookies_banner"</span>,</span>
+<span>  input_cookies <span class="op">=</span> <span class="fu">reactive</span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">cookies</span><span class="op">)</span>,</span>
+<span>  parent_session <span class="op">=</span> <span class="va">session</span>,</span>
 <span>  google_analytics_key <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  <span class="va">cookie_link_panel</span></span>
+<span>  cookie_link_panel <span class="op">=</span> <span class="st">"cookies_panel_ui"</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -68,13 +68,13 @@ R-Shiny dashboards.</p>
 
 
 <dl><dt id="arg-id">id<a class="anchor" aria-label="anchor" href="#arg-id"></a></dt>
-<dd><p>Shiny tag shared with cookie_banner_ui()</p></dd>
+<dd><p>Shiny tag shared with cookie_banner_ui(), can be any string set by
+the user as long as it matches the id in the cookie_banner_ui()</p></dd>
 
 
 <dt id="arg-input-cookies">input_cookies<a class="anchor" aria-label="anchor" href="#arg-input-cookies"></a></dt>
 <dd><p>The cookie input passed from cookies.js (should always
-be reactive(input$cookies))
-Should always be set to reactive(input$cookie_consent_clear).</p></dd>
+be <code>reactive(input$cookies)</code>)</p></dd>
 
 
 <dt id="arg-parent-session">parent_session<a class="anchor" aria-label="anchor" href="#arg-parent-session"></a></dt>
@@ -91,18 +91,55 @@ Should always be set to reactive(input$cookie_consent_clear).</p></dd>
 provides a link to, usually "cookies_panel_ui"</p></dd>
 
 </dl></div>
+    <div class="section level2">
+    <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
+    <div class="dont-index"><p>Other cookies:
+<code><a href="cookie_banner_ui.html">cookie_banner_ui</a>()</code>,
+<code><a href="cookies.html">cookies</a></code></p></div>
+    </div>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span> <span class="co"># \dontrun{</span></span></span>
-<span class="r-in"><span><span class="va">output</span><span class="op">$</span><span class="va">cookie_status</span> <span class="op">&lt;-</span> <span class="fu">dfeshiny</span><span class="fu">::</span><span class="fu">cookie_banner_server</span><span class="op">(</span></span></span>
-<span class="r-in"><span>  <span class="st">"cookies"</span>,</span></span>
-<span class="r-in"><span>  input_cookies <span class="op">=</span> <span class="fu">reactive</span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">cookies</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>  parent_session <span class="op">=</span> <span class="va">session</span>,</span></span>
-<span class="r-in"><span>  google_analytics_key <span class="op">=</span> <span class="st">"ABCDE12345"</span>,</span></span>
-<span class="r-in"><span>  cookie_link_panel <span class="op">=</span> <span class="st">"cookies_panel_ui"</span></span></span>
-<span class="r-in"><span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="op">}</span> <span class="co"># }</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/interactive.html" class="external-link">interactive</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span>  <span class="co"># This example shows how to use the full family of cookie functions together</span></span></span>
+<span class="r-in"><span>  <span class="co"># This will be in your global.R script =====================================</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://shiny.posit.co/" class="external-link">shiny</a></span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://deanattali.com/shinyjs/" class="external-link">shinyjs</a></span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dfe-analytical-services.github.io/dfeshiny/">dfeshiny</a></span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">ga_key</span> <span class="op">&lt;-</span> <span class="st">"ABCDE12345"</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># This will be what is in your ui.R script =================================</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html" class="external-link">fluidPage</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>    <span class="co"># Place these lines above your header ------------------------------------</span></span></span>
+<span class="r-in"><span>    <span class="fu"><a href="cookies.html">dfe_cookie_script</a></span><span class="op">(</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    <span class="fu"><a href="https://rdrr.io/pkg/shinyjs/man/useShinyjs.html" class="external-link">useShinyjs</a></span><span class="op">(</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    <span class="fu"><a href="cookie_banner_ui.html">cookie_banner_ui</a></span><span class="op">(</span>name <span class="op">=</span> <span class="st">"My DfE R-Shiny data dashboard"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>    <span class="co"># Place the cookies panel under the header but in the main content -------</span></span></span>
+<span class="r-in"><span>    <span class="fu"><a href="cookies_panel_ui.html">cookies_panel_ui</a></span><span class="op">(</span>google_analytics_key <span class="op">=</span> <span class="va">ga_key</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># This will be in your server.R file =======================================</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">server</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span>, <span class="va">session</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span>    <span class="co"># Server logic for the pop up banner, can be placed anywhere in server.R -</span></span></span>
+<span class="r-in"><span>    <span class="va">output</span><span class="op">$</span><span class="va">cookie_status</span> <span class="op">&lt;-</span> <span class="fu">dfeshiny</span><span class="fu">::</span><span class="fu">cookie_banner_server</span><span class="op">(</span></span></span>
+<span class="r-in"><span>      input_cookies <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/reactive.html" class="external-link">reactive</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">cookies</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>      google_analytics_key <span class="op">=</span> <span class="va">ga_key</span></span></span>
+<span class="r-in"><span>    <span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>    <span class="co"># Server logic for the panel, can be placed anywhere in server.R ---------</span></span></span>
+<span class="r-in"><span>    <span class="fu"><a href="cookies_panel_server.html">cookies_panel_server</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>      input_cookies <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/reactive.html" class="external-link">reactive</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">cookies</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>      google_analytics_key <span class="op">=</span> <span class="va">ga_key</span></span></span>
+<span class="r-in"><span>    <span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="op">}</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># How to run the minimal app given in this example =========================</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html" class="external-link">shinyApp</a></span><span class="op">(</span><span class="va">ui</span>, <span class="va">server</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
