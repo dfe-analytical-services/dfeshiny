@@ -1,3 +1,15 @@
+# dfeshiny 0.3.0
+
+## New features
+
+* New cookies module for the panel page added, completing the cookies family of
+functions, shared examples and a vignette to walk through how to use them.
+
+## Improvements
+
+* Automated testing of test dashboard using GitHub actions
+* Fixed favicons in pkgdown site
+
 # dfeshiny 0.2.0
 
 ## New features
