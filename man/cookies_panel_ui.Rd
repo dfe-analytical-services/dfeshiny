@@ -63,3 +63,11 @@ if (interactive()) {
   shinyApp(ui, server)
 }
 }
+\seealso{
+Other cookies: 
+\code{\link{cookie_banner_server}()},
+\code{\link{cookie_banner_ui}()},
+\code{\link{cookies}},
+\code{\link{cookies_panel_server}()}
+}
+\concept{cookies}

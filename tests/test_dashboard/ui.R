@@ -16,7 +16,7 @@ ui <- function(input, output, session) {
 
     # Cookies =================================================================
     dfe_cookie_script(),
-    cookie_banner_ui("cookies"),
+    cookie_banner_ui("cookies_banner"),
 
     # Panels ==================================================================
     shiny::navlistPanel(

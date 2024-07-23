@@ -297,6 +297,7 @@ init_cookies <- function() {
 #' @param google_analytics_key Provide the GA 10 digit key of the form
 #' "ABCDE12345"
 #'
+#' @family cookies
 #' @return a standardised panel for a public R Shiny dashboard in DfE
 #' @export
 #' @inherit cookies examples
@@ -413,6 +414,7 @@ cookies_panel_ui <- function(id = "cookies_panel", google_analytics_key = NULL) 
 #' @param google_analytics_key Provide the GA 10 digit key of the form
 #' "ABCDE12345"
 #'
+#' @family cookies
 #' @export
 #' @inherit cookies examples
 cookies_panel_server <- function(id = "cookies_panel",

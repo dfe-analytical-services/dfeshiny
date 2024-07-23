@@ -60,6 +60,8 @@ if (interactive()) {
 \seealso{
 Other cookies: 
 \code{\link{cookie_banner_server}()},
-\code{\link{cookie_banner_ui}()}
+\code{\link{cookie_banner_ui}()},
+\code{\link{cookies_panel_server}()},
+\code{\link{cookies_panel_ui}()}
 }
 \concept{cookies}
