@@ -6,8 +6,8 @@
 \usage{
 cookie_banner_server(
   id = "cookies_banner",
-  input_cookies = reactive(input$cookies),
-  parent_session = session,
+  input_cookies,
+  parent_session,
   google_analytics_key = NULL,
   cookie_link_panel = "cookies_panel_ui"
 )
@@ -19,7 +19,8 @@ the user as long as it matches the id in the cookie_banner_ui()}
 \item{input_cookies}{The cookie input passed from cookies.js (should always
 be \code{reactive(input$cookies)})}
 
-\item{parent_session}{This should be the R Shiny app session}
+\item{parent_session}{This should be the R Shiny app session, expect it to
+always be \code{parent_session = session}}
 
 \item{google_analytics_key}{Provide the GA 10 digit key of the form
 "ABCDE12345"}
@@ -62,7 +63,8 @@ if (interactive()) {
     # Server logic for the pop up banner, can be placed anywhere in server.R -
     output$cookie_status <- dfeshiny::cookie_banner_server(
       input_cookies = reactive(input$cookies),
-      google_analytics_key = ga_key
+      google_analytics_key = ga_key,
+      parent_session = session
     )
 
     # Server logic for the panel, can be placed anywhere in server.R ---------

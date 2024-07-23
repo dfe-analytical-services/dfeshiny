@@ -53,7 +53,8 @@ if (interactive()) {
     # Server logic for the pop up banner, can be placed anywhere in server.R -
     output$cookie_status <- dfeshiny::cookie_banner_server(
       input_cookies = reactive(input$cookies),
-      google_analytics_key = ga_key
+      google_analytics_key = ga_key,
+      parent_session = session
     )
 
     # Server logic for the panel, can be placed anywhere in server.R ---------

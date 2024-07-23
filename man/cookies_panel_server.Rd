@@ -6,7 +6,7 @@
 \usage{
 cookies_panel_server(
   id = "cookies_panel",
-  input_cookies = reactive(input$cookies),
+  input_cookies,
   google_analytics_key = NULL
 )
 }
@@ -15,7 +15,7 @@ cookies_panel_server(
 the user as long as it matches the id in the cookies_panel_ui()}
 
 \item{input_cookies}{The cookie input passed from cookies.js (should always
-be \verb{reactive(input$cookies))}}
+be \code{reactive(input$cookies)})}
 
 \item{google_analytics_key}{Provide the GA 10 digit key of the form
 "ABCDE12345"}
@@ -52,7 +52,8 @@ if (interactive()) {
     # Server logic for the pop up banner, can be placed anywhere in server.R -
     output$cookie_status <- dfeshiny::cookie_banner_server(
       input_cookies = reactive(input$cookies),
-      google_analytics_key = ga_key
+      google_analytics_key = ga_key,
+      parent_session = session
     )
 
     # Server logic for the panel, can be placed anywhere in server.R ---------

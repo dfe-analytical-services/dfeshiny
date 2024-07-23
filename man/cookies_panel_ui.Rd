@@ -25,8 +25,6 @@ if (interactive()) {
   # This example shows how to use the full family of cookie functions together
   # This will be in your global.R script =====================================
 
-<<<<<<< HEAD
-=======
   library(shiny)
   library(shinyjs)
   library(dfeshiny)
@@ -50,7 +48,8 @@ if (interactive()) {
     # Server logic for the pop up banner, can be placed anywhere in server.R -
     output$cookie_status <- dfeshiny::cookie_banner_server(
       input_cookies = reactive(input$cookies),
-      google_analytics_key = ga_key
+      google_analytics_key = ga_key,
+      parent_session = session
     )
 
     # Server logic for the panel, can be placed anywhere in server.R ---------
@@ -63,5 +62,4 @@ if (interactive()) {
   # How to run the minimal app given in this example =========================
   shinyApp(ui, server)
 }
->>>>>>> main
 }
