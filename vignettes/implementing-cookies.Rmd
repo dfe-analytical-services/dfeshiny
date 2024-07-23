@@ -25,7 +25,7 @@ Assuming a dashboard is set up with at least the Google Analytics cookie, then
 gaining user consent is a mandatory requirement.
 
 > Note that to activate Google Analytics on your data dashboard, you will need 
-to contact the Statistics Development team at 
+to contact the Explore education statistics platforms team at 
 [explore.statistics@education.gov.uk](mailto:explore.statistics@education.gov.uk) and request a Google Analytics key.
 
 `dfeshiny` provides a standard Government Digital Service (GDS) compliant 
@@ -66,8 +66,7 @@ ui <- function(input, output, session) {
     shinyjs::useShinyjs(),
     dfeshiny::dfe_cookie_script(),
     dfeshiny::cookie_banner_ui(
-      "cookie-banner",
-      "Your dashboard name"
+      name = "Your dashboard name"
     ),
     shiny::navlistPanel(
       "",
@@ -75,7 +74,6 @@ ui <- function(input, output, session) {
       widths = c(2, 8),
       well = FALSE,
       dfeshiny::cookies_panel_ui(
-        id = "cookie-panel",
         google_analytics_key = google_analytics_key
       )
     )
@@ -88,15 +86,12 @@ functions to your **server.R** script:
 
 ```{r eval=FALSE}
 output$cookie_status <- dfeshiny::cookie_banner_server(
-  "cookie-banner",
   input_cookies = shiny::reactive(input$cookies),
   parent_session = session,
-  google_analytics_key = google_analytics_key,
-  cookie_link_panel = "cookies_panel_ui"
+  google_analytics_key = google_analytics_key
 )
 
 dfeshiny::cookies_panel_server(
-  id = "cookie-panel",
   input_cookies = shiny::reactive(input$cookies),
   google_analytics_key = google_analytics_key
 )

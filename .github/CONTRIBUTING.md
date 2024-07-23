@@ -18,8 +18,6 @@ devtools::load_all()
 
 `usethis::use_package(<package_name>)`
 
-This will create a new script within the package R/ folder.
-
 Note that when adding a function from another package into one of the dfeshiny functions you will need to explicitly state the package in the function call, e.g.:
 
 ```package::function()```

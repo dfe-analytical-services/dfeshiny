@@ -22,18 +22,18 @@ if (interactive()) {
   library(shiny)
   library(shinyjs)
   library(dfeshiny)
-  ga_key <- "ABCDE12345"
+  google_analytics_key <- "ABCDE12345"
 
   # This will be what is in your ui.R script =================================
 
   ui <- fluidPage(
     # Place these lines above your header ------------------------------------
-    dfe_cookie_script(),
     useShinyjs(),
+    dfe_cookie_script(),
     cookie_banner_ui(name = "My DfE R-Shiny data dashboard"),
 
     # Place the cookies panel under the header but in the main content -------
-    cookies_panel_ui(google_analytics_key = ga_key)
+    cookies_panel_ui(google_analytics_key = google_analytics_key)
   )
 
   # This will be in your server.R file =======================================
@@ -42,14 +42,14 @@ if (interactive()) {
     # Server logic for the pop up banner, can be placed anywhere in server.R -
     output$cookie_status <- dfeshiny::cookie_banner_server(
       input_cookies = reactive(input$cookies),
-      google_analytics_key = ga_key,
+      google_analytics_key = google_analytics_key,
       parent_session = session
     )
 
     # Server logic for the panel, can be placed anywhere in server.R ---------
     cookies_panel_server(
       input_cookies = reactive(input$cookies),
-      google_analytics_key = ga_key
+      google_analytics_key = google_analytics_key
     )
   }
 
