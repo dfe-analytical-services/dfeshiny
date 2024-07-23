@@ -1,10 +1,54 @@
 #' dfe_cookie_script
 #'
+#' Calls in JavaScript dependencies to the shiny app used to set and unset the
+#' cookies. Function should be placed in the ui.R script.
+#'
+#' @name cookies
 #' @return shiny::tags$head()
 #' @export
 #'
+#' @family cookies
 #' @examples
-#' dfe_cookie_script()
+#' if (interactive()) {
+#'   # This example shows how to use the full family of cookie functions together
+#'   # This will be in your global.R script =====================================
+#'
+#'   library(shiny)
+#'   library(shinyjs)
+#'   library(dfeshiny)
+#'   ga_key <- "ABCDE12345"
+#'
+#'   # This will be what is in your ui.R script =================================
+#'
+#'   ui <- fluidPage(
+#'     # Place these lines above your header ------------------------------------
+#'     dfe_cookie_script(),
+#'     useShinyjs(),
+#'     cookie_banner_ui(name = "My DfE R-Shiny data dashboard"),
+#'
+#'     # Place the cookies panel under the header but in the main content -------
+#'     cookies_panel_ui(google_analytics_key = ga_key)
+#'   )
+#'
+#'   # This will be in your server.R file =======================================
+#'
+#'   server <- function(input, output, session) {
+#'     # Server logic for the pop up banner, can be placed anywhere in server.R -
+#'     output$cookie_status <- dfeshiny::cookie_banner_server(
+#'       input_cookies = reactive(input$cookies),
+#'       google_analytics_key = ga_key
+#'     )
+#'
+#'     # Server logic for the panel, can be placed anywhere in server.R ---------
+#'     cookies_panel_server(
+#'       input_cookies = reactive(input$cookies),
+#'       google_analytics_key = ga_key
+#'     )
+#'   }
+#'
+#'   # How to run the minimal app given in this example =========================
+#'   shinyApp(ui, server)
+#' }
 dfe_cookie_script <- function() {
   shiny::tags$head(
     shiny::tags$script(
@@ -26,16 +70,16 @@ dfe_cookie_script <- function() {
 #' functionality is provided by cookie_banner_server(), whilst users will also
 #' need to include the dfe_cookie_script() function in their ui.R file.
 #'
-#' @param id Shiny tag shared with cookie_banner_server()
+#' @param id Shiny tag shared with cookie_banner_server(), can be any string set
+#' by the user as long as it matches the id in the cookie_banner_server()
 #' @param name Name of the dashboard on which the cookie authorisation is being
 #' applied
 #'
+#' @family cookies
 #' @return shiny::tags$div()
 #' @export
-#'
-#' @examples
-#' cookie_banner_ui("cookies", name = "My DfE R-Shiny data dashboard")
-cookie_banner_ui <- function(id, name = "DfE R-Shiny dashboard template") {
+#' @inherit cookies examples
+cookie_banner_ui <- function(id = "cookies_banner", name = "DfE R-Shiny dashboard template") {
   shiny::tags$div(
     id = shiny::NS(id, "cookie_div"),
     class = "govuk-cookie-banner",
@@ -94,35 +138,27 @@ cookie_banner_ui <- function(id, name = "DfE R-Shiny dashboard template") {
 #' reject cookie consent for the provision of Google Analytics tracking on DfE
 #' R-Shiny dashboards.
 #'
-#' @param id Shiny tag shared with cookie_banner_ui()
+#' @param id Shiny tag shared with cookie_banner_ui(), can be any string set by
+#' the user as long as it matches the id in the cookie_banner_ui()
 #' @param input_cookies The cookie input passed from cookies.js (should always
-#' be reactive(input$cookies))
-#' Should always be set to reactive(input$cookie_consent_clear).
+#' be `reactive(input$cookies)`)
 #' @param parent_session This should be the R Shiny app session
 #' @param google_analytics_key Provide the GA 10 digit key of the form
 #' "ABCDE12345"
 #' @param cookie_link_panel name of the navlistPanel that the cookie banner
 #' provides a link to, usually "cookies_panel_ui"
 #'
+#' @family cookies
 #' @return NULL
 #' @export
 #'
-#' @examples
-#' \dontrun{
-#' output$cookie_status <- dfeshiny::cookie_banner_server(
-#'   "cookies",
-#'   input_cookies = reactive(input$cookies),
-#'   parent_session = session,
-#'   google_analytics_key = "ABCDE12345",
-#'   cookie_link_panel = "cookies_panel_ui"
-#' )
-#' }
+#' @inherit cookies examples
 cookie_banner_server <- function(
-    id,
-    input_cookies,
-    parent_session,
+    id = "cookies_banner",
+    input_cookies = reactive(input$cookies),
+    parent_session = session,
     google_analytics_key = NULL,
-    cookie_link_panel) {
+    cookie_link_panel = "cookies_panel_ui") {
   shiny::moduleServer(id, function(input, output, session) {
     if (is.null(google_analytics_key)) {
       warning("Please provide a valid Google Analytics key")
@@ -252,23 +288,15 @@ init_cookies <- function() {
 #' Create the standard DfE R-Shiny cookies dashboard panel in the ui. The server
 #' side functionality is provided by cookies_panel_server()
 #'
-#' @param id ID shared with cookies_panel_server()
+#' @param id Shiny tag shared with cookies_panel_server(), can be any string set by
+#' the user as long as it matches the id in the cookies_panel_server()
 #' @param google_analytics_key Provide the GA 10 digit key of the form
 #' "ABCDE12345"
 #'
-#'
 #' @return a standardised panel for a public R Shiny dashboard in DfE
 #' @export
-#'
-#' @examples
-#' \dontrun{
-#' cookies_panel_ui(
-#'   id = "cookies_panel",
-#'   google_analytics_key = "ABCDE12345"
-#' )
-#' }
-#'
-cookies_panel_ui <- function(id, google_analytics_key = NULL) {
+#' @inherit cookies examples
+cookies_panel_ui <- function(id = "cookies_panel", google_analytics_key = NULL) {
   # Build the support page ----------------------------------------------------
   shiny::tabPanel(
     id = shiny::NS(id, "cookies_panel"),
@@ -374,24 +402,18 @@ cookies_panel_ui <- function(id, google_analytics_key = NULL) {
 #' Create the server module of DfE R-Shiny cookies dashboard panel to be used
 #' alongside cookies_panel_ui().
 #'
-#' @param id ID shared with cookies_panel_ui()
+#' @param id Shiny tag shared with cookies_panel_ui(), can be any string set by
+#' the user as long as it matches the id in the cookies_panel_ui()
 #' @param input_cookies The cookie input passed from cookies.js (should always
-#' be reactive(input$cookies))
+#' be `reactive(input$cookies))`
 #' @param google_analytics_key Provide the GA 10 digit key of the form
 #' "ABCDE12345"
 #'
 #' @export
-#'
-#' @examples
-#' \dontrun{
-#' cookies_panel_server(
-#'   id = "cookies_panel",
-#'   input_cookies = reactive(input$cookies),
-#'   google_analytics_key = "ABCDE12345"
-#' )
-#' }
-cookies_panel_server <- function(id,
-                                 input_cookies,
+#' @inherit cookies examples
+cookies_panel_server <- function(id = "cookies_panel",
+                                 input_cookies = reactive(input$cookies),
+
                                  google_analytics_key = NULL) {
   shiny::moduleServer(id, module = function(input, output, session) {
     shiny::observeEvent(input_cookies(), {

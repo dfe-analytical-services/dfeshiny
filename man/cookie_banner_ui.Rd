@@ -4,10 +4,14 @@
 \alias{cookie_banner_ui}
 \title{cookie_banner_ui}
 \usage{
-cookie_banner_ui(id, name = "DfE R-Shiny dashboard template")
+cookie_banner_ui(
+  id = "cookies_banner",
+  name = "DfE R-Shiny dashboard template"
+)
 }
 \arguments{
-\item{id}{Shiny tag shared with cookie_banner_server()}
+\item{id}{Shiny tag shared with cookie_banner_server(), can be any string set
+by the user as long as it matches the id in the cookie_banner_server()}
 
 \item{name}{Name of the dashboard on which the cookie authorisation is being
 applied}
@@ -22,5 +26,50 @@ functionality is provided by cookie_banner_server(), whilst users will also
 need to include the dfe_cookie_script() function in their ui.R file.
 }
 \examples{
-cookie_banner_ui("cookies", name = "My DfE R-Shiny data dashboard")
+if (interactive()) {
+  # This example shows how to use the full family of cookie functions together
+  # This will be in your global.R script =====================================
+
+  library(shiny)
+  library(shinyjs)
+  library(dfeshiny)
+  ga_key <- "ABCDE12345"
+
+  # This will be what is in your ui.R script =================================
+
+  ui <- fluidPage(
+    # Place these lines above your header ------------------------------------
+    dfe_cookie_script(),
+    useShinyjs(),
+    cookie_banner_ui(name = "My DfE R-Shiny data dashboard"),
+
+    # Place the cookies panel under the header but in the main content -------
+    cookies_panel_ui(google_analytics_key = ga_key)
+  )
+
+  # This will be in your server.R file =======================================
+
+  server <- function(input, output, session) {
+    # Server logic for the pop up banner, can be placed anywhere in server.R -
+    output$cookie_status <- dfeshiny::cookie_banner_server(
+      input_cookies = reactive(input$cookies),
+      google_analytics_key = ga_key
+    )
+
+    # Server logic for the panel, can be placed anywhere in server.R ---------
+    cookies_panel_server(
+      input_cookies = reactive(input$cookies),
+      google_analytics_key = ga_key
+    )
+  }
+
+  # How to run the minimal app given in this example =========================
+  shinyApp(ui, server)
 }
+}
+\seealso{
+Other cookies: 
+\code{\link{cookie_banner_server}()},
+\code{\link{cookies}}
+}
+\concept{cookies}
