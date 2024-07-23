@@ -2,6 +2,8 @@
 
 ## New features
 
+* `init_analytics()` to add the necessary analytics script into a repository
+
 * New cookies module for the panel page added, completing the cookies family of
 functions, shared examples and a vignette to walk through how to use them.
 
