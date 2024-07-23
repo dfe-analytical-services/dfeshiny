@@ -13,11 +13,11 @@ cookie_banner_server(
 )
 }
 \arguments{
-\item{id}{Shiny tag shared with cookie_banner_ui()}
+\item{id}{Shiny tag shared with cookie_banner_ui(), can be any string set by
+the user as long as it matches the id in the cookie_banner_ui()}
 
 \item{input_cookies}{The cookie input passed from cookies.js (should always
-be reactive(input$cookies))
-Should always be set to reactive(input$cookie_consent_clear).}
+be \code{reactive(input$cookies)})}
 
 \item{parent_session}{This should be the R Shiny app session}
 
@@ -35,47 +35,46 @@ reject cookie consent for the provision of Google Analytics tracking on DfE
 R-Shiny dashboards.
 }
 \examples{
-# This example shows how to use the full family of cookie functions together
-# This will be in your global.R script =====================================
-
-library(shiny)
-library(shinyjs)
-library(dfeshiny)
-ga_key <- "ABCDE12345"
-
-# This will be what is in your ui.R script =================================
-
-ui <- fluidPage(
-  # Place these lines above your header ------------------------------------
-  dfe_cookie_script(),
-  useShinyjs(),
-  cookie_banner_ui(name = "My DfE R-Shiny data dashboard"),
-
-  # Place the cookies panel under the header but in the main content -------
-  cookies_panel_ui(google_analytics_key = ga_key)
-)
-
-# This will be in your server.R file =======================================
-
-server <- function(input, output, session) {
-  # Server logic for the pop up banner, can be placed anywhere in server.R -
-  output$cookie_status <- dfeshiny::cookie_banner_server(
-    input_cookies = reactive(input$cookies),
-    google_analytics_key = ga_key
-  )
-
-  # Server logic for the panel, can be placed anywhere in server.R ---------
-  cookies_panel_server(
-    input_cookies = reactive(input$cookies),
-    google_analytics_key = ga_key
-  )
-}
-
-# How to run the minimal app give in this example ==========================
 if (interactive()) {
+  # This example shows how to use the full family of cookie functions together
+  # This will be in your global.R script =====================================
+
+  library(shiny)
+  library(shinyjs)
+  library(dfeshiny)
+  ga_key <- "ABCDE12345"
+
+  # This will be what is in your ui.R script =================================
+
+  ui <- fluidPage(
+    # Place these lines above your header ------------------------------------
+    dfe_cookie_script(),
+    useShinyjs(),
+    cookie_banner_ui(name = "My DfE R-Shiny data dashboard"),
+
+    # Place the cookies panel under the header but in the main content -------
+    cookies_panel_ui(google_analytics_key = ga_key)
+  )
+
+  # This will be in your server.R file =======================================
+
+  server <- function(input, output, session) {
+    # Server logic for the pop up banner, can be placed anywhere in server.R -
+    output$cookie_status <- dfeshiny::cookie_banner_server(
+      input_cookies = reactive(input$cookies),
+      google_analytics_key = ga_key
+    )
+
+    # Server logic for the panel, can be placed anywhere in server.R ---------
+    cookies_panel_server(
+      input_cookies = reactive(input$cookies),
+      google_analytics_key = ga_key
+    )
+  }
+
+  # How to run the minimal app given in this example =========================
   shinyApp(ui, server)
 }
-
 }
 \seealso{
 Other cookies: 
