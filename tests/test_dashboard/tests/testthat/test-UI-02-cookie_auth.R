@@ -12,13 +12,13 @@ app <- AppDriver$new(
 
 app$wait_for_idle(5)
 
-app$click("cookies-cookie_accept")
+app$click("cookies_banner-cookie_accept")
 test_that("Cookies accepted banner", {
   # Capture initial values
   app$expect_values()
 })
 
-app$click("cookies-cookie_reject")
+app$click("cookies_banner-cookie_reject")
 test_that("Cookies rejected banner", {
   # Capture initial values
   app$expect_values()

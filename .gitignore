@@ -2,6 +2,8 @@
 .Rhistory
 .RData
 .Ruserdata
+google-analytics.html
+tests/testthat/google-analytics.html
 docs
 inst/doc
 www/
