@@ -24,8 +24,8 @@ app.
 
 * A module is now provided to produce a standardised cookie consent banner and 
 implement the associated functionality. The server part is 
-`cookie_banner_server()` and the ui part is `cookie_banner_ui()`. In addition, 
-`dfe_cookie_script()` is provided to implement the necessary javascript.
+`cookies_banner_server()` and the ui part is `cookies_banner_ui()`. In addition, 
+`dfe_cookies_script()` is provided to implement the necessary javascript.
 
 ## Improvements
 

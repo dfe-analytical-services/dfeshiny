@@ -5,7 +5,7 @@ server <- function(input, output, session) {
     getCookies();'
   )
 
-  output$cookie_status <- cookie_banner_server(
+  output$cookies_status <- cookies_banner_server(
     input_cookies = shiny::reactive(input$cookies),
     google_analytics_key = ga_key, # nolint: [object_usage_linter]
     parent_session = session

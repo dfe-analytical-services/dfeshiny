@@ -2,10 +2,10 @@
 % Please edit documentation in R/cookies.R
 \name{cookies}
 \alias{cookies}
-\alias{dfe_cookie_script}
-\title{dfe_cookie_script}
+\alias{dfe_cookies_script}
+\title{dfe_cookies_script}
 \usage{
-dfe_cookie_script()
+dfe_cookies_script()
 }
 \value{
 shiny::tags$head()
@@ -16,7 +16,7 @@ cookies. Function should be placed in the ui.R script.
 }
 \examples{
 if (interactive()) {
-  # This example shows how to use the full family of cookie functions together
+  # This example shows how to use the full family of cookies functions together
   # This will be in your global.R script =====================================
 
   library(shiny)
@@ -29,8 +29,8 @@ if (interactive()) {
   ui <- fluidPage(
     # Place these lines above your header ------------------------------------
     useShinyjs(),
-    dfe_cookie_script(),
-    cookie_banner_ui(name = "My DfE R-Shiny data dashboard"),
+    dfe_cookies_script(),
+    cookies_banner_ui(name = "My DfE R-Shiny data dashboard"),
 
     # Place the cookies panel under the header but in the main content -------
     cookies_panel_ui(google_analytics_key = google_analytics_key)
@@ -40,7 +40,7 @@ if (interactive()) {
 
   server <- function(input, output, session) {
     # Server logic for the pop up banner, can be placed anywhere in server.R -
-    output$cookie_status <- dfeshiny::cookie_banner_server(
+    output$cookies_status <- dfeshiny::cookies_banner_server(
       input_cookies = reactive(input$cookies),
       google_analytics_key = google_analytics_key,
       parent_session = session
@@ -59,8 +59,8 @@ if (interactive()) {
 }
 \seealso{
 Other cookies: 
-\code{\link{cookie_banner_server}()},
-\code{\link{cookie_banner_ui}()},
+\code{\link{cookies_banner_server}()},
+\code{\link{cookies_banner_ui}()},
 \code{\link{cookies_panel_server}()},
 \code{\link{cookies_panel_ui}()}
 }
