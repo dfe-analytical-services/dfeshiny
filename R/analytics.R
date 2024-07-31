@@ -7,7 +7,7 @@
 #'
 #' @param ga_code The Google Analytics code for the dashboard
 #' @param create_file Boolean TRUE or FALSE, default is TRUE, false will return
-#' the HTML as a character vector and used mainly for testing or comparisons
+#' the HTML in the console and is used mainly for testing or comparisons
 #'
 #' @importFrom magrittr %>%
 #' @return TRUE if written, FALSE if not, character vector of HTML if create_file = FALSE
@@ -15,8 +15,8 @@
 #'
 #' @examples init_analytics(ga_code = "0123456789")
 init_analytics <- function(ga_code, create_file = TRUE) {
-  if(!is.logical(create_file)) {
-    stop('create_file must always be TRUE or FALSE')
+  if (!is.logical(create_file)) {
+    stop("create_file must always be TRUE or FALSE")
   }
 
   is_valid_ga4_code <- function(ga_code) {
@@ -31,30 +31,86 @@ init_analytics <- function(ga_code, create_file = TRUE) {
     )
   }
 
-  github_area <- "https://raw.githubusercontent.com/dfe-analytical-services/"
-  webpage <- RCurl::getURL(
-    paste0(
-      github_area,
-      "dfeshiny/main/inst/google-analytics.html"
-    )
-  )
-  tryCatch(
-    html_script <- gsub(
-      "XXXXXXXXXX",
-      ga_code,
-      readLines(tc <- textConnection(webpage))
-    ),
-    error = function(e) {
-      return("Download failed")
-    },
-    message("Downloaded analytics template script")
-  )
+  # Google analytics HTML =====================================================
+  html_script <- "<script>
+// Define dataLayer and the gtag function.
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
 
-  close(tc)
+// Default ad_storage to 'denied' as a placeholder
+// Determine actual values based on your own requirements
+gtag('consent', 'default', {
+  'ad_storage': 'denied',
+  'analytics_storage': 'denied'
+});
+</script>
 
-  if(create_file == FALSE){
+<!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src='https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX'></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+
+    gtag('js', new Date());
+
+  gtag('config', 'G-XXXXXXXXXX');
+
+/*
+The custom trackers below can be tailored to match the inputs used in your
+dashboard.
+*/
+
+  $(document).on('change', 'select#selectPhase', function(e) {
+    gtag('event', 'select phase', {'event_category' : 'choose Phase',
+    'event_label' : document.querySelector('select#selectPhase').value
+    });
+  });
+
+  $(document).on('change', 'select#selectArea', function(e) {
+    gtag('event', 'select area', {'event_category' : 'choose Area',
+    'event_label' : document.querySelector('select#selectArea').value
+    });
+  });
+
+  $(document).on('click', 'ul#navlistPanel', function(e) {
+    gtag('event', 'navlistPanel', {'event_category' : 'navbar click',
+    'event_label' : document.querySelector(
+    'ul#navlistPanel > li.active > a'
+    ).getAttribute('data-value')
+    });
+  });
+
+  $(document).on('click', 'ul#tabsetpanels', function(e) {
+    gtag('event', 'tab panels', {'event_category' : 'tab panel clicks',
+    'event_label' : document.querySelector(
+    'ul#tabsetpanels > li.active > a'
+    ).getAttribute('data-value')
+    });
+  });
+
+
+  $(document).on('click', 'a#download_data', function(e) {
+    gtag('event', 'Download button', {'event_category' : 'Download button click'
+    });
+  });
+
+  $(document).on('shiny:disconnected', function(e) {
+    gtag('event', 'disconnect', {
+      'event_label' : 'Disconnect',
+      'event_category' : 'Disconnect'
+    });
+  });
+
+</script>"
+
+  # Swap in the GA ID
+  html_script_with_id <- gsub("XXXXXXXXXX", ga_code, html_script)
+
+  # End of google analytics HTML ==============================================
+
+  if (create_file == FALSE) {
     # Just return without options or messages
-    html_script
+    cat(html_script_with_id, file = "", sep = "\n")
   } else {
     if (file.exists("google-analytics.html")) {
       message("Analytics file already exists.")
@@ -73,10 +129,11 @@ init_analytics <- function(ga_code, create_file = TRUE) {
       write_out <- TRUE
     }
     if (write_out) {
-      cat(html_script, file = "google-analytics.html", sep = "\n")
+      cat(html_script_with_id, file = "google-analytics.html", sep = "\n")
       message("")
       message("Google analytics script created as google-analytics.html.")
       message("You'll need to add the following line to your ui.R script to start using analytics:")
+      message("")
       message("tags$head(includeHTML((google-analytics.html))),")
     } else {
       message("Original Google analytics html script left in place.")

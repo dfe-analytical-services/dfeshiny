@@ -15,7 +15,7 @@ test_that("Numeric throws error", {
 })
 
 test_that("GA key pulls into html", {
-  output <- init_analytics("TESTYTESTY", create_file = FALSE)
+  output <- capture.output(init_analytics("TESTYTESTY", create_file = FALSE))
 
   # Expect the id to pull through on line 15
   expect_true(grepl("G-TESTYTESTY", output[15]))
