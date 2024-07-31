@@ -10,10 +10,13 @@
 #' the HTML in the console and is used mainly for testing or comparisons
 #'
 #' @importFrom magrittr %>%
-#' @return TRUE if written, FALSE if not, character vector of HTML if create_file = FALSE
+#' @return NULL
 #' @export
 #'
-#' @examples init_analytics(ga_code = "0123456789")
+#' @examples
+#' if (interactive()) {
+#'   init_analytics(ga_code = "0123456789")
+#' }
 init_analytics <- function(ga_code, create_file = TRUE) {
   if (!is.logical(create_file)) {
     stop("create_file must always be TRUE or FALSE")
