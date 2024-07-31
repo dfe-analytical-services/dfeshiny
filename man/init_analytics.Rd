@@ -12,14 +12,13 @@ init_analytics(ga_code, create_file = TRUE)
 \item{create_file}{Boolean TRUE or FALSE, default is TRUE, false will return
 the HTML in the console and is used mainly for testing or comparisons}
 }
-\value{
-TRUE if written, FALSE if not, character vector of HTML if create_file = FALSE
-}
 \description{
 Creates the google-analytics.html script in order to allow the activation of
 analytics via GA4. For the full steps required to set up analytics, please
 refer to the documentation in the README.
 }
 \examples{
-init_analytics(ga_code = "0123456789")
+if (interactive()) {
+  init_analytics(ga_code = "0123456789")
+}
 }
