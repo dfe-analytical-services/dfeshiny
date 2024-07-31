@@ -15,7 +15,8 @@
 #' Explore Education Statistics)
 #' @param form_url URL for a feedback form for the dashboard
 #'
-#' @return a standardised panel for a public R Shiny dashboard in DfE
+#' @return a html div, containing standard support content for a public R Shiny
+#' dashboard in DfE
 #' @export
 #'
 #' @examples
@@ -25,6 +26,24 @@
 #'   publication_name = "My publication title",
 #'   publication_slug = "my-publication-title",
 #'   form_url = "www.myform.com"
+#' )
+#'
+#' # Often you will use this inside a set of navigation tabs, e.g.
+#' shiny::navlistPanel(
+#'   "",
+#'   id = "navlistPanel",
+#'   widths = c(2, 8),
+#'   well = FALSE,
+#'   ## Support panel --------------------------------------------------------
+#'   shiny::tabPanel(
+#'     value = "support_panel",
+#'     "Support and feedback",
+#'     support_panel(
+#'       team_email = "explore.statistics@@education.gov.uk",
+#'       repo_name = "https://github.com/dfe-analytical-services/dfeshiny/",
+#'       form_url = "https://forms.office.com"
+#'     )
+#'   )
 #' )
 support_panel <- function(
     team_email = "",
@@ -76,119 +95,110 @@ support_panel <- function(
   }
 
   # Build the support page ----------------------------------------------------
-  shiny::tabPanel(
-    value = "support_panel",
-    "Support and feedback",
-    shinyGovstyle::gov_main_layout(
-      shinyGovstyle::gov_row(
-        shiny::column(
-          width = 12,
-          shiny::tags$h1("Support and feedback"),
-          shiny::tags$h2("Give us feedback"),
-          if (!is.null(form_url)) {
-            shiny::tags$p(
-              "This dashboard is a new service that we are developing. If you
+  shiny::tags$div(
+    shiny::tags$h1("Support and feedback"),
+    shiny::tags$h2("Give us feedback"),
+    if (!is.null(form_url)) {
+      shiny::tags$p(
+        "This dashboard is a new service that we are developing. If you
               have any feedback or suggestions for improvements, please submit
               them using our ",
-              shiny::tags$a(
-                href = form_url,
-                "feedback form",
-                .noWS = c("after")
-              )
-            )
-          } else {
-            shiny::tags$p(
-              "This dashboard is a new service that we are developing."
-            )
-          },
-          shiny::tags$p(
-            paste0(
-              ifelse(
-                !is.null(form_url),
-                "Alternatively, i",
-                "I"
-              ),
-              "f you spot any errors or bugs while using this dashboard, please
-              screenshot and email them to "
-            ),
-            shiny::tags$a(
-              href = paste0("mailto:", team_email),
-              team_email,
-              .noWS = c("after")
-            ), "."
-          ),
-          shiny::tags$h2("Find more information on the data"),
-          if (ees_publication) {
-            shiny::tags$p(
-              "The parent statistical release of this dashboard, along with
-              methodological information,
-              is available at the following link: ",
-              shiny::tags$a(
-                href = paste0(
-                  "https://explore-education-statistics.service.gov.uk/find-statistics/", # nolint: [line_length_linter]
-                  publication_slug
-                ),
-                ifelse(
-                  !is.null(publication_name),
-                  publication_name,
-                  "Explore Education Statistics"
-                ),
-                .noWS = c("after")
-              ),
-              ". The statistical release provides additional ",
-              shiny::tags$a(
-                href = paste0(
-                  "https://explore-education-statistics.service.gov.uk/find-statistics/", # nolint: [line_length_linter]
-                  publication_slug, "/data-guidance"
-                ),
-                "data guidance",
-                .noWS = c("after")
-              ),
-              " and ",
-              shiny::tags$a(
-                href = paste0(
-                  "https://explore-education-statistics.service.gov.uk/find-statistics/", # nolint: [line_length_linter]
-                  publication_slug, "#explore-data-and-files"
-                ),
-                "tools to access and interogate the underling data",
-                .noWS = c("after")
-              ),
-              " contained in this dashboard."
-            )
-          } else {
-            shiny::tags$p(
-              "The parent statistical release of this dashboard, along with
-              methodological information,
-              is available at the following link: ",
-              shiny::tags$a(
-                href = alt_href,
-                publication_name,
-                .noWS = c("after")
-              )
-            )
-          },
-          shiny::tags$h2("Contact us"),
-          shiny::tags$p(
-            "If you have questions about the dashboard or data within it,
-            please contact us at ",
-            shiny::tags$a(
-              href = paste0("mailto:", team_email),
-              team_email, .noWS = c("after")
-            )
-          ),
-          shiny::tags$h2("See the source code"),
-          shiny::tags$p(
-            "The source code for this dashboard is available in our ",
-            shiny::tags$a(
-              href = paste0(
-                repo_name
-              ),
-              "GitHub repository", .noWS = c("after")
-            ),
-            "."
-          )
+        shiny::tags$a(
+          href = form_url,
+          "feedback form",
+          .noWS = c("after")
         )
       )
+    } else {
+      shiny::tags$p(
+        "This dashboard is a new service that we are developing."
+      )
+    },
+    shiny::tags$p(
+      paste0(
+        ifelse(
+          !is.null(form_url),
+          "Alternatively, i",
+          "I"
+        ),
+        "f you spot any errors or bugs while using this dashboard, please
+              screenshot and email them to "
+      ),
+      shiny::tags$a(
+        href = paste0("mailto:", team_email),
+        team_email,
+        .noWS = c("after")
+      ), "."
+    ),
+    shiny::tags$h2("Find more information on the data"),
+    if (ees_publication) {
+      shiny::tags$p(
+        "The parent statistical release of this dashboard, along with
+              methodological information,
+              is available at the following link: ",
+        shiny::tags$a(
+          href = paste0(
+            "https://explore-education-statistics.service.gov.uk/find-statistics/", # nolint: [line_length_linter]
+            publication_slug
+          ),
+          ifelse(
+            !is.null(publication_name),
+            publication_name,
+            "Explore Education Statistics"
+          ),
+          .noWS = c("after")
+        ),
+        ". The statistical release provides additional ",
+        shiny::tags$a(
+          href = paste0(
+            "https://explore-education-statistics.service.gov.uk/find-statistics/", # nolint: [line_length_linter]
+            publication_slug, "/data-guidance"
+          ),
+          "data guidance",
+          .noWS = c("after")
+        ),
+        " and ",
+        shiny::tags$a(
+          href = paste0(
+            "https://explore-education-statistics.service.gov.uk/find-statistics/", # nolint: [line_length_linter]
+            publication_slug, "#explore-data-and-files"
+          ),
+          "tools to access and interogate the underling data",
+          .noWS = c("after")
+        ),
+        " contained in this dashboard."
+      )
+    } else {
+      shiny::tags$p(
+        "The parent statistical release of this dashboard, along with
+              methodological information,
+              is available at the following link: ",
+        shiny::tags$a(
+          href = alt_href,
+          publication_name,
+          .noWS = c("after")
+        )
+      )
+    },
+    shiny::tags$h2("Contact us"),
+    shiny::tags$p(
+      "If you have questions about the dashboard or data within it,
+            please contact us at ",
+      shiny::tags$a(
+        href = paste0("mailto:", team_email),
+        team_email, .noWS = c("after")
+      )
+    ),
+    shiny::tags$h2("See the source code"),
+    shiny::tags$p(
+      "The source code for this dashboard is available in our ",
+      shiny::tags$a(
+        href = paste0(
+          repo_name
+        ),
+        "GitHub repository", .noWS = c("after")
+      ),
+      "."
     )
   )
 }

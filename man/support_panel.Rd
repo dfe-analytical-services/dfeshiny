@@ -34,7 +34,8 @@ Explore Education Statistics)}
 \item{form_url}{URL for a feedback form for the dashboard}
 }
 \value{
-a standardised panel for a public R Shiny dashboard in DfE
+a html div, containing standard support content for a public R Shiny
+dashboard in DfE
 }
 \description{
 Create the standard DfE R-Shiny support and feedback dashboard panel.
@@ -46,5 +47,23 @@ support_panel(
   publication_name = "My publication title",
   publication_slug = "my-publication-title",
   form_url = "www.myform.com"
+)
+
+# Often you will use this inside a set of navigation tabs, e.g.
+shiny::navlistPanel(
+  "",
+  id = "navlistPanel",
+  widths = c(2, 8),
+  well = FALSE,
+  ## Support panel --------------------------------------------------------
+  shiny::tabPanel(
+    value = "support_panel",
+    "Support and feedback",
+    support_panel(
+      team_email = "explore.statistics@education.gov.uk",
+      repo_name = "https://github.com/dfe-analytical-services/dfeshiny/",
+      form_url = "https://forms.office.com"
+    )
+  )
 )
 }

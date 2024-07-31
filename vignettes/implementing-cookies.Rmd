@@ -73,8 +73,10 @@ ui <- function(input, output, session) {
       id = "navlistPanel",
       widths = c(2, 8),
       well = FALSE,
-      dfeshiny::cookies_panel_ui(
-        google_analytics_key = google_analytics_key
+      shiny::tabPanel(
+        value = "cookies_panel_ui",
+        "Cookies",
+        cookies_panel_ui(google_analytics_key = google_analytics_key)
       )
     )
   )

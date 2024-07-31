@@ -24,12 +24,23 @@ ui <- function(input, output, session) {
       id = "navlistPanel",
       widths = c(2, 8),
       well = FALSE,
-      support_panel(
-        team_email = "explore.statistics@education.gov.uk",
-        repo_name = "https://github.com/dfe-analytical-services/dfeshiny/",
-        form_url = "https://forms.office.com"
+      ## Support panel --------------------------------------------------------
+      shiny::tabPanel(
+        value = "support_panel",
+        "Support and feedback",
+        support_panel(
+          team_email = "explore.statistics@education.gov.uk",
+          repo_name = "https://github.com/dfe-analytical-services/dfeshiny/",
+          form_url = "https://forms.office.com"
+        )
       ),
-      cookies_panel_ui(google_analytics_key = ga_key) # nolint: [object_usage_linter]
+
+      ## Cookies panel --------------------------------------------------------
+      shiny::tabPanel(
+        value = "cookies_panel_ui",
+        "Cookies",
+        cookies_panel_ui(google_analytics_key = ga_key) # nolint: [object_usage_linter]
+      )
     )
   )
 }
