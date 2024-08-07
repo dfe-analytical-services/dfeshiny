@@ -22,39 +22,40 @@ side functionality is provided by cookies_panel_server()
 }
 \examples{
 if (interactive()) {
-  # This example shows how to use the full family of cookie functions together
+  # This example shows how to use the full family of cookies functions together
   # This will be in your global.R script =====================================
 
   library(shiny)
   library(shinyjs)
   library(dfeshiny)
-  ga_key <- "ABCDE12345"
+  google_analytics_key <- "ABCDE12345"
 
   # This will be what is in your ui.R script =================================
 
   ui <- fluidPage(
     # Place these lines above your header ------------------------------------
-    dfe_cookie_script(),
     useShinyjs(),
-    cookie_banner_ui(name = "My DfE R-Shiny data dashboard"),
+    dfe_cookies_script(),
+    cookies_banner_ui(name = "My DfE R-Shiny data dashboard"),
 
     # Place the cookies panel under the header but in the main content -------
-    cookies_panel_ui(google_analytics_key = ga_key)
+    cookies_panel_ui(google_analytics_key = google_analytics_key)
   )
 
   # This will be in your server.R file =======================================
 
   server <- function(input, output, session) {
     # Server logic for the pop up banner, can be placed anywhere in server.R -
-    output$cookie_status <- dfeshiny::cookie_banner_server(
+    output$cookies_status <- dfeshiny::cookies_banner_server(
       input_cookies = reactive(input$cookies),
-      google_analytics_key = ga_key
+      google_analytics_key = google_analytics_key,
+      parent_session = session
     )
 
     # Server logic for the panel, can be placed anywhere in server.R ---------
     cookies_panel_server(
       input_cookies = reactive(input$cookies),
-      google_analytics_key = ga_key
+      google_analytics_key = google_analytics_key
     )
   }
 
@@ -62,3 +63,11 @@ if (interactive()) {
   shinyApp(ui, server)
 }
 }
+\seealso{
+Other cookies: 
+\code{\link{cookies}},
+\code{\link{cookies_banner_server}()},
+\code{\link{cookies_banner_ui}()},
+\code{\link{cookies_panel_server}()}
+}
+\concept{cookies}

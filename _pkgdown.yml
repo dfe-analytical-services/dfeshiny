@@ -11,8 +11,7 @@ reference:
   - tidy_code
 - title: Cookies
   contents:
-  - starts_with("cookie")
-  - dfe_cookie_script
+  - has_concept("cookies")
 - title: Standard panels
   contents:
   - support_panel
@@ -23,4 +22,3 @@ reference:
   desc: One time functions used to set up or update standardised scripts and workflows needed for your dashboard
   contents:
   - starts_with("init")
-

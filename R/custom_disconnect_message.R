@@ -12,7 +12,6 @@
 #'
 #' @importFrom htmltools tags tagList
 #'
-#'
 #' @return A html overlay panel that appears when RSConnect disconnects for a
 #' public R Shiny dashboard in DfE
 #' @export
@@ -22,11 +21,11 @@
 #'   refresh = "Refresh page",
 #'   links = c(
 #'     "https://department-for-education.shinyapps.io/dfe-shiny-template/",
-#'     "https://department-for-education.shinyapps.io/dfe-shiny-template-overflow/" # nolint: [line_length_linter]
+#'     "https://department-for-education.shinyapps.io/dfe-shiny-template-overflow/"
 #'   ),
 #'   publication_name = "Explore Education Statistics Publication",
 #'   publication_link =
-#'     "https://explore-education-statistics.service.gov.uk/find-statistics/pupil-attendance-in-schools" # nolint: [line_length_linter]
+#'     "https://explore-education-statistics.service.gov.uk/find-statistics/apprenticeships"
 #' )
 #'
 custom_disconnect_message <- function(refresh = "Refresh page",

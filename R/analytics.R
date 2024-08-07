@@ -49,7 +49,7 @@ init_analytics <- function(ga_code) {
     backed those up before over-writing.")
     user_input <- readline(
       prompt = "Are you happy to overwrite the existing analytics script (y/N) "
-      ) |>
+    ) |>
       stringr::str_trim()
     if (user_input %in% c("y", "Y")) {
       write_out <- TRUE
