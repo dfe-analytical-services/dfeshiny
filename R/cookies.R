@@ -1,4 +1,4 @@
-#' dfe_cookie_script
+#' dfe_cookies_script
 #'
 #' Calls in JavaScript dependencies to the shiny app used to set and unset the
 #' cookies. Function should be placed in the ui.R script.
@@ -10,7 +10,7 @@
 #' @family cookies
 #' @examples
 #' if (interactive()) {
-#'   # This example shows how to use the full family of cookie functions together
+#'   # This example shows how to use the full family of cookies functions together
 #'   # This will be in your global.R script =====================================
 #'
 #'   library(shiny)
@@ -23,8 +23,8 @@
 #'   ui <- fluidPage(
 #'     # Place these lines above your header ------------------------------------
 #'     useShinyjs(),
-#'     dfe_cookie_script(),
-#'     cookie_banner_ui(name = "My DfE R-Shiny data dashboard"),
+#'     dfe_cookies_script(),
+#'     cookies_banner_ui(name = "My DfE R-Shiny data dashboard"),
 #'
 #'     # Place the cookies panel under the header but in the main content -------
 #'     cookies_panel_ui(google_analytics_key = google_analytics_key)
@@ -34,7 +34,7 @@
 #'
 #'   server <- function(input, output, session) {
 #'     # Server logic for the pop up banner, can be placed anywhere in server.R -
-#'     output$cookie_status <- dfeshiny::cookie_banner_server(
+#'     output$cookies_status <- dfeshiny::cookies_banner_server(
 #'       input_cookies = reactive(input$cookies),
 #'       google_analytics_key = google_analytics_key,
 #'       parent_session = session
@@ -50,7 +50,7 @@
 #'   # How to run the minimal app given in this example =========================
 #'   shinyApp(ui, server)
 #' }
-dfe_cookie_script <- function() {
+dfe_cookies_script <- function() {
   shiny::tags$head(
     shiny::tags$script(
       src = paste0(
@@ -63,16 +63,16 @@ dfe_cookie_script <- function() {
   )
 }
 
-#' cookie_banner_ui
+#' cookies_banner_ui
 #'
 #' @description
 #' This function provides a cookie authorisation banner on DfE R-Shiny
 #' dashboards for users to be able to accept or reject cookies. The server side
-#' functionality is provided by cookie_banner_server(), whilst users will also
-#' need to include the dfe_cookie_script() function in their ui.R file.
+#' functionality is provided by cookies_banner_server(), whilst users will also
+#' need to include the dfe_cookies_script() function in their ui.R file.
 #'
-#' @param id Shiny tag shared with cookie_banner_server(), can be any string set
-#' by the user as long as it matches the id in the cookie_banner_server()
+#' @param id Shiny tag shared with cookies_banner_server(), can be any string set
+#' by the user as long as it matches the id in the cookies_banner_server()
 #' @param name Name of the dashboard on which the cookie authorisation is being
 #' applied
 #'
@@ -80,14 +80,14 @@ dfe_cookie_script <- function() {
 #' @return shiny::tags$div()
 #' @export
 #' @inherit cookies examples
-cookie_banner_ui <- function(id = "cookies_banner", name = "DfE R-Shiny dashboard template") {
+cookies_banner_ui <- function(id = "cookies_banner", name = "DfE R-Shiny dashboard template") {
   shiny::tags$div(
-    id = shiny::NS(id, "cookie_div"),
+    id = shiny::NS(id, "cookies_div"),
     class = "govuk-cookie-banner",
     `data-nosnippet role` = "region",
     `aria-label` = "Cookies on name",
     shiny::tags$div(
-      id = shiny::NS(id, "cookie_main"),
+      id = shiny::NS(id, "cookies_main"),
       class = "govuk-cookie-banner__message govuk-width-container",
       shiny::tags$div(
         class = "govuk-grid-row",
@@ -114,15 +114,15 @@ cookie_banner_ui <- function(id = "cookies_banner", name = "DfE R-Shiny dashboar
       shiny::tags$div(
         class = "govuk-button-group",
         shinyGovstyle::button_Input(
-          shiny::NS(id, "cookie_accept"),
+          shiny::NS(id, "cookies_accept"),
           "Accept analytics cookies"
         ),
         shinyGovstyle::button_Input(
-          shiny::NS(id, "cookie_reject"),
+          shiny::NS(id, "cookies_reject"),
           "Reject analytics cookies"
         ),
         shiny::actionLink(
-          shiny::NS(id, "cookie_link"),
+          shiny::NS(id, "cookies_link"),
           "View cookie information"
         )
       )
@@ -130,24 +130,24 @@ cookie_banner_ui <- function(id = "cookies_banner", name = "DfE R-Shiny dashboar
   )
 }
 
-#' cookie_banner_server
+#' cookies_banner_server
 #'
 #' @description
-#' cookie_banner_server() provides the server module to be used alongside
-#' cookie_banner_ui(). Place cookie_banner_server() as a call in your server.R
+#' cookies_banner_server() provides the server module to be used alongside
+#' cookies_banner_ui(). Place cookies_banner_server() as a call in your server.R
 #' file to provide the server functions to control users being able to accept or
 #' reject cookie consent for the provision of Google Analytics tracking on DfE
 #' R-Shiny dashboards.
 #'
-#' @param id Shiny tag shared with cookie_banner_ui(), can be any string set by
-#' the user as long as it matches the id in the cookie_banner_ui()
+#' @param id Shiny tag shared with cookies_banner_ui(), can be any string set by
+#' the user as long as it matches the id in the cookies_banner_ui()
 #' @param input_cookies The cookie input passed from cookies.js (should always
 #' be `reactive(input$cookies)`)
 #' @param parent_session This should be the R Shiny app session, expect it to
 #' always be `parent_session = session`
 #' @param google_analytics_key Provide the GA 10 digit key of the form
 #' "ABCDE12345"
-#' @param cookie_link_panel name of the navlistPanel that the cookie banner
+#' @param cookies_link_panel name of the navlistPanel that the cookie banner
 #' provides a link to, usually "cookies_panel_ui"
 #'
 #' @family cookies
@@ -155,12 +155,12 @@ cookie_banner_ui <- function(id = "cookies_banner", name = "DfE R-Shiny dashboar
 #' @export
 #'
 #' @inherit cookies examples
-cookie_banner_server <- function(
+cookies_banner_server <- function(
     id = "cookies_banner",
     input_cookies,
     parent_session,
     google_analytics_key = NULL,
-    cookie_link_panel = "cookies_panel_ui") {
+    cookies_link_panel = "cookies_panel_ui") {
   shiny::moduleServer(id, function(input, output, session) {
     if (is.null(google_analytics_key)) {
       warning("Please provide a valid Google Analytics key")
@@ -168,9 +168,9 @@ cookie_banner_server <- function(
     shiny::observeEvent(input_cookies(), {
       if (!is.null(input_cookies())) {
         if (!("dfe_analytics" %in% names(input_cookies()))) {
-          shinyjs::show(id = "cookie_main")
+          shinyjs::show(id = "cookies_main")
         } else {
-          shinyjs::hide(id = "cookie_main")
+          shinyjs::hide(id = "cookies_main")
           msg <- list(
             name = "dfe_analytics",
             value = input_cookies()$dfe_analytics
@@ -186,52 +186,52 @@ cookie_banner_server <- function(
           }
         }
       } else {
-        shinyjs::hide(id = "cookie_main", asis = TRUE)
-        shinyjs::toggle(id = "cookie_div", asis = TRUE)
+        shinyjs::hide(id = "cookies_main", asis = TRUE)
+        shinyjs::toggle(id = "cookies_div", asis = TRUE)
       }
     })
 
     # Check for the cookies being authorised
-    shiny::observeEvent(input$cookie_accept, {
+    shiny::observeEvent(input$cookies_accept, {
       msg <- list(
         name = "dfe_analytics",
         value = "granted"
       )
       session$sendCustomMessage("cookie-set", msg)
       session$sendCustomMessage("analytics-consent", msg)
-      shinyjs::hide(id = "cookie_main", asis = TRUE)
+      shinyjs::hide(id = "cookies_main", asis = TRUE)
     })
 
     # Check for the cookies being rejected
-    shiny::observeEvent(input$cookie_reject, {
+    shiny::observeEvent(input$cookies_reject, {
       msg <- list(
         name = "dfe_analytics",
         value = "denied"
       )
       session$sendCustomMessage("cookie-set", msg)
       session$sendCustomMessage("analytics-consent", msg)
-      shinyjs::hide(id = "cookie_main", asis = TRUE)
+      shinyjs::hide(id = "cookies_main", asis = TRUE)
     })
 
-    shiny::observeEvent(input$cookie_link, {
+    shiny::observeEvent(input$cookies_link, {
       # Need to link here to where further info is located.  You can
       # updateTabsetPanel to have a cookie page for instance
       shiny::updateTabsetPanel(
         session = parent_session,
         "navlistPanel",
-        selected = cookie_link_panel
+        selected = cookies_link_panel
       )
     })
 
     return(shiny::renderText({
-      cookie_text_stem <- "You have chosen to"
-      cookie_text_tail <- "the use of cookies on this website."
+      cookies_text_stem <- "You have chosen to"
+      cookies_text_tail <- "the use of cookies on this website."
       if (!is.null(input_cookies())) {
         if ("dfe_analytics" %in% names(input_cookies())) {
           if (input_cookies()$dfe_analytics == "granted") {
-            paste(cookie_text_stem, "accept", cookie_text_tail)
+            paste(cookies_text_stem, "accept", cookies_text_tail)
           } else {
-            paste(cookie_text_stem, "reject", cookie_text_tail)
+            paste(cookies_text_stem, "reject", cookies_text_tail)
           }
         }
       } else {
