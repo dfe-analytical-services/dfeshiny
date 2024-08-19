@@ -244,15 +244,18 @@ cookies_banner_server <- function(
 #' init_cookies
 #'
 #' @description
-#' init_cookies() creates a local copy of the JavaScript file
-#' required for cookies to work.
-#' It checks whether there is already a www/ folder and if not, it creates one.
-#' It then checks whether the cookie-consent.js file exists in the www/ folder.
-#' If the file exists, it will print a message in the console to let you know.
-#' If the file doesn't exist, it will pull a copy from the GitHub repo.
-#' If it cannot connect to the repo then it will print "Download failed".
-#' No input parameters are required
-#' Call init_cookies() in the console to run the function
+#' init_cookies() creates a local copy of the JavaScript file required for
+#' cookies to work. It checks whether there is already a www/ folder and if
+#' not, it creates one. It then checks whether the cookie-consent.js file
+#' exists in the www/ folder. If the file exists, it will print a message in
+#' the console to let you know it has overwritten it. If the file doesn't
+#' exist, it will make one and confirm it has done so.
+#'
+#' No input parameters are required, run `init_cookies()` in the console to run
+#' the function
+#'
+#' @param create_file Boolean, TRUE by default, if FALSE then will print to
+#' the console rather than create a new file
 #'
 #' @return NULL
 #' @export
@@ -261,29 +264,58 @@ cookies_banner_server <- function(
 #' if (interactive()) {
 #'   init_cookies()
 #' }
-init_cookies <- function() {
-  sub_dir <- "www"
-
-  output_dir <- file.path(sub_dir)
-
-  if (!dir.exists(output_dir)) {
-    dir.create(output_dir)
-  } else {
-    message("www folder already exists!")
+init_cookies <- function(create_file = TRUE) {
+  if (!is.logical(create_file)) {
+    stop("create_file must always be TRUE or FALSE")
   }
 
-  github_area <- "https://raw.githubusercontent.com/dfe-analytical-services/"
+  # Create the JS for the file ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  cookie_js <- "function getCookies(){
+  var res = Cookies.get();
+  Shiny.setInputValue('cookies', res);
+}
 
-  tryCatch(
-    utils::download.file(
-      url = paste0(github_area, "dfeshiny/main/inst/cookie-consent.js"),
-      destfile = "www/cookie-consent.js"
-    ),
-    error = function(e) {
-      return("Download failed")
-    },
-    message("Cookie script updated")
-  )
+Shiny.addCustomMessageHandler('cookie-set', function(msg){
+  Cookies.set(msg.name, msg.value);
+  getCookies();
+})
+
+Shiny.addCustomMessageHandler('cookie-clear', function(msg){
+  Cookies.remove(msg.name);
+  getCookies();
+})
+
+$(document).on('shiny:connected', function(ev){
+  getCookies();
+})
+
+Shiny.addCustomMessageHandler('analytics-consent', function(msg){
+  gtag('consent', 'update', {
+    'analytics_storage': msg.value
+  });
+})"
+  # End of JS for the file ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+  if (create_file == TRUE) {
+    sub_dir <- "www"
+
+    output_dir <- file.path(sub_dir)
+
+    if (!dir.exists(output_dir)) {
+      dir.create(output_dir)
+    }
+
+    if (file.exists("www/cookie-consent.js")) {
+      message("www/cookie-consent.js already exists, updating file...")
+      cat(cookie_js, file = "www/cookie-consent.js", sep = "\n")
+      message("...file successfully updated")
+    } else {
+      cat(cookie_js, file = "www/cookie-consent.js", sep = "\n")
+      message("Created cookies script as www/cookie-consent.js")
+    }
+  } else {
+    cat(cookie_js, file = "", sep = "\n")
+  }
 }
 
 #' cookies_panel_ui
