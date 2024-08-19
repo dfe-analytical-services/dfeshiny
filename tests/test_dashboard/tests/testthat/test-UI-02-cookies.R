@@ -10,30 +10,38 @@ app <- AppDriver$new(
   expect_values_screenshot_args = FALSE
 )
 
-app$wait_for_idle(5)
+app$wait_for_idle(50)
 
 app$click("cookies_banner-cookies_accept")
+app$wait_for_idle(50)
+
 test_that("Cookies accepted banner", {
-  # Capture initial values
   app$expect_values()
 })
 
 app$click("cookies_banner-cookies_reject")
+app$wait_for_idle(50)
+
 test_that("Cookies rejected banner", {
-  # Capture initial values
   app$expect_values()
 })
 
 app$set_inputs(`cookies_panel-cookies_analytics` = "yes")
+app$wait_for_idle(50)
+
 app$click("cookies_panel-submit_btn")
+app$wait_for_idle(50)
+
 test_that("Cookies accepted page", {
-  # Capture initial values
   app$expect_values()
 })
 
 app$set_inputs(`cookies_panel-cookies_analytics` = "no")
+app$wait_for_idle(50)
+
 app$click("cookies_panel-submit_btn")
+app$wait_for_idle(50)
+
 test_that("Cookies rejected page", {
-  # Capture initial values
   app$expect_values()
 })
