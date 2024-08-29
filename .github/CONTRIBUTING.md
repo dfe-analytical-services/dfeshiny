@@ -67,3 +67,5 @@ shinytest2::test_app("tests/test_dashboard") # important as not currently ran in
 styler::style_pkg()
 lintr::lint_package()
 ```
+
+If you get a lot of lintr errors, particularly around things not being defined, make sure to load the package first using Ctrl-Shft-L or `devtools::load_all(".")`, then run again. There's a known issue with lintr not picking up on bindings until packages are loaded
