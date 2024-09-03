@@ -34,13 +34,13 @@ For more information see the [roxygen2 documentation on declaring dependencies](
 
 `usethis::use_r(name = <script_name>)`
 
-This will create a new script within the package R/ folder.
+This will create a new blank script within the package R/ folder.
 
 ## Creating a new function test script
 
 `usethis::use_test(name = <script_name>)`
 
-This will create a new test script within the package testthat/ folder.
+This will create a new blank test script within the package testthat/ folder.
 
 ## Updating the package version
 

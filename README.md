@@ -19,14 +19,14 @@ If you are using
 project (recommended):
 
 ``` r
-renv::install("dfe-analytical-services/dfeR")
+renv::install("dfe-analytical-services/dfeshiny")
 ```
 
 Otherwise:
 
 ``` r
 # install.packages("devtools")
-devtools::install_github("dfe-analytical-services/dfeR")
+devtools::install_github("dfe-analytical-services/dfeshiny")
 ```
 
 ## Installing functionality in development from a branch
