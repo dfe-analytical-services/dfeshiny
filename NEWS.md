@@ -2,15 +2,29 @@
 
 ## New features
 
-* `init_analytics()` to add the necessary analytics script into a repository
+* `init_analytics()` to add the necessary analytics script into a repository.
 
 * New cookies module for the panel page added, completing the cookies family of
 functions, shared examples and a vignette to walk through how to use them.
+
+## Breaking changes
+
+* Ironed out inconsistencies in cookies family to use plural of 'cookies'
+consistently. Backwards compatibility has not been maintained as we are still 
+in early development and adoption is low.
+  * `cookie_banner_server()` is now `cookies_banner_server()`
+  * `cookie_banner_ui()` is now `cookie_banner_ui()`
+  * `dfe_cookie_script()` is now `dfe_cookies_script()`
+
+* Have removed dependency on using `shiny::tabPanel()` within `support_panel()`
+and instead return only the content
 
 ## Improvements
 
 * Automated testing of test dashboard using GitHub actions
 * Fixed favicons in pkgdown site
+* Moved code for `init_cookies()` to inline, to prevent dependency on main 
+GitHub branch
 
 # dfeshiny 0.2.0
 
