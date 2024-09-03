@@ -17,14 +17,16 @@ in early development and adoption is low.
   * `dfe_cookie_script()` is now `dfe_cookies_script()`
 
 * Have removed dependency on using `shiny::tabPanel()` within `support_panel()`
-and instead return only the content
+so now it will return only the content rather than a tabPanel.
 
 ## Improvements
 
-* Automated testing of test dashboard using GitHub actions
-* Fixed favicons in pkgdown site
+* Automated testing of test dashboard using GitHub actions.
+* Fixed favicons in pkgdown site.
 * Moved code for `init_cookies()` to inline, to prevent dependency on main 
-GitHub branch
+GitHub branch.
+* Added separate contributing guidelines to make the README more user focused.
+* Added issues and PR templates.
 
 # dfeshiny 0.2.0
 
@@ -44,7 +46,7 @@ implement the associated functionality. The server part is
 ## Improvements
 
 * Implemented basic unit testing (currently just on e-mail validation) and UI 
-testing using a test dashboard;
+testing using a test dashboard.
 
 * Instructions within the package README.md on how to install `dfeshiny` have
 been updated.
