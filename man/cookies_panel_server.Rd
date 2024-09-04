@@ -6,7 +6,7 @@
 \usage{
 cookies_panel_server(
   id = "cookies_panel",
-  input_cookies = reactive(input$cookies),
+  input_cookies,
   google_analytics_key = NULL
 )
 }
@@ -15,7 +15,7 @@ cookies_panel_server(
 the user as long as it matches the id in the cookies_panel_ui()}
 
 \item{input_cookies}{The cookie input passed from cookies.js (should always
-be \verb{reactive(input$cookies))}}
+be \code{reactive(input$cookies)})}
 
 \item{google_analytics_key}{Provide the GA 10 digit key of the form
 "ABCDE12345"}
@@ -26,43 +26,64 @@ alongside cookies_panel_ui().
 }
 \examples{
 if (interactive()) {
-  # This example shows how to use the full family of cookie functions together
-  # This will be in your global.R script =====================================
+  # This example shows how to use the full family of cookies functions together
+  # This will be in your global.R script ===================================
 
   library(shiny)
   library(shinyjs)
   library(dfeshiny)
-  ga_key <- "ABCDE12345"
+  google_analytics_key <- "ABCDE12345"
 
-  # This will be what is in your ui.R script =================================
+  # This will be what is in your ui.R script ===============================
 
   ui <- fluidPage(
-    # Place these lines above your header ------------------------------------
-    dfe_cookie_script(),
+    # Place these lines above your header ----------------------------------
     useShinyjs(),
-    cookie_banner_ui(name = "My DfE R-Shiny data dashboard"),
+    dfe_cookies_script(),
+    cookies_banner_ui(name = "My DfE R-Shiny data dashboard"),
 
-    # Place the cookies panel under the header but in the main content -------
-    cookies_panel_ui(google_analytics_key = ga_key)
+    # Place the cookies panel under the header but in the main content -----
+    # Example of placing as a panel within navlistPanel
+    shiny::navlistPanel(
+      "",
+      id = "navlistPanel",
+      widths = c(2, 8),
+      well = FALSE,
+      ## Cookies panel -----------------------------------------------------
+      shiny::tabPanel(
+        value = "cookies_panel_ui",
+        "Cookies",
+        cookies_panel_ui(google_analytics_key = google_analytics_key)
+      )
+    )
   )
 
-  # This will be in your server.R file =======================================
+  # This will be in your server.R file =====================================
 
   server <- function(input, output, session) {
     # Server logic for the pop up banner, can be placed anywhere in server.R -
-    output$cookie_status <- dfeshiny::cookie_banner_server(
+    output$cookies_status <- dfeshiny::cookies_banner_server(
       input_cookies = reactive(input$cookies),
-      google_analytics_key = ga_key
+      google_analytics_key = google_analytics_key,
+      parent_session = session
     )
 
-    # Server logic for the panel, can be placed anywhere in server.R ---------
+    # Server logic for the panel, can be placed anywhere in server.R -------
     cookies_panel_server(
       input_cookies = reactive(input$cookies),
-      google_analytics_key = ga_key
+      google_analytics_key = google_analytics_key
     )
   }
 
-  # How to run the minimal app given in this example =========================
+  # How to run the minimal app given in this example =======================
   shinyApp(ui, server)
 }
 }
+\seealso{
+Other cookies: 
+\code{\link{cookies}},
+\code{\link{cookies_banner_server}()},
+\code{\link{cookies_banner_ui}()},
+\code{\link{cookies_panel_ui}()}
+}
+\concept{cookies}

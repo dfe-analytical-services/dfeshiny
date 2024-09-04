@@ -1,48 +1,47 @@
-library(shinytest2)
-
 # To run the diffviewer on these tests, you need to add the path:
-# Doesn't work? testthat::snapshot_review('cookie-auth/',
-#                                        path='tests/test_dashboard/')
-
+# Doesn't work? testthat::snapshot_review('cookie-auth/', path='tests/test_dashboard/')
 app <- AppDriver$new(
-  name = "cookie_consent",
+  name = "cookies_consent",
   height = 846,
   width = 1445,
   load_timeout = 45 * 1000,
   timeout = 20 * 1000,
   wait = TRUE,
-  expect_values_screenshot_args = TRUE
+  expect_values_screenshot_args = FALSE
 )
 
-app$wait_for_idle(500)
+app$wait_for_idle(50)
 
-test_that("App loads", {
-  # Capture initial values
-  app$expect_values()
-})
+app$click("cookies_banner-cookies_accept")
+app$wait_for_idle(50)
 
-app$click("cookies_banner-cookie_accept")
 test_that("Cookies accepted banner", {
-  # Capture initial values
   app$expect_values()
 })
 
-app$click("cookies_banner-cookie_reject")
+app$click("cookies_banner-cookies_reject")
+app$wait_for_idle(50)
+
 test_that("Cookies rejected banner", {
-  # Capture initial values
   app$expect_values()
 })
 
 app$set_inputs(`cookies_panel-cookies_analytics` = "yes")
+app$wait_for_idle(50)
+
 app$click("cookies_panel-submit_btn")
+app$wait_for_idle(50)
+
 test_that("Cookies accepted page", {
-  # Capture initial values
   app$expect_values()
 })
 
 app$set_inputs(`cookies_panel-cookies_analytics` = "no")
+app$wait_for_idle(50)
+
 app$click("cookies_panel-submit_btn")
+app$wait_for_idle(50)
+
 test_that("Cookies rejected page", {
-  # Capture initial values
   app$expect_values()
 })

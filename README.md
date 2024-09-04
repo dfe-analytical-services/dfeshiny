@@ -1,18 +1,33 @@
+# dfeshiny <a href="https://dfe-analytical-services.github.io/dfeshiny/"><img src="man/figures/logo.png" align="right" height="120" alt="dfeshiny website" /></a>
+
 <!-- badges: start -->
 [![R-CMD-check](https://github.com/dfe-analytical-services/dfeshiny/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/dfe-analytical-services/dfeshiny/actions/workflows/R-CMD-check.yaml)
 [![Codecov test coverage](https://codecov.io/gh/dfe-analytical-services/dfeshiny/branch/main/graph/badge.svg)](https://app.codecov.io/gh/dfe-analytical-services/dfeshiny?branch=main)
+[![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
 <!-- badges: end -->
-
-<a href="http://dfe-analytical-services.github.io/dfeshiny/"><img src="man/figures/dfeshiny.png" align="right" width="120" /></a>
-
-# dfeshiny  
 
 An R package to support analysts in developing official DfE dashboards and help 
 them meet the necessary standards required of public facing government services.
 
-## Installing the package
+## Installation
 
-To install, run `renv::install("dfe-analytical-services/dfeshiny")`.
+dfeshiny is not currently available on CRAN. For the time being you can
+install the development version from GitHub.
+
+If you are using
+[renv](https://rstudio.github.io/renv/articles/renv.html) in your
+project (recommended):
+
+``` r
+renv::install("dfe-analytical-services/dfeshiny")
+```
+
+Otherwise:
+
+``` r
+# install.packages("devtools")
+devtools::install_github("dfe-analytical-services/dfeshiny")
+```
 
 ## Installing functionality in development from a branch
 
@@ -36,11 +51,11 @@ If this works, then you will need to look for where that "GITHUB_PAT" variable i
 
 For analytics to function on your dashboard, you will need to:
 
-- request a Google Analytics key from the [Explore Educaion Statisics platforms team](mailto:explore.statistics@education.gov.uk)
+- request a Google Analytics key from the [explore education statisics platforms team](mailto:explore.statistics@education.gov.uk)
 - create a html file with the javascript required for your dashboard to connect to Google Analytics
 - add the line: `tags$head(includeHTML(("google-analytics.html"))),` to the ui.R file.
 
-To create the latter, we provide the function `dfeshiny::init_analytics()`. You should run this code from the R console providing your Google Analytics code as follows (replacing `ABCDE12345` with the code obtained from the [Explore Education Statistics platforms](explore.statistics@education.gov.uk) team):
+To create the latter, we provide the function `dfeshiny::init_analytics()`. You should run this code from the R console providing your Google Analytics code as follows (replacing `ABCDE12345` with the code obtained from the [explore education statistics platforms](explore.statistics@education.gov.uk) team):
 
 ```
 init_analytics("ABCDE12345")
@@ -74,72 +89,9 @@ should work well.
 
 ## Contributing
 
-Try and make use of the [usethis](https://usethis.r-lib.org/) package wherever possible.
+Ideas for dfeshiny should first be raised as a [GitHub
+issue](https://github.com/dfe-analytical-services/dfeshiny) after which
+anyone is free to write the code and create a pull request for review.
 
-When you initially clone the package, the first thing you'll need to do is install [devtools](https://devtools.r-lib.org/):
-
-```
-install.packages("devtools")
-```
-
-Then to load in the package in its current form:
-
-```
-devtools::load_all()
-```
-
-### Adding a package/dependency
-
-`usethis::use_package(<package_name>)`
-
-This will create a new script within the package R/ folder.
-
-Note that when adding a function from another package into one of the dfeshiny functions you will need to explicitly state the package in the function call, e.g.:
-
-```package::function()```
-
-Alternatively, if there's a lot of uses of a single function within one of our R scripts, you can call that function once at the top of the R script, e.g:
-
-```
-@' importFrom package function
-```
-
-For more information see the [roxygen2 documentation on declaring dependencies](https://roxygen2.r-lib.org/articles/namespace.html).
-
-### Creating a new function script
-
-`usethis::use_r(name = <script_name>)`
-
-This will create a new script within the package R/ folder.
-
-### Creating a new function test script
-
-`usethis::use_test(name = <script_name>)`
-
-This will create a new test script within the package testthat/ folder.
-
-### Updating the package version
-
-Once changes have been completed, reviewed and are ready for use in the wild, you
-can increment the package version using:
-
-`usethis::use_version()`
-
-Once you've incremented the version number, it'll add a new heading to news.md.
-
-Add a summary under news.md and then accept it's offer to commit on your behalf.
-
-Once pushed and on the main branch, create a new release in GitHub itself.
-
-### Running tests
-
-You should run the following lines to test the package locally:
-``` 
-# To check functionality
-devtools::check() # Ctrl-Shft-E
-shinytest2::test_app("tests/test_dashboard") # important as not currently ran in CI checks, need to move this over
-
-# For code styling
-styler::style_pkg() 
-lintr::lint_package()
-```
+For more details on contributing to dfeshiny, see our [contributing
+guidelines](https://dfe-analytical-services.github.io/dfeshiny/CONTRIBUTING.html).
