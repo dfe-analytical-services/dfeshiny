@@ -20,6 +20,7 @@
 <meta property="og:title" content="DfE R-Shiny Standards">
 <meta name="description" content="R package containing preferred methods for creating official DfE R-Shiny dashboards.">
 <meta property="og:description" content="R package containing preferred methods for creating official DfE R-Shiny dashboards.">
+<meta property="og:image" content="https://dfe-analytical-services.github.io/dfeshiny/logo.png">
 </head>
 <body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
@@ -29,7 +30,7 @@
 
     <a class="navbar-brand me-2" href="index.html">dfeshiny</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -42,7 +43,7 @@
 <li class="nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
-<li><a class="dropdown-item" href="articles/implementing-cookies.html">Implementing cookie consent</a></li>
+<li><a class="dropdown-item" href="articles/implementing-cookies.html">Implementing cookies consent</a></li>
   </ul>
 </li>
 <li class="nav-item"><a class="nav-link" href="news/index.html">Changelog</a></li>
@@ -58,16 +59,26 @@
   </div>
 </nav><div class="container template-home">
 <div class="row">
-  <main id="main" class="col-md-9">
-<p><a href="http://dfe-analytical-services.github.io/dfeshiny/" class="external-link"><img src="reference/figures/dfeshiny.png" align="right" width="120"></a></p>
-<div class="section level1">
-<div class="page-header"><h1 id="dfeshiny">dfeshiny<a class="anchor" aria-label="anchor" href="#dfeshiny"></a>
-</h1></div>
+  <main id="main" class="col-md-9"><div class="section level1">
+<div class="page-header">
+<img src="logo.png" class="logo" alt=""><h1 id="dfeshiny-">dfeshiny 
+<a class="anchor" aria-label="anchor" href="#dfeshiny-"></a>
+</h1>
+</div>
+<!-- badges: start -->
+
 <p>An R package to support analysts in developing official DfE dashboards and help them meet the necessary standards required of public facing government services.</p>
 <div class="section level2">
-<h2 id="installing-the-package">Installing the package<a class="anchor" aria-label="anchor" href="#installing-the-package"></a>
+<h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
-<p>To install, run <code>renv::install("dfe-analytical-services/dfeshiny")</code>.</p>
+<p>dfeshiny is not currently available on CRAN. For the time being you can install the development version from GitHub.</p>
+<p>If you are using <a href="https://rstudio.github.io/renv/articles/renv.html" class="external-link">renv</a> in your project (recommended):</p>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">renv</span><span class="fu">::</span><span class="fu">install</span><span class="op">(</span><span class="st">"dfe-analytical-services/dfeshiny"</span><span class="op">)</span></span></code></pre></div>
+<p>Otherwise:</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># install.packages("devtools")</span></span>
+<span><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"dfe-analytical-services/dfeshiny"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="installing-functionality-in-development-from-a-branch">Installing functionality in development from a branch<a class="anchor" aria-label="anchor" href="#installing-functionality-in-development-from-a-branch"></a>
@@ -91,12 +102,12 @@
 </h3>
 <p>For analytics to function on your dashboard, you will need to:</p>
 <ul>
-<li>request a Google Analytics key from the <a href="mailto:explore.statistics@education.gov.uk">Explore Educaion Statisics platforms team</a>
+<li>request a Google Analytics key from the <a href="mailto:explore.statistics@education.gov.uk">explore education statisics platforms team</a>
 </li>
 <li>create a html file with the javascript required for your dashboard to connect to Google Analytics</li>
 <li>add the line: <code>tags$head(includeHTML(("google-analytics.html"))),</code> to the ui.R file.</li>
 </ul>
-<p>To create the latter, we provide the function <code><a href="reference/init_analytics.html">dfeshiny::init_analytics()</a></code>. You should run this code from the R console providing your Google Analytics code as follows (replacing <code>ABCDE12345</code> with the code obtained from the <a href="explore.statistics@education.gov.uk">Explore Education Statistics platforms</a> team):</p>
+<p>To create the latter, we provide the function <code><a href="reference/init_analytics.html">dfeshiny::init_analytics()</a></code>. You should run this code from the R console providing your Google Analytics code as follows (replacing <code>ABCDE12345</code> with the code obtained from the <a href="explore.statistics@education.gov.uk">explore education statistics platforms</a> team):</p>
 <pre><code><span><span class="fu"><a href="reference/init_analytics.html">init_analytics</a></span><span class="op">(</span><span class="st">"ABCDE12345"</span><span class="op">)</span></span></code></pre>
 <p>This will create the file <a href="google-analytics.html">google-analytics.html</a> within the home directory of your R project. This html file can be edited to add customised analytics recorders for different shiny elements in your dashboard. Feel free to contact our team if you need support in adding additional functionality.</p>
 </div>
@@ -122,58 +133,10 @@
 <div class="section level2">
 <h2 id="contributing">Contributing<a class="anchor" aria-label="anchor" href="#contributing"></a>
 </h2>
-<p>Try and make use of the <a href="https://usethis.r-lib.org/" class="external-link">usethis</a> package wherever possible.</p>
-<p>When you initially clone the package, the first thing you’ll need to do is install <a href="https://devtools.r-lib.org/" class="external-link">devtools</a>:</p>
-<pre><code><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"devtools"</span><span class="op">)</span></span></code></pre>
-<p>Then to load in the package in its current form:</p>
-<pre><code><span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">load_all</span><span class="op">(</span><span class="op">)</span></span></code></pre>
-<div class="section level3">
-<h3 id="adding-a-packagedependency">Adding a package/dependency<a class="anchor" aria-label="anchor" href="#adding-a-packagedependency"></a>
-</h3>
-<p><code>usethis::use_package(&lt;package_name&gt;)</code></p>
-<p>This will create a new script within the package R/ folder.</p>
-<p>Note that when adding a function from another package into one of the dfeshiny functions you will need to explicitly state the package in the function call, e.g.:</p>
-<p><code>package::function()</code></p>
-<p>Alternatively, if there’s a lot of uses of a single function within one of our R scripts, you can call that function once at the top of the R script, e.g:</p>
-<pre><code>@' importFrom package function</code></pre>
-<p>For more information see the <a href="https://roxygen2.r-lib.org/articles/namespace.html" class="external-link">roxygen2 documentation on declaring dependencies</a>.</p>
-</div>
-<div class="section level3">
-<h3 id="creating-a-new-function-script">Creating a new function script<a class="anchor" aria-label="anchor" href="#creating-a-new-function-script"></a>
-</h3>
-<p><code>usethis::use_r(name = &lt;script_name&gt;)</code></p>
-<p>This will create a new script within the package R/ folder.</p>
-</div>
-<div class="section level3">
-<h3 id="creating-a-new-function-test-script">Creating a new function test script<a class="anchor" aria-label="anchor" href="#creating-a-new-function-test-script"></a>
-</h3>
-<p><code>usethis::use_test(name = &lt;script_name&gt;)</code></p>
-<p>This will create a new test script within the package testthat/ folder.</p>
-</div>
-<div class="section level3">
-<h3 id="updating-the-package-version">Updating the package version<a class="anchor" aria-label="anchor" href="#updating-the-package-version"></a>
-</h3>
-<p>Once changes have been completed, reviewed and are ready for use in the wild, you can increment the package version using:</p>
-<p><code>usethis::use_version()</code></p>
-<p>Once you’ve incremented the version number, it’ll add a new heading to news.md.</p>
-<p>Add a summary under news.md and then accept it’s offer to commit on your behalf.</p>
-<p>Once pushed and on the main branch, create a new release in GitHub itself.</p>
-</div>
-<div class="section level3">
-<h3 id="running-tests">Running tests<a class="anchor" aria-label="anchor" href="#running-tests"></a>
-</h3>
-<p>You should run the following lines to test the package locally:</p>
-<pre><code><span><span class="co"># To check functionality</span></span>
-<span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">check</span><span class="op">(</span><span class="op">)</span> <span class="co"># Ctrl-Shft-E</span></span>
-<span><span class="fu">shinytest2</span><span class="fu">::</span><span class="fu"><a href="https://rstudio.github.io/shinytest2/reference/test_app.html" class="external-link">test_app</a></span><span class="op">(</span><span class="st">"tests/test_dashboard"</span><span class="op">)</span> <span class="co"># important as not currently ran in CI checks, need to move this over</span></span>
-<span></span>
-<span><span class="co"># For code styling</span></span>
-<span><span class="fu">styler</span><span class="fu">::</span><span class="fu"><a href="https://styler.r-lib.org/reference/style_pkg.html" class="external-link">style_pkg</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="fu">lintr</span><span class="fu">::</span><span class="fu">lint_package</span><span class="op">(</span><span class="op">)</span></span></code></pre>
+<p>Ideas for dfeshiny should first be raised as a <a href="https://github.com/dfe-analytical-services/dfeshiny" class="external-link">GitHub issue</a> after which anyone is free to write the code and create a pull request for review.</p>
+<p>For more details on contributing to dfeshiny, see our <a href="https://dfe-analytical-services.github.io/dfeshiny/CONTRIBUTING.html">contributing guidelines</a>.</p>
 </div>
 </div>
-</div>
-
   </main><aside class="col-md-3"><div class="license">
 <h2 data-toc-skip>License</h2>
 <ul class="list-unstyled">
@@ -182,6 +145,13 @@
 </ul>
 </div>
 
+<div class="community">
+<h2 data-toc-skip>Community</h2>
+<ul class="list-unstyled">
+<li><a href="CONTRIBUTING.html">Contributing guide</a></li>
+<li><a href="CODE_OF_CONDUCT.html">Code of conduct</a></li>
+</ul>
+</div>
 
 <div class="citation">
 <h2 data-toc-skip>Citation</h2>
@@ -204,6 +174,7 @@
 <ul class="list-unstyled">
 <li><a href="https://github.com/dfe-analytical-services/dfeshiny/actions/workflows/R-CMD-check.yaml" class="external-link"><img src="https://github.com/dfe-analytical-services/dfeshiny/actions/workflows/R-CMD-check.yaml/badge.svg" alt="R-CMD-check"></a></li>
 <li><a href="https://app.codecov.io/gh/dfe-analytical-services/dfeshiny?branch=main" class="external-link"><img src="https://codecov.io/gh/dfe-analytical-services/dfeshiny/branch/main/graph/badge.svg" alt="Codecov test coverage"></a></li>
+<li><a href="https://lifecycle.r-lib.org/articles/stages.html#experimental" class="external-link"><img src="https://img.shields.io/badge/lifecycle-experimental-orange.svg" alt="Lifecycle: experimental"></a></li>
 </ul>
 </div>
 

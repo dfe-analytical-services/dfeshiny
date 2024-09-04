@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Implementing cookie consent • dfeshiny</title>
+<title>Implementing cookies consent • dfeshiny</title>
 <!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
 <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png">
@@ -17,7 +17,7 @@
 <script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.4.2/css/all.min.css" rel="stylesheet">
 <link href="../deps/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet">
 <script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><link href="../extra.css" rel="stylesheet">
-<meta property="og:title" content="Implementing cookie consent">
+<meta property="og:title" content="Implementing cookies consent">
 </head>
 <body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
@@ -27,7 +27,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">dfeshiny</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -40,7 +40,7 @@
 <li class="active nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
-<li><a class="dropdown-item" href="../articles/implementing-cookies.html">Implementing cookie consent</a></li>
+<li><a class="dropdown-item" href="../articles/implementing-cookies.html">Implementing cookies consent</a></li>
   </ul>
 </li>
 <li class="nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
@@ -61,8 +61,7 @@
 
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
-
-      <h1>Implementing cookie consent</h1>
+      <img src="../logo.png" class="logo" alt=""><h1>Implementing cookies consent</h1>
             
       
 
@@ -81,71 +80,69 @@ the Google Analytics (or any additional custom) cookies.</p>
 cookie, then gaining user consent is a mandatory requirement.</p>
 <blockquote>
 <p>Note that to activate Google Analytics on your data dashboard, you
-will need to contact the Statistics Development team at <a href="mailto:explore.statistics@education.gov.uk">explore.statistics@education.gov.uk</a>
+will need to contact the explore education statistics platforms team at
+<a href="mailto:explore.statistics@education.gov.uk">explore.statistics@education.gov.uk</a>
 and request a Google Analytics key.</p>
 </blockquote>
 <p><code>dfeshiny</code> provides a standard Government Digital Service
-(GDS) compliant banner, a cookie information panel and the underlying
+(GDS) compliant banner, a cookies information panel and the underlying
 code required to allow end users to give or withhold their consent for
 cookies to be used. If they withhold their consent, then tracking with
 Google Analytics will be halted (note that this will lead to your
 analytics underestimating your user base to some degree).</p>
-<p>Implementing cookie control on your dashboard is handled by several
+<p>Implementing cookies control on your dashboard is handled by several
 functions in <code>dfeshiny</code>, with the process outlined below.</p>
-<p>The cookie control requires some underlying javascript to remove and
+<p>The cookies control requires some underlying javascript to remove and
 create cookies as well as switch Google Analytics on and off. This
 javascript needs including in your dashboard’s www/ folder, which can be
 achieved by running the following command from the R console in your
 dashboard project / repo:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">dfeshiny</span><span class="fu">::</span><span class="fu"><a href="../reference/init_cookies.html">init_cookies</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p>Before adding the cookie consent banner, we recommend adding your
-Google Analytics key as a variable to your dashboard’s <strong><a href="https://github.com/dfe-analytical-services/dfeshiny/blob/cookie-module/tests/test_dashboard/global.R" class="external-link">global.R</a></strong>
+<p>Before adding the cookies consent banner, we recommend adding your
+Google Analytics key as a variable to your dashboard’s <strong><a href="https://github.com/dfe-analytical-services/dfeshiny/blob/tests/test_dashboard/global.R" class="external-link">global.R</a></strong>
 file (replacing <code>ABCDE12345</code> below with the key provided by
 the Explore Education Statistics Platforms team):</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">google_analytics_key</span> <span class="op">&lt;-</span> <span class="st">"ABCDE12345"</span></span></code></pre></div>
 <p>You will then need to add the necessary code to your
 <strong>ui.R</strong> file to a) run the javascript
-(<code>dfe_cookie_script</code>), b) create the consent banner
-(<code>cookie_banner_ui</code>), editing the dashboard name to match
+(<code>dfe_cookies_script</code>), b) create the consent banner
+(<code>cookies_banner_ui</code>), editing the dashboard name to match
 your own and c) add a cookies information panel
 (<code>cookies_panel_ui</code>):</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">ui</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span>, <span class="va">session</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="fu">shiny</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html" class="external-link">fluidPage</a></span><span class="op">(</span></span>
 <span>    <span class="fu">shinyjs</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/shinyjs/man/useShinyjs.html" class="external-link">useShinyjs</a></span><span class="op">(</span><span class="op">)</span>,</span>
-<span>    <span class="fu">dfeshiny</span><span class="fu">::</span><span class="fu"><a href="../reference/cookies.html">dfe_cookie_script</a></span><span class="op">(</span><span class="op">)</span>,</span>
-<span>    <span class="fu">dfeshiny</span><span class="fu">::</span><span class="fu"><a href="../reference/cookie_banner_ui.html">cookie_banner_ui</a></span><span class="op">(</span></span>
-<span>      <span class="st">"cookie-banner"</span>,</span>
-<span>      <span class="st">"Your dashboard name"</span></span>
+<span>    <span class="fu">dfeshiny</span><span class="fu">::</span><span class="fu"><a href="../reference/cookies.html">dfe_cookies_script</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>    <span class="fu">dfeshiny</span><span class="fu">::</span><span class="fu"><a href="../reference/cookies_banner_ui.html">cookies_banner_ui</a></span><span class="op">(</span></span>
+<span>      name <span class="op">=</span> <span class="st">"Your dashboard name"</span></span>
 <span>    <span class="op">)</span>,</span>
 <span>    <span class="fu">shiny</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/navlistPanel.html" class="external-link">navlistPanel</a></span><span class="op">(</span></span>
 <span>      <span class="st">""</span>,</span>
 <span>      id <span class="op">=</span> <span class="st">"navlistPanel"</span>,</span>
 <span>      widths <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">8</span><span class="op">)</span>,</span>
 <span>      well <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span>      <span class="fu">dfeshiny</span><span class="fu">::</span><span class="fu"><a href="../reference/cookies_panel_ui.html">cookies_panel_ui</a></span><span class="op">(</span></span>
-<span>        id <span class="op">=</span> <span class="st">"cookie-panel"</span>,</span>
-<span>        google_analytics_key <span class="op">=</span> <span class="va">google_analytics_key</span></span>
+<span>      <span class="fu">shiny</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/tabPanel.html" class="external-link">tabPanel</a></span><span class="op">(</span></span>
+<span>        value <span class="op">=</span> <span class="st">"cookies_panel_ui"</span>,</span>
+<span>        <span class="st">"Cookies"</span>,</span>
+<span>        <span class="fu"><a href="../reference/cookies_panel_ui.html">cookies_panel_ui</a></span><span class="op">(</span>google_analytics_key <span class="op">=</span> <span class="va">google_analytics_key</span><span class="op">)</span></span>
 <span>      <span class="op">)</span></span>
 <span>    <span class="op">)</span></span>
 <span>  <span class="op">)</span></span>
 <span><span class="op">}</span></span></code></pre></div>
-<p>You should then add the <code>cookie_banner_server</code> and
+<p>You should then add the <code>cookies_banner_server</code> and
 <code>cookies_panel_server</code> functions to your
 <strong>server.R</strong> script:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">output</span><span class="op">$</span><span class="va">cookie_status</span> <span class="op">&lt;-</span> <span class="fu">dfeshiny</span><span class="fu">::</span><span class="fu"><a href="../reference/cookie_banner_server.html">cookie_banner_server</a></span><span class="op">(</span></span>
-<span>  <span class="st">"cookie-banner"</span>,</span>
+<code class="sourceCode R"><span><span class="va">output</span><span class="op">$</span><span class="va">cookies_status</span> <span class="op">&lt;-</span> <span class="fu">dfeshiny</span><span class="fu">::</span><span class="fu"><a href="../reference/cookies_banner_server.html">cookies_banner_server</a></span><span class="op">(</span></span>
 <span>  input_cookies <span class="op">=</span> <span class="fu">shiny</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/reactive.html" class="external-link">reactive</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">cookies</span><span class="op">)</span>,</span>
 <span>  parent_session <span class="op">=</span> <span class="va">session</span>,</span>
-<span>  google_analytics_key <span class="op">=</span> <span class="va">google_analytics_key</span>,</span>
-<span>  cookie_link_panel <span class="op">=</span> <span class="st">"cookies_panel_ui"</span></span>
+<span>  google_analytics_key <span class="op">=</span> <span class="va">google_analytics_key</span></span>
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu">dfeshiny</span><span class="fu">::</span><span class="fu"><a href="../reference/cookies_panel_server.html">cookies_panel_server</a></span><span class="op">(</span></span>
-<span>  id <span class="op">=</span> <span class="st">"cookie-panel"</span>,</span>
 <span>  input_cookies <span class="op">=</span> <span class="fu">shiny</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/reactive.html" class="external-link">reactive</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">cookies</span><span class="op">)</span>,</span>
 <span>  google_analytics_key <span class="op">=</span> <span class="va">google_analytics_key</span></span>
 <span><span class="op">)</span></span></code></pre></div>
@@ -159,7 +156,7 @@ to <code>google_analytics_key = "ABCDE12345"</code> (replacing
 in a cookie (<code>dfe_analytics</code>), which by default expires after
 365 days. The user can then also find information about the cookies
 stored by your dashboard and change their consent preference on a
-specific cookie consent panel on your dashboard that’s created by the
+specific cookies consent panel on your dashboard that’s created by the
 <code>cookies_panel()</code> function.</p>
   </main>
 </div>
