@@ -63,7 +63,7 @@ init_analytics("ABCDE12345")
 
 This will create the file [google-analytics.html](google-analytics.html) within the home directory of your R project. This html file can be edited to add customised analytics recorders for different shiny elements in your dashboard. Feel free to contact our team if you need support in adding additional functionality.
 
-### Adding a custom disconect message to your dashboard
+### Adding a custom disconnect message to your dashboard
 
 dfeshiny provides a function to add a custom disconnect message to your dashboard - this will appear when a dashboard would otherwise 'grey-screen' and will include options to refresh the page, go to overflow sites or visit the publication directly on Explore education statistics. 
 
