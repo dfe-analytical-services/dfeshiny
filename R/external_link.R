@@ -27,7 +27,14 @@
 #' link text to warn users of the behaviour. Use with caution and
 #' [consider accessibility](https://www.w3.org/TR/WCAG20-TECHS/G200.html)
 #' if turning off.
-#'
+
+
+# TODO: point to htmltools tags a object docs and the span ones
+# TODO: link to GDS - https://design-system.service.gov.uk/styles/links/
+# TODO: link to MDN details on html elements https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a
+# https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/rel/noopener
+# https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/rel/noreferrer
+
 #' @return shiny.tag object
 #' @export
 #'
