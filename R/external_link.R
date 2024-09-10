@@ -96,6 +96,7 @@ external_link <- function(href, link_text, add_warning = TRUE) {
     href = href,
     link_text,
     target = "_blank",
-    rel = "noopener noreferrer"
+    rel = "noopener noreferrer",
+    .noWS = "after"
   )
 }
