@@ -10,7 +10,8 @@
 #'
 #' This function automatically adds the following to your link:
 #' * `target="_blank"` to open in new tab
-#' * `rel="noopener noreferrer"` to prevent reverse tabnabbing
+#' * `rel="noopener noreferrer"` to prevent [reverse tabnabbing](
+#' https://owasp.org/www-community/attacks/Reverse_Tabnabbing)
 #'
 #' By default this function also adds "(opens in new tab)" to your link text
 #' to warn users of the behaviour.
@@ -18,20 +19,19 @@
 #' This also adds "This link opens in a new tab" as a visually hidden span
 #' element within the html outputted to warn non-visual users of the behaviour.
 #'
-#' Related links (aware of the painful irony but couldn't make the
-#' documentation work in any other way!)...
+#' Related links and guidance:
 #'
-#' Government digital services guidelines on the use of links:
-#' https://design-system.service.gov.uk/styles/links/
+#' * [Government digital services guidelines on the use of links](
+#' https://design-system.service.gov.uk/styles/links/)
 #'
-#' Anchor tag html element and its properties:
-#' https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a
+#' * [Anchor tag html element and its properties](
+#' https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a)
 #'
-#' Web Accessibility standards link text behaviour:
-#' https://www.w3.org/TR/WCAG20-TECHS/G200.html
+#' * [WCAG 2.2 success criteria 2.4.4: Link Purpose (In Context)](
+#' https://www.w3.org/WAI/WCAG22/Understanding/link-purpose-in-context)
 #'
-#' Reverse tabnabbing:
-#' https://owasp.org/www-community/attacks/Reverse_Tabnabbing
+#' * [Web Accessibility standards link text behaviour](
+#' https://www.w3.org/TR/WCAG20-TECHS/G200.html)
 #'
 #' @param href URL that you want the link to point to
 #' @param link_text Text that will appear describing your link, must be

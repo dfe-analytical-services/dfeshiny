@@ -25,7 +25,7 @@ check for in the \code{external_link()} function.
 }
 \details{
 We've started curating this list so we can create automated checks to help
-all link text to be as descriptive as possible in line with WCAG 2.2 success
-criteria 2.4.4: Link Purpose (In Context).
+all link text to be as descriptive as possible in line with
+\href{https://www.w3.org/WAI/WCAG22/Understanding/link-purpose-in-context}{WCAG 2.2 success criteria 2.4.4: Link Purpose (In Context)}.
 }
 \keyword{datasets}

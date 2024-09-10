@@ -27,7 +27,7 @@ this we should be careful...
 This function automatically adds the following to your link:
 \itemize{
 \item \code{target="_blank"} to open in new tab
-\item \code{rel="noopener noreferrer"} to prevent reverse tabnabbing
+\item \code{rel="noopener noreferrer"} to prevent \href{https://owasp.org/www-community/attacks/Reverse_Tabnabbing}{reverse tabnabbing}
 }
 
 By default this function also adds "(opens in new tab)" to your link text
@@ -36,20 +36,13 @@ to warn users of the behaviour.
 This also adds "This link opens in a new tab" as a visually hidden span
 element within the html outputted to warn non-visual users of the behaviour.
 
-Related links (aware of the painful irony but couldn't make the
-documentation work in any other way!)...
-
-Government digital services guidelines on the use of links:
-https://design-system.service.gov.uk/styles/links/
-
-Anchor tag html element and its properties:
-https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a
-
-Web Accessibility standards link text behaviour:
-https://www.w3.org/TR/WCAG20-TECHS/G200.html
-
-Reverse tabnabbing:
-https://owasp.org/www-community/attacks/Reverse_Tabnabbing
+Related links and guidance:
+\itemize{
+\item \href{https://design-system.service.gov.uk/styles/links/}{Government digital services guidelines on the use of links}
+\item \href{https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a}{Anchor tag html element and its properties}
+\item \href{https://www.w3.org/WAI/WCAG22/Understanding/link-purpose-in-context}{WCAG 2.2 success criteria 2.4.4: Link Purpose (In Context)}
+\item \href{https://www.w3.org/TR/WCAG20-TECHS/G200.html}{Web Accessibility standards link text behaviour}
+}
 }
 \details{
 Intentionally basic wrapper for html anchor elements making it easier to
