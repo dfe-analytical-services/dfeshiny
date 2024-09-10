@@ -29,6 +29,7 @@ test_that("Rejects dodgy link text", {
   expect_error(external_link("https://shiny.posit.co/", "Click here"))
   expect_error(external_link("https://shiny.posit.co/", "here"))
   expect_error(external_link("https://shiny.posit.co/", "PDF"))
+  expect_error(external_link("https://shiny.posit.co/", "Full stop."))
   expect_error(external_link("https://shiny.posit.co/", "https://shiny.posit.co/"))
   expect_error(external_link("https://shiny.posit.co/", "http://shiny.posit.co/"))
   expect_error(external_link("https://shiny.posit.co/", "www.google.com"))
@@ -52,4 +53,34 @@ test_that("New tab warning always stays for non-visual users", {
   expect_true(
     grepl("This link opens in a new tab", test_link_hidden$children[[1]])
   )
+})
+
+test_that("Surrounding whitespace shrubbery is trimmed", {
+  expect_equal(
+    external_link("https://shiny.posit.co/", "   R Shiny")$children[[2]],
+    "R Shiny (opens in new tab)"
+  )
+
+  expect_equal(
+    external_link("https://shiny.posit.co/", "R Shiny    ")$children[[2]],
+    "R Shiny (opens in new tab)"
+  )
+
+  expect_equal(
+    external_link("https://shiny.posit.co/", "   R Shiny   ")$children[[2]],
+    "R Shiny (opens in new tab)"
+  )
+})
+
+test_that("Warning appears for short link text and not for long text", {
+  expect_warning(
+    external_link("https://shiny.posit.co/", "R"),
+    paste0(
+      "the link_text: R, is shorter than 7 characters, this is",
+      " unlikely to be descriptive for users, consider having more detailed",
+      " link text"
+    )
+  )
+
+  expect_no_warning(external_link("https://shiny.posit.co/", "R Shiny"))
 })

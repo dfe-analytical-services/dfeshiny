@@ -9,7 +9,7 @@
 #' https://www.w3.org/WAI/WCAG22/Understanding/link-purpose-in-context).
 #'
 #' @format ## `bad_link_text`
-#' A data frame with 48 rows and 1 columns:
+#' A data frame with 52 rows and 1 columns:
 #' \describe{
 #'   \item{bad_link_text}{Lower cased examples of non-descriptive link text}
 #' }

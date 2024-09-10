@@ -4,7 +4,7 @@ test_that("Returns data frame", {
 
 test_that("Matches description", {
   # If this test fails, update the notes in R/data-bad_link_text.R
-  expect_equal(nrow(dfeshiny::bad_link_text), 48)
+  expect_equal(nrow(dfeshiny::bad_link_text), 52)
   expect_equal(names(dfeshiny::bad_link_text), "bad_link_text")
 })
 

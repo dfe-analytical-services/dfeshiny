@@ -11,7 +11,10 @@ external_link(href, link_text, add_warning = TRUE)
 
 \item{link_text}{Text that will appear describing your link, must be
 descriptive of the page you are linking to. Vague text like 'click here' or
-'here' will cause an error.}
+'here' will cause an error, as will ending in a full stop. Leading and
+trailing white space will be automatically trimmed. If the string is shorter
+than 7 characters a console warning will be thrown. There is no way to hush
+this other than providing more detail.}
 
 \item{add_warning}{Boolean for adding "(opens in new tab)" at the end of the
 link text to warn users of the behaviour. Be careful and consider
@@ -35,6 +38,10 @@ to warn users of the behaviour.
 
 This also adds "This link opens in a new tab" as a visually hidden span
 element within the html outputted to warn non-visual users of the behaviour.
+
+The function will error if you end with a full stop, give a warning for
+particularly short link text and will automatically trim any leading or
+trailing white space inputted into link_text.
 
 Related links and guidance:
 \itemize{

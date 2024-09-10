@@ -19,6 +19,10 @@
 #' This also adds "This link opens in a new tab" as a visually hidden span
 #' element within the html outputted to warn non-visual users of the behaviour.
 #'
+#' The function will error if you end with a full stop, give a warning for
+#' particularly short link text and will automatically trim any leading or
+#' trailing white space inputted into link_text.
+#'
 #' Related links and guidance:
 #'
 #' * [Government digital services guidelines on the use of links](
@@ -36,7 +40,10 @@
 #' @param href URL that you want the link to point to
 #' @param link_text Text that will appear describing your link, must be
 #' descriptive of the page you are linking to. Vague text like 'click here' or
-#' 'here' will cause an error.
+#' 'here' will cause an error, as will ending in a full stop. Leading and
+#' trailing white space will be automatically trimmed. If the string is shorter
+#' than 7 characters a console warning will be thrown. There is no way to hush
+#' this other than providing more detail.
 #' @param add_warning Boolean for adding "(opens in new tab)" at the end of the
 #' link text to warn users of the behaviour. Be careful and consider
 #' accessibility before removing the visual warning.
@@ -56,17 +63,21 @@ external_link <- function(href, link_text, add_warning = TRUE) {
     stop("add_warning must be a TRUE or FALSE value")
   }
 
+  # Trim whitespace as I don't trust humans not to accidentally include
+  link_text <- stringr::str_trim(link_text)
+
   # Create a basic check for raw URLs
   is_url <- function(text) {
     url_pattern <- "^(https://|http://|www\\.)"
     grepl(url_pattern, text)
   }
 
+  # Check for vague link text on our list
   if (is_url(link_text)) {
     stop(paste0(
       link_text,
-      " has been recognise as a raw URL, please change the link_text value to",
-      " a description of the page being linked to instead"
+      " has been recognised as a raw URL, please change the link_text value",
+      "to a description of the page being linked to instead"
     ))
   }
 
@@ -82,6 +93,22 @@ external_link <- function(href, link_text, add_warning = TRUE) {
     )
   }
 
+  # Check if link text ends in a full stop
+  if (grepl("\\.$", link_text)) {
+    stop("link_text should not end with a full stop")
+  }
+
+  # Give a console warning if link text is under 7 characters
+  # Arbritary number that allows for R Shiny to be link text without a warning
+  if (nchar(link_text) < 7) {
+    warning(paste0(
+      "the link_text: ", link_text, ", is shorter than 7 characters, this is",
+      " unlikely to be descriptive for users, consider having more detailed",
+      " link text"
+    ))
+  }
+
+  # Assuming all else has passed, make the link text a nice accessible link
   if (add_warning) {
     link_text <- paste(link_text, "(opens in new tab)")
     hidden_span <- NULL # don't have extra hidden text if clear in main text
