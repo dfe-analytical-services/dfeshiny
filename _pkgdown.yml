@@ -6,15 +6,9 @@ template:
     pkgdown-nav-height: 81.4468px
 
 reference:
-- title: Maintenance
-  contents:
-  - tidy_code
 - title: Cookies
   contents:
   - has_concept("cookies")
-- title: Standard panels
-  contents:
-  - support_panel
 - title: Connectivity
   contents:
   - custom_disconnect_message
@@ -22,3 +16,13 @@ reference:
   desc: One time functions used to set up or update standardised scripts and workflows needed for your dashboard
   contents:
   - starts_with("init")
+- title: Links
+  contents:
+  - external_link
+  - bad_link_text
+- title: Maintenance
+  contents:
+  - tidy_code
+- title: Standard panels
+  contents:
+  - support_panel

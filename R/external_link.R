@@ -1,40 +1,45 @@
 #' External link
 #'
 #' Intentionally basic wrapper for html anchor elements making it easier to
-#' create safe external links with standard and accessible behaviour.
+#' create safe external links with standard and accessible behaviour. For more
+#' information on how the tag is generated, see \code{\link[htmltools]{tags}}.
 #'
 #' @description
 #' It is commonplace for external links to open in a new tab, and when we do
-#' this we should be careful to avoid [reverse tabnabbing]
-#' (https://owasp.org/www-community/attacks/Reverse_Tabnabbing).
+#' this we should be careful...
 #'
 #' This function automatically adds the following to your link:
-#' * target="_blank" to open in new tab
-#' * rel="noopener noreferrer" to prevent reverse tabnabbing
+#' * `target="_blank"` to open in new tab
+#' * `rel="noopener noreferrer"` to prevent reverse tabnabbing
 #'
 #' By default this function also adds "(opens in new tab)" to your link text
-#' to warn users of the behaviour as recommended by
-#' [Web Accessibility standards](https://www.w3.org/TR/WCAG20-TECHS/G200.html).
+#' to warn users of the behaviour.
 #'
 #' This also adds "This link opens in a new tab" as a visually hidden span
 #' element within the html outputted to warn non-visual users of the behaviour.
+#'
+#' Related links (aware of the painful irony but couldn't make the
+#' documentation work in any other way!)...
+#'
+#' Government digital services guidelines on the use of links:
+#' https://design-system.service.gov.uk/styles/links/
+#'
+#' Anchor tag html element and its properties:
+#' https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a
+#'
+#' Web Accessibility standards link text behaviour:
+#' https://www.w3.org/TR/WCAG20-TECHS/G200.html
+#'
+#' Reverse tabnabbing:
+#' https://owasp.org/www-community/attacks/Reverse_Tabnabbing
 #'
 #' @param href URL that you want the link to point to
 #' @param link_text Text that will appear describing your link, must be
 #' descriptive of the page you are linking to. Vague text like 'click here' or
 #' 'here' will cause an error.
 #' @param add_warning Boolean for adding "(opens in new tab)" at the end of the
-#' link text to warn users of the behaviour. Use with caution and
-#' [consider accessibility](https://www.w3.org/TR/WCAG20-TECHS/G200.html)
-#' if turning off.
-
-
-# TODO: point to htmltools tags a object docs and the span ones
-# TODO: link to GDS - https://design-system.service.gov.uk/styles/links/
-# TODO: link to MDN details on html elements https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a
-# https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/rel/noopener
-# https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/rel/noreferrer
-
+#' link text to warn users of the behaviour. Be careful and consider
+#' accessibility before removing the visual warning.
 #' @return shiny.tag object
 #' @export
 #'
@@ -42,90 +47,55 @@
 #' external_link("https://shiny.posit.co/", "R Shiny")
 #'
 #' external_link(
-#' "https://shiny.posit.co/",
-#' "R Shiny",
-#' add_warning = FALSE
+#'   "https://shiny.posit.co/",
+#'   "R Shiny",
+#'   add_warning = FALSE
 #' )
-external_link <- function(href, link_text, add_warning = TRUE){
-  if(!is.logical(add_warning)){
+external_link <- function(href, link_text, add_warning = TRUE) {
+  if (!is.logical(add_warning)) {
     stop("add_warning must be a TRUE or FALSE value")
   }
 
-  # TODO: tidy this up
-  # Crude vector for bad link text we should banish into room 101
-  bad_text <- c(
-    "Click here",
-    "Learn more",
-    "Read more",
-    "Further information",
-    "Click this link",
-    "Download file",
-    "Download png",
-    "Download svg",
-    "Download jpg",
-    "Download jpeg",
-    "Download xslx",
-    "Download csv",
-    "Download word",
-    "Download document",
-    "Download pdf",
-    "Web page",
-    "Web site",
-    "Download here",
-    "Go here",
-    "This page",
+  # Create a basic check for raw URLs
+  is_url <- function(text) {
+    url_pattern <- "^(https://|http://|www\\.)"
+    grepl(url_pattern, text)
+  }
 
-    "file",
-    "pdf", "svg", "jpg", "jpeg", "xslx", "csv", "word", "document",
-    "Click",
-    "Here",
-    "This",
-    "Form",
-    "learn",
-    "More",
-    "read",
-    "Information",
-    "Download",
-    "File",
-    "Guidance",
-    "Link",
-    "page",
-    "web",
-    "page",
-    "site",
+  if (is_url(link_text)) {
+    stop(paste0(
+      link_text,
+      " has been recognise as a raw URL, please change the link_text value to",
+      " a description of the page being linked to instead"
+    ))
+  }
 
-    "Webpage",
-    "website",
-    "Dashboard",
-    "Next",
-    "previous",
-
-
-  )
-
-  # TODO: add a check for any raw URLs
-
-  if(tolower(link_text) %in% bad_text){
+  # Check against curated data set for link text we should banish into room 101
+  if (tolower(link_text) %in% dfeshiny::bad_link_text$bad_link_text) {
     stop(
       paste0(
         link_text,
-        " is not descriptive enough and is has been recognised as bad link ",
+        " is not descriptive enough and has has been recognised as bad link",
         " text, please replace the link_text argument with more descriptive",
         " text."
-        )
+      )
     )
   }
 
-  if(add_warning){
+  if (add_warning) {
     link_text <- paste(link_text, "(opens in new tab)")
+    hidden_span <- NULL # don't have extra hidden text if clear in main text
+  } else {
+    hidden_span <-
+      htmltools::span(class = "visually-hidden", "This link opens in a new tab")
   }
 
-  # Put these through htmltools::tags$a
+  # Create link using htmltools::tags$a
   htmltools::tags$a(
-    htmltools::span(class = "visually-hidden", "This link opens in a new tab"),
+    hidden_span,
     href = href,
     link_text,
-    target="_blank",
-    rel="noopener noreferrer"
+    target = "_blank",
+    rel = "noopener noreferrer"
   )
 }

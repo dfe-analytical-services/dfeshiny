@@ -35,3 +35,6 @@ RoxygenNote: 7.3.2
 URL: https://dfe-analytical-services.github.io/dfeshiny/
      https://www.github.com/dfe-analytical-services/dfeshiny/
 VignetteBuilder: knitr
+Depends: 
+    R (>= 2.10)
+LazyData: true
