@@ -1,3 +1,7 @@
+# dfeshiny 0.4.0
+
+* Add new `external_link()` function and look up data for `bad_link_text`.
+
 # dfeshiny 0.3.0
 
 ## New features
