@@ -1,7 +1,7 @@
 # To run the diffviewer on these tests, you need to add the path:
 # Doesn't work? testthat::snapshot_review('UI-02-cookies/', path='tests/test_dashboard/')
 app <- AppDriver$new(
-  app_dir = "tests/test_dashboard",
+  name = "cookies",
   expect_values_screenshot_args = FALSE
 )
 
