@@ -5,7 +5,8 @@
 #' @noRd
 #'
 .onLoad <- function(...) {
-  shiny::addResourcePath('dfeshiny',
-                         system.file('www', package = 'dfeshiny')
+  shiny::addResourcePath(
+    "dfeshiny",
+    system.file("www", package = "dfeshiny")
   )
 }

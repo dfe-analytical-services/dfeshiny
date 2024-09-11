@@ -69,7 +69,7 @@
 #'
 #' # Example of within text
 #' shiny::tags$p(
-#' "Oi, ", external_link("https://shiny.posit.co/", "R Shiny"), " is great."
+#'   "Oi, ", external_link("https://shiny.posit.co/", "R Shiny"), " is great."
 #' )
 #'
 #' # Example of multiple links together
@@ -104,7 +104,7 @@ external_link <- function(href, link_text, add_warning = TRUE) {
     stop("add_warning must be a TRUE or FALSE value")
   }
 
-  # Trim whitespace as I don't trust humans not to accidentally include
+  # Trim white space as I don't trust humans not to accidentally include
   link_text <- stringr::str_trim(link_text)
 
   # Create a basic check for raw URLs
@@ -159,9 +159,9 @@ external_link <- function(href, link_text, add_warning = TRUE) {
 
     # Attach CSS from inst/www/css/visually-hidden.css
     dependency <- htmltools::htmlDependency(
-      name = "stylecss",
+      name = "visually-hidden",
       version = as.character(utils::packageVersion("dfeshiny")[[1]]),
-      src = c(href="dfeshiny/css"),
+      src = c(href = "dfeshiny/css"),
       stylesheet = "visually-hidden.css"
     )
 
@@ -169,14 +169,13 @@ external_link <- function(href, link_text, add_warning = TRUE) {
       htmltools::attachDependencies(hidden_span, dependency, append = TRUE)
   }
 
-
-  # Create link using htmltools::tags$a
-  link <- htmltools::tags$a(
+  # Return the link
+  htmltools::tags$a(
     href = href,
     hidden_span,
     link_text,
     target = "_blank",
     rel = "noopener noreferrer",
-    .noWS = "after"
+    .noWS = c("outside")
   )
 }

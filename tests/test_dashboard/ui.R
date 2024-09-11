@@ -64,6 +64,26 @@ ui <- function(input, output, session) {
             add_warning = FALSE
           ),
           "."
+        ),
+        shiny::tags$p(
+          "Sometimes you just want to be on a mountain without distractions",
+          " when writing code in ",
+          external_link(
+            "https://shiny.posit.co/",
+            "R Shiny",
+            add_warning = FALSE
+          ),
+          ".",
+          .noWS = c("after-begin", "before-end")
+        ),
+        shiny::tags$p(
+          "Sometimes you just want to be writing ",
+          external_link(
+            "https://shiny.posit.co/",
+            "R Shiny",
+            add_warning = FALSE
+          ),
+          " code in a cave without distractions."
         )
       )
     )
