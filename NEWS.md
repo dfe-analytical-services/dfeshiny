@@ -1,3 +1,8 @@
+# dfeshiny 0.4.1
+
+* Fix bug in `external_link()` where visually hidden text was not visually 
+hidden.
+
 # dfeshiny 0.4.0
 
 * Add new `external_link()` function and look up data for `bad_link_text`.
