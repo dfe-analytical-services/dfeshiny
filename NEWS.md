@@ -1,7 +1,7 @@
 # dfeshiny 0.4.1
 
 * Fix bug in `external_link()` where visually hidden text was not visually 
-hidden.
+hidden and whitespace was appearing if add_warning = FALSE was set.
 
 # dfeshiny 0.4.0
 

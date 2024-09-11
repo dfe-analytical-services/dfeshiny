@@ -156,26 +156,25 @@ external_link <- function(href, link_text, add_warning = TRUE) {
   } else {
     hidden_span <-
       htmltools::span(class = "visually-hidden", "This link opens in a new tab")
-
-    # Attach CSS from inst/www/css/visually-hidden.css
-    dependency <- htmltools::htmlDependency(
-      name = "visually-hidden",
-      version = as.character(utils::packageVersion("dfeshiny")[[1]]),
-      src = c(href = "dfeshiny/css"),
-      stylesheet = "visually-hidden.css"
-    )
-
-    hidden_span <-
-      htmltools::attachDependencies(hidden_span, dependency, append = TRUE)
   }
 
-  # Return the link
-  htmltools::tags$a(
+  # Create the link object
+  link <- htmltools::tags$a(
     href = href,
-    hidden_span,
-    link_text,
+    htmltools::HTML(paste0(hidden_span, link_text)), # white space hack
     target = "_blank",
     rel = "noopener noreferrer",
     .noWS = c("outside")
   )
+
+  # Attach CSS from inst/www/css/visually-hidden.css
+  dependency <- htmltools::htmlDependency(
+    name = "visually-hidden",
+    version = as.character(utils::packageVersion("dfeshiny")[[1]]),
+    src = c(href = "dfeshiny/css"),
+    stylesheet = "visually-hidden.css"
+  )
+
+  # Return the link with the CSS attached
+  return(htmltools::attachDependencies(link, dependency, append = TRUE))
 }

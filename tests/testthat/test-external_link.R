@@ -8,11 +8,11 @@ test_that("Returns shiny.tag object", {
 
 test_that("content and URL are correctly formatted", {
   expect_equal(test_link$attribs$href, "https://shiny.posit.co/")
-  expect_true(grepl("R Shiny", test_link$children[[2]]))
+  expect_true(grepl("R Shiny", test_link$children[[1]]))
 })
 
 test_that("New tab warning appends", {
-  expect_true(grepl("\\(opens in new tab\\)", test_link$children[[2]]))
+  expect_true(grepl("\\(opens in new tab\\)", test_link$children[[1]]))
 })
 
 test_that("attributes are attached properly", {
@@ -21,7 +21,7 @@ test_that("attributes are attached properly", {
 })
 
 test_that("hidden text is skipped", {
-  expect_true(is.null(test_link$children[[1]]))
+  expect_false(grepl("^This link opens in a new tab", test_link$children[[1]]))
 })
 
 # Rest of tests against the function ==========================================
@@ -50,25 +50,50 @@ test_that("New tab warning always stays for non-visual users", {
   test_link_hidden <-
     external_link("https://shiny.posit.co/", "R Shiny", add_warning = FALSE)
 
-  expect_true(
-    grepl("This link opens in a new tab", test_link_hidden$children[[1]])
+  expect_equal(
+    paste0(test_link_hidden$children[[1]]),
+    '<span class="visually-hidden">This link opens in a new tab</span>R Shiny'
   )
 })
 
 test_that("Surrounding whitespace shrubbery is trimmed", {
   expect_equal(
-    external_link("https://shiny.posit.co/", "   R Shiny")$children[[2]],
+    paste0(external_link("https://shiny.posit.co/", "   R Shiny")$children[[1]]),
     "R Shiny (opens in new tab)"
   )
 
   expect_equal(
-    external_link("https://shiny.posit.co/", "R Shiny    ")$children[[2]],
+    paste0(external_link("https://shiny.posit.co/", "R Shiny    ")$children[[1]]),
     "R Shiny (opens in new tab)"
   )
 
   expect_equal(
-    external_link("https://shiny.posit.co/", "   R Shiny   ")$children[[2]],
+    paste0(external_link("https://shiny.posit.co/", "   R Shiny   ")$children[[1]]),
     "R Shiny (opens in new tab)"
+  )
+
+  expect_equal(
+    paste0(external_link(
+      "https://shiny.posit.co/", "   R Shiny",
+      add_warning = FALSE
+    )$children[[1]]),
+    '<span class="visually-hidden">This link opens in a new tab</span>R Shiny'
+  )
+
+  expect_equal(
+    paste0(external_link(
+      "https://shiny.posit.co/", "R Shiny    ",
+      add_warning = FALSE
+    )$children[[1]]),
+    '<span class="visually-hidden">This link opens in a new tab</span>R Shiny'
+  )
+
+  expect_equal(
+    paste0(external_link(
+      "https://shiny.posit.co/", "   R Shiny     ",
+      add_warning = FALSE
+    )$children[[1]]),
+    '<span class="visually-hidden">This link opens in a new tab</span>R Shiny'
   )
 })
 

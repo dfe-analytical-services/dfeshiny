@@ -29,6 +29,18 @@ Otherwise:
 devtools::install_github("dfe-analytical-services/dfeshiny")
 ```
 
+To update the version when you're using renv, simply:
+
+``` r
+renv::update("dfe-analytical-services/dfeshiny")
+```
+
+and then snapshot to update the lockfile
+
+```r
+renv::snapshot()
+```
+
 ## Installing functionality in development from a branch
 
 It can be useful when developing the package in particular to trial new or updated functionality in a shiny app. To do this, you can install the required branch using (replacing `branch-name` with the name of the branch you wish to install):
@@ -85,7 +97,6 @@ custom_disconnect_message(
 
 Putting this on the lines *just before* the `shinyGovstyle::header(...)` line 
 should work well.
-
 
 ## Contributing
 

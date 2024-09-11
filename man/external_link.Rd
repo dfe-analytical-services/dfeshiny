@@ -75,7 +75,7 @@ external_link("https://shiny.posit.co/", "  R Shiny")
 
 # Example of within text
 shiny::tags$p(
-"Oi, ", external_link("https://shiny.posit.co/", "R Shiny"), " is great."
+  "Oi, ", external_link("https://shiny.posit.co/", "R Shiny"), " is great."
 )
 
 # Example of multiple links together

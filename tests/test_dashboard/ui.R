@@ -52,8 +52,16 @@ ui <- function(input, output, session) {
           external_link(
             "https://shiny.posit.co/",
             "R Shiny"
-            ),
+          ),
           " is so great we should show it off more."
+        ),
+        shiny::tags$p(
+          "Hey I think the greatest thing ever is ",
+          external_link(
+            "https://shiny.posit.co/",
+            "R Shiny"
+          ),
+          "."
         ),
         shiny::tags$p(
           "Sometimes you just want to be in a cave without distractions",
@@ -64,17 +72,6 @@ ui <- function(input, output, session) {
             add_warning = FALSE
           ),
           "."
-        ),
-        shiny::tags$p(
-          "Sometimes you just want to be on a mountain without distractions",
-          " when writing code in ",
-          external_link(
-            "https://shiny.posit.co/",
-            "R Shiny",
-            add_warning = FALSE
-          ),
-          ".",
-          .noWS = c("after-begin", "before-end")
         ),
         shiny::tags$p(
           "Sometimes you just want to be writing ",
