@@ -157,15 +157,16 @@ external_link <- function(href, link_text, add_warning = TRUE) {
     hidden_span <-
       htmltools::span(class = "visually-hidden", "This link opens in a new tab")
 
-    # Attach the needed CSS from inst/www/css
+    # Attach CSS from inst/www/css/visually-hidden.css
     dependency <- htmltools::htmlDependency(
       name = "stylecss",
-      version = as.character(utils::packageVersion("dfeshiny")[[1]]),
+      version =  # as.character(utils::packageVersion("dfeshiny")[[1]]),
       src = c(href="dfeshiny/css"),
       stylesheet = "visually-hidden.css"
     )
 
-    htmltools::attachDependencies(hidden_span, dependency, append = TRUE)
+    hidden_span <-
+      htmltools::attachDependencies(hidden_span, dependency, append = TRUE)
   }
 
 
