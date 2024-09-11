@@ -1,6 +1,6 @@
 #' External link
 #'
-#' Intentionally basic wrapper for html anchor elements making it easier to
+#' Intentionally basic wrapper for HTML anchor elements making it easier to
 #' create safe external links with standard and accessible behaviour. For more
 #' information on how the tag is generated, see \code{\link[htmltools]{tags}}.
 #'
@@ -22,6 +22,11 @@
 #' The function will error if you end with a full stop, give a warning for
 #' particularly short link text and will automatically trim any leading or
 #' trailing white space inputted into link_text.
+#'
+#' If you are displaying lots of links together and want to save space by
+#' avoiding repeating (opens in new tab), then you can set add_warning = FALSE
+#' and add a line of text above all of the links saying something like 'The
+#' following links open in a new tab'.
 #'
 #' Related links and guidance:
 #'
@@ -58,6 +63,42 @@
 #'   "R Shiny",
 #'   add_warning = FALSE
 #' )
+#'
+#' # This will trim and show as 'R Shiny'
+#' external_link("https://shiny.posit.co/", "  R Shiny")
+#'
+#' # Example of within text
+#' shiny::tags$p(
+#' "Oi, ", external_link("https://shiny.posit.co/", "R Shiny"), " is great."
+#' )
+#'
+#' # Example of multiple links together
+#' shiny::tags$h2("Related resources")
+#' shiny::tags$p("The following links open in a new tab.")
+#' shiny::tags$ul(
+#'   shiny::tags$li(
+#'     external_link(
+#'       "https://shiny.posit.co/",
+#'       "R Shiny documentation",
+#'       add_warning = FALSE
+#'     )
+#'   ),
+#'   shiny::tags$li(
+#'     external_link(
+#'       "https://www.python.org/",
+#'       "Python documenation",
+#'       add_warning = FALSE
+#'     )
+#'   ),
+#'   shiny::tags$li(
+#'     external_link(
+#'       "https://nextjs.org/",
+#'       "Next.js documenation",
+#'       add_warning = FALSE
+#'     )
+#'   )
+#' )
+#'
 external_link <- function(href, link_text, add_warning = TRUE) {
   if (!is.logical(add_warning)) {
     stop("add_warning must be a TRUE or FALSE value")
@@ -115,12 +156,23 @@ external_link <- function(href, link_text, add_warning = TRUE) {
   } else {
     hidden_span <-
       htmltools::span(class = "visually-hidden", "This link opens in a new tab")
+
+    # Attach the needed CSS from inst/www/css
+    dependency <- htmltools::htmlDependency(
+      name = "stylecss",
+      version = as.character(utils::packageVersion("dfeshiny")[[1]]),
+      src = c(href="dfeshiny/css"),
+      stylesheet = "visually-hidden.css"
+    )
+
+    htmltools::attachDependencies(hidden_span, dependency, append = TRUE)
   }
 
+
   # Create link using htmltools::tags$a
-  htmltools::tags$a(
-    hidden_span,
+  link <- htmltools::tags$a(
     href = href,
+    hidden_span,
     link_text,
     target = "_blank",
     rel = "noopener noreferrer",
