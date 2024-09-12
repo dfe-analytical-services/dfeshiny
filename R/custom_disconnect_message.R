@@ -2,7 +2,7 @@
 #'
 #'
 #' @description
-#' Create the html overlay panel to appear when RSConnect disconnects
+#' Create the HTML overlay panel to appear when RSConnect disconnects
 #'
 #' @param refresh the text to appear that will refresh the page when clicked
 #' @param links A list of mirrors or alternative links to the dashboard
@@ -12,7 +12,7 @@
 #'
 #' @importFrom htmltools tags tagList
 #'
-#' @return A html overlay panel that appears when RSConnect disconnects for a
+#' @return A HTML overlay panel that appears when RSConnect disconnects for a
 #' public R Shiny dashboard in DfE
 #' @export
 #'

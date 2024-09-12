@@ -34,7 +34,7 @@ Explore Education Statistics)}
 \item{form_url}{URL for a feedback form for the dashboard}
 }
 \value{
-a html div, containing standard support content for a public R Shiny
+a HTML div, containing standard support content for a public R Shiny
 dashboard in DfE
 }
 \description{

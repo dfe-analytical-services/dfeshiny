@@ -64,6 +64,12 @@ shinytest2::test_app("tests/test_dashboard")
 # For code styling
 styler::style_pkg()
 lintr::lint_package()
+
+# To check for typos
+spelling::spell_check_package()
+
+# and if needed
+spelling::update_wordlist()
 ```
 
 If you get a lot of lintr errors, particularly around things not being defined, make sure to load the package first using Ctrl-Shft-L or `devtools::load_all(".")`, then run again. There's a known issue with lintr not picking up on bindings until packages are loaded.

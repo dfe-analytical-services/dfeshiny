@@ -17,7 +17,7 @@
 #' to warn users of the behaviour.
 #'
 #' This also adds "This link opens in a new tab" as a visually hidden span
-#' element within the html outputted to warn non-visual users of the behaviour.
+#' element within the HTML outputted to warn non-visual users of the behaviour.
 #'
 #' The function will error if you end with a full stop, give a warning for
 #' particularly short link text and will automatically trim any leading or
@@ -33,7 +33,7 @@
 #' * [Government digital services guidelines on the use of links](
 #' https://design-system.service.gov.uk/styles/links/)
 #'
-#' * [Anchor tag html element and its properties](
+#' * [Anchor tag HTML element and its properties](
 #' https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a)
 #'
 #' * [WCAG 2.2 success criteria 2.4.4: Link Purpose (In Context)](
@@ -86,14 +86,14 @@
 #'   shiny::tags$li(
 #'     external_link(
 #'       "https://www.python.org/",
-#'       "Python documenation",
+#'       "Python documentation",
 #'       add_warning = FALSE
 #'     )
 #'   ),
 #'   shiny::tags$li(
 #'     external_link(
 #'       "https://nextjs.org/",
-#'       "Next.js documenation",
+#'       "Next.js documentation",
 #'       add_warning = FALSE
 #'     )
 #'   )
