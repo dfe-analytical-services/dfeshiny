@@ -22,11 +22,11 @@ custom_disconnect_message(
 Statistics}
 }
 \value{
-A html overlay panel that appears when RSConnect disconnects for a
+A HTML overlay panel that appears when RSConnect disconnects for a
 public R Shiny dashboard in DfE
 }
 \description{
-Create the html overlay panel to appear when RSConnect disconnects
+Create the HTML overlay panel to appear when RSConnect disconnects
 }
 \examples{
 custom_disconnect_message(

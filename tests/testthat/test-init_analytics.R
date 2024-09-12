@@ -14,7 +14,7 @@ test_that("Numeric throws error", {
   expect_error(init_analytics(1234567890))
 })
 
-test_that("GA key pulls into html", {
+test_that("GA key pulls into HTML", {
   output <- capture.output(init_analytics("TESTYTESTY", create_file = FALSE))
 
   # Expect the id to pull through on line 15

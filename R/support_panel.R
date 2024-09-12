@@ -15,7 +15,7 @@
 #' Explore Education Statistics)
 #' @param form_url URL for a feedback form for the dashboard
 #'
-#' @return a html div, containing standard support content for a public R Shiny
+#' @return a HTML div, containing standard support content for a public R Shiny
 #' dashboard in DfE
 #' @export
 #'

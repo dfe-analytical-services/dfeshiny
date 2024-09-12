@@ -37,7 +37,7 @@ By default this function also adds "(opens in new tab)" to your link text
 to warn users of the behaviour.
 
 This also adds "This link opens in a new tab" as a visually hidden span
-element within the html outputted to warn non-visual users of the behaviour.
+element within the HTML outputted to warn non-visual users of the behaviour.
 
 The function will error if you end with a full stop, give a warning for
 particularly short link text and will automatically trim any leading or
@@ -51,7 +51,7 @@ following links open in a new tab'.
 Related links and guidance:
 \itemize{
 \item \href{https://design-system.service.gov.uk/styles/links/}{Government digital services guidelines on the use of links}
-\item \href{https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a}{Anchor tag html element and its properties}
+\item \href{https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a}{Anchor tag HTML element and its properties}
 \item \href{https://www.w3.org/WAI/WCAG22/Understanding/link-purpose-in-context}{WCAG 2.2 success criteria 2.4.4: Link Purpose (In Context)}
 \item \href{https://www.w3.org/TR/WCAG20-TECHS/G200.html}{Web Accessibility standards link text behaviour}
 }

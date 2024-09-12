@@ -342,7 +342,7 @@ Shiny.addCustomMessageHandler('analytics-consent', function(msg){
 #' "ABCDE12345"
 #'
 #' @family cookies
-#' @return a html div, containing standard cookies content for a public R
+#' @return a HTML div, containing standard cookies content for a public R
 #' Shiny dashboard in DfE
 #' @export
 #' @inherit cookies examples
