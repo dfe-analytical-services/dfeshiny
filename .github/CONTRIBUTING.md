@@ -42,6 +42,33 @@ This will create a new blank script within the package R/ folder.
 
 This will create a new blank test script within the package testthat/ folder.
 
+If you want to test the function on a live dashboard using shinytest2, we have a test_dashboard that can be found in the tests/ folder where you can add examples and tests. You can run this dashboard using:
+```
+shiny::runApp("tests/test_dashboard")
+```
+
+
+You can run the tests against the dashboard using:
+```
+shinytest2::test_app("tests/test_dashboard")
+```
+
+## Running tests
+
+You should run the following lines to test the package locally:
+``` 
+# To check functionality
+devtools::check() # Ctrl-Shft-E
+shinytest2::test_app("tests/test_dashboard")
+
+# For code styling
+styler::style_pkg()
+lintr::lint_package()
+```
+
+If you get a lot of lintr errors, particularly around things not being defined, make sure to load the package first using Ctrl-Shft-L or `devtools::load_all(".")`, then run again. There's a known issue with lintr not picking up on bindings until packages are loaded.
+
+
 ## Updating the package version
 
 Once changes have been completed, reviewed and are ready for use in the wild, you
@@ -54,18 +81,3 @@ Once you've incremented the version number, it'll add a new heading to news.md.
 Add a summary under news.md and then accept it's offer to commit on your behalf.
 
 Once pushed and on the main branch, create a new release in GitHub itself.
-
-## Running tests
-
-You should run the following lines to test the package locally:
-``` 
-# To check functionality
-devtools::check() # Ctrl-Shft-E
-shinytest2::test_app("tests/test_dashboard") # important as not currently ran in CI checks
-
-# For code styling
-styler::style_pkg()
-lintr::lint_package()
-```
-
-If you get a lot of lintr errors, particularly around things not being defined, make sure to load the package first using Ctrl-Shft-L or `devtools::load_all(".")`, then run again. There's a known issue with lintr not picking up on bindings until packages are loaded

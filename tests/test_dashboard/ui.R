@@ -40,6 +40,48 @@ ui <- function(input, output, session) {
         value = "cookies_panel_ui",
         "Cookies",
         cookies_panel_ui(google_analytics_key = ga_key) # nolint: [object_usage_linter]
+      ),
+
+      ## Example text panel ---------------------------------------------------
+      shiny::tabPanel(
+        value = "text_example",
+        "Text example",
+        shiny::tags$h2("Hey, here's a heading"),
+        shiny::tags$p(
+          "Hey ",
+          external_link(
+            "https://shiny.posit.co/",
+            "R Shiny"
+          ),
+          " is so great we should show it off more."
+        ),
+        shiny::tags$p(
+          "Hey I think the greatest thing ever is ",
+          external_link(
+            "https://shiny.posit.co/",
+            "R Shiny"
+          ),
+          "."
+        ),
+        shiny::tags$p(
+          "Sometimes you just want to be in a cave without distractions",
+          " when writing code in ",
+          external_link(
+            "https://shiny.posit.co/",
+            "R Shiny",
+            add_warning = FALSE
+          ),
+          "."
+        ),
+        shiny::tags$p(
+          "Sometimes you just want to be writing ",
+          external_link(
+            "https://shiny.posit.co/",
+            "R Shiny",
+            add_warning = FALSE
+          ),
+          " code in a cave without distractions."
+        )
       )
     )
   )

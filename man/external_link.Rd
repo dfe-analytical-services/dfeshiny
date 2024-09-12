@@ -43,6 +43,11 @@ The function will error if you end with a full stop, give a warning for
 particularly short link text and will automatically trim any leading or
 trailing white space inputted into link_text.
 
+If you are displaying lots of links together and want to save space by
+avoiding repeating (opens in new tab), then you can set add_warning = FALSE
+and add a line of text above all of the links saying something like 'The
+following links open in a new tab'.
+
 Related links and guidance:
 \itemize{
 \item \href{https://design-system.service.gov.uk/styles/links/}{Government digital services guidelines on the use of links}
@@ -52,7 +57,7 @@ Related links and guidance:
 }
 }
 \details{
-Intentionally basic wrapper for html anchor elements making it easier to
+Intentionally basic wrapper for HTML anchor elements making it easier to
 create safe external links with standard and accessible behaviour. For more
 information on how the tag is generated, see \code{\link[htmltools]{tags}}.
 }
@@ -64,4 +69,40 @@ external_link(
   "R Shiny",
   add_warning = FALSE
 )
+
+# This will trim and show as 'R Shiny'
+external_link("https://shiny.posit.co/", "  R Shiny")
+
+# Example of within text
+shiny::tags$p(
+  "Oi, ", external_link("https://shiny.posit.co/", "R Shiny"), " is great."
+)
+
+# Example of multiple links together
+shiny::tags$h2("Related resources")
+shiny::tags$p("The following links open in a new tab.")
+shiny::tags$ul(
+  shiny::tags$li(
+    external_link(
+      "https://shiny.posit.co/",
+      "R Shiny documentation",
+      add_warning = FALSE
+    )
+  ),
+  shiny::tags$li(
+    external_link(
+      "https://www.python.org/",
+      "Python documenation",
+      add_warning = FALSE
+    )
+  ),
+  shiny::tags$li(
+    external_link(
+      "https://nextjs.org/",
+      "Next.js documenation",
+      add_warning = FALSE
+    )
+  )
+)
+
 }

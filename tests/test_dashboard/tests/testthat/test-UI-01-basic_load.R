@@ -1,12 +1,7 @@
 # To run the diffviewer on these tests, you need to add the path:
-# Doesn't work? testthat::snapshot_review('cookie-auth/', path='tests/test_dashboard/')
+# Doesn't work? testthat::snapshot_review('UI-01-basic_load/', path='tests/test_dashboard/')
 app <- AppDriver$new(
   name = "basic_load",
-  height = 846,
-  width = 1445,
-  load_timeout = 45 * 1000,
-  timeout = 20 * 1000,
-  wait = TRUE,
   expect_values_screenshot_args = FALSE
 )
 

@@ -1,6 +1,6 @@
 #' External link
 #'
-#' Intentionally basic wrapper for html anchor elements making it easier to
+#' Intentionally basic wrapper for HTML anchor elements making it easier to
 #' create safe external links with standard and accessible behaviour. For more
 #' information on how the tag is generated, see \code{\link[htmltools]{tags}}.
 #'
@@ -22,6 +22,11 @@
 #' The function will error if you end with a full stop, give a warning for
 #' particularly short link text and will automatically trim any leading or
 #' trailing white space inputted into link_text.
+#'
+#' If you are displaying lots of links together and want to save space by
+#' avoiding repeating (opens in new tab), then you can set add_warning = FALSE
+#' and add a line of text above all of the links saying something like 'The
+#' following links open in a new tab'.
 #'
 #' Related links and guidance:
 #'
@@ -58,12 +63,48 @@
 #'   "R Shiny",
 #'   add_warning = FALSE
 #' )
+#'
+#' # This will trim and show as 'R Shiny'
+#' external_link("https://shiny.posit.co/", "  R Shiny")
+#'
+#' # Example of within text
+#' shiny::tags$p(
+#'   "Oi, ", external_link("https://shiny.posit.co/", "R Shiny"), " is great."
+#' )
+#'
+#' # Example of multiple links together
+#' shiny::tags$h2("Related resources")
+#' shiny::tags$p("The following links open in a new tab.")
+#' shiny::tags$ul(
+#'   shiny::tags$li(
+#'     external_link(
+#'       "https://shiny.posit.co/",
+#'       "R Shiny documentation",
+#'       add_warning = FALSE
+#'     )
+#'   ),
+#'   shiny::tags$li(
+#'     external_link(
+#'       "https://www.python.org/",
+#'       "Python documenation",
+#'       add_warning = FALSE
+#'     )
+#'   ),
+#'   shiny::tags$li(
+#'     external_link(
+#'       "https://nextjs.org/",
+#'       "Next.js documenation",
+#'       add_warning = FALSE
+#'     )
+#'   )
+#' )
+#'
 external_link <- function(href, link_text, add_warning = TRUE) {
   if (!is.logical(add_warning)) {
     stop("add_warning must be a TRUE or FALSE value")
   }
 
-  # Trim whitespace as I don't trust humans not to accidentally include
+  # Trim white space as I don't trust humans not to accidentally include
   link_text <- stringr::str_trim(link_text)
 
   # Create a basic check for raw URLs
@@ -117,13 +158,23 @@ external_link <- function(href, link_text, add_warning = TRUE) {
       htmltools::span(class = "visually-hidden", "This link opens in a new tab")
   }
 
-  # Create link using htmltools::tags$a
-  htmltools::tags$a(
-    hidden_span,
+  # Create the link object
+  link <- htmltools::tags$a(
     href = href,
-    link_text,
+    htmltools::HTML(paste0(hidden_span, link_text)), # white space hack
     target = "_blank",
     rel = "noopener noreferrer",
-    .noWS = "after"
+    .noWS = c("outside")
   )
+
+  # Attach CSS from inst/www/css/visually-hidden.css
+  dependency <- htmltools::htmlDependency(
+    name = "visually-hidden",
+    version = as.character(utils::packageVersion("dfeshiny")[[1]]),
+    src = c(href = "dfeshiny/css"),
+    stylesheet = "visually-hidden.css"
+  )
+
+  # Return the link with the CSS attached
+  return(htmltools::attachDependencies(link, dependency, append = TRUE))
 }

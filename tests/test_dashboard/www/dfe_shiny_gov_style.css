@@ -47,7 +47,7 @@ a:active {
   padding: 6px 6px 6px 6px;
 }
 
-/* This line sets the main area width. Originally set to 66.667% in the GDS 
+/* This line sets the main area width. Originally set to 66.667% in the GDS
 template. 80% works well here to reduce white space on the right hand side.*/
 .col-sm-8{ width: 80%}
 
@@ -205,35 +205,35 @@ template. 80% works well here to reduce white space on the right hand side.*/
 
 
 .small-box.bg-blue{
-     background-color: #1d70b8 !important; 
+     background-color: #1d70b8 !important;
      color: #ffffff;
      padding: 120px
      margin:10px;
 }
 
 .small-box.bg-orange{
-     background-color: #F46A25 !important; 
+     background-color: #F46A25 !important;
      color: #ffffff;
 }
 
 .small-box.bg-red{
-     background-color: #f499be !important; 
+     background-color: #f499be !important;
      color: #ffffff;
 }
 
 .small-box.bg-green{
-     background-color: 	#00703c !important; 
+     background-color: 	#00703c !important;
      color: #ffffff;
 }
 
 .small-box.bg-dark-blue{
-     background-color: 	#12436D !important; 
+     background-color: 	#12436D !important;
      color: #ffffff;
 }
 
 #ss-connect-dialog { display: none !important; }
 #shiny-disconnected-overlay { display: none !important; }
-        
+
 #ss-overlay {
              background-color: #000000 !important;
              opacity: 0.6 !important;
@@ -246,7 +246,7 @@ template. 80% works well here to reduce white space on the right hand side.*/
              overflow: hidden !important;
              cursor: not-allowed !important;
           }
-          
+
 #custom-disconnect-dialog {
              background: #000000 !important;
              color: #FFFFFF !important;
