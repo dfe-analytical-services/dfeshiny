@@ -92,14 +92,14 @@ shiny::tags$ul(
   shiny::tags$li(
     external_link(
       "https://www.python.org/",
-      "Python documenation",
+      "Python documentation",
       add_warning = FALSE
     )
   ),
   shiny::tags$li(
     external_link(
       "https://nextjs.org/",
-      "Next.js documenation",
+      "Next.js documentation",
       add_warning = FALSE
     )
   )

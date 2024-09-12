@@ -14,7 +14,7 @@ the user as long as it matches the id in the cookies_panel_server()}
 "ABCDE12345"}
 }
 \value{
-a html div, containing standard cookises content for a public R
+a html div, containing standard cookies content for a public R
 Shiny dashboard in DfE
 }
 \description{
