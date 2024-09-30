@@ -103,10 +103,9 @@ support_panel <- function(
         "This dashboard is a new service that we are developing. If you
               have any feedback or suggestions for improvements, please submit
               them using our ",
-        shiny::tags$a(
+        dfeshiny::external_link(
           href = form_url,
-          "feedback form",
-          .noWS = c("after")
+          link_text = "feedback form"
         )
       )
     } else {
@@ -124,10 +123,10 @@ support_panel <- function(
         "f you spot any errors or bugs while using this dashboard, please
               screenshot and email them to "
       ),
-      shiny::tags$a(
+      dfeshiny::external_link(
         href = paste0("mailto:", team_email),
-        team_email,
-        .noWS = c("after")
+        link_text = team_email,
+        add_warning = FALSE
       ), "."
     ),
     shiny::tags$h2("Find more information on the data"),
@@ -136,35 +135,32 @@ support_panel <- function(
         "The parent statistical release of this dashboard, along with
               methodological information,
               is available at the following link: ",
-        shiny::tags$a(
+        dfeshiny::external_link(
           href = paste0(
             "https://explore-education-statistics.service.gov.uk/find-statistics/", # nolint: [line_length_linter]
             publication_slug
           ),
-          ifelse(
+          link_text = ifelse(
             !is.null(publication_name),
             publication_name,
             "Explore Education Statistics"
-          ),
-          .noWS = c("after")
+          )
         ),
         ". The statistical release provides additional ",
-        shiny::tags$a(
+        dfeshiny::external_link(
           href = paste0(
             "https://explore-education-statistics.service.gov.uk/find-statistics/", # nolint: [line_length_linter]
             publication_slug, "/data-guidance"
           ),
-          "data guidance",
-          .noWS = c("after")
+          link_text = "data guidance"
         ),
         " and ",
-        shiny::tags$a(
+        dfeshiny::external_link(
           href = paste0(
             "https://explore-education-statistics.service.gov.uk/find-statistics/", # nolint: [line_length_linter]
             publication_slug, "#explore-data-and-files"
           ),
-          "tools to access and interogate the underling data",
-          .noWS = c("after")
+          link_text = "tools to access and interogate the underling data"
         ),
         " contained in this dashboard."
       )
@@ -173,10 +169,9 @@ support_panel <- function(
         "The parent statistical release of this dashboard, along with
               methodological information,
               is available at the following link: ",
-        shiny::tags$a(
+        dfeshiny::external_link(
           href = alt_href,
-          publication_name,
-          .noWS = c("after")
+          link_text = publication_name
         )
       )
     },
@@ -184,19 +179,20 @@ support_panel <- function(
     shiny::tags$p(
       "If you have questions about the dashboard or data within it,
             please contact us at ",
-      shiny::tags$a(
+      dfeshiny::external_link(
         href = paste0("mailto:", team_email),
-        team_email, .noWS = c("after")
+        link_text = team_email,
+        add_warning = FALSE
       )
     ),
     shiny::tags$h2("See the source code"),
     shiny::tags$p(
       "The source code for this dashboard is available in our ",
-      shiny::tags$a(
+      dfeshiny::external_link(
         href = paste0(
           repo_name
         ),
-        "GitHub repository", .noWS = c("after")
+        link_text = "GitHub repository"
       ),
       "."
     )
