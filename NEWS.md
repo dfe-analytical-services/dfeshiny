@@ -1,4 +1,6 @@
-# dfeshiny (development version)
+# dfeshiny 0.4.2
+
+* Applied use of `external_link()` to `support_panel()`
 
 # dfeshiny 0.4.1
 
