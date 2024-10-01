@@ -1,9 +1,9 @@
 pandoc: 3.1.11
-pkgdown: 2.1.0
+pkgdown: 2.1.1
 pkgdown_sha: ~
 articles:
   implementing-cookies: implementing-cookies.html
-last_built: 2024-09-12T12:56Z
+last_built: 2024-10-01T08:52Z
 urls:
   reference: https://dfe-analytical-services.github.io/dfeshiny/reference
   article: https://dfe-analytical-services.github.io/dfeshiny/articles
