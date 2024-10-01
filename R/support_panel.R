@@ -106,7 +106,8 @@ support_panel <- function(
         dfeshiny::external_link(
           href = form_url,
           link_text = "feedback form"
-        )
+        ),
+        "."
       )
     } else {
       shiny::tags$p(
@@ -134,7 +135,7 @@ support_panel <- function(
       shiny::tags$p(
         "The parent statistical release of this dashboard, along with
               methodological information,
-              is available at the following link: ",
+              is available at ",
         dfeshiny::external_link(
           href = paste0(
             "https://explore-education-statistics.service.gov.uk/find-statistics/", # nolint: [line_length_linter]
@@ -143,7 +144,7 @@ support_panel <- function(
           link_text = ifelse(
             !is.null(publication_name),
             publication_name,
-            "Explore Education Statistics"
+            "explore education statistics"
           )
         ),
         ". The statistical release provides additional ",
@@ -160,7 +161,7 @@ support_panel <- function(
             "https://explore-education-statistics.service.gov.uk/find-statistics/", # nolint: [line_length_linter]
             publication_slug, "#explore-data-and-files"
           ),
-          link_text = "tools to access and interogate the underling data"
+          link_text = "tools to access and interrogate the underlying data"
         ),
         " contained in this dashboard."
       )
@@ -168,11 +169,12 @@ support_panel <- function(
       shiny::tags$p(
         "The parent statistical release of this dashboard, along with
               methodological information,
-              is available at the following link: ",
+              is available at ",
         dfeshiny::external_link(
           href = alt_href,
           link_text = publication_name
-        )
+        ),
+        "."
       )
     },
     shiny::tags$h2("Contact us"),
@@ -183,7 +185,8 @@ support_panel <- function(
         href = paste0("mailto:", team_email),
         link_text = team_email,
         add_warning = FALSE
-      )
+      ),
+      "."
     ),
     shiny::tags$h2("See the source code"),
     shiny::tags$p(
