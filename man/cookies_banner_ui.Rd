@@ -6,7 +6,7 @@
 \usage{
 cookies_banner_ui(
   id = "cookies_banner",
-  name = "DfE R-Shiny dashboard template"
+  name = "DfE R Shiny dashboard template"
 )
 }
 \arguments{
@@ -20,7 +20,7 @@ applied}
 shiny::tags$div()
 }
 \description{
-This function provides a cookie authorisation banner on DfE R-Shiny
+This function provides a cookie authorisation banner on DfE R Shiny
 dashboards for users to be able to accept or reject cookies. The server side
 functionality is provided by cookies_banner_server(), whilst users will also
 need to include the dfe_cookies_script() function in their ui.R file.
@@ -41,7 +41,7 @@ if (interactive()) {
     # Place these lines above your header ----------------------------------
     useShinyjs(),
     dfe_cookies_script(),
-    cookies_banner_ui(name = "My DfE R-Shiny data dashboard"),
+    cookies_banner_ui(name = "My DfE R Shiny data dashboard"),
 
     # Place the cookies panel under the header but in the main content -----
     # Example of placing as a panel within navlistPanel

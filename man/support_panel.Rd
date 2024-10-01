@@ -38,7 +38,7 @@ a HTML div, containing standard support content for a public R Shiny
 dashboard in DfE
 }
 \description{
-Create the standard DfE R-Shiny support and feedback dashboard panel.
+Create the standard DfE R Shiny support and feedback dashboard panel.
 }
 \examples{
 support_panel(

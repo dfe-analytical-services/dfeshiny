@@ -8,7 +8,7 @@ Authors@R: c(
     person("Cam", "Race", , "cameron.race@education.gov.uk", role = "aut")
   )
 Description: R package containing preferred methods for creating official
-    DfE R-Shiny dashboards.
+    DfE R Shiny dashboards.
 License: GPL (>= 3)
 Imports: 
     magrittr,

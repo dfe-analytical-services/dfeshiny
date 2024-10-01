@@ -1,7 +1,7 @@
 #' Support panel
 #'
 #' @description
-#' Create the standard DfE R-Shiny support and feedback dashboard panel.
+#' Create the standard DfE R Shiny support and feedback dashboard panel.
 #'
 #' @param team_email Your team e-mail address, must be a education.gov.uk email
 #' @param repo_name The repository URL, must be a valid URL for the

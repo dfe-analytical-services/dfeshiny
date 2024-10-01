@@ -33,7 +33,7 @@ cookies_banner_server() provides the server module to be used alongside
 cookies_banner_ui(). Place cookies_banner_server() as a call in your server.R
 file to provide the server functions to control users being able to accept or
 reject cookie consent for the provision of Google Analytics tracking on DfE
-R-Shiny dashboards.
+R Shiny dashboards.
 }
 \examples{
 if (interactive()) {
@@ -51,7 +51,7 @@ if (interactive()) {
     # Place these lines above your header ----------------------------------
     useShinyjs(),
     dfe_cookies_script(),
-    cookies_banner_ui(name = "My DfE R-Shiny data dashboard"),
+    cookies_banner_ui(name = "My DfE R Shiny data dashboard"),
 
     # Place the cookies panel under the header but in the main content -----
     # Example of placing as a panel within navlistPanel

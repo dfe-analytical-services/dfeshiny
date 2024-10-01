@@ -18,7 +18,7 @@ a HTML div, containing standard cookies content for a public R
 Shiny dashboard in DfE
 }
 \description{
-Create the standard DfE R-Shiny cookies dashboard panel in the ui. The server
+Create the standard DfE R Shiny cookies dashboard panel in the ui. The server
 side functionality is provided by cookies_panel_server()
 }
 \examples{
@@ -37,7 +37,7 @@ if (interactive()) {
     # Place these lines above your header ----------------------------------
     useShinyjs(),
     dfe_cookies_script(),
-    cookies_banner_ui(name = "My DfE R-Shiny data dashboard"),
+    cookies_banner_ui(name = "My DfE R Shiny data dashboard"),
 
     # Place the cookies panel under the header but in the main content -----
     # Example of placing as a panel within navlistPanel

@@ -24,7 +24,7 @@
 #'     # Place these lines above your header ----------------------------------
 #'     useShinyjs(),
 #'     dfe_cookies_script(),
-#'     cookies_banner_ui(name = "My DfE R-Shiny data dashboard"),
+#'     cookies_banner_ui(name = "My DfE R Shiny data dashboard"),
 #'
 #'     # Place the cookies panel under the header but in the main content -----
 #'     # Example of placing as a panel within navlistPanel
@@ -78,7 +78,7 @@ dfe_cookies_script <- function() {
 #' cookies_banner_ui
 #'
 #' @description
-#' This function provides a cookie authorisation banner on DfE R-Shiny
+#' This function provides a cookie authorisation banner on DfE R Shiny
 #' dashboards for users to be able to accept or reject cookies. The server side
 #' functionality is provided by cookies_banner_server(), whilst users will also
 #' need to include the dfe_cookies_script() function in their ui.R file.
@@ -92,7 +92,7 @@ dfe_cookies_script <- function() {
 #' @return shiny::tags$div()
 #' @export
 #' @inherit cookies examples
-cookies_banner_ui <- function(id = "cookies_banner", name = "DfE R-Shiny dashboard template") {
+cookies_banner_ui <- function(id = "cookies_banner", name = "DfE R Shiny dashboard template") {
   shiny::tags$div(
     id = shiny::NS(id, "cookies_div"),
     class = "govuk-cookie-banner",
@@ -149,7 +149,7 @@ cookies_banner_ui <- function(id = "cookies_banner", name = "DfE R-Shiny dashboa
 #' cookies_banner_ui(). Place cookies_banner_server() as a call in your server.R
 #' file to provide the server functions to control users being able to accept or
 #' reject cookie consent for the provision of Google Analytics tracking on DfE
-#' R-Shiny dashboards.
+#' R Shiny dashboards.
 #'
 #' @param id Shiny tag shared with cookies_banner_ui(), can be any string set by
 #' the user as long as it matches the id in the cookies_banner_ui()
@@ -333,7 +333,7 @@ Shiny.addCustomMessageHandler('analytics-consent', function(msg){
 #' cookies_panel_ui
 #'
 #' @description
-#' Create the standard DfE R-Shiny cookies dashboard panel in the ui. The server
+#' Create the standard DfE R Shiny cookies dashboard panel in the ui. The server
 #' side functionality is provided by cookies_panel_server()
 #'
 #' @param id Shiny tag shared with cookies_panel_server(), can be any string set by
@@ -428,7 +428,7 @@ cookies_panel_ui <- function(id = "cookies_panel", google_analytics_key = NULL) 
 #' cookies_panel_server
 #'
 #' @description
-#' Create the server module of DfE R-Shiny cookies dashboard panel to be used
+#' Create the server module of DfE R Shiny cookies dashboard panel to be used
 #' alongside cookies_panel_ui().
 #'
 #' @param id Shiny tag shared with cookies_panel_ui(), can be any string set by
