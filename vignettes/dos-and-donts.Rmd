@@ -1,0 +1,54 @@
+---
+title: "dos-and-donts"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{dos-and-donts}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+## Using Shiny to produce offcial government dashboards
+
+R-Shiny offers a lot of flexibility and possibilities and the ability to link in with a wide range of other 
+R packages. Above all though dashboard developers just keep to the following basic principles:
+
+- keep it simple (don't over-engineer)
+- take accessibility into account in everything you develop
+- work to Government Digital Services principles and guidance wherever possible
+- help us develop dfeshiny to support standard dashboard needs (that aren't met appropriately elsewhere)
+
+Whilst it can be tempting to pick out shiny functionality from across different packages, some 
+functionality and packages have significant negative consequences in terms of future proofing / 
+continuity and being broadly accessible for users. What follows is a list of packages to use and 
+those to avoid, and the reasons why.
+
+### Packages to use
+
+#### bslib
+
+
+
+#### shinyGovstyle
+
+#### dfeshiny
+
+#### shiny
+
+#### ggiraffe
+
+
+### Packages to avoid
+
+#### shinyWidgets
+
+#### shinydashboard
+
+#### plotly
+
