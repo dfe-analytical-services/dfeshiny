@@ -12,9 +12,9 @@ support_panel(
   publication_slug = "",
   alt_href = NULL,
   form_url = NULL,
-  feedback_extra_txt = NULL,
-  info_extra_txt = NULL,
-  contact_extra_txt = NULL
+  feedback_custom_txt = NULL,
+  info_custom_txt = NULL,
+  contact_custom_txt = NULL
 )
 }
 \arguments{
@@ -36,14 +36,14 @@ Explore Education Statistics)}
 
 \item{form_url}{URL for a feedback form for the dashboard}
 
-\item{feedback_extra_txt}{Optional extra text to go under the "Give us feedback" heading.
+\item{feedback_custom_txt}{Optional custom text to go under the "Give us feedback" heading.
 It will be a separate paragraph beneath the existing text template.}
 
-\item{info_extra_txt}{Optional extra text to go under the
+\item{info_custom_txt}{Optional custom text to go under the
 "Find out more information on the data" heading.
 It will be a separate paragraph beneath the existing text template.}
 
-\item{contact_extra_txt}{Optional extra text to go under the "Contact us" heading.
+\item{contact_custom_txt}{Optional custom text to go under the "Contact us" heading.
 It will be a separate paragraph beneath the existing text template.}
 }
 \value{
@@ -80,10 +80,10 @@ shiny::navlistPanel(
   )
 )
 
-# Example for adding extra text
-extra_text <- "This is a sentence to test the ability to add extra text in the tab"
+# Example for adding custom text
+custom_text <- "This is a sentence to test the ability to add custom text in the tab"
 
-# Adding extra text to the feedback section only
+# Adding custom text to the feedback section only
 
 support_panel(
   team_email = "my.team@education.gov.uk",
@@ -91,10 +91,10 @@ support_panel(
   publication_name = "My publication title",
   publication_slug = "my-publication-title",
   form_url = "www.myform.com",
-  feedback_extra_txt = extra_text,
+  feedback_custom_txt = custom_text,
 )
 
-# Adding extra text to all the sections
+# Adding custom text to all the sections
 
 support_panel(
   team_email = "my.team@education.gov.uk",
@@ -102,8 +102,8 @@ support_panel(
   publication_name = "My publication title",
   publication_slug = "my-publication-title",
   form_url = "www.myform.com",
-  feedback_extra_txt = extra_text,
-  info_extra_txt = extra_text,
-  contact_extra_txt = extra_text
+  feedback_custom_txt = custom_text,
+  info_custom_txt = custom_text,
+  contact_custom_txt = custom_text
 )
 }

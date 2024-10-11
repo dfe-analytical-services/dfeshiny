@@ -143,7 +143,7 @@ test_that("HTML headings output from function", {
   # This checks the headings are in the expected positions in the HTML output the function returns
   expect_equal(paste(output$children[[1]]), "<h1>Support and feedback</h1>")
   expect_equal(paste(output$children[[2]]), "<h2>Give us feedback</h2>")
-  expect_equal(paste(output$children[[6]]), "<h2>Find more information on the data</h2>")
-  expect_equal(paste(output$children[[9]]), "<h2>Contact us</h2>")
-  expect_equal(paste(output$children[[12]]), "<h2>See the source code</h2>")
+  expect_equal(paste(output$children[[4]]), "<h2>Find more information on the data</h2>")
+  expect_equal(paste(output$children[[6]]), "<h2>Contact us</h2>")
+  expect_equal(paste(output$children[[8]]), "<h2>See the source code</h2>")
 })

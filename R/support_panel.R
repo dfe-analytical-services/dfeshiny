@@ -14,12 +14,12 @@
 #' @param alt_href Alternative link to the parent publication (if not hosted on
 #' Explore Education Statistics)
 #' @param form_url URL for a feedback form for the dashboard
-#' @param feedback_extra_txt Optional extra text to go under the "Give us feedback" heading.
+#' @param feedback_custom_txt Optional custom text to go under the "Give us feedback" heading.
 #' It will be a separate paragraph beneath the existing text template.
-#' @param info_extra_txt Optional extra text to go under the
+#' @param info_custom_txt Optional custom text to go under the
 #' "Find out more information on the data" heading.
 #' It will be a separate paragraph beneath the existing text template.
-#' @param contact_extra_txt Optional extra text to go under the "Contact us" heading.
+#' @param contact_custom_txt Optional custom text to go under the "Contact us" heading.
 #' It will be a separate paragraph beneath the existing text template.
 #'
 #' @return a HTML div, containing standard support content for a public R Shiny
@@ -53,10 +53,10 @@
 #'   )
 #' )
 #'
-#' # Example for adding extra text
-#' extra_text <- "This is a sentence to test the ability to add extra text in the tab"
+#' # Example for adding custom text
+#' custom_text <- "This is a sentence to test the ability to add custom text in the tab"
 #'
-#' # Adding extra text to the feedback section only
+#' # Adding custom text to the feedback section only
 #'
 #' support_panel(
 #'   team_email = "my.team@@education.gov.uk",
@@ -64,10 +64,10 @@
 #'   publication_name = "My publication title",
 #'   publication_slug = "my-publication-title",
 #'   form_url = "www.myform.com",
-#'   feedback_extra_txt = extra_text,
+#'   feedback_custom_txt = custom_text,
 #' )
 #'
-#' # Adding extra text to all the sections
+#' # Adding custom text to all the sections
 #'
 #' support_panel(
 #'   team_email = "my.team@@education.gov.uk",
@@ -75,9 +75,9 @@
 #'   publication_name = "My publication title",
 #'   publication_slug = "my-publication-title",
 #'   form_url = "www.myform.com",
-#'   feedback_extra_txt = extra_text,
-#'   info_extra_txt = extra_text,
-#'   contact_extra_txt = extra_text
+#'   feedback_custom_txt = custom_text,
+#'   info_custom_txt = custom_text,
+#'   contact_custom_txt = custom_text
 #' )
 support_panel <- function(
     team_email = "",
@@ -87,9 +87,9 @@ support_panel <- function(
     publication_slug = "",
     alt_href = NULL,
     form_url = NULL,
-    feedback_extra_txt = NULL,
-    info_extra_txt = NULL,
-    contact_extra_txt = NULL) {
+    feedback_custom_txt = NULL,
+    info_custom_txt = NULL,
+    contact_custom_txt = NULL) {
   # Check that the team_email is a valid dfe email ----------------------------
   is_valid_dfe_email <- function(email) {
     grepl(
@@ -132,130 +132,114 @@ support_panel <- function(
   }
 
 
-  # check for extra text ----------------------------------------------------
-
-  # check for extra feedback text - if not specified, keep string empty
-  if (is.null(feedback_extra_txt)) {
-    feedback_extra_txt <- ""
-    # if specified, use the given string
-  } else {
-    feedback_extra_txt <- feedback_extra_txt
-  }
-
-  # check for extra find out more info text  - if not specified, keep string empty
-  if (is.null(info_extra_txt)) {
-    info_extra_txt <- ""
-    # if specified, use the given string
-  } else {
-    info_extra_txt <- info_extra_txt
-  }
-
-  # check for extra contact us text  - if not specified, keep string empty
-  if (is.null(contact_extra_txt)) {
-    contact_extra_txt <- ""
-    # if specified, use the given string
-  } else {
-    contact_extra_txt <- contact_extra_txt
-  }
 
 
   # Build the support page ----------------------------------------------------
   shiny::tags$div(
     shiny::tags$h1("Support and feedback"),
     shiny::tags$h2("Give us feedback"),
-    if (!is.null(form_url)) {
-      shiny::tags$p(
-        "This dashboard is a new service that we are developing. If you
+    if (!is.null(feedback_custom_txt)) {
+      shiny::tags$p(feedback_custom_txt)
+    } else {
+      if (!is.null(form_url)) {
+        shiny::tags$p(
+          "This dashboard is a new service that we are developing. If you
               have any feedback or suggestions for improvements, please submit
               them using our ",
-        dfeshiny::external_link(
-          href = form_url,
-          link_text = "feedback form"
-        ),
-        "."
-      )
-    } else {
+          dfeshiny::external_link(
+            href = form_url,
+            link_text = "feedback form"
+          ),
+          "."
+        )
+      } else {
+        shiny::tags$p(
+          "This dashboard is a new service that we are developing."
+        )
+      }
       shiny::tags$p(
-        "This dashboard is a new service that we are developing."
-      )
-    },
-    shiny::tags$p(
-      paste0(
-        ifelse(
-          !is.null(form_url),
-          "Alternatively, i",
-          "I"
-        ),
-        "f you spot any errors or bugs while using this dashboard, please
+        paste0(
+          ifelse(
+            !is.null(form_url),
+            "Alternatively, i",
+            "I"
+          ),
+          "f you spot any errors or bugs while using this dashboard, please
               screenshot and email them to "
-      ),
-      dfeshiny::external_link(
-        href = paste0("mailto:", team_email),
-        link_text = team_email,
-        add_warning = FALSE
-      ), "."
-    ),
-    shiny::tags$p(feedback_extra_txt),
+        ),
+        dfeshiny::external_link(
+          href = paste0("mailto:", team_email),
+          link_text = team_email,
+          add_warning = FALSE
+        ), "."
+      )
+    },
     shiny::tags$h2("Find more information on the data"),
-    if (ees_publication) {
-      shiny::tags$p(
-        "The parent statistical release of this dashboard, along with
+    if (!is.null(info_custom_txt)) {
+      shiny::tags$p(info_custom_txt)
+    } else {
+      if (ees_publication) {
+        shiny::tags$p(
+          "The parent statistical release of this dashboard, along with
               methodological information,
               is available at ",
-        dfeshiny::external_link(
-          href = paste0(
-            "https://explore-education-statistics.service.gov.uk/find-statistics/", # nolint: [line_length_linter]
-            publication_slug
+          dfeshiny::external_link(
+            href = paste0(
+              "https://explore-education-statistics.service.gov.uk/find-statistics/", # nolint: [line_length_linter]
+              publication_slug
+            ),
+            link_text = ifelse(
+              !is.null(publication_name),
+              publication_name,
+              "explore education statistics"
+            )
           ),
-          link_text = ifelse(
-            !is.null(publication_name),
-            publication_name,
-            "explore education statistics"
-          )
-        ),
-        ". The statistical release provides additional ",
-        dfeshiny::external_link(
-          href = paste0(
-            "https://explore-education-statistics.service.gov.uk/find-statistics/", # nolint: [line_length_linter]
-            publication_slug, "/data-guidance"
+          ". The statistical release provides additional ",
+          dfeshiny::external_link(
+            href = paste0(
+              "https://explore-education-statistics.service.gov.uk/find-statistics/", # nolint: [line_length_linter]
+              publication_slug, "/data-guidance"
+            ),
+            link_text = "data guidance"
           ),
-          link_text = "data guidance"
-        ),
-        " and ",
-        dfeshiny::external_link(
-          href = paste0(
-            "https://explore-education-statistics.service.gov.uk/find-statistics/", # nolint: [line_length_linter]
-            publication_slug, "#explore-data-and-files"
+          " and ",
+          dfeshiny::external_link(
+            href = paste0(
+              "https://explore-education-statistics.service.gov.uk/find-statistics/", # nolint: [line_length_linter]
+              publication_slug, "#explore-data-and-files"
+            ),
+            link_text = "tools to access and interrogate the underlying data"
           ),
-          link_text = "tools to access and interrogate the underlying data"
-        ),
-        " contained in this dashboard."
-      )
+          " contained in this dashboard."
+        )
+      } else {
+        shiny::tags$p(
+          "The parent statistical release of this dashboard, along with
+              methodological information,
+              is available at ",
+          dfeshiny::external_link(
+            href = alt_href,
+            link_text = publication_name
+          ),
+          "."
+        )
+      }
+    },
+    shiny::tags$h2("Contact us"),
+    if (!is.null(contact_custom_txt)) {
+      shiny::tags$p(contact_custom_txt)
     } else {
       shiny::tags$p(
-        "The parent statistical release of this dashboard, along with
-              methodological information,
-              is available at ",
+        "If you have questions about the dashboard or data within it,
+            please contact us at ",
         dfeshiny::external_link(
-          href = alt_href,
-          link_text = publication_name
+          href = paste0("mailto:", team_email),
+          link_text = team_email,
+          add_warning = FALSE
         ),
         "."
       )
     },
-    shiny::tags$p(info_extra_txt),
-    shiny::tags$h2("Contact us"),
-    shiny::tags$p(
-      "If you have questions about the dashboard or data within it,
-            please contact us at ",
-      dfeshiny::external_link(
-        href = paste0("mailto:", team_email),
-        link_text = team_email,
-        add_warning = FALSE
-      ),
-      "."
-    ),
-    shiny::tags$p(contact_extra_txt),
     shiny::tags$h2("See the source code"),
     shiny::tags$p(
       "The source code for this dashboard is available in our ",
