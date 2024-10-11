@@ -53,31 +53,31 @@
 #'   )
 #' )
 #'
-#' Example for adding extra text
+#' # Example for adding extra text
 #' extra_text <- "This is a sentence to test the ability to add extra text in the tab"
 #'
-#'#adding extra text to the feedback section only
+#' # Adding extra text to the feedback section only
 #'
-#'  support_panel(
+#' support_panel(
 #'   team_email = "my.team@@education.gov.uk",
 #'   repo_name = "https://github.com/dfe-analytical-services/my-repo",
 #'   publication_name = "My publication title",
 #'   publication_slug = "my-publication-title",
 #'   form_url = "www.myform.com",
-#'   feedback_extra_txt= extra_text,
+#'   feedback_extra_txt = extra_text,
 #' )
 #'
-#' #'#adding extra text to all the sections
+#' # Adding extra text to all the sections
 #'
-#'  support_panel(
+#' support_panel(
 #'   team_email = "my.team@@education.gov.uk",
 #'   repo_name = "https://github.com/dfe-analytical-services/my-repo",
 #'   publication_name = "My publication title",
 #'   publication_slug = "my-publication-title",
 #'   form_url = "www.myform.com",
-#'   feedback_extra_txt= extra_text,
-#'info_extra_txt = extra_text,
-#'contact_extra_txt = extra_text
+#'   feedback_extra_txt = extra_text,
+#'   info_extra_txt = extra_text,
+#'   contact_extra_txt = extra_text
 #' )
 support_panel <- function(
     team_email = "",
@@ -87,7 +87,7 @@ support_panel <- function(
     publication_slug = "",
     alt_href = NULL,
     form_url = NULL,
-    feedback_extra_txt= NULL,
+    feedback_extra_txt = NULL,
     info_extra_txt = NULL,
     contact_extra_txt = NULL) {
   # Check that the team_email is a valid dfe email ----------------------------
@@ -132,22 +132,31 @@ support_panel <- function(
   }
 
 
-# check for extra text ----------------------------------------------------
+  # check for extra text ----------------------------------------------------
 
-  #check for extra feedback text - if not specified, keep string empty
-  if(is.null(feedback_extra_txt)){ feedback_extra_txt <- ""
-  #if specified, use the given string
-  }else{feedback_extra_txt <- feedback_extra_txt}
+  # check for extra feedback text - if not specified, keep string empty
+  if (is.null(feedback_extra_txt)) {
+    feedback_extra_txt <- ""
+    # if specified, use the given string
+  } else {
+    feedback_extra_txt <- feedback_extra_txt
+  }
 
-  #check for extra find out more info text  - if not specified, keep string empty
-  if(is.null(info_extra_txt )){ info_extra_txt <- ""
-  #if specified, use the given string
-  }else{info_extra_txt <- info_extra_txt}
+  # check for extra find out more info text  - if not specified, keep string empty
+  if (is.null(info_extra_txt)) {
+    info_extra_txt <- ""
+    # if specified, use the given string
+  } else {
+    info_extra_txt <- info_extra_txt
+  }
 
-  #check for extra contact us text  - if not specified, keep string empty
-  if(is.null(contact_extra_txt)){ contact_extra_txt <- ""
-  #if specified, use the given string
-  }else{contact_extra_txt <- contact_extra_txt}
+  # check for extra contact us text  - if not specified, keep string empty
+  if (is.null(contact_extra_txt)) {
+    contact_extra_txt <- ""
+    # if specified, use the given string
+  } else {
+    contact_extra_txt <- contact_extra_txt
+  }
 
 
   # Build the support page ----------------------------------------------------
@@ -165,8 +174,6 @@ support_panel <- function(
         ),
         "."
       )
-
-      shiny::tags$p(feedback_extra_txt)
     } else {
       shiny::tags$p(
         "This dashboard is a new service that we are developing."
@@ -188,7 +195,6 @@ support_panel <- function(
         add_warning = FALSE
       ), "."
     ),
-
     shiny::tags$p(feedback_extra_txt),
     shiny::tags$h2("Find more information on the data"),
     if (ees_publication) {
@@ -223,11 +229,8 @@ support_panel <- function(
           ),
           link_text = "tools to access and interrogate the underlying data"
         ),
-        " contained in this dashboard."#,
-        #info_extra_txt
+        " contained in this dashboard."
       )
-
-      shiny::tags$p(info_extra_txt)
     } else {
       shiny::tags$p(
         "The parent statistical release of this dashboard, along with
@@ -237,11 +240,10 @@ support_panel <- function(
           href = alt_href,
           link_text = publication_name
         ),
-        "."#,
-        #info_extra_txt
+        "."
       )
-      shiny::tags$p(info_extra_txt)
     },
+    shiny::tags$p(info_extra_txt),
     shiny::tags$h2("Contact us"),
     shiny::tags$p(
       "If you have questions about the dashboard or data within it,
@@ -251,8 +253,7 @@ support_panel <- function(
         link_text = team_email,
         add_warning = FALSE
       ),
-      "."#,
-      #contact_extra_txt
+      "."
     ),
     shiny::tags$p(contact_extra_txt),
     shiny::tags$h2("See the source code"),

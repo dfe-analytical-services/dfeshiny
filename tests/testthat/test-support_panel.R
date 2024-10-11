@@ -87,6 +87,43 @@ test_that("repo URL needs to follow standard pattern", {
   expect_error(support_panel(team_email = "cam@education.gov.uk"))
 })
 
+# Testing extra text inputs
+
+text_example <- "This is a text"
+
+test_that("testing extra text input", {
+  # testing extra text input for feedback section
+  expect_no_error(support_panel(
+    team_email = "menna@education.gov.uk",
+    repo_name = "https://github.com/dfe-analytical-services/my-repo",
+    feedback_extra_txt = text_example,
+  ))
+  # testing extra text input for find out more information section
+
+  expect_no_error(support_panel(
+    team_email = "menna@education.gov.uk",
+    repo_name = "https://github.com/dfe-analytical-services/my-repo",
+    info_extra_txt = text_example,
+  ))
+
+  # testing extra text input for contact us section
+
+  expect_no_error(support_panel(
+    team_email = "menna@education.gov.uk",
+    repo_name = "https://github.com/dfe-analytical-services/my-repo",
+    contact_extra_txt = text_example
+  ))
+
+  # testing extra text input for all sections
+  expect_no_error(support_panel(
+    team_email = "menna@education.gov.uk",
+    repo_name = "https://github.com/dfe-analytical-services/my-repo",
+    feedback_extra_txt = text_example,
+    info_extra_txt = text_example,
+    contact_extra_txt = text_example
+  ))
+})
+
 # Example output object =======================================================
 # This is used in the following tests
 
@@ -106,7 +143,7 @@ test_that("HTML headings output from function", {
   # This checks the headings are in the expected positions in the HTML output the function returns
   expect_equal(paste(output$children[[1]]), "<h1>Support and feedback</h1>")
   expect_equal(paste(output$children[[2]]), "<h2>Give us feedback</h2>")
-  expect_equal(paste(output$children[[5]]), "<h2>Find more information on the data</h2>")
-  expect_equal(paste(output$children[[7]]), "<h2>Contact us</h2>")
-  expect_equal(paste(output$children[[9]]), "<h2>See the source code</h2>")
+  expect_equal(paste(output$children[[6]]), "<h2>Find more information on the data</h2>")
+  expect_equal(paste(output$children[[9]]), "<h2>Contact us</h2>")
+  expect_equal(paste(output$children[[12]]), "<h2>See the source code</h2>")
 })
