@@ -14,16 +14,21 @@
 #' @param alt_href Alternative link to the parent publication (if not hosted on
 #' Explore Education Statistics)
 #' @param form_url URL for a feedback form for the dashboard
-#' @param feedback_custom_txt Optional custom text to go under the "Give us feedback" heading.
+#' @param feedback_custom_text Optional custom text to go under the "Give us feedback" heading.
 #' It will be a separate paragraph beneath the existing text template.
-#' @param info_custom_txt Optional custom text to go under the
+#' @param info_custom_text Optional custom text to go under the
 #' "Find out more information on the data" heading.
 #' It will be a separate paragraph beneath the existing text template.
-#' @param contact_custom_txt Optional custom text to go under the "Contact us" heading.
+#' @param contact_custom_text Optional custom text to go under the "Contact us" heading.
 #' It will be a separate paragraph beneath the existing text template.
+#'
+#' @param extra_text Add extra paragraphs to the page before the "Contact us" section.
+#' Use `dfeshiny::html_paragraph_tags()` to specify the heading and body.
+#' Look at examples to see how to add one or multiple sections.
 #'
 #' @return a HTML div, containing standard support content for a public R Shiny
 #' dashboard in DfE
+#' @seealso [html_paragraph_tags()]
 #' @export
 #'
 #' @examples
@@ -64,7 +69,7 @@
 #'   publication_name = "My publication title",
 #'   publication_slug = "my-publication-title",
 #'   form_url = "www.myform.com",
-#'   feedback_custom_txt = custom_text,
+#'   feedback_custom_text = custom_text,
 #' )
 #'
 #' # Adding custom text to all the sections
@@ -75,9 +80,36 @@
 #'   publication_name = "My publication title",
 #'   publication_slug = "my-publication-title",
 #'   form_url = "www.myform.com",
-#'   feedback_custom_txt = custom_text,
-#'   info_custom_txt = custom_text,
-#'   contact_custom_txt = custom_text
+#'   feedback_custom_text = custom_text,
+#'   info_custom_text = custom_text,
+#'   contact_custom_text = custom_text
+#' )
+#' # Example for adding custom sections
+#'
+#' # Adding one section
+#' support_panel(
+#'   team_email = "my.team@@education.gov.uk",
+#'   repo_name = "https://github.com/dfe-analytical-services/my-repo",
+#'   info_extra_text = extra,
+#'   extra_text = html_paragraph_tags(
+#'     heading = "heading",
+#'     body = "this is a body"
+#'   )
+#' )
+#' # Adding two sections
+#' support_panel(
+#'   team_email = "my.team@@education.gov.uk",
+#'   repo_name = "https://github.com/dfe-analytical-services/my-repo",
+#'   extra_text = c(
+#'     html_paragraph_tags(
+#'       heading = "heading",
+#'       body = "this is a body"
+#'     ),
+#'     html_paragraph(
+#'       heading = "heading 2",
+#'       body = "this is another example of a text"
+#'     )
+#'   )
 #' )
 support_panel <- function(
     team_email = "",
@@ -87,9 +119,10 @@ support_panel <- function(
     publication_slug = "",
     alt_href = NULL,
     form_url = NULL,
-    feedback_custom_txt = NULL,
-    info_custom_txt = NULL,
-    contact_custom_txt = NULL) {
+    feedback_custom_text = NULL,
+    info_custom_text = NULL,
+    contact_custom_text = NULL,
+    extra_text = NULL) {
   # Check that the team_email is a valid dfe email ----------------------------
   is_valid_dfe_email <- function(email) {
     grepl(
@@ -131,6 +164,13 @@ support_panel <- function(
     )
   }
 
+  # check for extra text
+
+  if (is.null(extra_text)) {
+    extra_text <- ""
+  } else {
+    extra_text <- extra_text
+  }
 
 
 
@@ -138,8 +178,8 @@ support_panel <- function(
   shiny::tags$div(
     shiny::tags$h1("Support and feedback"),
     shiny::tags$h2("Give us feedback"),
-    if (!is.null(feedback_custom_txt)) {
-      shiny::tags$p(feedback_custom_txt)
+    if (!is.null(feedback_custom_text)) {
+      shiny::tags$p(feedback_custom_text)
     } else {
       if (!is.null(form_url)) {
         shiny::tags$p(
@@ -175,8 +215,8 @@ support_panel <- function(
       )
     },
     shiny::tags$h2("Find more information on the data"),
-    if (!is.null(info_custom_txt)) {
-      shiny::tags$p(info_custom_txt)
+    if (!is.null(info_custom_text)) {
+      shiny::tags$p(info_custom_text)
     } else {
       if (ees_publication) {
         shiny::tags$p(
@@ -225,9 +265,10 @@ support_panel <- function(
         )
       }
     },
+    extra_text,
     shiny::tags$h2("Contact us"),
-    if (!is.null(contact_custom_txt)) {
-      shiny::tags$p(contact_custom_txt)
+    if (!is.null(contact_custom_text)) {
+      shiny::tags$p(contact_custom_text)
     } else {
       shiny::tags$p(
         "If you have questions about the dashboard or data within it,
