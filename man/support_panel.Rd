@@ -12,9 +12,10 @@ support_panel(
   publication_slug = "",
   alt_href = NULL,
   form_url = NULL,
-  feedback_custom_txt = NULL,
-  info_custom_txt = NULL,
-  contact_custom_txt = NULL
+  feedback_custom_text = NULL,
+  info_custom_text = NULL,
+  contact_custom_text = NULL,
+  extra_text = NULL
 )
 }
 \arguments{
@@ -36,15 +37,19 @@ Explore Education Statistics)}
 
 \item{form_url}{URL for a feedback form for the dashboard}
 
-\item{feedback_custom_txt}{Optional custom text to go under the "Give us feedback" heading.
+\item{feedback_custom_text}{Optional custom text to go under the "Give us feedback" heading.
 It will be a separate paragraph beneath the existing text template.}
 
-\item{info_custom_txt}{Optional custom text to go under the
+\item{info_custom_text}{Optional custom text to go under the
 "Find out more information on the data" heading.
 It will be a separate paragraph beneath the existing text template.}
 
-\item{contact_custom_txt}{Optional custom text to go under the "Contact us" heading.
+\item{contact_custom_text}{Optional custom text to go under the "Contact us" heading.
 It will be a separate paragraph beneath the existing text template.}
+
+\item{extra_text}{Add extra paragraphs to the page before the "Contact us" section.
+Use \code{dfeshiny::html_paragraph_tags()} to specify the heading and body.
+Look at examples to see how to add one or multiple sections.}
 }
 \value{
 a HTML div, containing standard support content for a public R Shiny
@@ -91,7 +96,7 @@ support_panel(
   publication_name = "My publication title",
   publication_slug = "my-publication-title",
   form_url = "www.myform.com",
-  feedback_custom_txt = custom_text,
+  feedback_custom_text = custom_text,
 )
 
 # Adding custom text to all the sections
@@ -102,8 +107,59 @@ support_panel(
   publication_name = "My publication title",
   publication_slug = "my-publication-title",
   form_url = "www.myform.com",
-  feedback_custom_txt = custom_text,
-  info_custom_txt = custom_text,
-  contact_custom_txt = custom_text
+  feedback_custom_text = custom_text,
+  info_custom_text = custom_text,
+  contact_custom_text = custom_text
 )
+# Example for adding custom sections
+
+# Adding one section
+support_panel(
+  team_email = "my.team@education.gov.uk",
+  repo_name = "https://github.com/dfe-analytical-services/my-repo",
+  info_custom_text = custom_text,
+  extra_text = html_paragraph_tags(
+    heading = "heading",
+    body = "this is a body"
+  )
+)
+# Adding two sections
+support_panel(
+  team_email = "my.team@education.gov.uk",
+  repo_name = "https://github.com/dfe-analytical-services/my-repo",
+  extra_text = c(
+    dfeshiny::html_paragraph_tags(
+      heading = "heading",
+      body = "this is a body"
+    ),
+    dfeshiny::html_paragraph_tags(
+      heading = "heading 2",
+      body = "this is another example of a text"
+    )
+  )
+)
+
+# Adding a section with a `shiny::tagList()` in
+# the `dfeshiny::html_paragraph_tags()`
+
+support_panel(
+  team_email = "my.team@education.gov.uk",
+  repo_name = "https://github.com/dfe-analytical-services/my-repo",
+  extra_text = c(
+    dfeshiny::html_paragraph_tags(
+      heading = "Heading",
+      body = shiny::tagList(
+        "Please email results to",
+        dfeshiny::external_link(
+          href = paste0("mailto:", "team@education.gov.uk"),
+          link_text = "team@education.gov.uk",
+          add_warning = FALSE
+        )
+      )
+    )
+  )
+)
+}
+\seealso{
+\code{\link[=html_paragraph_tags]{html_paragraph_tags()}}
 }

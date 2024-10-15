@@ -1,4 +1,4 @@
-#' Create tagList for HTML paragraph
+#' Create `shiny::tagList()` for HTML paragraph
 #'
 #' @description
 #' Create a list of tags that generate a HTML paragraph.
@@ -8,50 +8,63 @@
 #' This is to be used with `dfeshiny::suport_panel()` to add extra sections to a public R Shiny
 #' dashboard in DfE
 #'
-#' @param heading A character vector for the heading of your paragraph
-#' @param body A character vector for the body of your paragraph
+#' @param heading A single vector or a combined vector wrapped in
+#' `shiny::tagList()` instead of c() for the heading of your paragraph
+#' @param body A single vector or a combined vector wrapped in
+#' `shiny::tagList()` instead of c() for the body of your paragraph
 #'
-#' @return a list of HTML tags that contain and h2 heading and a paragraph body.
+#' @return A list of HTML tags that contain and h2 heading and a paragraph body.
 #' @seealso [support_panel()]
 #' @export
 #'
 #' @examples
+#'
+#' # Example for text heading and body
 #' html_paragraph_tags(
-#'   heading = "heading test",
-#'   body = "this is a body text test"
+#'   heading = "Heading test",
+#'   body = "This is a body text test"
 #' )
+#'
+#' # Example for text heading and text with other elements in the body
+#'
+#'
+#' html_paragraph_tags(
+#'   heading = "Heading test",
+#'   body = shiny::tagList(
+#'     "This is a body text test. Please contact us at",
+#'     dfeshiny::external_link(
+#'       href = paste0("mailto:", "team@@education.gov.uk"),
+#'       link_text = "team@@education.gov.uk",
+#'       add_warning = FALSE
+#'     )
+#'   )
+#' )
+#'
 html_paragraph_tags <- function(heading, body) {
   # check that a heading has been provided
 
   if (missing(heading)) {
-    stop("Please provide a character vector for the 'heading' argument")
+    stop("Please provide a single vector or a combined vector wrapped in shiny::tagList() for the
+         'heading' argument")
   }
 
   # check that a body has been provided
 
   if (missing(body)) {
-    stop("Please provide a character vector for the 'body' argument")
+    stop("Please provide a single vector or a combined vector wrapped in shiny::tagList() for the
+         'body' argument")
   }
 
-  # check class of inputs
+  # check for combined vector wrapping
 
-  # check for heading arg
-
-  if (!is.character(heading)) {
-    stop(paste(
-      "The provided vector for " / heading / " is ",
-      data.class(heading),
-      ". Please ensure that you enter a character vector instead"
-    ))
+  if (class(body)[1] == "list") {
+    stop("You provided a combined vector for the body argument wrapped in c().
+         Please wrap it in shiny::tagList() instead.")
   }
 
-  # check or body arg
-  if (!is.character(body)) {
-    stop(paste(
-      "The provided vector for " / body / " is ",
-      data.class(body),
-      ". Please ensure that you enter a character vector instead"
-    ))
+  if (class(heading)[1] == "list") {
+    stop("You provided a combined vector for the heading argument wrapped in c().
+         Please wrap it in shiny::tagList() instead.")
   }
 
   result <- shiny::tagList(
