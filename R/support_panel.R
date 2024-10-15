@@ -14,12 +14,15 @@
 #' @param alt_href Alternative link to the parent publication (if not hosted on
 #' Explore Education Statistics)
 #' @param form_url URL for a feedback form for the dashboard
-#' @param feedback_custom_text Optional custom text to go under the "Give us feedback" heading.
-#' It will be a separate paragraph beneath the existing text template.
-#' @param info_custom_text Optional custom text to go under the
+#' @param feedback_custom_text A single vector or a combined vector wrapped in
+#' `shiny::tagList()` instead of c() for custom text to go under the "Give us
+#' feedback" heading.It will be a separate paragraph beneath the existing text template.
+#' @param info_custom_text A single vector or a combined vector wrapped in
+#' `shiny::tagList()` instead of c() for custom text to go under the
 #' "Find out more information on the data" heading.
 #' It will be a separate paragraph beneath the existing text template.
-#' @param contact_custom_text Optional custom text to go under the "Contact us" heading.
+#' @param contact_custom_text A single vector or a combined vector wrapped in
+#' `shiny::tagList()` instead of c() for custom text to go under the "Contact us" heading.
 #' It will be a separate paragraph beneath the existing text template.
 #'
 #' @param extra_text Add extra paragraphs to the page before the "Contact us" section.
@@ -72,7 +75,7 @@
 #'   feedback_custom_text = custom_text,
 #' )
 #'
-#' # Adding custom text to all the sections
+#' # Adding custom text to all set sections
 #'
 #' support_panel(
 #'   team_email = "my.team@@education.gov.uk",
@@ -83,6 +86,23 @@
 #'   feedback_custom_text = custom_text,
 #'   info_custom_text = custom_text,
 #'   contact_custom_text = custom_text
+#' )
+#' # Adding custom text that includes mixed elements to feedback section
+#'
+#' support_panel(
+#'   team_email = "my.team@@education.gov.uk",
+#'   repo_name = "https://github.com/dfe-analytical-services/my-repo",
+#'   publication_name = "My publication title",
+#'   publication_slug = "my-publication-title",
+#'   form_url = "www.myform.com",
+#'   feedback_custom_text = shiny::tagList(
+#'     "Please email results to",
+#'     dfeshiny::external_link(
+#'       href = paste0("mailto:", "team@@education.gov.uk"),
+#'       link_text = "team@@education.gov.uk",
+#'       add_warning = FALSE
+#'     )
+#'   )
 #' )
 #' # Example for adding custom sections
 #'
@@ -185,6 +205,28 @@ support_panel <- function(
     )
   }
 
+  # check for custom texts
+  # if a vector is provided and its length is >1 then it's a combined vector
+
+  # check for feedback section
+
+  vector_checker <- function(x) {
+    if (is.vector(x) && length(x) > 1) {
+      stop(paste("You provided a combined vector for the '", x, "' argument wrapped in c().
+         Please wrap it in shiny::tagList() instead."))
+    }
+  }
+
+  # check for information section
+  vector_checker(x = feedback_custom_text)
+
+  # check for information section
+  vector_checker(x = info_custom_text)
+  # check for contact section
+
+  vector_checker(x = contact_custom_text)
+
+
   # check for extra text
 
   if (is.null(extra_text)) {
@@ -192,6 +234,7 @@ support_panel <- function(
   } else {
     extra_text <- extra_text
   }
+
 
 
 

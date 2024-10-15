@@ -37,14 +37,17 @@ Explore Education Statistics)}
 
 \item{form_url}{URL for a feedback form for the dashboard}
 
-\item{feedback_custom_text}{Optional custom text to go under the "Give us feedback" heading.
-It will be a separate paragraph beneath the existing text template.}
+\item{feedback_custom_text}{A single vector or a combined vector wrapped in
+\code{shiny::tagList()} instead of c() for custom text to go under the "Give us
+feedback" heading.It will be a separate paragraph beneath the existing text template.}
 
-\item{info_custom_text}{Optional custom text to go under the
+\item{info_custom_text}{A single vector or a combined vector wrapped in
+\code{shiny::tagList()} instead of c() for custom text to go under the
 "Find out more information on the data" heading.
 It will be a separate paragraph beneath the existing text template.}
 
-\item{contact_custom_text}{Optional custom text to go under the "Contact us" heading.
+\item{contact_custom_text}{A single vector or a combined vector wrapped in
+\code{shiny::tagList()} instead of c() for custom text to go under the "Contact us" heading.
 It will be a separate paragraph beneath the existing text template.}
 
 \item{extra_text}{Add extra paragraphs to the page before the "Contact us" section.
@@ -99,7 +102,7 @@ support_panel(
   feedback_custom_text = custom_text,
 )
 
-# Adding custom text to all the sections
+# Adding custom text to all set sections
 
 support_panel(
   team_email = "my.team@education.gov.uk",
@@ -110,6 +113,23 @@ support_panel(
   feedback_custom_text = custom_text,
   info_custom_text = custom_text,
   contact_custom_text = custom_text
+)
+# Adding custom text that includes mixed elements to feedback section
+
+support_panel(
+  team_email = "my.team@education.gov.uk",
+  repo_name = "https://github.com/dfe-analytical-services/my-repo",
+  publication_name = "My publication title",
+  publication_slug = "my-publication-title",
+  form_url = "www.myform.com",
+  feedback_custom_text = shiny::tagList(
+    "Please email results to",
+    dfeshiny::external_link(
+      href = paste0("mailto:", "team@education.gov.uk"),
+      link_text = "team@education.gov.uk",
+      add_warning = FALSE
+    )
+  )
 )
 # Example for adding custom sections
 

@@ -56,16 +56,19 @@ html_paragraph_tags <- function(heading, body) {
   }
 
   # check for combined vector wrapping
+  # if a vector is provided and its length is >1 then it's a combined vector
 
-  if (class(body)[1] == "list") {
+  if (is.vector(heading) && length(heading) > 1) {
+    stop("You provided a combined vector for the heading argument wrapped in c().
+         Please wrap it in shiny::tagList() instead.")
+  }
+
+  if (is.vector(body) && length(body) > 1) {
     stop("You provided a combined vector for the body argument wrapped in c().
          Please wrap it in shiny::tagList() instead.")
   }
 
-  if (class(heading)[1] == "list") {
-    stop("You provided a combined vector for the heading argument wrapped in c().
-         Please wrap it in shiny::tagList() instead.")
-  }
+
 
   result <- shiny::tagList(
     shiny::tags$h2(
