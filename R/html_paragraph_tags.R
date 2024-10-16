@@ -40,14 +40,8 @@
 #'   )
 #' )
 #'
-html_paragraph_tags <- function(heading, body) {
-  # check that a heading has been provided
-
-  if (missing(heading)) {
-    stop("Please provide a single vector or a combined vector wrapped in shiny::tagList() for the
-         'heading' argument")
-  }
-
+html_paragraph_tags <- function(heading = NULL,
+                                body) {
   # check that a body has been provided
 
   if (missing(body)) {
@@ -69,15 +63,22 @@ html_paragraph_tags <- function(heading, body) {
   }
 
 
-
-  result <- shiny::tagList(
-    shiny::tags$h2(
-      heading
-    ),
-    shiny::tags$p(
-      body
+  if (!is.null(heading)) {
+    result <- shiny::tagList(
+      shiny::tags$h2(
+        heading
+      ),
+      shiny::tags$p(
+        body
+      )
     )
-  )
+  } else {
+    result <- shiny::tagList(
+      shiny::tags$p(
+        body
+      )
+    )
+  }
 
   return(result)
 }

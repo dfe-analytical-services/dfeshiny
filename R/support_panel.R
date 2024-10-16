@@ -205,26 +205,7 @@ support_panel <- function(
     )
   }
 
-  # check for custom texts
-  # if a vector is provided and its length is >1 then it's a combined vector
 
-  # check for feedback section
-
-  vector_checker <- function(x) {
-    if (is.vector(x) && length(x) > 1) {
-      stop(paste("You provided a combined vector for the '", x, "' argument wrapped in c().
-         Please wrap it in shiny::tagList() instead."))
-    }
-  }
-
-  # check for information section
-  vector_checker(x = feedback_custom_text)
-
-  # check for information section
-  vector_checker(x = info_custom_text)
-  # check for contact section
-
-  vector_checker(x = contact_custom_text)
 
 
   # check for extra text
@@ -243,7 +224,7 @@ support_panel <- function(
     shiny::tags$h1("Support and feedback"),
     shiny::tags$h2("Give us feedback"),
     if (!is.null(feedback_custom_text)) {
-      shiny::tags$p(feedback_custom_text)
+      html_paragraph_tags(body = feedback_custom_text)
     } else {
       if (!is.null(form_url)) {
         shiny::tags$p(
@@ -280,7 +261,7 @@ support_panel <- function(
     },
     shiny::tags$h2("Find more information on the data"),
     if (!is.null(info_custom_text)) {
-      shiny::tags$p(info_custom_text)
+      html_paragraph_tags(body = info_custom_text)
     } else {
       if (ees_publication) {
         shiny::tags$p(
@@ -332,7 +313,7 @@ support_panel <- function(
     extra_text,
     shiny::tags$h2("Contact us"),
     if (!is.null(contact_custom_text)) {
-      shiny::tags$p(contact_custom_text)
+      html_paragraph_tags(body = contact_custom_text)
     } else {
       shiny::tags$p(
         "If you have questions about the dashboard or data within it,

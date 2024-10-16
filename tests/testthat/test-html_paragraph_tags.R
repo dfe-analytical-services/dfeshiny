@@ -20,9 +20,6 @@ test_that("errors are being generated for no/wrong inputs", {
     html_paragraph_tags(heading = "a")
   )
 
-  expect_error(
-    html_paragraph_tags(body = "a")
-  )
 
   expect_error(html_paragraph_tags(heading = "a", body = c(
     "b",
