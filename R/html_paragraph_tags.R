@@ -8,7 +8,7 @@
 #' This is to be used with `dfeshiny::suport_panel()` to add extra sections to a public R Shiny
 #' dashboard in DfE
 #'
-#' @param heading A single vector or a combined vector wrapped in
+#' @param heading Optional - A single vector or a combined vector wrapped in
 #' `shiny::tagList()` instead of c() for the heading of your paragraph
 #' @param body A single vector or a combined vector wrapped in
 #' `shiny::tagList()` instead of c() for the body of your paragraph

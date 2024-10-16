@@ -209,10 +209,11 @@ support_panel <- function(
 
 
   # check for extra text
-
+  # if it's null, provide an empty string
   if (is.null(extra_text)) {
     extra_text <- ""
   } else {
+    # if not, then use the provided extra_text
     extra_text <- extra_text
   }
 
@@ -223,8 +224,10 @@ support_panel <- function(
   shiny::tags$div(
     shiny::tags$h1("Support and feedback"),
     shiny::tags$h2("Give us feedback"),
+    # if feedback_custom_text is provided, use html_paragraph to get tag list for custom text
     if (!is.null(feedback_custom_text)) {
       html_paragraph_tags(body = feedback_custom_text)
+      # if feedback_custom_text is not provided, run code as usual
     } else {
       if (!is.null(form_url)) {
         shiny::tags$p(
@@ -260,8 +263,10 @@ support_panel <- function(
       )
     },
     shiny::tags$h2("Find more information on the data"),
+    # if info_custom_text is provided, use html_paragraph to get tag list for custom text
     if (!is.null(info_custom_text)) {
       html_paragraph_tags(body = info_custom_text)
+      # if info_custom_text  is not provided, run code as usual
     } else {
       if (ees_publication) {
         shiny::tags$p(
@@ -312,9 +317,11 @@ support_panel <- function(
     },
     extra_text,
     shiny::tags$h2("Contact us"),
+    # if contact_custom_text is provided, use html_paragraph to get tag list for custom text
     if (!is.null(contact_custom_text)) {
       html_paragraph_tags(body = contact_custom_text)
     } else {
+      # if contact_custom_text is not provided, run code as usual
       shiny::tags$p(
         "If you have questions about the dashboard or data within it,
             please contact us at ",

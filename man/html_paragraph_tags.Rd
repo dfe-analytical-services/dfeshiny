@@ -4,10 +4,10 @@
 \alias{html_paragraph_tags}
 \title{Create \code{shiny::tagList()} for HTML paragraph}
 \usage{
-html_paragraph_tags(heading, body)
+html_paragraph_tags(heading = NULL, body)
 }
 \arguments{
-\item{heading}{A single vector or a combined vector wrapped in
+\item{heading}{Optional - A single vector or a combined vector wrapped in
 \code{shiny::tagList()} instead of c() for the heading of your paragraph}
 
 \item{body}{A single vector or a combined vector wrapped in
