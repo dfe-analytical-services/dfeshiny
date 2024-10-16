@@ -21,7 +21,7 @@ test_that("attributes are attached properly", {
 })
 
 test_that("hidden text is skipped", {
-  expect_false(grepl("^This link opens in a new tab", test_link$children[[1]]))
+  expect_false(grepl("<span class=\"sr-only\">", test_link$children[[1]]))
 })
 
 # Rest of tests against the function ==========================================
@@ -52,7 +52,7 @@ test_that("New tab warning always stays for non-visual users", {
 
   expect_equal(
     paste0(test_link_hidden$children[[1]]),
-    '<span class="visually-hidden">This link opens in a new tab</span>R Shiny'
+    'R Shiny<span class="sr-only"> (opens in new tab)</span>'
   )
 })
 
@@ -77,7 +77,7 @@ test_that("Surrounding whitespace shrubbery is trimmed", {
       "https://shiny.posit.co/", "   R Shiny",
       add_warning = FALSE
     )$children[[1]]),
-    '<span class="visually-hidden">This link opens in a new tab</span>R Shiny'
+    'R Shiny<span class="sr-only"> (opens in new tab)</span>'
   )
 
   expect_equal(
@@ -85,7 +85,7 @@ test_that("Surrounding whitespace shrubbery is trimmed", {
       "https://shiny.posit.co/", "R Shiny    ",
       add_warning = FALSE
     )$children[[1]]),
-    '<span class="visually-hidden">This link opens in a new tab</span>R Shiny'
+    'R Shiny<span class="sr-only"> (opens in new tab)</span>'
   )
 
   expect_equal(
@@ -93,7 +93,7 @@ test_that("Surrounding whitespace shrubbery is trimmed", {
       "https://shiny.posit.co/", "   R Shiny     ",
       add_warning = FALSE
     )$children[[1]]),
-    '<span class="visually-hidden">This link opens in a new tab</span>R Shiny'
+    'R Shiny<span class="sr-only"> (opens in new tab)</span>'
   )
 })
 
