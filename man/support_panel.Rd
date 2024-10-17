@@ -122,7 +122,7 @@ support_panel(
   form_url = "www.myform.com",
   feedback_custom_text = shiny::tagList(
     "Please email results to",
-    dfeshiny::external_link(
+    external_link(
       href = paste0("mailto:", "team@education.gov.uk"),
       link_text = "team@education.gov.uk",
       add_warning = FALSE
@@ -146,11 +146,11 @@ support_panel(
   team_email = "my.team@education.gov.uk",
   repo_name = "https://github.com/dfe-analytical-services/my-repo",
   extra_text = c(
-    dfeshiny::html_paragraph_tags(
+    html_paragraph_tags(
       heading = "heading",
       body = "this is a body"
     ),
-    dfeshiny::html_paragraph_tags(
+    html_paragraph_tags(
       heading = "heading 2",
       body = "this is another example of a text"
     )
@@ -164,11 +164,11 @@ support_panel(
   team_email = "my.team@education.gov.uk",
   repo_name = "https://github.com/dfe-analytical-services/my-repo",
   extra_text = c(
-    dfeshiny::html_paragraph_tags(
+    html_paragraph_tags(
       heading = "Heading",
       body = shiny::tagList(
         "Please email results to",
-        dfeshiny::external_link(
+        external_link(
           href = paste0("mailto:", "team@education.gov.uk"),
           link_text = "team@education.gov.uk",
           add_warning = FALSE
