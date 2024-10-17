@@ -39,16 +39,14 @@ Explore Education Statistics)}
 
 \item{feedback_custom_text}{A single vector or a combined vector wrapped in
 \code{shiny::tagList()} instead of c() for custom text to go under the "Give us
-feedback" heading.It will be a separate paragraph beneath the existing text template.}
+feedback" heading.}
 
 \item{info_custom_text}{A single vector or a combined vector wrapped in
 \code{shiny::tagList()} instead of c() for custom text to go under the
-"Find out more information on the data" heading.
-It will be a separate paragraph beneath the existing text template.}
+"Find out more information on the data" heading.}
 
 \item{contact_custom_text}{A single vector or a combined vector wrapped in
-\code{shiny::tagList()} instead of c() for custom text to go under the "Contact us" heading.
-It will be a separate paragraph beneath the existing text template.}
+\code{shiny::tagList()} instead of c() for custom text to go under the "Contact us" heading.}
 
 \item{extra_text}{Add extra paragraphs to the page before the "Contact us" section.
 Use \code{dfeshiny::html_paragraph_tags()} to specify the heading and body.

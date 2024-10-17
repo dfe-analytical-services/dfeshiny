@@ -16,15 +16,12 @@
 #' @param form_url URL for a feedback form for the dashboard
 #' @param feedback_custom_text A single vector or a combined vector wrapped in
 #' `shiny::tagList()` instead of c() for custom text to go under the "Give us
-#' feedback" heading.It will be a separate paragraph beneath the existing text template.
+#' feedback" heading.
 #' @param info_custom_text A single vector or a combined vector wrapped in
 #' `shiny::tagList()` instead of c() for custom text to go under the
 #' "Find out more information on the data" heading.
-#' It will be a separate paragraph beneath the existing text template.
 #' @param contact_custom_text A single vector or a combined vector wrapped in
 #' `shiny::tagList()` instead of c() for custom text to go under the "Contact us" heading.
-#' It will be a separate paragraph beneath the existing text template.
-#'
 #' @param extra_text Add extra paragraphs to the page before the "Contact us" section.
 #' Use `dfeshiny::html_paragraph_tags()` to specify the heading and body.
 #' Look at examples to see how to add one or multiple sections.
@@ -224,46 +221,50 @@ support_panel <- function(
   shiny::tags$div(
     shiny::tags$h1("Support and feedback"),
     shiny::tags$h2("Give us feedback"),
-    # if feedback_custom_text is provided, use html_paragraph to get tag list for custom text
+    # if feedback_custom_text is provided, use html_paragraph_tags
+    # to get tag list for custom text
     if (!is.null(feedback_custom_text)) {
       html_paragraph_tags(body = feedback_custom_text)
       # if feedback_custom_text is not provided, run code as usual
     } else {
-      if (!is.null(form_url)) {
-        shiny::tags$p(
-          "This dashboard is a new service that we are developing. If you
+      shiny::tags$div(
+        if (!is.null(form_url)) {
+          shiny::tags$p(
+            "This dashboard is a new service that we are developing. If you
               have any feedback or suggestions for improvements, please submit
               them using our ",
-          dfeshiny::external_link(
-            href = form_url,
-            link_text = "feedback form"
-          ),
-          "."
-        )
-      } else {
+            dfeshiny::external_link(
+              href = form_url,
+              link_text = "feedback form"
+            ),
+            "."
+          )
+        } else {
+          shiny::tags$p(
+            "This dashboard is a new service that we are developing."
+          )
+        },
         shiny::tags$p(
-          "This dashboard is a new service that we are developing."
-        )
-      }
-      shiny::tags$p(
-        paste0(
-          ifelse(
-            !is.null(form_url),
-            "Alternatively, i",
-            "I"
-          ),
-          "f you spot any errors or bugs while using this dashboard, please
+          paste0(
+            ifelse(
+              !is.null(form_url),
+              "Alternatively, i",
+              "I"
+            ),
+            "f you spot any errors or bugs while using this dashboard, please
               screenshot and email them to "
-        ),
-        dfeshiny::external_link(
-          href = paste0("mailto:", team_email),
-          link_text = team_email,
-          add_warning = FALSE
-        ), "."
+          ),
+          dfeshiny::external_link(
+            href = paste0("mailto:", team_email),
+            link_text = team_email,
+            add_warning = FALSE
+          ), "."
+        )
       )
     },
     shiny::tags$h2("Find more information on the data"),
-    # if info_custom_text is provided, use html_paragraph to get tag list for custom text
+    # if info_custom_text is provided, use html_paragraph_tags
+    # to get tag list for custom text
     if (!is.null(info_custom_text)) {
       html_paragraph_tags(body = info_custom_text)
       # if info_custom_text  is not provided, run code as usual
@@ -315,9 +316,11 @@ support_panel <- function(
         )
       }
     },
+    # to add extra sections before the contact us section
     extra_text,
     shiny::tags$h2("Contact us"),
-    # if contact_custom_text is provided, use html_paragraph to get tag list for custom text
+    # if contact_custom_text is provided, use html_paragraph_tags
+    # to get tag list for custom text
     if (!is.null(contact_custom_text)) {
       html_paragraph_tags(body = contact_custom_text)
     } else {
