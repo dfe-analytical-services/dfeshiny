@@ -26,3 +26,7 @@ reference:
 - title: Standard panels
   contents:
   - support_panel
+- title: HTML paragraph
+  desc: A function to create a shiny::tagList() for a paragraph.
+  contents:
+  - html_paragraph_tags
