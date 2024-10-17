@@ -11,7 +11,11 @@ support_panel(
   publication_name = NULL,
   publication_slug = "",
   alt_href = NULL,
-  form_url = NULL
+  form_url = NULL,
+  feedback_custom_text = NULL,
+  info_custom_text = NULL,
+  contact_custom_text = NULL,
+  extra_text = NULL
 )
 }
 \arguments{
@@ -32,6 +36,21 @@ Statistics}
 Explore Education Statistics)}
 
 \item{form_url}{URL for a feedback form for the dashboard}
+
+\item{feedback_custom_text}{A single vector or a combined vector wrapped in
+\code{shiny::tagList()} instead of c() for custom text to go under the "Give us
+feedback" heading.}
+
+\item{info_custom_text}{A single vector or a combined vector wrapped in
+\code{shiny::tagList()} instead of c() for custom text to go under the
+"Find out more information on the data" heading.}
+
+\item{contact_custom_text}{A single vector or a combined vector wrapped in
+\code{shiny::tagList()} instead of c() for custom text to go under the "Contact us" heading.}
+
+\item{extra_text}{Add extra paragraphs to the page before the "Contact us" section.
+Use \code{dfeshiny::html_paragraph_tags()} to specify the heading and body.
+Look at examples to see how to add one or multiple sections.}
 }
 \value{
 a HTML div, containing standard support content for a public R Shiny
@@ -66,4 +85,99 @@ shiny::navlistPanel(
     )
   )
 )
+
+# Example for adding custom text
+custom_text <- "This is a sentence to test the ability to add custom text in the tab"
+
+# Adding custom text to the feedback section only
+
+support_panel(
+  team_email = "my.team@education.gov.uk",
+  repo_name = "https://github.com/dfe-analytical-services/my-repo",
+  publication_name = "My publication title",
+  publication_slug = "my-publication-title",
+  form_url = "www.myform.com",
+  feedback_custom_text = custom_text,
+)
+
+# Adding custom text to all set sections
+
+support_panel(
+  team_email = "my.team@education.gov.uk",
+  repo_name = "https://github.com/dfe-analytical-services/my-repo",
+  publication_name = "My publication title",
+  publication_slug = "my-publication-title",
+  form_url = "www.myform.com",
+  feedback_custom_text = custom_text,
+  info_custom_text = custom_text,
+  contact_custom_text = custom_text
+)
+# Adding custom text that includes mixed elements to feedback section
+
+support_panel(
+  team_email = "my.team@education.gov.uk",
+  repo_name = "https://github.com/dfe-analytical-services/my-repo",
+  publication_name = "My publication title",
+  publication_slug = "my-publication-title",
+  form_url = "www.myform.com",
+  feedback_custom_text = shiny::tagList(
+    "Please email results to",
+    external_link(
+      href = paste0("mailto:", "team@education.gov.uk"),
+      link_text = "team@education.gov.uk",
+      add_warning = FALSE
+    )
+  )
+)
+# Example for adding custom sections
+
+# Adding one section
+support_panel(
+  team_email = "my.team@education.gov.uk",
+  repo_name = "https://github.com/dfe-analytical-services/my-repo",
+  info_custom_text = custom_text,
+  extra_text = html_paragraph_tags(
+    heading = "heading",
+    body = "this is a body"
+  )
+)
+# Adding two sections
+support_panel(
+  team_email = "my.team@education.gov.uk",
+  repo_name = "https://github.com/dfe-analytical-services/my-repo",
+  extra_text = c(
+    html_paragraph_tags(
+      heading = "heading",
+      body = "this is a body"
+    ),
+    html_paragraph_tags(
+      heading = "heading 2",
+      body = "this is another example of a text"
+    )
+  )
+)
+
+# Adding a section with a `shiny::tagList()` in
+# the `dfeshiny::html_paragraph_tags()`
+
+support_panel(
+  team_email = "my.team@education.gov.uk",
+  repo_name = "https://github.com/dfe-analytical-services/my-repo",
+  extra_text = c(
+    html_paragraph_tags(
+      heading = "Heading",
+      body = shiny::tagList(
+        "Please email results to",
+        external_link(
+          href = paste0("mailto:", "team@education.gov.uk"),
+          link_text = "team@education.gov.uk",
+          add_warning = FALSE
+        )
+      )
+    )
+  )
+)
+}
+\seealso{
+\code{\link[=html_paragraph_tags]{html_paragraph_tags()}}
 }
