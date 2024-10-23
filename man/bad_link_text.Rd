@@ -7,7 +7,7 @@
 \format{
 \subsection{\code{bad_link_text}}{
 
-A data frame with 52 rows and 1 columns:
+A data frame with 53 rows and 1 columns:
 \describe{
 \item{bad_link_text}{Lower cased examples of non-descriptive link text}
 }

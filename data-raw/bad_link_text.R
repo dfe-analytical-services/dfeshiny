@@ -10,7 +10,8 @@ bad_link_text <- data.frame(
     "download file", "download here", "download jpg", "download jpeg",
     "download pdf", "download png", "download svg", "download word",
     "download xslx", "further information", "go here", "learn more",
-    "link to", "read more", "this page", "visit this", "web page", "web site"
+    "link to", "read more", "this page", "visit this", "web page", "web site",
+    "this link"
   )
 )
 
