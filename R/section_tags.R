@@ -29,6 +29,14 @@
 #'   body = "This is a body text test"
 #' )
 #'
+#' # Example for using a different heading level
+#' section_tags(
+#'   heading = "Heading test",
+#'   body = "This is a body text test",
+#'   h_level = "h3"
+#' )
+#'
+#'
 #' # Example for text heading and text with other elements in the body
 #'
 #'
