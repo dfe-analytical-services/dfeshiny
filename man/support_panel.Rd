@@ -134,8 +134,8 @@ support_panel(
   )
 )
 
-# Adding a section with a `shiny::tagList()` in
-# the `dfeshiny::section_tags()`
+# Adding a section with a shiny::tagList() in
+# the dfeshiny::section_tags()
 
 support_panel(
   team_email = "my.team@education.gov.uk",
