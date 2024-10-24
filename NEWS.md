@@ -1,3 +1,18 @@
+# dfeshiny 0.5.0
+
+## New features
+
+* `custom_data_info` argument added to `support_panel()` so users can 
+write their own custom text in the "Find out more information on the data" section. 
+
+* `extra_text` argument added to `support_panel()` so users can add their own
+sections. 
+
+* Added `section_tags()` to provide structure for the `extra_text` argument in
+`support_panel()`.
+
+* Added "this link" to the look up data for `bad_link_text`
+
 # dfeshiny 0.4.2
 
 * Applied use of `external_link()` to `support_panel()`
