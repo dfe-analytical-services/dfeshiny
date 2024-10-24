@@ -14,21 +14,16 @@
 #' @param alt_href Alternative link to the parent publication (if not hosted on
 #' Explore Education Statistics)
 #' @param form_url URL for a feedback form for the dashboard
-#' @param feedback_custom_text A single vector or a combined vector wrapped in
-#' `shiny::tagList()` instead of c() for custom text to go under the "Give us
-#' feedback" heading.
-#' @param info_custom_text A single vector or a combined vector wrapped in
+#' @param custom_data_info A single vector or a combined vector wrapped in
 #' `shiny::tagList()` instead of c() for custom text to go under the
 #' "Find out more information on the data" heading.
-#' @param contact_custom_text A single vector or a combined vector wrapped in
-#' `shiny::tagList()` instead of c() for custom text to go under the "Contact us" heading.
 #' @param extra_text Add extra paragraphs to the page before the "Contact us" section.
-#' Use `dfeshiny::html_paragraph_tags()` to specify the heading and body.
+#' Use `dfeshiny::section_tags()` to specify the heading and body.
 #' Look at examples to see how to add one or multiple sections.
 #'
 #' @return a HTML div, containing standard support content for a public R Shiny
 #' dashboard in DfE
-#' @seealso [html_paragraph_tags()]
+#' @seealso [section_tags()]
 #' @export
 #'
 #' @examples
@@ -59,7 +54,6 @@
 #' )
 #'
 #' # Example for adding custom text
-#' custom_text <- "This is a sentence to test the ability to add custom text in the tab"
 #'
 #' # Adding custom text to the feedback section only
 #'
@@ -69,21 +63,9 @@
 #'   publication_name = "My publication title",
 #'   publication_slug = "my-publication-title",
 #'   form_url = "www.myform.com",
-#'   feedback_custom_text = custom_text,
+#'   custom_data_info = "This is a sentence to test the ability to add custom text in the tab",
 #' )
 #'
-#' # Adding custom text to all set sections
-#'
-#' support_panel(
-#'   team_email = "my.team@@education.gov.uk",
-#'   repo_name = "https://github.com/dfe-analytical-services/my-repo",
-#'   publication_name = "My publication title",
-#'   publication_slug = "my-publication-title",
-#'   form_url = "www.myform.com",
-#'   feedback_custom_text = custom_text,
-#'   info_custom_text = custom_text,
-#'   contact_custom_text = custom_text
-#' )
 #' # Adding custom text that includes mixed elements to feedback section
 #'
 #' support_panel(
@@ -92,7 +74,7 @@
 #'   publication_name = "My publication title",
 #'   publication_slug = "my-publication-title",
 #'   form_url = "www.myform.com",
-#'   feedback_custom_text = shiny::tagList(
+#'   custom_data_info = shiny::tagList(
 #'     "Please email results to",
 #'     external_link(
 #'       href = paste0("mailto:", "team@@education.gov.uk"),
@@ -107,8 +89,8 @@
 #' support_panel(
 #'   team_email = "my.team@@education.gov.uk",
 #'   repo_name = "https://github.com/dfe-analytical-services/my-repo",
-#'   info_custom_text = custom_text,
-#'   extra_text = html_paragraph_tags(
+#'   custom_data_info = "This is a sentence to test the ability to add custom text in the tab",
+#'   extra_text = section_tags(
 #'     heading = "heading",
 #'     body = "this is a body"
 #'   )
@@ -118,11 +100,11 @@
 #'   team_email = "my.team@@education.gov.uk",
 #'   repo_name = "https://github.com/dfe-analytical-services/my-repo",
 #'   extra_text = c(
-#'     html_paragraph_tags(
+#'     section_tags(
 #'       heading = "heading",
 #'       body = "this is a body"
 #'     ),
-#'     html_paragraph_tags(
+#'     section_tags(
 #'       heading = "heading 2",
 #'       body = "this is another example of a text"
 #'     )
@@ -130,13 +112,13 @@
 #' )
 #'
 #' # Adding a section with a `shiny::tagList()` in
-#' # the `dfeshiny::html_paragraph_tags()`
+#' # the `dfeshiny::section_tags()`
 #'
 #' support_panel(
 #'   team_email = "my.team@@education.gov.uk",
 #'   repo_name = "https://github.com/dfe-analytical-services/my-repo",
 #'   extra_text = c(
-#'     html_paragraph_tags(
+#'     section_tags(
 #'       heading = "Heading",
 #'       body = shiny::tagList(
 #'         "Please email results to",
@@ -157,9 +139,7 @@ support_panel <- function(
     publication_slug = "",
     alt_href = NULL,
     form_url = NULL,
-    feedback_custom_text = NULL,
-    info_custom_text = NULL,
-    contact_custom_text = NULL,
+    custom_data_info = NULL,
     extra_text = NULL) {
   # Check that the team_email is a valid dfe email ----------------------------
   is_valid_dfe_email <- function(email) {
@@ -221,53 +201,46 @@ support_panel <- function(
   shiny::tags$div(
     shiny::tags$h1("Support and feedback"),
     shiny::tags$h2("Give us feedback"),
-    # if feedback_custom_text is provided, use html_paragraph_tags
-    # to get tag list for custom text
-    if (!is.null(feedback_custom_text)) {
-      html_paragraph_tags(body = feedback_custom_text)
-      # if feedback_custom_text is not provided, run code as usual
-    } else {
-      shiny::tags$div(
-        if (!is.null(form_url)) {
-          shiny::tags$p(
-            "This dashboard is a new service that we are developing. If you
+    shiny::tags$div(
+      if (!is.null(form_url)) {
+        shiny::tags$p(
+          "This dashboard is a new service that we are developing. If you
               have any feedback or suggestions for improvements, please submit
               them using our ",
-            dfeshiny::external_link(
-              href = form_url,
-              link_text = "feedback form"
-            ),
-            "."
-          )
-        } else {
-          shiny::tags$p(
-            "This dashboard is a new service that we are developing."
-          )
-        },
-        shiny::tags$p(
-          paste0(
-            ifelse(
-              !is.null(form_url),
-              "Alternatively, i",
-              "I"
-            ),
-            "f you spot any errors or bugs while using this dashboard, please
-              screenshot and email them to "
-          ),
           dfeshiny::external_link(
-            href = paste0("mailto:", team_email),
-            link_text = team_email,
-            add_warning = FALSE
-          ), "."
+            href = form_url,
+            link_text = "feedback form"
+          ),
+          "."
         )
+      } else {
+        shiny::tags$p(
+          "This dashboard is a new service that we are developing."
+        )
+      },
+      shiny::tags$p(
+        paste0(
+          ifelse(
+            !is.null(form_url),
+            "Alternatively, i",
+            "I"
+          ),
+          "f you spot any errors or bugs while using this dashboard, please
+              screenshot and email them to "
+        ),
+        dfeshiny::external_link(
+          href = paste0("mailto:", team_email),
+          link_text = team_email,
+          add_warning = FALSE
+        ), "."
       )
-    },
+    ),
     shiny::tags$h2("Find more information on the data"),
-    # if info_custom_text is provided, use html_paragraph_tags
+    # if custom_data_info is provided, use section_tags
     # to get tag list for custom text
-    if (!is.null(info_custom_text)) {
-      html_paragraph_tags(body = info_custom_text)
-      # if info_custom_text  is not provided, run code as usual
+    if (!is.null(custom_data_info)) {
+      section_tags(body = custom_data_info)
+      # if custom_data_info  is not provided, run code as usual
     } else {
       if (ees_publication) {
         shiny::tags$p(
@@ -319,23 +292,16 @@ support_panel <- function(
     # to add extra sections before the contact us section
     extra_text,
     shiny::tags$h2("Contact us"),
-    # if contact_custom_text is provided, use html_paragraph_tags
-    # to get tag list for custom text
-    if (!is.null(contact_custom_text)) {
-      html_paragraph_tags(body = contact_custom_text)
-    } else {
-      # if contact_custom_text is not provided, run code as usual
-      shiny::tags$p(
-        "If you have questions about the dashboard or data within it,
+    shiny::tags$p(
+      "If you have questions about the dashboard or data within it,
             please contact us at ",
-        dfeshiny::external_link(
-          href = paste0("mailto:", team_email),
-          link_text = team_email,
-          add_warning = FALSE
-        ),
-        "."
-      )
-    },
+      dfeshiny::external_link(
+        href = paste0("mailto:", team_email),
+        link_text = team_email,
+        add_warning = FALSE
+      ),
+      "."
+    ),
     shiny::tags$h2("See the source code"),
     shiny::tags$p(
       "The source code for this dashboard is available in our ",

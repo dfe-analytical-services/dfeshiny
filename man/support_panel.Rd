@@ -12,9 +12,7 @@ support_panel(
   publication_slug = "",
   alt_href = NULL,
   form_url = NULL,
-  feedback_custom_text = NULL,
-  info_custom_text = NULL,
-  contact_custom_text = NULL,
+  custom_data_info = NULL,
   extra_text = NULL
 )
 }
@@ -37,19 +35,12 @@ Explore Education Statistics)}
 
 \item{form_url}{URL for a feedback form for the dashboard}
 
-\item{feedback_custom_text}{A single vector or a combined vector wrapped in
-\code{shiny::tagList()} instead of c() for custom text to go under the "Give us
-feedback" heading.}
-
-\item{info_custom_text}{A single vector or a combined vector wrapped in
+\item{custom_data_info}{A single vector or a combined vector wrapped in
 \code{shiny::tagList()} instead of c() for custom text to go under the
 "Find out more information on the data" heading.}
 
-\item{contact_custom_text}{A single vector or a combined vector wrapped in
-\code{shiny::tagList()} instead of c() for custom text to go under the "Contact us" heading.}
-
 \item{extra_text}{Add extra paragraphs to the page before the "Contact us" section.
-Use \code{dfeshiny::html_paragraph_tags()} to specify the heading and body.
+Use \code{dfeshiny::section_tags()} to specify the heading and body.
 Look at examples to see how to add one or multiple sections.}
 }
 \value{
@@ -87,7 +78,6 @@ shiny::navlistPanel(
 )
 
 # Example for adding custom text
-custom_text <- "This is a sentence to test the ability to add custom text in the tab"
 
 # Adding custom text to the feedback section only
 
@@ -97,21 +87,9 @@ support_panel(
   publication_name = "My publication title",
   publication_slug = "my-publication-title",
   form_url = "www.myform.com",
-  feedback_custom_text = custom_text,
+  custom_data_info = "This is a sentence to test the ability to add custom text in the tab",
 )
 
-# Adding custom text to all set sections
-
-support_panel(
-  team_email = "my.team@education.gov.uk",
-  repo_name = "https://github.com/dfe-analytical-services/my-repo",
-  publication_name = "My publication title",
-  publication_slug = "my-publication-title",
-  form_url = "www.myform.com",
-  feedback_custom_text = custom_text,
-  info_custom_text = custom_text,
-  contact_custom_text = custom_text
-)
 # Adding custom text that includes mixed elements to feedback section
 
 support_panel(
@@ -120,7 +98,7 @@ support_panel(
   publication_name = "My publication title",
   publication_slug = "my-publication-title",
   form_url = "www.myform.com",
-  feedback_custom_text = shiny::tagList(
+  custom_data_info = shiny::tagList(
     "Please email results to",
     external_link(
       href = paste0("mailto:", "team@education.gov.uk"),
@@ -135,8 +113,8 @@ support_panel(
 support_panel(
   team_email = "my.team@education.gov.uk",
   repo_name = "https://github.com/dfe-analytical-services/my-repo",
-  info_custom_text = custom_text,
-  extra_text = html_paragraph_tags(
+  custom_data_info = "This is a sentence to test the ability to add custom text in the tab",
+  extra_text = section_tags(
     heading = "heading",
     body = "this is a body"
   )
@@ -146,11 +124,11 @@ support_panel(
   team_email = "my.team@education.gov.uk",
   repo_name = "https://github.com/dfe-analytical-services/my-repo",
   extra_text = c(
-    html_paragraph_tags(
+    section_tags(
       heading = "heading",
       body = "this is a body"
     ),
-    html_paragraph_tags(
+    section_tags(
       heading = "heading 2",
       body = "this is another example of a text"
     )
@@ -158,13 +136,13 @@ support_panel(
 )
 
 # Adding a section with a `shiny::tagList()` in
-# the `dfeshiny::html_paragraph_tags()`
+# the `dfeshiny::section_tags()`
 
 support_panel(
   team_email = "my.team@education.gov.uk",
   repo_name = "https://github.com/dfe-analytical-services/my-repo",
   extra_text = c(
-    html_paragraph_tags(
+    section_tags(
       heading = "Heading",
       body = shiny::tagList(
         "Please email results to",
@@ -179,5 +157,5 @@ support_panel(
 )
 }
 \seealso{
-\code{\link[=html_paragraph_tags]{html_paragraph_tags()}}
+\code{\link[=section_tags]{section_tags()}}
 }
