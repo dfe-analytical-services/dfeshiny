@@ -2,25 +2,25 @@
 % Please edit documentation in R/section_tags.R
 \name{section_tags}
 \alias{section_tags}
-\title{Create \code{shiny::tagList()} for HTML paragraph}
+\title{Create \code{shiny::tagList()} for HTML section}
 \usage{
-section_tags(heading = NULL, h_level = "h2", body)
+section_tags(heading = NULL, body, h_level = "h2")
 }
 \arguments{
 \item{heading}{Optional - A single text string or a \code{shiny::tagList()} object
 for the heading of your paragraph}
 
-\item{h_level}{Specify the level for your heading.Default is "h2".
-Available options are "h2","h3" or "h4".}
-
 \item{body}{A single text string or a \code{shiny::tagList()} object
 for the body of your paragraph}
+
+\item{h_level}{Specify the level for your heading, if you choose to include
+one.Default is "h2". Available options are "h2","h3" or "h4".}
 }
 \value{
 A list of HTML tags that contain and h2 heading and a paragraph body.
 }
 \description{
-Create a list of tags that generate a HTML paragraph.
+Create a list of tags that generate a HTML section.
 This generates a header using \code{shiny::tags$h2()}
 and a paragraph body using \code{shiny::tags$p()}
 

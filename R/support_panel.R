@@ -14,9 +14,8 @@
 #' @param alt_href Alternative link to the parent publication (if not hosted on
 #' Explore Education Statistics)
 #' @param form_url URL for a feedback form for the dashboard
-#' @param custom_data_info A single vector or a combined vector wrapped in
-#' `shiny::tagList()` instead of c() for custom text to go under the
-#' "Find out more information on the data" heading.
+#' @param custom_data_info A single text string or a `shiny::tagList()` object
+#'  for custom text to go under the "Find out more information on the data" heading.
 #' @param extra_text Add extra paragraphs to the page before the "Contact us" section.
 #' Use `dfeshiny::section_tags()` to specify the heading and body.
 #' Look at examples to see how to add one or multiple sections.

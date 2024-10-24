@@ -1,7 +1,7 @@
-#' Create `shiny::tagList()` for HTML paragraph
+#' Create `shiny::tagList()` for HTML section
 #'
 #' @description
-#' Create a list of tags that generate a HTML paragraph.
+#' Create a list of tags that generate a HTML section.
 #' This generates a header using `shiny::tags$h2()`
 #' and a paragraph body using `shiny::tags$p()`
 #'
@@ -10,10 +10,10 @@
 #'
 #' @param heading Optional - A single text string or a `shiny::tagList()` object
 #'  for the heading of your paragraph
-#' @param h_level  Specify the level for your heading.Default is "h2".
-#'  Available options are "h2","h3" or "h4".
 #' @param body A single text string or a `shiny::tagList()` object
 #' for the body of your paragraph
+#' @param h_level  Specify the level for your heading, if you choose to include
+#' one.Default is "h2". Available options are "h2","h3" or "h4".
 #'
 #' @return A list of HTML tags that contain and h2 heading and a paragraph body.
 #' @seealso [support_panel()]
@@ -50,14 +50,14 @@ section_tags <- function(heading = NULL,
   # check that a body has been provided
 
   if (missing(body)) {
-    stop("Please provide a single vector or a combined vector wrapped in shiny::tagList() for the
+    stop("Please provide a single text string or a `shiny::tagList()` object for the
          'body' argument")
   }
 
-  # check that h_level is accepted
+  # check that h_level is an accepted one
 
   if (!h_level %in% c("h2", "h3", "h4")) {
-    stop("You used an unavailable h_level argument.
+    stop("You used an unavailable h_level option.
           Please use one of the following levels: 'h2','h3'or 'h4'")
   }
 
@@ -97,7 +97,7 @@ section_tags <- function(heading = NULL,
         )
       )
     } else {
-      # otherwise
+      # otherwise, use h2
       result <- shiny::tagList(
         shiny::tags$h2(
           heading
@@ -107,6 +107,7 @@ section_tags <- function(heading = NULL,
         )
       )
     }
+    # if no heading is provided, just output the body
   } else {
     result <- shiny::tagList(
       shiny::tags$p(
