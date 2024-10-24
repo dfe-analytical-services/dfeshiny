@@ -155,13 +155,13 @@ external_link <- function(href, link_text, add_warning = TRUE) {
     hidden_span <- NULL # don't have extra hidden text if clear in main text
   } else {
     hidden_span <-
-      htmltools::span(class = "visually-hidden", "This link opens in a new tab")
+      htmltools::span(class = "sr-only", " (opens in new tab)")
   }
 
   # Create the link object
   link <- htmltools::tags$a(
     href = href,
-    htmltools::HTML(paste0(hidden_span, link_text)), # white space hack
+    htmltools::HTML(paste0(link_text, hidden_span)), # white space hack
     target = "_blank",
     rel = "noopener noreferrer",
     .noWS = c("outside")
@@ -169,10 +169,10 @@ external_link <- function(href, link_text, add_warning = TRUE) {
 
   # Attach CSS from inst/www/css/visually-hidden.css
   dependency <- htmltools::htmlDependency(
-    name = "visually-hidden",
+    name = "sr-only",
     version = as.character(utils::packageVersion("dfeshiny")[[1]]),
     src = c(href = "dfeshiny/css"),
-    stylesheet = "visually-hidden.css"
+    stylesheet = "sr-only.css"
   )
 
   # Return the link with the CSS attached

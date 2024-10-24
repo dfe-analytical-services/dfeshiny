@@ -13,9 +13,14 @@ sections.
 
 * Added "this link" to the look up data for `bad_link_text`
 
+# dfeshiny 0.4.3
+
+* Fix bug in `external_link()` hidden warning so that it can be read by
+screen readers.
+
 # dfeshiny 0.4.2
 
-* Applied use of `external_link()` to `support_panel()`
+* Applied use of `external_link()` to `support_panel()`.
 
 # dfeshiny 0.4.1
 

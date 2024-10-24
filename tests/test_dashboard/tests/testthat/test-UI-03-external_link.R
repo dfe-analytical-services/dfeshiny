@@ -1,5 +1,3 @@
-# To run the diffviewer on these tests, you need to add the path:
-# Doesn't work? testthat::snapshot_review('UI-03-external_link/', path='tests/test_dashboard/')
 app <- AppDriver$new(
   name = "external_link",
   expect_values_screenshot_args = FALSE
@@ -25,8 +23,8 @@ test_that("Link text appears with hidden warning", {
   expect_gt(
     grep(
       paste0(
-        "Sometimes you just want to be writing This link opens in a new tabR",
-        " Shiny code in a cave without distractions."
+        "Sometimes you just want to be writing R Shiny (opens in new tab)",
+        " code in a cave without distractions."
       ),
       all_text,
       fixed = TRUE
@@ -49,7 +47,7 @@ test_that("Link text doesn't have excess whitespace", {
 
   expect_gt(
     grep(
-      "when writing code in This link opens in a new tabR Shiny.",
+      "when writing code in R Shiny (opens in new tab).",
       all_text,
       fixed = TRUE
     ) |>
@@ -74,8 +72,8 @@ test_that("Inspect HTML is as expected", {
   expect_gt(
     grep(
       paste0(
-        "rel=\"noopener noreferrer\"><span class=\"visually-hidden\">",
-        "This link opens in a new tab</span>R Shiny</a>"
+        "<a href=\"https://shiny.posit.co/\" target=\"_blank\" rel=\"noopener no",
+        "referrer\">R Shiny<span class=\"sr-only\"> (opens in new tab)</span></a>"
       ),
       all_links_html,
       fixed = TRUE
