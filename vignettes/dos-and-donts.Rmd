@@ -52,3 +52,6 @@ those to avoid, and the reasons why.
 
 #### plotly
 
+### Computation and processsing
+
+Keep data processing and computation to a minimum within your app. Data should be processed as much as possible outside of your app, such that the app only ever uses data already in a usable form.
