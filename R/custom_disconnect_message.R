@@ -2,25 +2,28 @@
 #'
 #'
 #' @description
-#' Create the HTML overlay panel to appear when RSConnect disconnects
+#' Create the HTML overlay panel to appear when a user loses connection to a dashboard.
 #'
 #' @param refresh the text to appear that will refresh the page when clicked
-#' @param links A list of mirrors or alternative links to the dashboard
+#' @param links A vector of possible URLs for the public site. Should mostly just be a single URL,
+#' but can be two URLs if an overflow site has been set up
 #' @param publication_name The parent publication name
 #' @param publication_link The link to the publication on Explore Education
 #' Statistics
+#' @param dashboard_title Title of the dashboard
 #'
 #' @importFrom htmltools tags tagList
 #'
-#' @return A HTML overlay panel that appears when RSConnect disconnects for a
-#' public R Shiny dashboard in DfE
+#' @return A HTML overlay panel that appears when a user loses connection to a DfE R Shiny
+#' dashboard.
 #' @export
 #'
 #' @examples
 #' custom_disconnect_message(
+#'   dashboard_title = "DfE Shiny Template",
 #'   refresh = "Refresh page",
 #'   links = c(
-#'     "https://department-for-education.shinyapps.io/dfe-shiny-template/",
+#'     "https://department-for-education.shinyapps.io/dfe-shiny-template",
 #'     "https://department-for-education.shinyapps.io/dfe-shiny-template-overflow/"
 #'   ),
 #'   publication_name = "Explore Education Statistics Publication",
@@ -28,10 +31,20 @@
 #'     "https://explore-education-statistics.service.gov.uk/find-statistics/apprenticeships"
 #' )
 #'
-custom_disconnect_message <- function(refresh = "Refresh page",
-                                      links = NULL,
-                                      publication_name = NULL,
-                                      publication_link = NULL) {
+#' custom_disconnect_message(
+#'   dashboard_title = "DfE Shiny Template",
+#'   refresh = "Refresh page",
+#'   links = c(
+#'     "https://department-for-education.shinyapps.io/dfe-shiny-template"
+#'   )
+#' )
+#'
+custom_disconnect_message <- function(
+    refresh = "Refresh page",
+    dashboard_title = NULL,
+    links = NULL,
+    publication_name = NULL,
+    publication_link = NULL) {
   # Check links are valid
 
   is_valid_sites_list <- function(sites) {
@@ -46,6 +59,7 @@ custom_disconnect_message <- function(refresh = "Refresh page",
     stop("You have entered an invalid site link in the links argument.")
   }
 
+
   pub_prefix <- c(
     "https://explore-education-statistics.service.gov.uk/find-statistics/",
     "https://www.explore-education-statistics.service.gov.uk/find-statistics/",
@@ -53,18 +67,29 @@ custom_disconnect_message <- function(refresh = "Refresh page",
     "https://gov.uk/"
   )
 
-  is_valid_publication_link <- function(link) {
-    startsWith(stringr::str_trim(link), pub_prefix)
-  }
+  if (!is.null(publication_link)) {
+    is_valid_publication_link <- function(link) {
+      startsWith(stringr::str_trim(link), pub_prefix)
+    }
 
-  if (RCurl::url.exists(publication_link) == FALSE ||
-    (TRUE %in% is_valid_publication_link(publication_link)) == FALSE || # nolint: [indentation_linter]
-    publication_link %in% pub_prefix) {
-    stop("You have entered an invalid publication link in the publication_link
+    if (RCurl::url.exists(publication_link) == FALSE ||
+      (TRUE %in% is_valid_publication_link(publication_link)) == FALSE || # nolint: [indentation_linter]
+      publication_link %in% pub_prefix) {
+      stop("You have entered an invalid publication link in the publication_link
          argument.")
+    }
   }
 
   checkmate::assert_string(refresh)
+
+  # Attach CSS from inst/www/css/visually-hidden.css
+  dependency <- htmltools::htmlDependency(
+    name = "disconnect-dialogue",
+    version = as.character(utils::packageVersion("dfeshiny")[[1]]),
+    src = c(href = "dfeshiny/css"),
+    stylesheet = "disconnect-dialogue.css"
+  )
+
   tagList(
     tags$script(
       paste0(
@@ -81,48 +106,44 @@ custom_disconnect_message <- function(refresh = "Refresh page",
       style = "display: none !important;",
       tags$div(
         id = "ss-connect-refresh",
-        tags$p("You've lost connection to the dashboard server - please try
-               refreshing the page:"),
-        tags$p(tags$a(
-          id = "ss-reload-link",
-          href = "#", "Refresh page",
-          onclick = "window.location.reload(true);"
-        )),
+        role = "alert",
+        tags$p(
+          "Sorry, you have lost connection to the",
+          dashboard_title,
+          "dashboard at the moment, please ",
+          tags$a(
+            id = "ss-reload-link",
+            href = "#", "refresh the page",
+            onclick = "window.location.reload(true);",
+            .noWS = c("after")
+          ),
+          "."
+        ),
         if (length(links) > 1) {
           tags$p(
-            "If this persists, you can also view the dashboard at one of our
-            mirror sites:",
-            tags$p(
-              tags$a(href = links[1], "Site 1"),
-              " - ",
-              tags$a(href = links[2], "Site 2"),
-              if (length(links) == 3) {
-                "-"
-              },
-              if (length(links) == 3) {
-                tags$a(href = links[3], "Site 3")
-              }
-            )
+            "If you are still experiencing issues, please try our",
+            tags$a(href = links[2], "alternative site", .noWS = c("after")),
+            ". Apologies for the inconvenience."
           )
         },
         if (!is.null(publication_name)) {
           tags$p(
-            "All the data used in this dashboard can also be viewed or
-            downloaded via the ",
-            tags$a(
+            "All the data used in this dashboard can also be viewed or downloaded via the ",
+            dfeshiny::external_link(
               href = publication_link,
               publication_name
             ),
-            "on Explore Education Statistics."
+            " on Explore Education Statistics."
           )
         },
         tags$p(
-          "Please contact",
-          tags$a(
-            href = "mailto:statistics.development@education.gov.uk",
-            "statistics.development@education.gov.uk"
+          "Feel free to contact ",
+          dfeshiny::external_link(
+            href = "mailto:explore.statistics@education.gov.uk",
+            "explore.statistics@education.gov.uk",
+            add_warning = FALSE
           ),
-          "with details of any problems with this resource."
+          " if you require further support."
         )
       )
     ),
@@ -138,5 +159,6 @@ custom_disconnect_message <- function(refresh = "Refresh page",
           }"
       )
     ))
-  )
+  ) |>
+    htmltools::attachDependencies(dependency, append = TRUE)
 }
