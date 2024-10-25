@@ -2,10 +2,11 @@
 #'
 #'
 #' @description
-#' Create the HTML overlay panel to appear when RSConnect disconnects
+#' Create the HTML overlay panel to appear when a user loses connection to a dashboard.
 #'
 #' @param refresh the text to appear that will refresh the page when clicked
-#' @param links A list of mirrors or alternative links to the dashboard
+#' @param links A vector of possible URLs for the public site. Should mostly just be a single URL,
+#' but can be two URLs if an overflow site has been set up
 #' @param publication_name The parent publication name
 #' @param publication_link The link to the publication on Explore Education
 #' Statistics
@@ -13,8 +14,8 @@
 #'
 #' @importFrom htmltools tags tagList
 #'
-#' @return A HTML overlay panel that appears when RSConnect disconnects for a
-#' public R Shiny dashboard in DfE
+#' @return A HTML overlay panel that appears when a user loses connection to a DfE R Shiny
+#' dashboard.
 #' @export
 #'
 #' @examples
@@ -24,6 +25,17 @@
 #'   links = c(
 #'     "https://department-for-education.shinyapps.io/dfe-shiny-template",
 #'     "https://department-for-education.shinyapps.io/dfe-shiny-template-overflow/"
+#'   ),
+#'   publication_name = "Explore Education Statistics Publication",
+#'   publication_link =
+#'     "https://explore-education-statistics.service.gov.uk/find-statistics/apprenticeships"
+#' )
+#'
+#' custom_disconnect_message(
+#'   dashboard_title = "DfE Shiny Template",
+#'   refresh = "Refresh page",
+#'   links = c(
+#'     "https://department-for-education.shinyapps.io/dfe-shiny-template"
 #'   )
 #' )
 #'
@@ -46,6 +58,7 @@ custom_disconnect_message <- function(
     "https://department-for-education.shinyapps.io/" %in% links) { # nolint: [indentation_linter]
     stop("You have entered an invalid site link in the links argument.")
   }
+
 
   pub_prefix <- c(
     "https://explore-education-statistics.service.gov.uk/find-statistics/",
