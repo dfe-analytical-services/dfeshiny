@@ -6,6 +6,7 @@
 \usage{
 custom_disconnect_message(
   refresh = "Refresh page",
+  dashboard_title = NULL,
   links = NULL,
   publication_name = NULL,
   publication_link = NULL
@@ -13,6 +14,8 @@ custom_disconnect_message(
 }
 \arguments{
 \item{refresh}{the text to appear that will refresh the page when clicked}
+
+\item{dashboard_title}{Title of the dashboard}
 
 \item{links}{A list of mirrors or alternative links to the dashboard}
 
@@ -30,14 +33,12 @@ Create the HTML overlay panel to appear when RSConnect disconnects
 }
 \examples{
 custom_disconnect_message(
+  dashboard_title = "DfE Shiny Template",
   refresh = "Refresh page",
   links = c(
-    "https://department-for-education.shinyapps.io/dfe-shiny-template/",
+    "https://department-for-education.shinyapps.io/dfe-shiny-template",
     "https://department-for-education.shinyapps.io/dfe-shiny-template-overflow/"
-  ),
-  publication_name = "Explore Education Statistics Publication",
-  publication_link =
-    "https://explore-education-statistics.service.gov.uk/find-statistics/apprenticeships"
+  )
 )
 
 }
