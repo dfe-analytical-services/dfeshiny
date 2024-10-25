@@ -1,3 +1,7 @@
+# dfeshiny 0.5.1
+
+* Refresh of disconnect dialogue message and styling
+
 # dfeshiny 0.5.0
 
 ## New features
