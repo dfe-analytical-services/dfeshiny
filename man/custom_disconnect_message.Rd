@@ -17,7 +17,8 @@ custom_disconnect_message(
 
 \item{dashboard_title}{Title of the dashboard}
 
-\item{links}{A list of mirrors or alternative links to the dashboard}
+\item{links}{A vector of possible URLs for the public site. Should mostly just be a single URL,
+but can be two URLs if an overflow site has been set up}
 
 \item{publication_name}{The parent publication name}
 
@@ -25,11 +26,11 @@ custom_disconnect_message(
 Statistics}
 }
 \value{
-A HTML overlay panel that appears when RSConnect disconnects for a
-public R Shiny dashboard in DfE
+A HTML overlay panel that appears when a user loses connection to a DfE R Shiny
+dashboard.
 }
 \description{
-Create the HTML overlay panel to appear when RSConnect disconnects
+Create the HTML overlay panel to appear when a user loses connection to a dashboard.
 }
 \examples{
 custom_disconnect_message(
@@ -38,6 +39,17 @@ custom_disconnect_message(
   links = c(
     "https://department-for-education.shinyapps.io/dfe-shiny-template",
     "https://department-for-education.shinyapps.io/dfe-shiny-template-overflow/"
+  ),
+  publication_name = "Explore Education Statistics Publication",
+  publication_link =
+    "https://explore-education-statistics.service.gov.uk/find-statistics/apprenticeships"
+)
+
+custom_disconnect_message(
+  dashboard_title = "DfE Shiny Template",
+  refresh = "Refresh page",
+  links = c(
+    "https://department-for-education.shinyapps.io/dfe-shiny-template"
   )
 )
 

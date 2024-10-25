@@ -108,7 +108,9 @@ custom_disconnect_message <- function(
         id = "ss-connect-refresh",
         role = "alert",
         tags$p(
-          "Sorry, you have lost connection to the", dashboard_title, "dashboard at the moment, please ",
+          "Sorry, you have lost connection to the",
+          dashboard_title,
+          "dashboard at the moment, please ",
           tags$a(
             id = "ss-reload-link",
             href = "#", "refresh the page",
@@ -127,17 +129,21 @@ custom_disconnect_message <- function(
         if (!is.null(publication_name)) {
           tags$p(
             "All the data used in this dashboard can also be viewed or downloaded via the ",
-            tags$a(
+            dfeshiny::external_link(
               href = publication_link,
               publication_name
             ),
-            "on Explore Education Statistics."
+            " on Explore Education Statistics."
           )
         },
         tags$p(
-          "Feel free to contact",
-          tags$a(href = "mailto:explore.statistics@education.gov.uk", "explore.statistics@education.gov.uk"),
-          "if you require further support."
+          "Feel free to contact ",
+          dfeshiny::external_link(
+            href = "mailto:explore.statistics@education.gov.uk",
+            "explore.statistics@education.gov.uk",
+            add_warning = FALSE
+          ),
+          " if you require further support."
         )
       )
     ),
