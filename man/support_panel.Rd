@@ -11,7 +11,9 @@ support_panel(
   publication_name = NULL,
   publication_slug = "",
   alt_href = NULL,
-  form_url = NULL
+  form_url = NULL,
+  custom_data_info = NULL,
+  extra_text = NULL
 )
 }
 \arguments{
@@ -32,6 +34,13 @@ Statistics}
 Explore Education Statistics)}
 
 \item{form_url}{URL for a feedback form for the dashboard}
+
+\item{custom_data_info}{A single text string or a \code{shiny::tagList()} object
+for custom text to go under the "Find out more information on the data" heading.}
+
+\item{extra_text}{Add extra paragraphs to the page before the "Contact us" section.
+Use \code{dfeshiny::section_tags()} to specify the heading and body.
+Look at examples to see how to add one or multiple sections.}
 }
 \value{
 a HTML div, containing standard support content for a public R Shiny
@@ -66,4 +75,86 @@ shiny::navlistPanel(
     )
   )
 )
+
+# Example for adding custom text
+
+# Adding custom text to the feedback section only
+
+support_panel(
+  team_email = "my.team@education.gov.uk",
+  repo_name = "https://github.com/dfe-analytical-services/my-repo",
+  publication_name = "My publication title",
+  publication_slug = "my-publication-title",
+  form_url = "www.myform.com",
+  custom_data_info = "This is a sentence to test the ability to add custom text in the tab",
+)
+
+# Adding custom text that includes mixed elements to feedback section
+
+support_panel(
+  team_email = "my.team@education.gov.uk",
+  repo_name = "https://github.com/dfe-analytical-services/my-repo",
+  publication_name = "My publication title",
+  publication_slug = "my-publication-title",
+  form_url = "www.myform.com",
+  custom_data_info = shiny::tagList(
+    "Please email results to",
+    external_link(
+      href = paste0("mailto:", "team@education.gov.uk"),
+      link_text = "team@education.gov.uk",
+      add_warning = FALSE
+    )
+  )
+)
+# Example for adding custom sections
+
+# Adding one section
+support_panel(
+  team_email = "my.team@education.gov.uk",
+  repo_name = "https://github.com/dfe-analytical-services/my-repo",
+  custom_data_info = "This is a sentence to test the ability to add custom text in the tab",
+  extra_text = section_tags(
+    heading = "heading",
+    body = "this is a body"
+  )
+)
+# Adding two sections
+support_panel(
+  team_email = "my.team@education.gov.uk",
+  repo_name = "https://github.com/dfe-analytical-services/my-repo",
+  extra_text = c(
+    section_tags(
+      heading = "heading",
+      body = "this is a body"
+    ),
+    section_tags(
+      heading = "heading 2",
+      body = "this is another example of a text"
+    )
+  )
+)
+
+# Adding a section with a shiny::tagList() in
+# the dfeshiny::section_tags()
+
+support_panel(
+  team_email = "my.team@education.gov.uk",
+  repo_name = "https://github.com/dfe-analytical-services/my-repo",
+  extra_text = c(
+    section_tags(
+      heading = "Heading",
+      body = shiny::tagList(
+        "Please email results to",
+        external_link(
+          href = paste0("mailto:", "team@education.gov.uk"),
+          link_text = "team@education.gov.uk",
+          add_warning = FALSE
+        )
+      )
+    )
+  )
+)
+}
+\seealso{
+\code{\link[=section_tags]{section_tags()}}
 }

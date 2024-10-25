@@ -87,6 +87,49 @@ test_that("repo URL needs to follow standard pattern", {
   expect_error(support_panel(team_email = "cam@education.gov.uk"))
 })
 
+# Testing custom text inputs
+
+text_example <- "This is a text"
+
+test_that("testing custom text input", {
+  # testing custom text input for find out more information section
+
+  expect_no_error(support_panel(
+    team_email = "menna@education.gov.uk",
+    repo_name = "https://github.com/dfe-analytical-services/my-repo",
+    custom_data_info = text_example,
+  ))
+})
+
+# Testing errors for adding combined custom text with no tagList wrapper
+
+test_that("Adding custom text with c() produces an error", {
+  expect_error(support_panel(
+    team_email = "menna@education.gov.uk",
+    repo_name = "https://github.com/dfe-analytical-services/my-repo",
+    feedback_custom_text = c("x", "y")
+  ))
+
+  expect_error(support_panel(
+    team_email = "menna@education.gov.uk",
+    repo_name = "https://github.com/dfe-analytical-services/my-repo",
+    custom_data_info = c("k", "r"),
+  ))
+
+  expect_error(support_panel(
+    team_email = "menna@education.gov.uk",
+    repo_name = "https://github.com/dfe-analytical-services/my-repo",
+    contact_custom_text = c("a", "b")
+  ))
+  expect_error(support_panel(
+    team_email = "menna@education.gov.uk",
+    repo_name = "https://github.com/dfe-analytical-services/my-repo",
+    feedback_custom_text = c("x", "y"),
+    custom_data_info = c("k", "r"),
+    contact_custom_text = c("a", "b")
+  ))
+})
+
 # Example output object =======================================================
 # This is used in the following tests
 
@@ -106,7 +149,43 @@ test_that("HTML headings output from function", {
   # This checks the headings are in the expected positions in the HTML output the function returns
   expect_equal(paste(output$children[[1]]), "<h1>Support and feedback</h1>")
   expect_equal(paste(output$children[[2]]), "<h2>Give us feedback</h2>")
-  expect_equal(paste(output$children[[5]]), "<h2>Find more information on the data</h2>")
+  expect_equal(paste(output$children[[4]]), "<h2>Find more information on the data</h2>")
   expect_equal(paste(output$children[[7]]), "<h2>Contact us</h2>")
   expect_equal(paste(output$children[[9]]), "<h2>See the source code</h2>")
+})
+
+
+output <- support_panel(
+  team_email = "my.team@education.gov.uk",
+  repo_name = "https://github.com/dfe-analytical-services/my-repo",
+  publication_name = "My publication title",
+  publication_slug = "my-publication-title",
+  form_url = "www.myform.com",
+  custom_data_info = "test text"
+)
+
+test_that("Custom texts outputs", {
+  # This checks the custom text inputs are in the expected positions
+  # in the HTML output the function returns
+  expect_equal(paste(output$children[[5]]), "<p>test text</p>")
+})
+
+output <- support_panel(
+  team_email = "my.team@education.gov.uk",
+  repo_name = "https://github.com/dfe-analytical-services/my-repo",
+  publication_name = "My publication title",
+  publication_slug = "my-publication-title",
+  form_url = "www.myform.com",
+  custom_data_info = "test text",
+  extra_text = section_tags(
+    heading = "heading text",
+    body = "body text"
+  )
+)
+
+test_that("Extra texts outputs", {
+  # This checks the custom text inputs are in the expected positions
+  # in the HTML output the function returns
+  expect_equal(paste(output$children[[6]][[1]]), "<h2>heading text</h2>")
+  expect_equal(paste(output$children[[6]][[2]]), "<p>body text</p>")
 })
