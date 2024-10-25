@@ -13,9 +13,9 @@
 #' @param body A single text string or a `shiny::tagList()` object
 #' for the body of your paragraph
 #' @param h_level  Specify the level for your heading, if you choose to include
-#' one.Default is "h2". Available options are "h2","h3" or "h4".
+#' one. Default is "h2". Available options are "h2","h3" or "h4".
 #'
-#' @return A list of HTML tags that contain and h2 heading and a paragraph body.
+#' @return A list of HTML tags that contain a paragraph body and an optional heading.
 #' @seealso [support_panel()]
 #' @seealso [htmltools::tags]
 #' @seealso [htmltools::tagList()]

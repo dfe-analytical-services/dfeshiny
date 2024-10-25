@@ -23,6 +23,7 @@
 #' @return a HTML div, containing standard support content for a public R Shiny
 #' dashboard in DfE
 #' @seealso [section_tags()]
+#' @seealso [htmltool::tagList()]
 #' @export
 #'
 #' @examples
