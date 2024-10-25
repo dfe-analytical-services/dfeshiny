@@ -93,6 +93,7 @@ custom_disconnect_message <- function(
       style = "display: none !important;",
       tags$div(
         id = "ss-connect-refresh",
+        role = "alert",
         tags$p(
           "Sorry, you have lost connection to the", dashboard_title, "dashboard at the moment, please ",
           tags$a(
