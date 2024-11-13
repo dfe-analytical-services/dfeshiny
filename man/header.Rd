@@ -21,10 +21,10 @@ using the DfE logo.
 \examples{
 
 if (interactive()) {
-
   ui <- fluidPage(
     dfeshiny::header(
-      secondary_text = "User Examples")
+      secondary_text = "User Examples"
+    )
   )
 
   server <- function(input, output, session) {}
