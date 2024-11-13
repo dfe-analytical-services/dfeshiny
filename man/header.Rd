@@ -18,6 +18,20 @@ a header html shiny object
 This function uses \code{shinyGovstyle::header()} to create a header banner
 using the DfE logo.
 }
+\examples{
+
+if (interactive()) {
+
+  ui <- fluidPage(
+    dfeshiny::header(
+      secondary_text = "User Examples")
+  )
+
+  server <- function(input, output, session) {}
+
+  shinyApp(ui = ui, server = server)
+}
+}
 \seealso{
 \code{\link[shinyGovstyle:header]{shinyGovstyle::header()}}
 }
