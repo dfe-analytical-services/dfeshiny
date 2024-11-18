@@ -2,6 +2,10 @@ ui <- function(input, output, session) {
   shiny::fluidPage(
     shinyjs::useShinyjs(),
 
+    # header function ---------------------------------------------------------
+
+    dfeshiny::header("Header Example"),
+
     # Custom disconnect =======================================================
     custom_disconnect_message(
       refresh = "Refresh page",

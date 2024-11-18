@@ -4,12 +4,12 @@
 \alias{header}
 \title{DfE header banner}
 \usage{
-header(secondary_text, secondary_link = "#")
+header(header, header_link = "#")
 }
 \arguments{
-\item{secondary_text}{Secondary header to supplement the main text}
+\item{header}{Text to use for the header of the dashboard}
 
-\item{secondary_link}{Add a link for clicking on secondary header}
+\item{header_link}{Add a link for clicking on header}
 }
 \value{
 a header html shiny object
@@ -23,7 +23,7 @@ using the DfE logo.
 if (interactive()) {
   ui <- fluidPage(
     dfeshiny::header(
-      secondary_text = "User Examples"
+      header = "User Examples"
     )
   )
 

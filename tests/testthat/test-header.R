@@ -1,6 +1,6 @@
 # create output for testing
 
-output <- dfeshiny::header(secondary_text = "hello")
+output <- dfeshiny::header(header = "hello")
 
 
 test_that("outputs are as expected", {

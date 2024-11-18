@@ -4,8 +4,8 @@
 #' This function uses `shinyGovstyle::header()` to create a header banner
 #' using the DfE logo.
 #'
-#' @param secondary_text Secondary header to supplement the main text
-#' @param secondary_link Add a link for clicking on secondary header
+#' @param header Text to use for the header of the dashboard
+#' @param header_link Add a link for clicking on header
 #' @return a header html shiny object
 #'
 #' @seealso [shinyGovstyle::header()]
@@ -15,7 +15,7 @@
 #' if (interactive()) {
 #'   ui <- fluidPage(
 #'     dfeshiny::header(
-#'       secondary_text = "User Examples"
+#'       header = "User Examples"
 #'     )
 #'   )
 #'
@@ -23,12 +23,12 @@
 #'
 #'   shinyApp(ui = ui, server = server)
 #' }
-header <- function(secondary_text,
-                   secondary_link = "#") {
+header <- function(header,
+                   header_link = "#") {
   shinyGovstyle::header(
     logo = "/dfeshiny/DfE_logo_landscape.png",
     main_text = "",
-    secondary_text = secondary_text,
+    secondary_text = header,
     main_link = "https://www.gov.uk/government/organisations/department-for-education",
     logo_width = 132.98,
     logo_height = 32
