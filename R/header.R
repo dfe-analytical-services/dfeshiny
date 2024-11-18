@@ -5,7 +5,6 @@
 #' using the DfE logo.
 #'
 #' @param header Text to use for the header of the dashboard
-#' @param header_link Add a link for clicking on header
 #' @return a header html shiny object
 #'
 #' @seealso [shinyGovstyle::header()]
@@ -23,8 +22,7 @@
 #'
 #'   shinyApp(ui = ui, server = server)
 #' }
-header <- function(header,
-                   header_link = "#") {
+header <- function(header) {
   shinyGovstyle::header(
     logo = "/dfeshiny/DfE_logo_landscape.png",
     main_text = "",

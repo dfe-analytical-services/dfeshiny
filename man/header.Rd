@@ -4,12 +4,10 @@
 \alias{header}
 \title{DfE header banner}
 \usage{
-header(header, header_link = "#")
+header(header)
 }
 \arguments{
 \item{header}{Text to use for the header of the dashboard}
-
-\item{header_link}{Add a link for clicking on header}
 }
 \value{
 a header html shiny object
