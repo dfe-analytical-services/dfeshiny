@@ -1,3 +1,8 @@
+# dfeshiny (development version)
+
+* Added `dfeshiny::header()` function which uses `shinyGovstyle::header()` but it
+automatically uses the DfE logo.
+
 # dfeshiny 0.5.1
 
 * Refresh of disconnect dialogue message and styling

@@ -27,3 +27,7 @@ reference:
   contents:
   - support_panel
   - section_tags
+- title: Header
+  desc: A wrapper for shinyGovstyle::header() that automatically uses the DfE logo.
+  contents:
+  - header

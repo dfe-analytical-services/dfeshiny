@@ -157,4 +157,6 @@ support_panel(
 }
 \seealso{
 \code{\link[=section_tags]{section_tags()}}
+
+\code{\link[htmltools:tagList]{htmltools::tagList()}}
 }
