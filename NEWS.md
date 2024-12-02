@@ -1,7 +1,8 @@
-# dfeshiny (development version)
+# dfeshiny 0.5.2
 
-* Added `dfeshiny::header()` function which uses `shinyGovstyle::header()` but it
-automatically uses the DfE logo.
+* Added `dfeshiny::header()` function to produce a standardised header incorporating
+the current DfE logo. This is a wrapper function to shinyGovstyle::header(), reducing 
+the range of options.
 
 # dfeshiny 0.5.1
 
