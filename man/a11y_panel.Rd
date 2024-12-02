@@ -9,6 +9,7 @@ a11y_panel(
   dashboard_link,
   date_prepared,
   date_reviewed,
+  date_template_reviewed = "12th March 2024",
   public_repo_link = NA,
   non_accessible_components = NA,
   specific_issues = NA

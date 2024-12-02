@@ -26,6 +26,7 @@ a11y_panel <- function(
     dashboard_link,
     date_prepared,
     date_reviewed,
+    date_template_reviewed = "12th March 2024",
     public_repo_link = NA,
     non_accessible_components = NA,
     specific_issues = NA) {
@@ -117,7 +118,9 @@ a11y_panel <- function(
       shiny::tags$p("Not applicable."),
       shiny::tags$h2("How we tested this website"),
       shiny::tags$p(
-        "The template used for this website was last tested on 12 March 2024 against ",
+        "The template used for this website was last tested on",
+        date_template_reviewed,
+        " against ",
         external_link(
           href = "https://www.w3.org/TR/WCAG22/",
           "Accessibility Guidelines WCAG2.2"
