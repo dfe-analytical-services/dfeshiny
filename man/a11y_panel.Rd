@@ -7,12 +7,19 @@
 a11y_panel(
   dashboard_title,
   dashboard_link,
+  date_tested,
   date_prepared,
   date_reviewed,
   date_template_reviewed = "12th March 2024",
   public_repo_link = NA,
-  non_accessible_components = NA,
-  specific_issues = NA
+  non_accessible_components =
+    c("Keyboard navigation through the interactive charts is currently limited",
+    "Alternative text in interactive charts is limited to titles"),
+  specific_issues =
+    c("Charts have non-accessible components that are inaccessible for keyboard users.",
+    "Chart tooltips are not compativle with screen reader use.",
+    "Some decorative images are not labelled appropriately as yet.",
+    "Some links are not appropriately labelled.")
 )
 }
 \arguments{
@@ -20,9 +27,14 @@ a11y_panel(
 
 \item{dashboard_link}{URL for the host dashboard}
 
+\item{date_tested}{Date the application was last tested}
+
 \item{date_prepared}{Date the statement was prepared in it's current form}
 
 \item{date_reviewed}{Date the statement was last reviewed}
+
+\item{date_template_reviewed}{Date the underlying template was reviewed
+(default: 12th March 2024)}
 
 \item{public_repo_link}{URL for the dashboard repository}
 
@@ -40,10 +52,11 @@ Accessibility panel
 }
 \examples{
 a11y_panel(
-"DfE Shiny template",
-"26th November 2024",
-"26th November 2024",
-"https://department-for-education.shinyapps.io/dfe-shiny-template",
-public_repo_link = "https://github.com/dfe-analytical-services/shiny-template",
+  "DfE Shiny template",
+  "https://department-for-education.shinyapps.io/dfe-shiny-template",
+  "25th April 2024",
+  "26th April 2024",
+  "2nd November 2024",
+  public_repo_link = "https://github.com/dfe-analytical-services/shiny-template",
 )
 }

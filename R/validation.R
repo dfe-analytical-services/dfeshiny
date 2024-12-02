@@ -4,14 +4,19 @@
 #'
 #' @return String containing validation message
 #'
-validate_date <- function(date){
-  date.ld <- lubridate::dmy(date)
-  if(is.na(date.ld)){
+validate_date <- function(date) {
+  date_ld <- lubridate::dmy(date)
+  if (is.na(date_ld)) {
+    valid <- FALSE
     validation_message <- "not in a valid date format."
-  } else if (date.ld > Sys.time()){
+  } else if (date_ld > Sys.time()) {
+    valid <- FALSE
     validation_message <- "is in the future."
   } else {
+    valid <- TRUE
     validation_message <- "is a valid date."
   }
-  return(validation_message)
+  if (!valid) {
+    stop(paste(date, validation_message))
+  }
 }

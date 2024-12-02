@@ -18,6 +18,7 @@ Imports:
     checkmate,
     glue,
     htmltools,
+    lubridate,
     magrittr,
     RCurl,
     shiny,
