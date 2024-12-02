@@ -2,8 +2,8 @@
 #'
 #' @param date Element to be validated as a date
 #'
+#' @keywords internal
 #' @return String containing validation message
-#'
 validate_date <- function(date) {
   date_ld <- lubridate::dmy(date)
   if (is.na(date_ld)) {
