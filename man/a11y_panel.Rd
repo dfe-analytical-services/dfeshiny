@@ -6,12 +6,12 @@
 \usage{
 a11y_panel(
   dashboard_title,
-  dashboard_link,
+  dashboard_url,
   date_tested,
   date_prepared,
   date_reviewed,
-  date_template_reviewed = "12th March 2024",
-  public_repo_link = NA,
+  date_template_reviewed = "12 March 2024",
+  repo_url = NA,
   non_accessible_components =
     c("Keyboard navigation through the interactive charts is currently limited",
     "Alternative text in interactive charts is limited to titles"),
@@ -25,7 +25,7 @@ a11y_panel(
 \arguments{
 \item{dashboard_title}{Title of the host dashboard}
 
-\item{dashboard_link}{URL for the host dashboard}
+\item{dashboard_url}{URL for the host dashboard}
 
 \item{date_tested}{Date the application was last tested}
 
@@ -36,7 +36,7 @@ a11y_panel(
 \item{date_template_reviewed}{Date the underlying template was reviewed
 (default: 12th March 2024)}
 
-\item{public_repo_link}{URL for the dashboard repository}
+\item{repo_url}{URL for the dashboard repository}
 
 \item{non_accessible_components}{String vector containing a list of non accessible components}
 
@@ -57,6 +57,6 @@ a11y_panel(
   "25th April 2024",
   "26th April 2024",
   "2nd November 2024",
-  public_repo_link = "https://github.com/dfe-analytical-services/shiny-template",
+  repo_url = "https://github.com/dfe-analytical-services/shiny-template",
 )
 }

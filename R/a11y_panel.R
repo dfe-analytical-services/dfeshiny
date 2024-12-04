@@ -1,8 +1,8 @@
 #' Accessibility panel
 #'
 #' @param dashboard_title Title of the host dashboard
-#' @param dashboard_link URL for the host dashboard
-#' @param public_repo_link URL for the dashboard repository
+#' @param dashboard_url URL for the host dashboard
+#' @param repo_url URL for the dashboard repository
 #' @param non_accessible_components String vector containing a list of non accessible components
 #' @param specific_issues String vector containing descriptions of specific accessibility issues
 #' that have been identified as part of testing
@@ -23,16 +23,16 @@
 #'   "25th April 2024",
 #'   "26th April 2024",
 #'   "2nd November 2024",
-#'   public_repo_link = "https://github.com/dfe-analytical-services/shiny-template",
+#'   repo_url = "https://github.com/dfe-analytical-services/shiny-template",
 #' )
 a11y_panel <- function(
     dashboard_title,
-    dashboard_link,
+    dashboard_url,
     date_tested,
     date_prepared,
     date_reviewed,
-    date_template_reviewed = "12th March 2024",
-    public_repo_link = NA,
+    date_template_reviewed = "12 March 2024",
+    repo_url = NA,
     non_accessible_components = c(
       "Keyboard navigation through the interactive charts is currently limited",
       "Alternative text in interactive charts is limited to titles"
@@ -44,17 +44,21 @@ a11y_panel <- function(
       "Some links are not appropriately labelled."
     )) {
   # Validate inputs
-  validate_date(date_tested)
-  validate_date(date_prepared)
-  validate_date(date_reviewed)
-  validate_date(date_template_reviewed)
+  date_tested <- validate_date(date_tested)
+  date_prepared <- validate_date(date_prepared)
+  date_reviewed <- validate_date(date_reviewed)
+  date_template_reviewed <- validate_date(date_template_reviewed)
+  validate_dashboard_url(dashboard_url)
+  if (!is_valid_repo_url(repo_url)) {
+    stop(repo_url, " is not a valid repository url")
+  }
   shiny::tags$div(
     "Accessibility",
     shiny::tags$div(
       shiny::tags$h1(paste0("Accessibility statement for ", dashboard_title)),
       shiny::tags$p(
         "This accessibility statement applies to the",
-        dashboard_link,
+        dashboard_url,
         "website. This website is run by the ",
         external_link(
           href = "https://www.gov.uk/government/organisations/department-for-education",
@@ -212,11 +216,11 @@ a11y_panel <- function(
         "through a prioritised list of issues to resolve."
       ),
       shiny::tags$p(
-        if (!is.na(public_repo_link)) {
+        if (!is.na(repo_url)) {
           shiny::tagList(
             "Our current list of issues to be resolved is available on our ",
             external_link(
-              href = paste0(public_repo_link, "/issues"),
+              href = paste0(repo_url, "/issues"),
               "GitHub issues page"
             ),
             "."
