@@ -157,23 +157,13 @@ support_panel <- function(
     )
   }
 
-  # Check that the repo_name is a valid dfe repo ------------------------------
-  # TODO: Use RCurl to check another step further, if the URL is valid
-  is_valid_repo_name <- function(url) {
-    grepl(
-      "\\https://github.com/dfe-analytical-services/+.",
-      as.character(url),
-      ignore.case = TRUE
-    )
-  }
-
   if (repo_name == "") {
     stop(
       "The repo_name argument is empty, please specify a value for repo_name"
     )
   }
 
-  if (is_valid_repo_name(repo_name) == FALSE) {
+  if (is_valid_repo_url(repo_name) == FALSE) {
     stop(
       "Please ensure the repo_name argument is a valid URL for a repository on
       the dfe-analytical-services GitHub area. For example:
@@ -181,9 +171,6 @@ support_panel <- function(
       "
     )
   }
-
-
-
 
   # check for extra text
   # if it's null, provide an empty string
@@ -193,9 +180,6 @@ support_panel <- function(
     # if not, then use the provided extra_text
     extra_text <- extra_text
   }
-
-
-
 
   # Build the support page ----------------------------------------------------
   shiny::tags$div(
