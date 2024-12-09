@@ -54,6 +54,30 @@ a11y_panel <- function(
   date_reviewed <- validate_date(date_reviewed)
   date_template_reviewed <- validate_date(date_template_reviewed)
   validate_dashboard_url(dashboard_url)
+  if (
+    lubridate::interval(
+      lubridate::dmy(date_prepared), lubridate::dmy(date_reviewed)
+      ) / lubridate::days(1) < 0
+    ) {
+    stop("date_reviewed should be later than date_prepared")
+  }
+  if (
+    lubridate::interval(
+      lubridate::dmy(date_tested), lubridate::dmy(date_reviewed)
+    ) / lubridate::days(1) < 0
+  ) {
+    stop("date_reviewed should be later than date_tested")
+  }
+  if (
+    lubridate::interval(
+      lubridate::dmy(date_template_reviewed), lubridate::dmy(date_reviewed)
+    ) / lubridate::days(1) < 0
+  ) {
+    warning(
+      "The template has been through a review more recently than your dashboard, please get in ",
+      "touch with the explore education statistics platforms team to request a re-review."
+    )
+  }
   if (!is_valid_repo_url(repo_url)) {
     stop(repo_url, " is not a valid repository url")
   }
