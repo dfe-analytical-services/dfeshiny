@@ -3,6 +3,9 @@
 #' @param dashboard_title Title of the host dashboard
 #' @param dashboard_url URL for the host dashboard
 #' @param repo_url URL for the dashboard repository
+#' @param publication_name The parent publication name
+#' @param publication_slug The parent publication slug on Explore Education
+#' Statistics
 #' @param non_accessible_components String vector containing a list of non accessible components
 #' @param specific_issues String vector containing descriptions of specific accessibility issues
 #' that have been identified as part of testing
@@ -33,6 +36,8 @@ a11y_panel <- function(
     date_reviewed,
     date_template_reviewed = "12 March 2024",
     repo_url = NA,
+    publication_name = NA,
+    publication_slug = NA,
     non_accessible_components = c(
       "Keyboard navigation through the interactive charts is currently limited",
       "Alternative text in interactive charts is limited to titles"
@@ -51,6 +56,12 @@ a11y_panel <- function(
   validate_dashboard_url(dashboard_url)
   if (!is_valid_repo_url(repo_url)) {
     stop(repo_url, " is not a valid repository url")
+  }
+  if (is.na(publication_name) && !is.na(publication_slug)) {
+    stop("Error: If publication_name is provided, then so should publication_slug.")
+  }
+  if (!is.na(publication_name) && is.na(publication_slug)) {
+    stop("Error: If publication_slug is provided, then so should publication_name.")
   }
   shiny::tags$div(
     "Accessibility",
@@ -104,16 +115,17 @@ a11y_panel <- function(
         )
       },
       shiny::tags$h2("Feedback and contact information"),
-      shiny::tags$p(
-        "If you need information on this website in a different format please see the parent",
-        "publications",
-        external_link(
-          href = "https://explore-education-statistics.service.gov.uk/find-statistics",
-          "on Explore education statistics"
-        ),
-        ", as detailed on the data sources page of this service.",
-        ". More details are available on that service for alternative formats of this data.",
-      ),
+      if (!is.na(publication_slug)) {
+        shiny::tags$p(
+          "If you need information on this website in a different format please see the parent ",
+          external_link(href = publication_slug, link_text = publication_name),
+          "publication."
+        )
+        shiny::tags$p(
+          "More details are available on that service for alternative formats of this ",
+          "data."
+        )
+      },
       shiny::tags$p("We're always looking to improve the accessibility of this website.
              If you find any problems not listed on this page or think we're not meeting
              accessibility requirements, contact us:"),

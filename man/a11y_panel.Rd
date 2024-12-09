@@ -12,6 +12,8 @@ a11y_panel(
   date_reviewed,
   date_template_reviewed = "12 March 2024",
   repo_url = NA,
+  publication_name = NA,
+  publication_slug = NA,
   non_accessible_components =
     c("Keyboard navigation through the interactive charts is currently limited",
     "Alternative text in interactive charts is limited to titles"),
@@ -37,6 +39,11 @@ a11y_panel(
 (default: 12th March 2024)}
 
 \item{repo_url}{URL for the dashboard repository}
+
+\item{publication_name}{The parent publication name}
+
+\item{publication_slug}{The parent publication slug on Explore Education
+Statistics}
 
 \item{non_accessible_components}{String vector containing a list of non accessible components}
 
