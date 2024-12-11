@@ -48,7 +48,7 @@ ui <- function(input, output, session) {
           "26th November 2023",
           "28th November 2023",
           "12th March 2024",
-          repo_url = "https://github.com/dfe-analytical-services/shiny-template"
+          issues_contact = "https://github.com/dfe-analytical-services/shiny-template"
         )
       ),
 

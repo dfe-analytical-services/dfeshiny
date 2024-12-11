@@ -7,7 +7,7 @@ validate_date <- function(date) {
   date_template <- lubridate::stamp("1 January 2020", orders = "dmy", quiet = TRUE)
   if (is.na(date_ld)) {
     valid <- FALSE
-    validation_message <- "is not in a valid date format."
+    validation_message <- "is not in a valid date format, e.g. 8th Auguest 2024 or 08/08/2024."
   } else if (date_ld > Sys.time()) {
     valid <- FALSE
     validation_message <- "is in the future."
@@ -16,7 +16,7 @@ validate_date <- function(date) {
     validation_message <- "is a valid date."
   }
   if (!valid) {
-    stop(paste0("\"",date,"\" ", validation_message))
+    stop(paste0("\"", date, "\" ", validation_message))
   }
   return(date_template(date_ld))
 }
@@ -51,4 +51,13 @@ validate_dashboard_url <- function(url) {
   if (!valid) {
     stop(paste(url, "is not a valid DfE dashboard deployment URL"))
   }
+}
+
+# Check that the team_email is a valid dfe email ----------------------------
+is_valid_dfe_email <- function(email) {
+  grepl(
+    "\\<[A-Z0-9._%+-]+@education.gov.uk\\>",
+    as.character(email),
+    ignore.case = TRUE
+  )
 }

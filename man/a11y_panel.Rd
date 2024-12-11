@@ -11,9 +11,9 @@ a11y_panel(
   date_prepared,
   date_reviewed,
   date_template_reviewed = "12 March 2024",
-  repo_url = NA,
-  publication_name = NA,
-  publication_slug = NA,
+  issues_contact = NULL,
+  publication_name = NULL,
+  publication_slug = NULL,
   non_accessible_components =
     c("Keyboard navigation through the interactive charts is currently limited",
     "Alternative text in interactive charts is limited to titles"),
@@ -38,12 +38,13 @@ a11y_panel(
 \item{date_template_reviewed}{Date the underlying template was reviewed
 (default: 12th March 2024)}
 
-\item{repo_url}{URL for the dashboard repository}
+\item{issues_contact}{URL for the GitHub Issues log or contact e-mail address
+for users to flag accessibility issues}
 
-\item{publication_name}{The parent publication name}
+\item{publication_name}{The parent publication name (optional)}
 
 \item{publication_slug}{The parent publication slug on Explore Education
-Statistics}
+Statistics (optional)}
 
 \item{non_accessible_components}{String vector containing a list of non accessible components}
 
@@ -55,7 +56,14 @@ shiny$tags$div element containing the html tags and content for the standard
 accessibility statement
 }
 \description{
-Accessibility panel
+Create an accessibility statement for a dashboard. This should always be completed
+\itemize{
+\item for all live public dashboards
+\item by or in conjunction with the Explore education statistics and platforms team
+}
+
+Note that this model statement has been created based on the
+\href{https://www.gov.uk/guidance/model-accessibility-statement}{GDS model accessibility statement}
 }
 \examples{
 a11y_panel(
@@ -64,6 +72,6 @@ a11y_panel(
   "25th April 2024",
   "26th April 2024",
   "2nd November 2024",
-  repo_url = "https://github.com/dfe-analytical-services/shiny-template",
+  issues_contact = "https://github.com/dfe-analytical-services/shiny-template",
 )
 }

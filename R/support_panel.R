@@ -141,15 +141,6 @@ support_panel <- function(
     form_url = NULL,
     custom_data_info = NULL,
     extra_text = NULL) {
-  # Check that the team_email is a valid dfe email ----------------------------
-  is_valid_dfe_email <- function(email) {
-    grepl(
-      "\\<[A-Z0-9._%+-]+@education.gov.uk\\>",
-      as.character(email),
-      ignore.case = TRUE
-    )
-  }
-
   if (is_valid_dfe_email(team_email) == FALSE) {
     stop(
       "You have entered an invalid email in the team_email argument.

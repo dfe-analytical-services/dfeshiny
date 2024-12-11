@@ -1,11 +1,20 @@
 #' Accessibility panel
 #'
+#' @description
+#' Create an accessibility statement for a dashboard. This should always be completed
+#'   - for all live public dashboards
+#'   - by or in conjunction with the Explore education statistics and platforms team
+#'
+#' Note that this model statement has been created based on the
+#' [GDS model accessibility statement](https://www.gov.uk/guidance/model-accessibility-statement)
+#'
 #' @param dashboard_title Title of the host dashboard
 #' @param dashboard_url URL for the host dashboard
-#' @param repo_url URL for the dashboard repository
-#' @param publication_name The parent publication name
+#' @param issues_contact URL for the GitHub Issues log or contact e-mail address
+#' for users to flag accessibility issues
+#' @param publication_name The parent publication name (optional)
 #' @param publication_slug The parent publication slug on Explore Education
-#' Statistics
+#' Statistics (optional)
 #' @param non_accessible_components String vector containing a list of non accessible components
 #' @param specific_issues String vector containing descriptions of specific accessibility issues
 #' that have been identified as part of testing
@@ -26,7 +35,7 @@
 #'   "25th April 2024",
 #'   "26th April 2024",
 #'   "2nd November 2024",
-#'   repo_url = "https://github.com/dfe-analytical-services/shiny-template",
+#'   issues_contact = "https://github.com/dfe-analytical-services/shiny-template",
 #' )
 a11y_panel <- function(
     dashboard_title,
@@ -35,7 +44,7 @@ a11y_panel <- function(
     date_prepared,
     date_reviewed,
     date_template_reviewed = "12 March 2024",
-    repo_url = NULL,
+    issues_contact = NULL,
     publication_name = NULL,
     publication_slug = NULL,
     non_accessible_components = c(
@@ -57,8 +66,8 @@ a11y_panel <- function(
   if (
     lubridate::interval(
       lubridate::dmy(date_prepared), lubridate::dmy(date_reviewed)
-      ) / lubridate::days(1) < 0
-    ) {
+    ) / lubridate::days(1) < 0
+  ) {
     stop("date_reviewed should be later than date_prepared")
   }
   if (
@@ -78,8 +87,16 @@ a11y_panel <- function(
       "touch with the explore education statistics platforms team to request a re-review."
     )
   }
-  if (!is_valid_repo_url(repo_url)) {
-    stop(repo_url, " is not a valid repository url")
+  if (!is_valid_repo_url(issues_contact)) {
+    if (!is_valid_dfe_email(issues_contact)) {
+      stop(
+        paste0(
+          "\"",
+          issues_contact,
+          "\" should either be a valid repository URL or a valid DfE e-mail address"
+        )
+      )
+    }
   }
   if (is.null(publication_name) && !is.null(publication_slug)) {
     stop("Error: If publication_name is provided, then so should publication_slug.")
@@ -133,7 +150,7 @@ a11y_panel <- function(
       } else {
         shiny::tagList(
           shiny::tags$p("We know some parts of this website are not fully accessible:"),
-          shiny::tags$div(tags$ul(
+          shiny::tags$div(tags$ol(
             tagList(lapply(non_accessible_components, shiny::tags$li))
           ))
         )
@@ -202,7 +219,7 @@ a11y_panel <- function(
           shiny::tags$h3("Non accessible content"),
           shiny::tags$p("The content listed below is non-accessible for the following reasons.
              We will address these issues to ensure our content is accessible."),
-          shiny::tags$div(tags$ul(
+          shiny::tags$div(tags$ol(
             tagList(lapply(specific_issues, shiny::tags$li))
           ))
         )
@@ -252,15 +269,26 @@ a11y_panel <- function(
         "through a prioritised list of issues to resolve."
       ),
       shiny::tags$p(
-        if (!is.null(repo_url)) {
-          shiny::tagList(
-            "Our current list of issues to be resolved is available on our ",
-            external_link(
-              href = paste0(repo_url, "/issues"),
-              "GitHub issues page"
-            ),
-            "."
-          )
+        if (!is.null(issues_contact)) {
+          if (is_valid_repo_url(issues_contact)) {
+            shiny::tagList(
+              "Our current list of issues to be resolved is available on our ",
+              external_link(
+                href = paste0(issues_contact, "/issues"),
+                "GitHub issues page"
+              ),
+              "."
+            )
+          } else {
+            shiny::tagList(
+              "To discuss our current list of issues to be resolved contact us at",
+              shiny::tags$a(
+                href = paste0("mailto:", issues_contact),
+                issues_contact
+              ),
+              "."
+            )
+          }
         } else {
           " "
         },
