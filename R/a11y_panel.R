@@ -35,9 +35,9 @@ a11y_panel <- function(
     date_prepared,
     date_reviewed,
     date_template_reviewed = "12 March 2024",
-    repo_url = NA,
-    publication_name = NA,
-    publication_slug = NA,
+    repo_url = NULL,
+    publication_name = NULL,
+    publication_slug = NULL,
     non_accessible_components = c(
       "Keyboard navigation through the interactive charts is currently limited",
       "Alternative text in interactive charts is limited to titles"

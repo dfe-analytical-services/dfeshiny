@@ -45,8 +45,8 @@ ui <- function(input, output, session) {
         a11y_panel(
           "DfE Shiny template",
           "https://department-for-education.shinyapps.io/dfe-shiny-template",
-          "26th November 2024",
-          "28th November 2024",
+          "26th November 2023",
+          "28th November 2023",
           "12th March 2024",
           repo_url = "https://github.com/dfe-analytical-services/shiny-template"
         )
