@@ -7,7 +7,7 @@ validate_date <- function(date) {
   date_template <- lubridate::stamp("1 January 2020", orders = "dmy", quiet = TRUE)
   if (is.na(date_ld)) {
     valid <- FALSE
-    validation_message <- "not in a valid date format."
+    validation_message <- "is not in a valid date format."
   } else if (date_ld > Sys.time()) {
     valid <- FALSE
     validation_message <- "is in the future."
@@ -16,7 +16,7 @@ validate_date <- function(date) {
     validation_message <- "is a valid date."
   }
   if (!valid) {
-    stop(paste(date, validation_message))
+    stop(paste0("\"",date,"\" ", validation_message))
   }
   return(date_template(date_ld))
 }

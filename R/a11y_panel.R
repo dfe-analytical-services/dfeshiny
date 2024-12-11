@@ -81,10 +81,10 @@ a11y_panel <- function(
   if (!is_valid_repo_url(repo_url)) {
     stop(repo_url, " is not a valid repository url")
   }
-  if (is.na(publication_name) && !is.na(publication_slug)) {
+  if (is.null(publication_name) && !is.null(publication_slug)) {
     stop("Error: If publication_name is provided, then so should publication_slug.")
   }
-  if (!is.na(publication_name) && is.na(publication_slug)) {
+  if (!is.null(publication_name) && is.null(publication_slug)) {
     stop("Error: If publication_slug is provided, then so should publication_name.")
   }
   shiny::tags$div(
@@ -128,7 +128,7 @@ a11y_panel <- function(
         " has advice on making your device easier to use if you have a disability."
       ),
       shiny::tags$h2("How accessible this website is"),
-      if (all(is.na(non_accessible_components))) {
+      if (all(is.null(non_accessible_components))) {
         shiny::tags$p("This website is fully compliant with accessibility standards.")
       } else {
         shiny::tagList(
@@ -139,7 +139,7 @@ a11y_panel <- function(
         )
       },
       shiny::tags$h2("Feedback and contact information"),
-      if (!is.na(publication_slug)) {
+      if (!is.null(publication_slug)) {
         shiny::tags$p(
           "If you need information on this website in a different format please see the parent ",
           external_link(href = publication_slug, link_text = publication_name),
@@ -180,7 +180,7 @@ a11y_panel <- function(
         "Accessibility Regulations 2018."
       ),
       shiny::tags$h3("Compliance status"),
-      if (all(is.na(specific_issues))) {
+      if (all(is.null(specific_issues))) {
         shiny::tags$p(
           "This website is fully compliant with the ",
           external_link(
@@ -252,7 +252,7 @@ a11y_panel <- function(
         "through a prioritised list of issues to resolve."
       ),
       shiny::tags$p(
-        if (!is.na(repo_url)) {
+        if (!is.null(repo_url)) {
           shiny::tagList(
             "Our current list of issues to be resolved is available on our ",
             external_link(

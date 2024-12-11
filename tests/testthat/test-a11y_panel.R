@@ -53,12 +53,12 @@ test_that("Accessibility dates are required", {
     a11y_panel(
       "DfE Shiny template",
       "https://department-for-education.shinyapps.io/dfe-shiny-template",
-      date_tested = "26th March 2025",
+      date_tested = "26th March 2099",
       date_prepared = "28th March 2024",
       date_reviewed = "12th November 2024",
       repo_url = "https://github.com/dfe-analytical-services/shiny-template"
     ),
-    "26th March 2025 is in the future."
+    "\"26th March 2099\" is in the future."
   )
   expect_error(
     a11y_panel(
@@ -105,7 +105,7 @@ test_that("Accessibility dates are required", {
       date_reviewed = "12th November 2024",
       repo_url = "https://github.com/dfe-analytical-services/shiny-template"
     ),
-    "Geoff not in a valid date format."
+    "\"Geoff\" is not in a valid date format."
   )
   expect_error(
     a11y_panel(
@@ -116,7 +116,7 @@ test_that("Accessibility dates are required", {
       date_reviewed = "12th November 2024",
       repo_url = "https://github.com/dfe-analytical-services/shiny-template"
     ),
-    "Bob not in a valid date format."
+    "\"Bob\" is not in a valid date format."
   )
   expect_error(
     a11y_panel(
@@ -127,7 +127,7 @@ test_that("Accessibility dates are required", {
       date_reviewed = "Daisy",
       repo_url = "https://github.com/dfe-analytical-services/shiny-template"
     ),
-    "Daisy not in a valid date format."
+    "\"Daisy\" is not in a valid date format."
   )
 })
 
