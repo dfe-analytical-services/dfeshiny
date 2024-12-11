@@ -1,3 +1,8 @@
+# dfeshiny 0.5.3
+
+* Added `dfeshiny::a11y_panel()` to create model accessibility statement with custom 
+issue listings.
+
 # dfeshiny 0.5.2
 
 * Added `dfeshiny::header()` function to produce a standardised header incorporating
