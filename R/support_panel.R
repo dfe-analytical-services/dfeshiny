@@ -141,29 +141,10 @@ support_panel <- function(
     form_url = NULL,
     custom_data_info = NULL,
     extra_text = NULL) {
-  # Check that the team_email is a valid dfe email ----------------------------
-  is_valid_dfe_email <- function(email) {
-    grepl(
-      "\\<[A-Z0-9._%+-]+@education.gov.uk\\>",
-      as.character(email),
-      ignore.case = TRUE
-    )
-  }
-
   if (is_valid_dfe_email(team_email) == FALSE) {
     stop(
       "You have entered an invalid email in the team_email argument.
       Please enter an @education.gov.uk email."
-    )
-  }
-
-  # Check that the repo_name is a valid dfe repo ------------------------------
-  # TODO: Use RCurl to check another step further, if the URL is valid
-  is_valid_repo_name <- function(url) {
-    grepl(
-      "\\https://github.com/dfe-analytical-services/+.",
-      as.character(url),
-      ignore.case = TRUE
     )
   }
 
@@ -173,7 +154,7 @@ support_panel <- function(
     )
   }
 
-  if (is_valid_repo_name(repo_name) == FALSE) {
+  if (is_valid_repo_url(repo_name) == FALSE) {
     stop(
       "Please ensure the repo_name argument is a valid URL for a repository on
       the dfe-analytical-services GitHub area. For example:
@@ -181,9 +162,6 @@ support_panel <- function(
       "
     )
   }
-
-
-
 
   # check for extra text
   # if it's null, provide an empty string
@@ -193,9 +171,6 @@ support_panel <- function(
     # if not, then use the provided extra_text
     extra_text <- extra_text
   }
-
-
-
 
   # Build the support page ----------------------------------------------------
   shiny::tags$div(

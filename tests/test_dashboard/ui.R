@@ -38,6 +38,19 @@ ui <- function(input, output, session) {
           form_url = "https://forms.office.com"
         )
       ),
+      ## Accessibility panel --------------------------------------------------------
+      shiny::tabPanel(
+        value = "a11y_panel",
+        "Accessibility",
+        a11y_panel(
+          "DfE Shiny template",
+          "https://department-for-education.shinyapps.io/dfe-shiny-template",
+          "26th November 2023",
+          "28th November 2023",
+          "12th March 2024",
+          issues_contact = "https://github.com/dfe-analytical-services/shiny-template"
+        )
+      ),
 
       ## Cookies panel --------------------------------------------------------
       shiny::tabPanel(
