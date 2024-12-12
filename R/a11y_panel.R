@@ -36,6 +36,8 @@
 #'   "26th April 2024",
 #'   "2nd November 2024",
 #'   issues_contact = "https://github.com/dfe-analytical-services/shiny-template",
+#'   publication_slug = "la-and-school-expenditure",
+#'   publication_name = "LA and school expenditure"
 #' )
 a11y_panel <- function(
     dashboard_title,
@@ -157,14 +159,23 @@ a11y_panel <- function(
       },
       shiny::tags$h2("Feedback and contact information"),
       if (!is.null(publication_slug)) {
-        shiny::tags$p(
-          "If you need information on this website in a different format please see the parent ",
-          external_link(href = publication_slug, link_text = publication_name),
-          "publication."
-        )
-        shiny::tags$p(
-          "More details are available on that service for alternative formats of this ",
-          "data."
+        shiny::tagList(
+          shiny::tags$p(
+            "If you need information on this website in a different format please see the",
+            " parent publication, ",
+            external_link(
+              href = paste0(
+                "https://explore-education-statistics.service.gov.uk/find-statistics/",
+                publication_slug
+              ),
+              link_text = publication_name
+            ),
+            "."
+          ),
+          shiny::tags$p(
+            "More details are available on that service for alternative formats of this ",
+            "data."
+          )
         )
       },
       shiny::tags$p("We're always looking to improve the accessibility of this website.

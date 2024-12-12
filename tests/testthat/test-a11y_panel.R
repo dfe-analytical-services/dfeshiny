@@ -105,7 +105,7 @@ test_that("Accessibility dates are required", {
       date_reviewed = "12th November 2024",
       issues_contact = "https://github.com/dfe-analytical-services/shiny-template/issues"
     ),
-    "\"Geoff\" is not in a valid date format, e.g. 8th Auguest 2024 or 08/08/2024."
+    "\"Geoff\" is not in a valid date format, e.g. 8th August 2024 or 08/08/2024."
   )
   expect_error(
     a11y_panel(
