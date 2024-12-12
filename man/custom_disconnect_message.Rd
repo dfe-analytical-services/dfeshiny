@@ -9,7 +9,8 @@ custom_disconnect_message(
   dashboard_title = NULL,
   links = NULL,
   publication_name = NULL,
-  publication_link = NULL
+  publication_link = NULL,
+  support_contact = "explore.statistics@education.gov.uk"
 )
 }
 \arguments{
@@ -24,6 +25,9 @@ but can be two URLs if an overflow site has been set up}
 
 \item{publication_link}{The link to the publication on Explore Education
 Statistics}
+
+\item{support_contact}{Email address for support contact, defaults to
+explore.statistics@education.gov.uk}
 }
 \value{
 A HTML overlay panel that appears when a user loses connection to a DfE R Shiny

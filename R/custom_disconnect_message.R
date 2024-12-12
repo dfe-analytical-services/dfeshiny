@@ -11,6 +11,8 @@
 #' @param publication_link The link to the publication on Explore Education
 #' Statistics
 #' @param dashboard_title Title of the dashboard
+#' @param support_contact Email address for support contact, defaults to
+#' explore.statistics@@education.gov.uk
 #'
 #' @importFrom htmltools tags tagList
 #'
@@ -44,9 +46,9 @@ custom_disconnect_message <- function(
     dashboard_title = NULL,
     links = NULL,
     publication_name = NULL,
-    publication_link = NULL) {
+    publication_link = NULL,
+    support_contact = "explore.statistics@education.gov.uk") {
   # Check links are valid
-
   is_valid_sites_list <- function(sites) {
     lapply(
       stringr::str_trim(sites), startsWith,
@@ -59,12 +61,12 @@ custom_disconnect_message <- function(
     stop("You have entered an invalid site link in the links argument.")
   }
 
-
   pub_prefix <- c(
     "https://explore-education-statistics.service.gov.uk/find-statistics/",
     "https://www.explore-education-statistics.service.gov.uk/find-statistics/",
     "https://www.gov.uk/",
-    "https://gov.uk/"
+    "https://gov.uk/",
+    "https://github.com/dfe-analytical-services/"
   )
 
   if (!is.null(publication_link)) {
@@ -72,13 +74,14 @@ custom_disconnect_message <- function(
       startsWith(stringr::str_trim(link), pub_prefix)
     }
 
-    if (RCurl::url.exists(publication_link) == FALSE ||
-      (TRUE %in% is_valid_publication_link(publication_link)) == FALSE || # nolint: [indentation_linter]
-      publication_link %in% pub_prefix) {
+    if (TRUE %in% is_valid_publication_link(publication_link) == FALSE ||
+      publication_link %in% pub_prefix) { # nolint: [indentation_linter]
       stop("You have entered an invalid publication link in the publication_link
          argument.")
     }
   }
+
+  # TODO: Add email validation once a11y panel PR is in
 
   checkmate::assert_string(refresh)
 
@@ -126,21 +129,29 @@ custom_disconnect_message <- function(
             ". Apologies for the inconvenience."
           )
         },
-        if (!is.null(publication_name)) {
+        if (!is.null(publication_name) && grepl("explore-education-statistics", publication_link)) {
           tags$p(
-            "All the data used in this dashboard can also be viewed or downloaded via the ",
+            "The data used in this dashboard can also be viewed or downloaded via the ",
             dfeshiny::external_link(
               href = publication_link,
               publication_name
             ),
-            " on Explore Education Statistics."
+            " on explore education statistics."
+          )
+        } else if (!is.null(publication_name)) {
+          tags$p(
+            "The data used in this dashboard can also be viewed or downloaded from ",
+            dfeshiny::external_link(
+              href = publication_link,
+              publication_name
+            )
           )
         },
         tags$p(
           "Feel free to contact ",
           dfeshiny::external_link(
-            href = "mailto:explore.statistics@education.gov.uk",
-            "explore.statistics@education.gov.uk",
+            href = paste0("mailto:", support_contact),
+            support_contact,
             add_warning = FALSE
           ),
           " if you require further support."

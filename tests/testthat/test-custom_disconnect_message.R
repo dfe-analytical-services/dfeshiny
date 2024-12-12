@@ -19,16 +19,7 @@ test_that("publication link is valid", {
     )
   )
 
-  # Test that it fails for non-existent links/typos/random links
-  expect_error(
-    custom_disconnect_message(
-      refresh = "Refresh page",
-      links = "https://department-for-education.shinyapps.io/dfe-shiny-template/", # nolint: [line_length_linter]
-      publication_name = "Pupil attendance in schools",
-      publication_link = "https://explore-education-statistics.service.gov.uk/find-statistics/hello" # nolint: [line_length_linter]
-    )
-  )
-
+  # Test that it fails for a random link
   expect_error(
     custom_disconnect_message(
       refresh = "Refresh page",
@@ -39,7 +30,6 @@ test_that("publication link is valid", {
   )
 
   # Test that just linking to EES homepage fails
-
   expect_error(
     custom_disconnect_message(
       refresh = "Refresh page",
@@ -118,5 +108,46 @@ test_that("site links are valid", {
       publication_name = "Pupil attendance in schools",
       publication_link = "https://explore-education-statistics.service.gov.uk/find-statistics/pupil-attendance-in-schools" # nolint: [line_length_linter]
     )
+  )
+})
+
+test_that("Allows GitHub as publication_link and doesn't show EES text", {
+  expect_no_error(
+    custom_disconnect_message(
+      refresh = "Refresh page",
+      links = c(
+        "https://department-for-education.shinyapps.io/dfe-shiny-template/"
+      ),
+      publication_name = "Local authority interactive tool",
+      publication_link = "https://github.com/dfe-analytical-services/local-authority-interactive-tool" # nolint: [line_length_linter]
+    )
+  )
+
+  non_ees <- custom_disconnect_message(
+    refresh = "Refresh page",
+    links = c(
+      "https://department-for-education.shinyapps.io/dfe-shiny-template/"
+    ),
+    publication_name = "Local authority interactive tool",
+    publication_link = "https://github.com/dfe-analytical-services/local-authority-interactive-tool" # nolint: [line_length_linter]
+  )
+
+  expect_false(
+    grepl("explore education statistics", paste0(non_ees), fixed = TRUE)
+  )
+})
+
+test_that("If the link contains EES it uses the EES text", {
+  ees_test <- custom_disconnect_message(
+    refresh = "Refresh page",
+    links = c(
+      "https://department-for-education.shinyapps.io/dfe-shiny-template/"
+    ),
+    publication_name = "Local authority interactive tool",
+    publication_link = "https://www.explore-education-statistics.service.gov.uk/find-statistics/local-authority-interactive-tool" # nolint: [line_length_linter]
+  )
+
+  expect_true(
+    grepl("explore education statistics", paste0(ees_test), fixed = TRUE)
   )
 })
