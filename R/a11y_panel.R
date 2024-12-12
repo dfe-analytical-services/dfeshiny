@@ -183,10 +183,10 @@ a11y_panel <- function(
         "(the \"accessibility regulations\")."
       ),
       shiny::tags$p(
-        "If you are not happy with how we respond to your complaint, ",
+        "If you are not happy with how we respond to your complaint, contact the ",
         external_link(
           href = "https://www.equalityadvisoryservice.com/",
-          "contact the Equality Advisory and Support Service (EASS)"
+          "Equality Advisory and Support Service (EASS)"
         ),
         "."
       ),
