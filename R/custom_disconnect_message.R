@@ -13,6 +13,9 @@
 #' @param dashboard_title Title of the dashboard
 #' @param support_contact Email address for support contact, defaults to
 #' explore.statistics@@education.gov.uk
+#' @param custom_refresh Custom refresh link, defaults to refreshing the page, main value is if you
+#' have bookmarking enabled and want the refresh to send to the initial view instead of reloading
+#' any bookmarks
 #'
 #' @importFrom htmltools tags tagList
 #'
@@ -41,13 +44,18 @@
 #'   )
 #' )
 #'
+#' custom_disconnect_message(
+#'   support_contact = "my.team@education.gov.uk",
+#'   custom_refresh = "https://department-for-education.shinyapps.io/my-dashboard"
+#' )
 custom_disconnect_message <- function(
     refresh = "Refresh page",
     dashboard_title = NULL,
     links = NULL,
     publication_name = NULL,
     publication_link = NULL,
-    support_contact = "explore.statistics@education.gov.uk") {
+    support_contact = "explore.statistics@education.gov.uk",
+    custom_refresh = NULL) {
   # Check links are valid
   is_valid_sites_list <- function(sites) {
     lapply(
@@ -59,6 +67,21 @@ custom_disconnect_message <- function(
   if (FALSE %in% is_valid_sites_list(links) ||
     "https://department-for-education.shinyapps.io/" %in% links) { # nolint: [indentation_linter]
     stop("You have entered an invalid site link in the links argument.")
+  }
+
+  if (!is.null(custom_refresh)) {
+    is_valid_refresh <- function(refresh) {
+      startsWith(stringr::str_trim(refresh), "https://department-for-education.shinyapps.io/")
+    }
+
+    if (is_valid_refresh(custom_refresh) == FALSE) {
+      stop(
+        paste0(
+          "You have entered an invalid site link in the custom_refresh argument. It must be a site",
+          " on shinyapps.io."
+        )
+      )
+    }
   }
 
   pub_prefix <- c(
@@ -114,12 +137,22 @@ custom_disconnect_message <- function(
           "Sorry, you have lost connection to the",
           dashboard_title,
           "dashboard at the moment, please ",
-          tags$a(
-            id = "ss-reload-link",
-            href = "#", "refresh the page",
-            onclick = "window.location.reload(true);",
-            .noWS = c("after")
-          ),
+          if (is.null(custom_refresh)) {
+            tags$a(
+              id = "ss-reload-link",
+              href = "#",
+              refresh,
+              onclick = "window.location.reload(true);",
+              .noWS = c("after")
+            )
+          } else {
+            tags$a(
+              id = "ss-reload-link",
+              href = custom_refresh,
+              refresh,
+              .noWS = c("after")
+            )
+          },
           "."
         ),
         if (length(links) > 1) {

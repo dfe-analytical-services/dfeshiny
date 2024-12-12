@@ -151,3 +151,31 @@ test_that("If the link contains EES it uses the EES text", {
     grepl("explore education statistics", paste0(ees_test), fixed = TRUE)
   )
 })
+
+test_that("Can customise refresh link, but not too much", {
+  expect_no_error(
+    custom_disconnect_message(
+      custom_refresh = "https://department-for-education.shinyapps.io/dfe-shiny-template/",
+    )
+  )
+
+  expect_error(
+    custom_disconnect_message(
+      custom_refresh = "https://www.google.com",
+    ),
+    paste0(
+      "You have entered an invalid site link in the custom_refresh argument.",
+      " It must be a site on shinyapps.io."
+    )
+  )
+
+  expect_error(
+    custom_disconnect_message(
+      custom_refresh = "https://github.com/dfe-analytical-services/dfeshiny",
+    ),
+    paste0(
+      "You have entered an invalid site link in the custom_refresh argument.",
+      " It must be a site on shinyapps.io."
+    )
+  )
+})

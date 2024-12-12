@@ -10,7 +10,8 @@ custom_disconnect_message(
   links = NULL,
   publication_name = NULL,
   publication_link = NULL,
-  support_contact = "explore.statistics@education.gov.uk"
+  support_contact = "explore.statistics@education.gov.uk",
+  custom_refresh = NULL
 )
 }
 \arguments{
@@ -28,6 +29,10 @@ Statistics}
 
 \item{support_contact}{Email address for support contact, defaults to
 explore.statistics@education.gov.uk}
+
+\item{custom_refresh}{Custom refresh link, defaults to refreshing the page, main value is if you
+have bookmarking enabled and want the refresh to send to the initial view instead of reloading
+any bookmarks}
 }
 \value{
 A HTML overlay panel that appears when a user loses connection to a DfE R Shiny
@@ -57,4 +62,8 @@ custom_disconnect_message(
   )
 )
 
+custom_disconnect_message(
+  support_contact = "my.team@education.gov.uk",
+  custom_refresh = "https://department-for-education.shinyapps.io/my-dashboard"
+)
 }
