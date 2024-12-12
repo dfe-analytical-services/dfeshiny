@@ -24,7 +24,7 @@
 #' @param date_template_reviewed Date the underlying template was reviewed
 #' (default: 12th March 2024)
 #'
-#' @return shiny$tags$div element containing the html tags and content for the standard
+#' @return shiny$tags$div element containing the HTML tags and content for the standard
 #' accessibility statement
 #' @export
 #'
@@ -55,7 +55,7 @@ a11y_panel <- function(
     ),
     specific_issues = c(
       "Charts have non-accessible components that are inaccessible for keyboard users.",
-      "Chart tooltips are not compativle with screen reader use.",
+      "Chart tooltips are not compatible with screen reader use.",
       "Some decorative images are not labelled appropriately as yet.",
       "Some links are not appropriately labelled."
     )) {
@@ -194,10 +194,10 @@ a11y_panel <- function(
         "(the \"accessibility regulations\")."
       ),
       shiny::tags$p(
-        "If you are not happy with how we respond to your complaint, ",
+        "If you are not happy with how we respond to your complaint, contact the ",
         external_link(
           href = "https://www.equalityadvisoryservice.com/",
-          "contact the Equality Advisory and Support Service (EASS)"
+          "Equality Advisory and Support Service (EASS)"
         ),
         "."
       ),
