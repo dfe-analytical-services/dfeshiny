@@ -53,7 +53,7 @@ a11y_panel <- function(
     ),
     specific_issues = c(
       "Charts have non-accessible components that are inaccessible for keyboard users.",
-      "Chart tooltips are not compativle with screen reader use.",
+      "Chart tooltips are not compatible with screen reader use.",
       "Some decorative images are not labelled appropriately as yet.",
       "Some links are not appropriately labelled."
     )) {
