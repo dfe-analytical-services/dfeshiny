@@ -16,6 +16,6 @@ test_that("outputs are as expected", {
       output[["children"]][[2]][["children"]][[1]][["children"]][[1]]
       [["children"]][[1]][["children"]][[1]][["attribs"]][["src"]]
     ),
-    "/dfeshiny/DfE_logo_landscape.png"
+    "dfeshiny/DfE_logo_landscape.png"
   )
 })

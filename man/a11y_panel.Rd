@@ -19,7 +19,7 @@ a11y_panel(
     "Alternative text in interactive charts is limited to titles"),
   specific_issues =
     c("Charts have non-accessible components that are inaccessible for keyboard users.",
-    "Chart tooltips are not compativle with screen reader use.",
+    "Chart tooltips are not compatible with screen reader use.",
     "Some decorative images are not labelled appropriately as yet.",
     "Some links are not appropriately labelled.")
 )
@@ -52,7 +52,7 @@ Statistics (optional)}
 that have been identified as part of testing}
 }
 \value{
-shiny$tags$div element containing the html tags and content for the standard
+shiny$tags$div element containing the HTML tags and content for the standard
 accessibility statement
 }
 \description{
@@ -73,5 +73,7 @@ a11y_panel(
   "26th April 2024",
   "2nd November 2024",
   issues_contact = "https://github.com/dfe-analytical-services/shiny-template",
+  publication_slug = "la-and-school-expenditure",
+  publication_name = "LA and school expenditure"
 )
 }
