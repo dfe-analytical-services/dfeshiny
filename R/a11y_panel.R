@@ -24,7 +24,7 @@
 #' @param date_template_reviewed Date the underlying template was reviewed
 #' (default: 12th March 2024)
 #'
-#' @return shiny$tags$div element containing the html tags and content for the standard
+#' @return shiny$tags$div element containing the HTML tags and content for the standard
 #' accessibility statement
 #' @export
 #'
