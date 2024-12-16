@@ -19,7 +19,7 @@
 #'     ),
 #'     tags$br(),
 #'     tags$br(),
-#'     footerDfe(full = TRUE)
+#'     footer_dfe(full = TRUE)
 #'   )
 #'
 #'   server <- function(input, output, session) {
@@ -30,7 +30,7 @@
 #'
 #'   shinyApp(ui = ui, server = server)
 #' }
-footerDfe <- function(full = FALSE) {
+footer_dfe <- function(full = FALSE) {
   govFooter <- shiny::tags$footer(
     class = "govuk-footer ",
     role = "contentinfo",
