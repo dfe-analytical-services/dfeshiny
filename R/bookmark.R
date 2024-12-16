@@ -10,11 +10,11 @@
 #' @export
 #' @examples
 #' # You will need a line such as this in your global.R script ================
-#' bookmarkingWhitelist <- c("navlistPanel", "tabsetpanels")
+#' bookmarking_whitelist <- c("navlistPanel", "tabsetpanels")
 #'
 #' # In the server.R script ===================================================
 #' shiny::observe({
-#'   setBookmarkInclude(bookmarkingWhitelist)
+#'   set_bookmark_include(bookmarking_whitelist)
 #' })
 #'
 #' observe({
@@ -26,12 +26,9 @@
 #' onBookmarked(function(url) {
 #'   updateQueryString(url)
 #' })
-setBookmarkInclude <- function(bookmarkingWhitelist) {
+set_bookmark_include <- function(bookmarking_whitelist) {
   # exclude the white list from complete list
-  toExclude <- setdiff(names(input), bookmarkingWhitelist)
-
-  # print to log for testing
-  # print(paste("ExcludedIDs:", paste(toExclude, collapse = ", ")))
+  to_exclude <- setdiff(names(input), bookmarking_whitelist)
 
   # exclude all remaining inputs from bookmark
   setBookmarkExclude(toExclude)
