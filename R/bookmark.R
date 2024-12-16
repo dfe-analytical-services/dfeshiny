@@ -18,15 +18,15 @@
 #' })
 #'
 #' observe({
-#' # Trigger this observer every time an input changes
+#'   # Trigger this observer every time an input changes
 #'   reactiveValuesToList(input)
 #'   session$doBookmark()
-#'  })
+#' })
 #'
 #' onBookmarked(function(url) {
-#'     updateQueryString(url)
-#'  })
-setBookmarkInclude <- function(bookmarkingWhitelist){
+#'   updateQueryString(url)
+#' })
+setBookmarkInclude <- function(bookmarkingWhitelist) {
   # exclude the white list from complete list
   toExclude <- setdiff(names(input), bookmarkingWhitelist)
 
@@ -36,7 +36,7 @@ setBookmarkInclude <- function(bookmarkingWhitelist){
   # exclude all remaining inputs from bookmark
   setBookmarkExclude(toExclude)
 
-  print('bookmarked')
+  print("bookmarked")
   # Trigger bookmarking whenever relevant inputs change
   session$doBookmark()
 }
