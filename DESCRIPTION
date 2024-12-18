@@ -20,7 +20,6 @@ Imports:
     htmltools,
     lubridate,
     magrittr,
-    RCurl,
     shiny,
     shinyGovstyle,
     shinyjs,
