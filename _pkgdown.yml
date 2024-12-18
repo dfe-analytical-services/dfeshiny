@@ -32,3 +32,7 @@ reference:
   desc: A wrapper for shinyGovstyle::header() that automatically uses the DfE logo.
   contents:
   - header
+- title: Footer
+  desc: A footer including link to accessibility.
+  contents:
+  - footer_dfe
