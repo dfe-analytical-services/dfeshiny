@@ -31,7 +31,7 @@
 #'   shinyApp(ui = ui, server = server)
 #' }
 footer_dfe <- function(full = FALSE) {
-  govFooter <- shiny::tags$footer(
+  shiny::tags$footer(
     class = "govuk-footer ",
     role = "contentinfo",
     shiny::div(
@@ -97,5 +97,4 @@ footer_dfe <- function(full = FALSE) {
       )
     )
   )
-  htmltools::attachDependencies(dependency, append = TRUE)
 }
