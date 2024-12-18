@@ -81,8 +81,8 @@ footer_dfe <- function(full = FALSE) {
                 ),
                 ", except where otherwise stated"
               ),
-              br(),
-              actionLink("Accessibility", "Accessibility information")
+              shiny::br(),
+              shiny::actionLink("Accessibility", "Accessibility information")
             ),
             shiny::tags$div(
               class = "govuk-footer__meta-item",
@@ -97,5 +97,5 @@ footer_dfe <- function(full = FALSE) {
       )
     )
   )
-  attachDependency(govFooter)
+  htmltools::attachDependencies(dependency, append = TRUE)
 }
