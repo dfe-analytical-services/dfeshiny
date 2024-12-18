@@ -28,7 +28,7 @@ test_that("outputs are as expected", {
 
 output2 <- dfeshiny::footer_dfe(full = TRUE)
 
-test_that("outputs are as expected", {
+test_that("outputs are as expected 2", {
   expect_equal(
     paste(
       output2$attribs$class
