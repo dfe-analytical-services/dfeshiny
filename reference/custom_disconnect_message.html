@@ -46,7 +46,9 @@
 <span>  dashboard_title <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  links <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  publication_name <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  publication_link <span class="op">=</span> <span class="cn">NULL</span></span>
+<span>  publication_link <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  support_contact <span class="op">=</span> <span class="st">"explore.statistics@education.gov.uk"</span>,</span>
+<span>  custom_refresh <span class="op">=</span> <span class="cn">NULL</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -75,6 +77,17 @@ but can be two URLs if an overflow site has been set up</p></dd>
 <dd><p>The link to the publication on Explore Education
 Statistics</p></dd>
 
+
+<dt id="arg-support-contact">support_contact<a class="anchor" aria-label="anchor" href="#arg-support-contact"></a></dt>
+<dd><p>Email address for support contact, defaults to
+explore.statistics@education.gov.uk</p></dd>
+
+
+<dt id="arg-custom-refresh">custom_refresh<a class="anchor" aria-label="anchor" href="#arg-custom-refresh"></a></dt>
+<dd><p>Custom refresh link, defaults to refreshing the page, main value is if you
+have bookmarking enabled and want the refresh to send to the initial view instead of reloading
+any bookmarks</p></dd>
+
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
@@ -102,14 +115,14 @@ dashboard.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       Sorry, you have lost connection to the</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       DfE Shiny Template</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       dashboard at the moment, please </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       &lt;a id="ss-reload-link" href="#" onclick="window.location.reload(true);"&gt;refresh the page&lt;/a&gt;.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       &lt;a id="ss-reload-link" href="#" onclick="window.location.reload(true);"&gt;Refresh page&lt;/a&gt;.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     &lt;/p&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     &lt;p&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       If you are still experiencing issues, please try our</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       &lt;a href="https://department-for-education.shinyapps.io/dfe-shiny-template-overflow/"&gt;alternative site&lt;/a&gt;. Apologies for the inconvenience.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     &lt;/p&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     &lt;p&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       All the data used in this dashboard can also be viewed or downloaded via the &lt;a href="https://explore-education-statistics.service.gov.uk/find-statistics/apprenticeships" target="_blank" rel="noopener noreferrer"&gt;Explore Education Statistics Publication (opens in new tab)&lt;/a&gt; on Explore Education Statistics.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       The data used in this dashboard can also be viewed or downloaded via the &lt;a href="https://explore-education-statistics.service.gov.uk/find-statistics/apprenticeships" target="_blank" rel="noopener noreferrer"&gt;Explore Education Statistics Publication (opens in new tab)&lt;/a&gt; on explore education statistics.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     &lt;/p&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     &lt;p&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       Feel free to contact &lt;a href="mailto:explore.statistics@education.gov.uk" target="_blank" rel="noopener noreferrer"&gt;explore.statistics@education.gov.uk&lt;span class="sr-only"&gt; (opens in new tab)&lt;/span&gt;&lt;/a&gt; if you require further support.</span>
@@ -132,7 +145,7 @@ dashboard.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       Sorry, you have lost connection to the</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       DfE Shiny Template</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       dashboard at the moment, please </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       &lt;a id="ss-reload-link" href="#" onclick="window.location.reload(true);"&gt;refresh the page&lt;/a&gt;.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       &lt;a id="ss-reload-link" href="#" onclick="window.location.reload(true);"&gt;Refresh page&lt;/a&gt;.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     &lt;/p&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     &lt;p&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       Feel free to contact &lt;a href="mailto:explore.statistics@education.gov.uk" target="_blank" rel="noopener noreferrer"&gt;explore.statistics@education.gov.uk&lt;span class="sr-only"&gt; (opens in new tab)&lt;/span&gt;&lt;/a&gt; if you require further support.</span>
@@ -141,6 +154,24 @@ dashboard.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;/div&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;div id="ss-overlay" style="display: none;"&gt;&lt;/div&gt;</span>
 <span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu">custom_disconnect_message</span><span class="op">(</span></span></span>
+<span class="r-in"><span>  support_contact <span class="op">=</span> <span class="st">"my.team@education.gov.uk"</span>,</span></span>
+<span class="r-in"><span>  custom_refresh <span class="op">=</span> <span class="st">"https://department-for-education.shinyapps.io/my-dashboard"</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;script&gt;$(function() {  $(document).on('shiny:disconnected', function(event) {    $('#custom-disconnect-dialog').show();    $('#ss-overlay').show();  })});&lt;/script&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;div id="custom-disconnect-dialog" style="display: none !important;"&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;div id="ss-connect-refresh" role="alert"&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     &lt;p&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       Sorry, you have lost connection to the</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       dashboard at the moment, please </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       &lt;a id="ss-reload-link" href="https://department-for-education.shinyapps.io/my-dashboard"&gt;Refresh page&lt;/a&gt;.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     &lt;/p&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     &lt;p&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       Feel free to contact &lt;a href="mailto:my.team@education.gov.uk" target="_blank" rel="noopener noreferrer"&gt;my.team@education.gov.uk&lt;span class="sr-only"&gt; (opens in new tab)&lt;/span&gt;&lt;/a&gt; if you require further support.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     &lt;/p&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;/div&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;/div&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;div id="ss-overlay" style="display: none;"&gt;&lt;/div&gt;</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

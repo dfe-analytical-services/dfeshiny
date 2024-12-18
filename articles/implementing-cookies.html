@@ -146,6 +146,10 @@ your own and c) add a cookies information panel
 <span>  input_cookies <span class="op">=</span> <span class="fu">shiny</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/reactive.html" class="external-link">reactive</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">cookies</span><span class="op">)</span>,</span>
 <span>  google_analytics_key <span class="op">=</span> <span class="va">google_analytics_key</span></span>
 <span><span class="op">)</span></span></code></pre></div>
+<p>The ID for the UI panels is <code>navlistPanel</code>, and this is
+the default setting in the _server functions, if this ID is different,
+you will need to set cookie_nav_id in
+<code><a href="../reference/cookies_panel_server.html">cookies_panel_server()</a></code> to match your ID in the UI.</p>
 <p>In the above you should keep all of the flags as they are shown. Note
 that this assumes you have added <code>google_analytics_key</code> as a
 declared variable in your global.R file. If you’ve not done this, you’ll

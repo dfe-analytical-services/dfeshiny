@@ -58,7 +58,8 @@ R-Shiny dashboards.</p>
 <span>  <span class="va">input_cookies</span>,</span>
 <span>  <span class="va">parent_session</span>,</span>
 <span>  google_analytics_key <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  cookies_link_panel <span class="op">=</span> <span class="st">"cookies_panel_ui"</span></span>
+<span>  cookies_link_panel <span class="op">=</span> <span class="st">"cookies_panel_ui"</span>,</span>
+<span>  cookies_nav_id <span class="op">=</span> <span class="st">"navlistPanel"</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -87,8 +88,13 @@ always be <code>parent_session = session</code></p></dd>
 
 
 <dt id="arg-cookies-link-panel">cookies_link_panel<a class="anchor" aria-label="anchor" href="#arg-cookies-link-panel"></a></dt>
-<dd><p>name of the navlistPanel that the cookie banner
+<dd><p>name of the navigation panel that the cookie banner
 provides a link to, usually "cookies_panel_ui"</p></dd>
+
+
+<dt id="arg-cookies-nav-id">cookies_nav_id<a class="anchor" aria-label="anchor" href="#arg-cookies-nav-id"></a></dt>
+<dd><p>ID of the navigation panel the cookie panel page is
+within, defaults to "navlistPanel"</p></dd>
 
 </dl></div>
     <div class="section level2">
