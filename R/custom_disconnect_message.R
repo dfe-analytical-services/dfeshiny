@@ -11,6 +11,11 @@
 #' @param publication_link The link to the publication on Explore Education
 #' Statistics
 #' @param dashboard_title Title of the dashboard
+#' @param support_contact Email address for support contact, defaults to
+#' explore.statistics@@education.gov.uk
+#' @param custom_refresh Custom refresh link, defaults to refreshing the page, main value is if you
+#' have bookmarking enabled and want the refresh to send to the initial view instead of reloading
+#' any bookmarks
 #'
 #' @importFrom htmltools tags tagList
 #'
@@ -39,14 +44,19 @@
 #'   )
 #' )
 #'
+#' custom_disconnect_message(
+#'   support_contact = "my.team@education.gov.uk",
+#'   custom_refresh = "https://department-for-education.shinyapps.io/my-dashboard"
+#' )
 custom_disconnect_message <- function(
     refresh = "Refresh page",
     dashboard_title = NULL,
     links = NULL,
     publication_name = NULL,
-    publication_link = NULL) {
+    publication_link = NULL,
+    support_contact = "explore.statistics@education.gov.uk",
+    custom_refresh = NULL) {
   # Check links are valid
-
   is_valid_sites_list <- function(sites) {
     lapply(
       stringr::str_trim(sites), startsWith,
@@ -59,12 +69,27 @@ custom_disconnect_message <- function(
     stop("You have entered an invalid site link in the links argument.")
   }
 
+  if (!is.null(custom_refresh)) {
+    is_valid_refresh <- function(refresh) {
+      startsWith(stringr::str_trim(refresh), "https://department-for-education.shinyapps.io/")
+    }
+
+    if (is_valid_refresh(custom_refresh) == FALSE) {
+      stop(
+        paste0(
+          "You have entered an invalid site link in the custom_refresh argument. It must be a site",
+          " on shinyapps.io."
+        )
+      )
+    }
+  }
 
   pub_prefix <- c(
     "https://explore-education-statistics.service.gov.uk/find-statistics/",
     "https://www.explore-education-statistics.service.gov.uk/find-statistics/",
     "https://www.gov.uk/",
-    "https://gov.uk/"
+    "https://gov.uk/",
+    "https://github.com/dfe-analytical-services/"
   )
 
   if (!is.null(publication_link)) {
@@ -72,13 +97,14 @@ custom_disconnect_message <- function(
       startsWith(stringr::str_trim(link), pub_prefix)
     }
 
-    if (RCurl::url.exists(publication_link) == FALSE ||
-      (TRUE %in% is_valid_publication_link(publication_link)) == FALSE || # nolint: [indentation_linter]
-      publication_link %in% pub_prefix) {
+    if (TRUE %in% is_valid_publication_link(publication_link) == FALSE ||
+      publication_link %in% pub_prefix) { # nolint: [indentation_linter]
       stop("You have entered an invalid publication link in the publication_link
          argument.")
     }
   }
+
+  # TODO: Add email validation once a11y panel PR is in
 
   checkmate::assert_string(refresh)
 
@@ -111,12 +137,22 @@ custom_disconnect_message <- function(
           "Sorry, you have lost connection to the",
           dashboard_title,
           "dashboard at the moment, please ",
-          tags$a(
-            id = "ss-reload-link",
-            href = "#", "refresh the page",
-            onclick = "window.location.reload(true);",
-            .noWS = c("after")
-          ),
+          if (is.null(custom_refresh)) {
+            tags$a(
+              id = "ss-reload-link",
+              href = "#",
+              refresh,
+              onclick = "window.location.reload(true);",
+              .noWS = c("after")
+            )
+          } else {
+            tags$a(
+              id = "ss-reload-link",
+              href = custom_refresh,
+              refresh,
+              .noWS = c("after")
+            )
+          },
           "."
         ),
         if (length(links) > 1) {
@@ -126,21 +162,29 @@ custom_disconnect_message <- function(
             ". Apologies for the inconvenience."
           )
         },
-        if (!is.null(publication_name)) {
+        if (!is.null(publication_name) && grepl("explore-education-statistics", publication_link)) {
           tags$p(
-            "All the data used in this dashboard can also be viewed or downloaded via the ",
+            "The data used in this dashboard can also be viewed or downloaded via the ",
             dfeshiny::external_link(
               href = publication_link,
               publication_name
             ),
-            " on Explore Education Statistics."
+            " on explore education statistics."
+          )
+        } else if (!is.null(publication_name)) {
+          tags$p(
+            "The data used in this dashboard can also be viewed or downloaded from ",
+            dfeshiny::external_link(
+              href = publication_link,
+              publication_name
+            )
           )
         },
         tags$p(
           "Feel free to contact ",
           dfeshiny::external_link(
-            href = "mailto:explore.statistics@education.gov.uk",
-            "explore.statistics@education.gov.uk",
+            href = paste0("mailto:", support_contact),
+            support_contact,
             add_warning = FALSE
           ),
           " if you require further support."

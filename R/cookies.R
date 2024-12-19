@@ -159,8 +159,10 @@ cookies_banner_ui <- function(id = "cookies_banner", name = "DfE R-Shiny dashboa
 #' always be `parent_session = session`
 #' @param google_analytics_key Provide the GA 10 digit key of the form
 #' "ABCDE12345"
-#' @param cookies_link_panel name of the navlistPanel that the cookie banner
+#' @param cookies_link_panel name of the navigation panel that the cookie banner
 #' provides a link to, usually "cookies_panel_ui"
+#' @param cookies_nav_id ID of the navigation panel the cookie panel page is
+#' within, defaults to "navlistPanel"
 #'
 #' @family cookies
 #' @return NULL
@@ -172,7 +174,8 @@ cookies_banner_server <- function(
     input_cookies,
     parent_session,
     google_analytics_key = NULL,
-    cookies_link_panel = "cookies_panel_ui") {
+    cookies_link_panel = "cookies_panel_ui",
+    cookies_nav_id = "navlistPanel") {
   shiny::moduleServer(id, function(input, output, session) {
     if (is.null(google_analytics_key)) {
       warning("Please provide a valid Google Analytics key")
@@ -230,7 +233,7 @@ cookies_banner_server <- function(
       # updateTabsetPanel to have a cookie page for instance
       shiny::updateTabsetPanel(
         session = parent_session,
-        "navlistPanel",
+        inputID = cookies_nav_id,
         selected = cookies_link_panel
       )
     })

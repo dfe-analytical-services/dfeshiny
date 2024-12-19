@@ -6,7 +6,6 @@ DfE
 GDS
 Lifecycle
 README
-RSConnect
 UI
 WCAG
 analytics
@@ -22,6 +21,7 @@ javascript
 js
 lockfile
 md
+nav
 navlistPanel
 pkgdown
 renv

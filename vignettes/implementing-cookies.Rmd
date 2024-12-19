@@ -99,6 +99,8 @@ dfeshiny::cookies_panel_server(
 )
 ```
 
+The ID for the UI panels is `navlistPanel`, and this is the default setting in the _server functions, if this ID is different, you will need to set cookie_nav_id in `cookies_panel_server()` to match your ID in the UI.
+
 In the above you should keep all of the flags as they are shown. Note that this 
 assumes you have added `google_analytics_key` as a declared variable in your 
 global.R file. If you've not done this, you'll need to replace 

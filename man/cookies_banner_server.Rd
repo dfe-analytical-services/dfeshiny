@@ -9,7 +9,8 @@ cookies_banner_server(
   input_cookies,
   parent_session,
   google_analytics_key = NULL,
-  cookies_link_panel = "cookies_panel_ui"
+  cookies_link_panel = "cookies_panel_ui",
+  cookies_nav_id = "navlistPanel"
 )
 }
 \arguments{
@@ -25,8 +26,11 @@ always be \code{parent_session = session}}
 \item{google_analytics_key}{Provide the GA 10 digit key of the form
 "ABCDE12345"}
 
-\item{cookies_link_panel}{name of the navlistPanel that the cookie banner
+\item{cookies_link_panel}{name of the navigation panel that the cookie banner
 provides a link to, usually "cookies_panel_ui"}
+
+\item{cookies_nav_id}{ID of the navigation panel the cookie panel page is
+within, defaults to "navlistPanel"}
 }
 \description{
 cookies_banner_server() provides the server module to be used alongside

@@ -25,6 +25,7 @@ reference:
   - tidy_code
 - title: Standard panels
   contents:
+  - a11y_panel
   - support_panel
   - section_tags
 - title: Header
