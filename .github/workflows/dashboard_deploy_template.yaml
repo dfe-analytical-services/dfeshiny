@@ -21,7 +21,7 @@ jobs:
 
       - name: Read parameters
         run: |
-          DASHBOARD_NAME=$(yq '.DASHBOARD_NAME' ${{ inputs.parameter_file }})
+          DASHBOARD_NAME=$(yq '.dashboard_name' ${{ inputs.parameter_file }})
           DEPLOY_TARGET=$(yq '.deploy_target' ${{ inputs.parameter_file }})
           INSTALL_GDAL=$(yq '.install_gdal' ${{ inputs.parameter_file }})
           EXTRA_PACKAGES=$(yq '.extra_packages | join(" ")' ${{ inputs.parameter_file }})
