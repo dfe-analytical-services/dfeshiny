@@ -1,0 +1,80 @@
+name: Dashboard Deploy
+
+on:
+  workflow_call:
+    inputs:
+      parameter_file:
+        description: "Path to the parameters file"
+        required: true
+        type: string
+
+jobs:
+  deployShiny:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install yq
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y yq
+
+      - name: Read parameters
+        run: |
+          DASHBOARD_NAME=$(yq '.DASHBOARD_NAME' ${{ inputs.parameter_file }})
+          DEPLOY_TARGET=$(yq '.deploy_target' ${{ inputs.parameter_file }})
+          INSTALL_GDAL=$(yq '.install_gdal' ${{ inputs.parameter_file }})
+          EXTRA_PACKAGES=$(yq '.extra_packages | join(" ")' ${{ inputs.parameter_file }})
+
+          echo "DASHBOARD_NAME=$DASHBOARD_NAME" >> $GITHUB_ENV
+          echo "DEPLOY_TARGET=$DEPLOY_TARGET" >> $GITHUB_ENV
+          echo "INSTALL_GDAL=$INSTALL_GDAL" >> $GITHUB_ENV
+          echo "EXTRA_PACKAGES=$EXTRA_PACKAGES" >> $GITHUB_ENV
+
+      - uses: r-lib/actions/setup-r@v2
+        with:
+          use-public-rspm: true
+
+      - name: Install GDAL
+        if: env.INSTALL_GDAL == 'true'
+        run: |
+          sudo apt-get update -y
+          sudo apt-get install -y gdal-bin libgdal-dev proj-bin libproj-dev
+
+      - name: Set environment variables based on branch
+        run: |
+          if [[ "${{ github.ref_name }}" == "main" ]]; then
+            echo "SHINYAPP_NAME='${{ env.DASHBOARD_NAME }}'" >> $GITHUB_ENV
+            echo "SHINYAPP_OVERFLOW_NAME='${{ env.DASHBOARD_NAME }}-overflow'" >> $GITHUB_ENV
+          else
+            echo "SHINYAPP_NAME='dev-${{ env.DASHBOARD_NAME }}'" >> $GITHUB_ENV
+            echo "SHINYAPP_OVERFLOW_NAME='dev-${{ env.DASHBOARD_NAME }}-overflow'" >> $GITHUB_ENV
+          fi
+
+      - name: Restore renv snapshot
+        shell: Rscript {0}
+        run: |
+          if (!requireNamespace("renv", quietly = TRUE)) install.packages("renv")
+          renv::restore()
+
+      - name: Install extra R packages
+        if: env.EXTRA_PACKAGES != ''
+        shell: Rscript {0}
+        run: |
+          packages <- strsplit(Sys.getenv("EXTRA_PACKAGES"), " ")[[1]]
+          if (length(packages) > 0 && nchar(packages[1]) > 0) {
+            install.packages(packages, repos='https://cloud.r-project.org')
+          }
+
+      - name: Install rsconnect
+        if: env.DEPLOY_TARGET == 'shinyapps'
+        shell: Rscript {0}
+        run: |
+          if (!requireNamespace("rsconnect", quietly = TRUE)) install.packages("rsconnect")
+
+      - name: Deploy to ShinyApps.io
+        if: env.DEPLOY_TARGET == 'shinyapps'
+        run: |
+          Rscript -e "rsconnect::setAccountInfo(name = 'department-for-education', token = '${{ secrets.SHINYAPPS_TOKEN }}', secret = '${{ secrets.SHINYAPPS_SECRET }}')"
+          Rscript -e "rsconnect::deployApp(appName='${{ env.SHINYAPP_NAME }}', forceUpdate = TRUE)"
+          Rscript -e "rsconnect::deployApp(appName='${{ env.SHINYAPP_OVERFLOW_NAME }}', forceUpdate = TRUE)"
