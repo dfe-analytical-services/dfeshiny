@@ -233,7 +233,7 @@ cookies_banner_server <- function(
       # updateTabsetPanel to have a cookie page for instance
       shiny::updateTabsetPanel(
         session = parent_session,
-        inputID = cookies_nav_id,
+        inputId = cookies_nav_id,
         selected = cookies_link_panel
       )
     })
