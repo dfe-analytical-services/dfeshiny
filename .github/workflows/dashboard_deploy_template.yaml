@@ -21,7 +21,7 @@ jobs:
 
       - name: Read parameters
         run: |
-          DASHBOARD_NAME=$(yq '.DASHBOARD_NAME' ${{ inputs.parameter_file }})
+          DASHBOARD_NAME=$(yq '.dashboard_name' ${{ inputs.parameter_file }})
           DEPLOY_TARGET=$(yq '.deploy_target' ${{ inputs.parameter_file }})
           INSTALL_TERRA_DEPENDENCIES=$(yq '.install_terra_dependencies' ${{ inputs.parameter_file }})
           INSTALL_UNITS_DEPENDENCIES=$(yq '.install_unit_dependencies' ${{ inputs.parameter_file }})
