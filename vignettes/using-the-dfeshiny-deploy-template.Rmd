@@ -1,0 +1,167 @@
+---
+title: "Using the dfeshiny Deploy Template"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Using the dfeshiny Deploy Template}
+  %\VignetteEncoding{UTF-8}
+  %\VignetteEngine{knitr::rmarkdown}
+editor_options: 
+  markdown: 
+    wrap: 72
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+When developing DFE Shiny dashboards, it’s common to want a consistent,
+simple, and secure way to deploy applications to platforms such as
+ShinyApps.io or the new DfE hosting platform. This article shows how to
+use the dfeshiny reusable workflow template for GitHub Actions, with
+parameters defined in a separate YAML file to minimize duplication and
+speed up development.
+
+## Overview
+
+1.  **Have a `parameters.yaml`**: Store all your deployment parameters,
+    including the app name, environment toggles (e.g.,
+    `install_terra_dependencies`), and extra R packages to install.
+
+2.  **Minimal Local Workflow**: Reference the *remote* reusable workflow
+    (stored in another repository) from your local
+    `.github/workflows/deploy.yaml`.
+
+3.  **Secrets Management**: Ensure your repository has the required
+    secrets (e.g., `SHINYAPPS_TOKEN` and `SHINYAPPS_SECRET`) set up
+    under *Settings \> Secrets and variables*.
+
+## 1. Create a `parameters.yaml`
+
+At the root of your project, add a file called `parameters.yaml`.\
+Below is an example with optional parameters:
+
+```{yaml}
+dashboard_name: "my-cool-dashboard"
+deploy_target: "shinyapps"
+install_terra_dependencies: true
+install_unit_dependencies: true
+extra_packages:
+  - sf
+  - data.table
+  - DT
+```
+
+-   `dashboard_name`: Your application’s name on ShinyApps (or other
+    hosting platform).
+
+-   `deploy_target`: Where you want to deploy (e.g., `"shinyapps"`).
+
+-   `install_terra_dependencies`: Whether to install the GDAL libraries
+    (important for certain spatial packages like `sf`).
+
+-   `install_unit_dependencies`: Whether to install the linux libraries
+    (important for the `units` package).
+
+-   `extra_packages`: A list of additional packages to install beyond
+    what you have in your `renv.lock`.
+
+## 2. Set Up Your Local Workflow
+
+In your local `.github/workflows/` folder, create or edit a
+file—commonly named `deploy.yaml`. This file defines **only** the
+trigger conditions (which branches to watch) and then calls the remote
+reusable workflow.
+
+Here is a minimal example:
+
+```{yaml}
+name: Deploy Dashboard
+
+on:
+  push:
+    branches:
+      - main
+      - development
+
+jobs:
+  deploy:
+    uses: dfe-analytical-services/dfeshiny-deploy-templates/.github/workflows/deploy-dashboard-template.yaml@main
+    with:
+      parameter_file: parameters.yaml
+```
+
+-   `on: push`… ensures this workflow runs whenever code is pushed to
+    `main` or `development`.
+
+-   `uses: dfe-analytical-services/dfeshiny-deploy-templates…` points to
+    the remote repo and file containing the actual deployment steps.
+
+-   `with: parameter_file: parameters.yaml` tells the remote workflow
+    which file to parse for parameters.
+
+## 3. Secrets and Permissions
+
+Before your deployment can succeed, you need to set the relevant secrets
+in your local repository. These secrets are **not** shared automatically
+across repos, so you must create them in your project’s *Settings \>
+Secrets and variables \> Actions*:
+
+-   **SHINYAPPS_TOKEN**
+
+-   **SHINYAPPS_SECRET**
+
+## 4. How the Template Works
+
+Once you commit your `deploy.yaml` and `parameters.yaml`, the GitHub
+Actions runner will:
+
+1.  **Check Out the Code** – Pulls your repository code and the
+    `parameters.yaml`.
+
+2.  **Parse Parameters** – Uses a tool like `yq` to read
+    `parameters.yaml`:
+
+    -   `dashboard_name`
+
+    -   `deploy_target`
+
+    -   etc.
+
+3.  **Install Dependencies** – Optionally installs GDAL libraries if
+    `install_terra_dependencies: true`.
+
+4.  **Restore R Dependencies** – If your project uses `renv`, it runs
+    `renv::restore()` to ensure your local library is consistent.
+
+5.  **Install Extra Packages** – Installs any packages listed in
+    `extra_packages`.
+
+6.  **Deploy** – Calls the appropriate deployment method based on
+    `deploy_target`.
+
+    -   For ShinyApps.io, it uses `rsconnect::deployApp()`.
+
+## Summary
+
+Using a reusable GitHub Actions workflow template:
+
+-   **Reduces complexity** of dashboards deployments - you only maintain
+    a minimal local config .
+
+-   **Ensures** **consistent deployment** practices across your
+    dashboards.
+
+-   Makes it easy to **update** deployments across your dashboards with
+    minimal changes in each repository.
+
+If you have questions about credentials or advanced usage, contact the
+Explore Education Statistics Platforms team at
+[explore.statistics\@education.gov.uk](mailto:explore.statistics@education.gov.uk).
+
+With these steps, you can quickly set up your dashboards to deploy on
+push—whether that’s to ShinyApps.io or a future DfE platform—while
+keeping all your deployment logic in a single, centralized workflow
+template.
