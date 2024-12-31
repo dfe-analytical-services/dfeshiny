@@ -14,6 +14,8 @@ knitr::opts_chunk$set(
 )
 ```
 
+## What are cookies?
+
 Cookies are chunks of data that are stored by browsers to help websites store 
 user preferences and other information. Most of our DfE data dashboards 
 generally store two cookies, one to allow Google Analytics to differentiate 
@@ -28,6 +30,14 @@ gaining user consent is a mandatory requirement.
 to contact the explore education statistics platforms team at 
 [explore.statistics@education.gov.uk](mailto:explore.statistics@education.gov.uk) and request a Google Analytics key.
 
+The functions in dfeshiny will store the users preference in a
+cookie (`dfe_analytics`), which expires after 365 days. The user can
+then also find information about the cookies stored by your dashboard and change 
+their consent preference on a specific cookies consent panel on your dashboard 
+that's created by the `cookies_panel()` function.
+
+## Implementing cookie consent
+
 `dfeshiny` provides a standard Government Digital Service (GDS) compliant 
 banner, a cookies information panel and the underlying code required to allow end 
 users to give or withhold their consent for cookies to be used. If they withhold 
@@ -36,6 +46,8 @@ this will lead to your analytics underestimating your user base to some degree).
 
 Implementing cookies control on your dashboard is handled by several functions 
 in `dfeshiny`, with the process outlined below.
+
+### Add required scripts
 
 The cookies control requires some underlying javascript to remove and create 
 cookies as well as switch Google Analytics on and off. This javascript needs 
@@ -46,6 +58,8 @@ following command from the R console in your dashboard project / repo:
 dfeshiny::init_cookies()
 ```
 
+### Google Analytics key
+
 Before adding the cookies consent banner, we recommend adding your Google 
 Analytics key as a variable to your dashboard's **[global.R](https://github.com/dfe-analytical-services/dfeshiny/blob/tests/test_dashboard/global.R)**
 file (replacing `ABCDE12345` below with the key provided by the Explore Education Statistics Platforms team):
@@ -53,6 +67,8 @@ file (replacing `ABCDE12345` below with the key provided by the Explore Educatio
 ```{r eval=FALSE}
 google_analytics_key <- "ABCDE12345"
 ```
+
+### UI functions
 
 You will then need to add the necessary code to your **ui.R** file to a) run the 
 javascript (`dfe_cookies_script`), b) create the consent banner 
@@ -83,6 +99,8 @@ ui <- function(input, output, session) {
 }
 ```
 
+### Server functions
+
 You should then add the `cookies_banner_server` and `cookies_panel_server` 
 functions to your **server.R** script:
 
@@ -99,8 +117,6 @@ dfeshiny::cookies_panel_server(
 )
 ```
 
-The ID for the UI panels is `navlistPanel`, and this is the default setting in the _server functions, if this ID is different, you will need to set cookie_nav_id in `cookies_banner_server()` to match your ID in the UI.
-
 In the above you should keep all of the flags as they are shown. Note that this 
 assumes you have added `google_analytics_key` as a declared variable in your 
 global.R file. If you've not done this, you'll need to replace 
@@ -108,8 +124,24 @@ global.R file. If you've not done this, you'll need to replace
 `google_analytics_key = "ABCDE12345"` (replacing "ABCDE12345" with your own 
 key).
 
-With the above included, the user's preference will itself be stored in a
-cookie (`dfe_analytics`), which by default expires after 365 days. The user can
-then also find information about the cookies stored by your dashboard and change 
-their consent preference on a specific cookies consent panel on your dashboard 
-that's created by the `cookies_panel()` function.
+### All together basic implementation
+
+Here is an example full app.R file that shows all components of a basic working installation with vanilla Shiny tabs for navigation.
+
+``` {r eval=FALSE}
+
+```
+
+## Joining up with your UI structure
+
+The default ID for the UI panels is `navlistPanel`, and this is the default setting in the _server functions, if this ID is different, you will need to set cookies_nav_id in `cookies_banner_server()` to match your ID in the UI.
+
+### bslib using footer navigation
+
+Our recommendation approach is to us [bslib](https://rstudio.github.io/bslib/) for the overall styling of your app, and [shinyGovstyle](https://dfe-analytical-services.github.io/shinyGovstyle/) for the government style components.
+
+Assuming this is the case, here is an example app.R file showing a basic shinyGovstyle layout for the full app, linking to a cookies page from the footer.
+
+``` {r eval=FALSE}
+
+```
