@@ -26,8 +26,8 @@ speed up development.
 
 ## Overview
 
-1.  **Have a `parameters.yaml`**: Store all your deployment parameters,
-    including the app name, environment toggles (e.g.,
+1.  **Have a `deploy_parameters.yaml`**: Store all your deployment
+    parameters, including the app name, environment toggles (e.g.,
     `install_terra_dependencies`), and extra R packages to install.
 
 2.  **Minimal Local Workflow**: Reference the *remote* reusable workflow
@@ -38,9 +38,10 @@ speed up development.
     secrets (e.g., `SHINYAPPS_TOKEN` and `SHINYAPPS_SECRET`) set up
     under *Settings \> Secrets and variables*.
 
-## 1. Create a `parameters.yaml`
+## 1. Create a `deploy_parameters.yaml`
 
-At the root of your project, add a file called `parameters.yaml`.\
+At the root of your project, add a file called
+`deploy_parameters.yaml`.\
 Below is an example with optional parameters:
 
 ```{yaml}
@@ -60,7 +61,8 @@ extra_packages:
 -   `deploy_target`: Where you want to deploy (e.g., `"shinyapps"`).
 
 -   `install_terra_dependencies`: Whether to install the GDAL libraries
-    (important for certain spatial packages like `sf`).
+    (important for certain spatial packages like `sf` which is itself a
+    dependency of map plotting packages such as `leaflet`).
 
 -   `install_unit_dependencies`: Whether to install the linux libraries
     (important for the `units` package).
@@ -88,9 +90,9 @@ on:
 
 jobs:
   deploy:
-    uses: dfe-analytical-services/dfeshiny-deploy-templates/.github/workflows/deploy-dashboard-template.yaml@main
+    uses: dfe-analytical-services/dfeshiny/.github/workflows/deploy-dashboard-template.yaml@main
     with:
-      parameter_file: parameters.yaml
+      parameter_file: deploy_parameters.yaml
 ```
 
 -   `on: push`… ensures this workflow runs whenever code is pushed to
@@ -99,8 +101,8 @@ jobs:
 -   `uses: dfe-analytical-services/dfeshiny-deploy-templates…` points to
     the remote repo and file containing the actual deployment steps.
 
--   `with: parameter_file: parameters.yaml` tells the remote workflow
-    which file to parse for parameters.
+-   `with: parameter_file: deploy_parameters.yaml` tells the remote
+    workflow which file to parse for parameters.
 
 ## 3. Secrets and Permissions
 
@@ -115,14 +117,14 @@ Secrets and variables \> Actions*:
 
 ## 4. How the Template Works
 
-Once you commit your `deploy.yaml` and `parameters.yaml`, the GitHub
-Actions runner will:
+Once you commit your `deploy.yaml` and `deploy_parameters.yaml`, the
+GitHub Actions runner will:
 
 1.  **Check Out the Code** – Pulls your repository code and the
-    `parameters.yaml`.
+    `deploy_parameters.yaml`.
 
 2.  **Parse Parameters** – Uses a tool like `yq` to read
-    `parameters.yaml`:
+    `deploy_parameters.yaml`:
 
     -   `dashboard_name`
 
@@ -160,6 +162,12 @@ Using a reusable GitHub Actions workflow template:
 If you have questions about credentials or advanced usage, contact the
 Explore Education Statistics Platforms team at
 [explore.statistics\@education.gov.uk](mailto:explore.statistics@education.gov.uk).
+
+> Whilst following the instructions in this article will help you set up
+> the deployment of your dashboard, you will still need to seek approval
+> to publish from the Explore Education Statistics team and ask for them
+> to set up the secrets management on GitHub for your deployment to go
+> through.
 
 With these steps, you can quickly set up your dashboards to deploy on
 push—whether that’s to ShinyApps.io or a future DfE platform—while
