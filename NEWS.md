@@ -1,3 +1,9 @@
+# dfeshiny (development version)
+
+* Added extra flexibility to custom disconnect message in contact details and refresh link
+* Relaxed arguments in cookies banner so different IDs can be used for navigation panel
+* Fixed bug with inputId in the cookies banner
+
 # dfeshiny 0.5.3
 
 * Added `dfeshiny::a11y_panel()` to create model accessibility statement with custom 
