@@ -192,34 +192,33 @@ output <- a11y_panel(
 
 test_that("HTML headings output from function", {
   # This checks the headings are in the expected positions in the HTML output the function returns
-  expect_equal(paste(output$children[[1]]), "Accessibility")
   expect_equal(
-    paste(output$children[[2]]$children[[1]]),
+    paste(output$children[[1]]),
     "<h1>Accessibility statement for DfE Shiny template</h1>"
   )
   expect_equal(
-    paste(output$children[[2]]$children[[3]]),
+    paste(output$children[[3]]),
     "<h2>How you should be able to use this website</h2>"
   )
-  expect_equal(paste(output$children[[2]]$children[[8]]), "<h2>How accessible this website is</h2>")
+  expect_equal(paste(output$children[[8]]), "<h2>How accessible this website is</h2>")
   expect_equal(
-    paste(output$children[[2]]$children[[10]]),
+    paste(output$children[[10]]),
     "<h2>Feedback and contact information</h2>"
   )
-  expect_equal(paste(output$children[[2]]$children[[14]]), "<h2>Enforcement procedure</h2>")
+  expect_equal(paste(output$children[[14]]), "<h2>Enforcement procedure</h2>")
   expect_equal(
-    paste(output$children[[2]]$children[[17]]),
+    paste(output$children[[17]]),
     "<h2>Technical information about this website's accessibility</h2>"
   )
-  expect_equal(paste(output$children[[2]]$children[[19]]), "<h3>Compliance status</h3>")
-  expect_equal(paste(output$children[[2]]$children[[21]]), "<h3>Disproportionate burden</h3>")
-  expect_equal(paste(output$children[[2]]$children[[23]]), "<h2>How we tested this website</h2>")
+  expect_equal(paste(output$children[[19]]), "<h3>Compliance status</h3>")
+  expect_equal(paste(output$children[[21]]), "<h3>Disproportionate burden</h3>")
+  expect_equal(paste(output$children[[23]]), "<h2>How we tested this website</h2>")
   expect_equal(
-    paste(output$children[[2]]$children[[28]]),
+    paste(output$children[[28]]),
     "<h2>What we're doing to improve accessibility</h2>"
   )
   expect_equal(
-    paste(output$children[[2]]$children[[31]]),
+    paste(output$children[[31]]),
     "<h2>Preparation of this accessibility statement</h2>"
   )
 })
@@ -230,13 +229,13 @@ test_that(
     expect_true(
       grepl(
         "https://department-for-education.shinyapps.io/dfe-shiny-template",
-        paste0(output$children[[2]]$children[[2]])
+        paste0(output$children[[2]])
       )
     )
     expect_true(
       grepl(
         "https://github.com/dfe-analytical-services/shiny-template/issues",
-        paste0(output$children[[2]]$children[[30]])
+        paste0(output$children[[30]])
       )
     )
   }
