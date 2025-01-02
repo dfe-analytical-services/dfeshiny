@@ -1,6 +1,6 @@
 Package: dfeshiny
 Title: DfE R Shiny Standards
-Version: 0.5.3
+Version: 0.5.3.9000
 Authors@R: c(
     person("Rich", "Bielby", , "richard.bielby@education.gov.uk", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0001-9070-9969")),
