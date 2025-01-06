@@ -5,6 +5,6 @@ on:
       - test_deployment
 jobs:
   deploy:
-    uses: dfe-analytical-services/dfeshiny/.github/workflows/deploy-dashboard-template.yaml@develop
+    uses: dfeshiny/.github/workflows/deploy-dashboard-template.yaml@develop
     with:
       parameter_file: deploy-parameters.yaml
