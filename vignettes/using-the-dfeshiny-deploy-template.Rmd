@@ -170,6 +170,6 @@ Explore Education Statistics Platforms team at
 > through.
 
 With these steps, you can quickly set up your dashboards to deploy on
-push—whether that’s to ShinyApps.io or a future DfE platform—while
+push—whether that’s ShinyApps.io or a future DfE platform—while
 keeping all your deployment logic in a single, centralized workflow
 template.
