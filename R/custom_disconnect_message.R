@@ -49,7 +49,7 @@
 #'   custom_refresh = "https://department-for-education.shinyapps.io/my-dashboard"
 #' )
 custom_disconnect_message <- function(
-    refresh = "Refresh page",
+    refresh = "refresh page",
     dashboard_title = NULL,
     links = NULL,
     publication_name = NULL,
