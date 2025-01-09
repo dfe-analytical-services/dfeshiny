@@ -28,10 +28,13 @@ ui <- function(input, output, session) {
     # header function =========================================================
     dfeshiny::header("Header Example"),
 
-    # Left navigation =========================================================
-    shiny::fluidRow(
-      shiny::column(
-        width = 3,
+    # Core content ============================================================
+    bslib::layout_column_wrap(
+      width = NULL, height = 300, fill = FALSE,
+      style = htmltools::css(grid_template_columns = "1fr 7fr"),
+
+      # Left navigation =========================================================
+      shinyGovstyle::gov_box(
         id = "nav", # DO NOT REMOVE ID
         shiny::tags$div(
           id = "govuk-contents-box", # DO NOT REMOVE ID
@@ -57,11 +60,9 @@ ui <- function(input, output, session) {
       ),
 
       # Panels =================================================================
-      shiny::column(
-        width = 9,
-        id = "main-col", # DO NOT REMOVE ID
-
         shinyGovstyle::gov_main_layout(
+          id = "main-col", # DO NOT REMOVE ID
+
           bslib::navset_hidden(
             id = "left_nav",
 
@@ -134,7 +135,6 @@ ui <- function(input, output, session) {
               )
             )
           )
-        )
       )
     )
   )
