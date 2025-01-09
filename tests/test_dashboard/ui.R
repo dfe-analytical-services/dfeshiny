@@ -30,11 +30,14 @@ ui <- function(input, output, session) {
 
     # Core content ============================================================
     bslib::layout_column_wrap(
-      width = NULL, height = 300, fill = FALSE,
-      style = htmltools::css(grid_template_columns = "1fr 7fr"),
+      width = NULL,
+      heights_equal = NULL,
+      style = htmltools::css(grid_template_columns = "min-content 1fr"),
 
       # Left navigation =========================================================
       shinyGovstyle::gov_box(
+
+        #fill = FALSE
         id = "nav", # DO NOT REMOVE ID
         shiny::tags$div(
           id = "govuk-contents-box", # DO NOT REMOVE ID
