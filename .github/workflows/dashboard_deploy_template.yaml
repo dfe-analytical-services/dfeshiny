@@ -12,7 +12,7 @@ jobs:
   deployShiny:
     runs-on: ubuntu-latest
     container:
-      image: ghcr.io/dfe-analytical-services/dfe-r-base:latest
+      image: ghcr.io/dfe-analytical-services/dfe-r-base2:latest
       credentials:
         username: ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
