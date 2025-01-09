@@ -129,7 +129,6 @@ key).
 Here is an example full app.R file that shows all components of a basic working installation with vanilla Shiny tabs for navigation.
 
 ``` {r eval=FALSE}
-
 ```
 
 ## Joining up with your UI structure
@@ -143,5 +142,4 @@ Our recommendation approach is to us [bslib](https://rstudio.github.io/bslib/) f
 Assuming this is the case, here is an example app.R file showing a basic shinyGovstyle layout for the full app, linking to a cookies page from the footer.
 
 ``` {r eval=FALSE}
-
 ```

@@ -102,7 +102,7 @@ cookies_banner_ui <- function(id = "cookies_banner", name = "DfE R-Shiny dashboa
       id = shiny::NS(id, "cookies_main"),
       class = "govuk-cookie-banner__message govuk-width-container",
       shiny::tags$div(
-        class = "govuk-grid-row",
+        class = "govuk-grid-row dfeshiny-cookie-banner",
         shiny::tags$div(
           class = "govuk-grid-column-two-thirds",
           shiny::tags$h2(
@@ -120,22 +120,23 @@ cookies_banner_ui <- function(id = "cookies_banner", name = "DfE R-Shiny dashboa
               "We'd also like to use analytics cookies so we can understand
               how you use the service and make improvements."
             )
+          ),
+          shiny::tags$div(
+            class = "govuk-button-group",
+            shinyGovstyle::button_Input(
+              shiny::NS(id, "cookies_accept"),
+              "Accept analytics cookies"
+            ),
+            shinyGovstyle::button_Input(
+              shiny::NS(id, "cookies_reject"),
+              "Reject analytics cookies"
+            ),
+            shiny::actionLink(
+              class = "govuk-link",
+              shiny::NS(id, "cookies_link"),
+              "View cookie information"
+            )
           )
-        )
-      ),
-      shiny::tags$div(
-        class = "govuk-button-group",
-        shinyGovstyle::button_Input(
-          shiny::NS(id, "cookies_accept"),
-          "Accept analytics cookies"
-        ),
-        shinyGovstyle::button_Input(
-          shiny::NS(id, "cookies_reject"),
-          "Reject analytics cookies"
-        ),
-        shiny::actionLink(
-          shiny::NS(id, "cookies_link"),
-          "View cookie information"
         )
       )
     )
