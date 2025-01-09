@@ -35,9 +35,9 @@ jobs:
       - name: Set environment variables based on branch
         run: |
           if [[ "${{ github.ref_name }}" == "main" ]]; then
-            echo "SHINYAPP_NAME='${{ env.DASHBOARD_NAME }}'" >> $GITHUB_ENV
+            echo "SHINYAPP_NAME=$DASHBOARD_NAME" >> $GITHUB_ENV
           else
-            echo "SHINYAPP_NAME='dev-${{ env.DASHBOARD_NAME }}'" >> $GITHUB_ENV
+            echo "SHINYAPP_NAME=dev-$DASHBOARD_NAME" >> $GITHUB_ENV
           fi
 
       - name: Restore renv snapshot
@@ -47,13 +47,13 @@ jobs:
           renv::restore()
 
       - name: Install rsconnect
-        if: env.DEPLOY_TARGET == 'shinyapps'
+        if: ${{ env.DEPLOY_TARGET == 'shinyapps' }}
         shell: Rscript {0}
         run: |
           if (!requireNamespace("rsconnect", quietly = TRUE)) install.packages("rsconnect")
 
       - name: Deploy to ShinyApps.io
-        if: env.DEPLOY_TARGET == 'shinyapps'
+        if: ${{ env.DEPLOY_TARGET == 'shinyapps' }}
         run: |
           Rscript -e "rsconnect::setAccountInfo(name = 'department-for-education', token = '${{ secrets.SHINYAPPS_TOKEN }}', secret = '${{ secrets.SHINYAPPS_SECRET }}')"
-          Rscript -e "rsconnect::deployApp(appName='${{ env.SHINYAPP_NAME }}', forceUpdate = TRUE)"
+          Rscript -e "rsconnect::deployApp(appName='$SHINYAPP_NAME', forceUpdate = TRUE)"
