@@ -17,12 +17,12 @@ server <- function(input, output, session) {
   )
 
   shiny::observeEvent(input$`cookies_banner-cookies_link`, {
-    shiny::updateTabsetPanel(session, "left_nav", selected = "cookies_panel")
+    bslib::nav_select("left_nav", selected = "cookies_panel")
   })
 
   # Navigation ================================================================
   shiny::observeEvent(input$support_nav, {
-    shiny::updateTabsetPanel(session, "left_nav", selected = "support_panel")
+    bslib::nav_select("left_nav", selected = "support_panel")
   })
 
   shiny::observeEvent(input$accessibility_nav, {

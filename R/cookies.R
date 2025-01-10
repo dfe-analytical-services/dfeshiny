@@ -83,7 +83,7 @@
 #'     # Place these lines above your header ----------------------------------
 #'     useShinyjs(),
 #'     dfe_cookies_script(),
-#'     cookies_banner_ui(name = "My DfE R-Shiny data dashboard"),
+#'     cookies_banner_ui(name = "My DfE R Shiny data dashboard"),
 #'
 #'     # Place the cookies panel under the header but in the main content -----
 #'     # Example of placing as a panel within navlistPanel
