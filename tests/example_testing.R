@@ -14,7 +14,7 @@ ui <- bslib::page_fluid(
 
   # Place the cookies panel under the header but in the main content -----
   bslib::navset_bar(
-    id = "left_nav",
+    id = "navlistPanel",
 
     # UI panels ==========================================================
     bslib::nav_panel(
@@ -24,7 +24,7 @@ ui <- bslib::page_fluid(
     ),
     bslib::nav_panel(
       title = "Cookies",
-      id = "cookies_panel",
+      id = "cookies_panel_ui",
       dfeshiny::cookies_panel_ui(google_analytics_key = ga_key)
     )
   )
@@ -33,12 +33,15 @@ ui <- bslib::page_fluid(
 # This will be in your server.R file =====================================
 
 server <- function(input, output, session) {
+  shinyjs::runjs(
+    'Cookies.remove("dfe_analytics");
+    getCookies();'
+  )
+
   output$cookies_status <- dfeshiny::cookies_banner_server(
     input_cookies = reactive(input$cookies),
     google_analytics_key = google_analytics_key,
     parent_session = session,
-    cookies_nav_id = "left_nav",
-    cookies_link_panel = "cookies_panel"
   )
 
   cookies_panel_server(
@@ -46,9 +49,9 @@ server <- function(input, output, session) {
     google_analytics_key = google_analytics_key
   )
 
-  shiny::observeEvent(input$`cookies_banner-cookies_link`, {
-    bslib::nav_select("left_nav", selected = "cookies_panel")
-  })
+  # shiny::observeEvent(input$`cookies_banner-cookies_link`, {
+  #   bslib::nav_select("left_nav", selected = "cookies_panel")
+  # })
 }
 
 # How to run the minimal app given in this example =======================
