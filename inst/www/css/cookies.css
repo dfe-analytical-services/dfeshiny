@@ -1,0 +1,16 @@
+/* Remove space at top after closing */
+.govuk-cookie-banner {
+  padding-top: 0;
+  border-bottom: 0;
+}
+
+/* Keep neater spacing at top after removing excess spacing after closing */
+.govuk-cookie-banner__heading {
+  padding-top: 10px;
+}
+
+/* Remove odd left / right spacing */
+.dfeshiny-cookie-banner {
+  margin-right: 0;
+  margin-left: 0;
+}

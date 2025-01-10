@@ -72,7 +72,7 @@ test_that("Inspect HTML is as expected", {
   expect_gt(
     grep(
       paste0(
-        "<a href=\"https://shiny.posit.co/\" target=\"_blank\" rel=\"noopener no",
+        "<a href=\"https://shiny.posit.co/\" class=\"govuk-link\" target=\"_blank\" rel=\"noopener no",
         "referrer\">R Shiny<span class=\"sr-only\"> (opens in new tab)</span></a>"
       ),
       all_links_html,

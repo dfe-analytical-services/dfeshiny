@@ -37,7 +37,7 @@ ui <- function(input, output, session) {
       # Left navigation =========================================================
       shinyGovstyle::gov_box(
 
-        #fill = FALSE
+        # fill = FALSE
         id = "nav", # DO NOT REMOVE ID
         shiny::tags$div(
           id = "govuk-contents-box", # DO NOT REMOVE ID
@@ -63,81 +63,81 @@ ui <- function(input, output, session) {
       ),
 
       # Panels =================================================================
-        shinyGovstyle::gov_main_layout(
-          id = "main-col", # DO NOT REMOVE ID
+      shinyGovstyle::gov_main_layout(
+        id = "main-col", # DO NOT REMOVE ID
 
-          bslib::navset_hidden(
-            id = "left_nav",
+        bslib::navset_hidden(
+          id = "left_nav",
 
-            # Support panel =======================================================
-            bslib::nav_panel(
-              "support_panel", dfeshiny::support_panel(
-                team_email = "explore.statistics@education.gov.uk",
-                repo_name = "https://github.com/dfe-analytical-services/dfeshiny/",
-                form_url = "https://forms.office.com"
-              )
-            ),
+          # Support panel =======================================================
+          bslib::nav_panel(
+            "support_panel", dfeshiny::support_panel(
+              team_email = "explore.statistics@education.gov.uk",
+              repo_name = "https://github.com/dfe-analytical-services/dfeshiny/",
+              form_url = "https://forms.office.com"
+            )
+          ),
 
-            # Accessibility panel =================================================
-            bslib::nav_panel(
-              "accessibility_panel",
-              dfeshiny::a11y_panel(
-                "DfE Shiny template",
-                "https://department-for-education.shinyapps.io/dfe-shiny-template",
-                "26th November 2023",
-                "28th November 2023",
-                "12th March 2024",
-                issues_contact = "https://github.com/dfe-analytical-services/shiny-template"
-              )
-            ),
+          # Accessibility panel =================================================
+          bslib::nav_panel(
+            "accessibility_panel",
+            dfeshiny::a11y_panel(
+              "DfE Shiny template",
+              "https://department-for-education.shinyapps.io/dfe-shiny-template",
+              "26th November 2023",
+              "28th November 2023",
+              "12th March 2024",
+              issues_contact = "https://github.com/dfe-analytical-services/shiny-template"
+            )
+          ),
 
-            # Cookies panel =======================================================
-            bslib::nav_panel(
-              "cookies_panel",
-              dfeshiny::cookies_panel_ui(google_analytics_key = ga_key) # nolint: [object_usage_linter]
-            ),
+          # Cookies panel =======================================================
+          bslib::nav_panel(
+            "cookies_panel",
+            dfeshiny::cookies_panel_ui(google_analytics_key = ga_key) # nolint: [object_usage_linter]
+          ),
 
-            # Example text panel for testing ======================================
-            bslib::nav_panel(
-              "text_example_panel",
-              shiny::tags$h2("Hey, here's a heading"),
-              shiny::tags$p(
-                "Hey ",
-                external_link(
-                  "https://shiny.posit.co/",
-                  "R Shiny"
-                ),
-                " is so great we should show it off more."
+          # Example text panel for testing ======================================
+          bslib::nav_panel(
+            "text_example_panel",
+            shiny::tags$h2("Hey, here's a heading"),
+            shiny::tags$p(
+              "Hey ",
+              external_link(
+                "https://shiny.posit.co/",
+                "R Shiny"
               ),
-              shiny::tags$p(
-                "Hey I think the greatest thing ever is ",
-                external_link(
-                  "https://shiny.posit.co/",
-                  "R Shiny"
-                ),
-                "."
+              " is so great we should show it off more."
+            ),
+            shiny::tags$p(
+              "Hey I think the greatest thing ever is ",
+              external_link(
+                "https://shiny.posit.co/",
+                "R Shiny"
               ),
-              shiny::tags$p(
-                "Sometimes you just want to be in a cave without distractions",
-                " when writing code in ",
-                external_link(
-                  "https://shiny.posit.co/",
-                  "R Shiny",
-                  add_warning = FALSE
-                ),
-                "."
+              "."
+            ),
+            shiny::tags$p(
+              "Sometimes you just want to be in a cave without distractions",
+              " when writing code in ",
+              external_link(
+                "https://shiny.posit.co/",
+                "R Shiny",
+                add_warning = FALSE
               ),
-              shiny::tags$p(
-                "Sometimes you just want to be writing ",
-                external_link(
-                  "https://shiny.posit.co/",
-                  "R Shiny",
-                  add_warning = FALSE
-                ),
-                " code in a cave without distractions."
-              )
+              "."
+            ),
+            shiny::tags$p(
+              "Sometimes you just want to be writing ",
+              external_link(
+                "https://shiny.posit.co/",
+                "R Shiny",
+                add_warning = FALSE
+              ),
+              " code in a cave without distractions."
             )
           )
+        )
       )
     )
   )

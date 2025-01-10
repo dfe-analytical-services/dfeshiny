@@ -9,17 +9,3 @@
 .container-fluid {
   --bs-gutter-x: 0;
 }
-
-.govuk-cookie-banner {
-  padding-top: 0;
-  border-bottom: 0;
-}
-
-.dfeshiny-cookie-banner {
-  margin-right: 0;
-  margin-left: 0;
-}
-
-.govuk-cookie-banner__heading {
-  padding-top: 10px;
-}
