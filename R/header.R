@@ -23,6 +23,19 @@
 #'   shinyApp(ui = ui, server = server)
 #' }
 header <- function(header) {
+  if ("logo_alt_text" %in% formalArgs(shinyGovstyle::header)){
+    shinyGovstyle::header(
+      logo = "dfeshiny/DfE_logo_landscape.png",
+      main_text = "",
+      secondary_text = header,
+      main_link = "https://www.gov.uk/government/organisations/department-for-education",
+      logo_width = 132.98,
+      logo_height = 32,
+      logo_alt_text = "DfE logo",
+      main_alt_text = "DfE homepage",
+      secondary_alt_text = paste(header, "homepage"),
+    )
+  } else{
   shinyGovstyle::header(
     logo = "dfeshiny/DfE_logo_landscape.png",
     main_text = "",
@@ -31,4 +44,5 @@ header <- function(header) {
     logo_width = 132.98,
     logo_height = 32
   )
+    }
 }
