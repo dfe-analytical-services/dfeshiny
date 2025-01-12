@@ -27,8 +27,8 @@ jobs:
       
       - name: Read parameters
         run: |
-          DASHBOARD_NAME=$(yq '.dashboard_name' ${{ inputs.parameter_file }})
-          DEPLOY_TARGET=$(yq '.deploy_target' ${{ inputs.parameter_file }})
+          DASHBOARD_NAME=$(yq -r '.dashboard_name' ${{ inputs.parameter_file }})
+          DEPLOY_TARGET=$(yq -r '.deploy_target' ${{ inputs.parameter_file }})
 
           echo "DASHBOARD_NAME=$DASHBOARD_NAME" >> $GITHUB_ENV
           echo "DEPLOY_TARGET=$DEPLOY_TARGET" >> $GITHUB_ENV
