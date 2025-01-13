@@ -7,6 +7,11 @@ on:
         description: "Path to the parameters file"
         required: true
         type: string
+  secrets:
+      SHINYAPPS_SECRET:
+        required: true
+      SHINYAPPS_TOKEN:
+        required: true
 
 jobs:
   deployShiny:
