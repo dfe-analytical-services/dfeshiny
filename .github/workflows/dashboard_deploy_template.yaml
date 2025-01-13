@@ -7,7 +7,7 @@ on:
         description: "Path to the parameters file"
         required: true
         type: string
-  secrets:
+    secrets:
       SHINYAPPS_SECRET:
         required: true
       SHINYAPPS_TOKEN:
