@@ -16,20 +16,25 @@ A \code{reactable} HTML widget object.
 }
 \description{
 A wrapper around the \code{reactable} function for creating styled, accessible,
-and user-friendly tables tailored to the Department for Education's requirements.
+and user-friendly tables tailored to the Department for Education's
+requirements.
 }
 \details{
-The \code{dfe_reactable} function provides a pre-configured version of the \code{reactable} function with:
+The \code{dfe_reactable} function provides a pre-configured version of
+the \code{reactable} function with:
 \itemize{
 \item \strong{Highlighting}: Row highlighting enabled.
 \item \strong{Borderless Table}: Removes borders for a clean look.
 \item \strong{Sort Icons Hidden}: Sort icons are not displayed by default.
 \item \strong{Resizable Columns}: Users can resize columns.
 \item \strong{Full Width}: Table expands to the full width of the container.
-\item \strong{Default Column Definition}: Custom column header styles, NA value handling,
+\item \strong{Default Column Definition}: Custom column header styles,
+NA value handling,
 and alignment.
-\item \strong{Custom Search Input}: A search bar styled to the Department for Education's specifications.
-\item \strong{Custom Language}: Provides a user-friendly search placeholder text.
+\item \strong{Custom Search Input}: A search bar styled to the Department
+for Education's specifications.
+\item \strong{Custom Language}: Provides a user-friendly search placeholder
+text.
 }
 }
 \examples{
