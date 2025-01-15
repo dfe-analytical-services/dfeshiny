@@ -10,85 +10,6 @@ dfe_reactable(data, ...)
 \item{data}{A data frame to display in the table.}
 
 \item{...}{Additional arguments passed to \code{reactable::reactable}.}
-
-\item{columns}{A named list of column definitions created with \code{reactable::colDef()}.}
-
-\item{columnGroups}{A list of column groups created with \code{reactable::colGroup()}.}
-
-\item{rownames}{Logical or character. If \code{TRUE}, show row names. If a string, the row names
-will be displayed in a column with that name. Defaults to \code{NULL}.}
-
-\item{groupBy}{A character vector of column names to group rows by.}
-
-\item{sortable}{Logical. Enable sorting for all columns by default.}
-
-\item{filterable}{Logical. Enable column filters.}
-
-\item{searchable}{Logical. Add a global search box.}
-
-\item{searchMethod}{Custom search function for global search.}
-
-\item{defaultColDef}{Default column settings created with \code{reactable::colDef()}.}
-
-\item{defaultColGroup}{Default column group settings created with \code{reactable::colGroup()}.}
-
-\item{defaultSortOrder}{The default sort order for sortable columns. One of \code{"asc"} or \code{"desc"}.}
-
-\item{defaultSorted}{A named list or character vector of columns to sort by default.}
-
-\item{pagination}{Logical. Enable pagination.}
-
-\item{defaultPageSize}{Number of rows to show per page by default.}
-
-\item{showPageSizeOptions}{Logical. Allow users to change the page size.}
-
-\item{pageSizeOptions}{A vector of page size options for the page size dropdown.}
-
-\item{paginationType}{Pagination control type. One of \code{"numbers"} or \code{"jump"}.}
-
-\item{showPagination}{Logical. Show pagination controls.}
-
-\item{showPageInfo}{Logical. Show page info (e.g., "1–10 of 100 rows").}
-
-\item{minRows}{Minimum number of rows to show, even when the data has fewer rows.}
-
-\item{paginateSubRows}{Logical. Paginate sub rows when rows are grouped.}
-
-\item{details}{A function or formula for creating expandable row details.}
-
-\item{defaultExpanded}{Logical or character vector. Expand rows by default.}
-
-\item{selection}{Selection mode. One of \code{"multiple"}, \code{"single"}, or \code{"none"}.}
-
-\item{defaultSelected}{A character vector of row names or indices to select by default.}
-
-\item{onClick}{Callback function for row click events.}
-
-\item{striped}{Logical. Add zebra-striping to rows.}
-
-\item{compact}{Logical. Make rows compact.}
-
-\item{wrap}{Logical. Allow cell text to wrap.}
-
-\item{class}{CSS class to apply to the table.}
-
-\item{style}{Inline styles to apply to the table.}
-
-\item{rowClass}{CSS class to apply to each row.}
-
-\item{rowStyle}{Inline styles to apply to each row.}
-
-\item{width}{Table width in pixels or as a CSS value.}
-
-\item{height}{Table height in pixels or as a CSS value.}
-
-\item{meta}{Arbitrary metadata to include with the table.}
-
-\item{elementId}{Element ID for the table widget.}
-
-\item{static}{Logical. Render a static (non-interactive) table.}
-
-\item{selectionId}{Element ID to store selected row indices.}
 }
 \value{
 A \code{reactable} HTML widget object.
@@ -113,8 +34,13 @@ and alignment.
 }
 \examples{
 if (interactive()) {
-  library(reactable)
-  dfe_reactable(mtcars)
+  library(shiny)
+  library(dfeshiny)
+  ui <- fluidPage(
+    h1("Example of dfe_reactable in a Shiny app"),
+    dfe_reactable(mtcars)
+  )
+  server <- function(input, output, session) {}
+  shinyApp(ui, server)
 }
-
 }
