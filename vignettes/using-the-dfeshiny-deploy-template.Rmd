@@ -26,9 +26,8 @@ speed up development.
 
 ## Overview
 
-1.  **Have a `deploy_parameters.yaml`**: Store all your deployment
-    parameters, including the app name, environment toggles (e.g.,
-    `install_terra_dependencies`), and extra R packages to install.
+1.  **Have a `deploy_parameters.yaml`**:  Store all your deployment parameters, 
+    including the app name and deployment target.
 
 2.  **Minimal Local Workflow**: Reference the *remote* reusable workflow
     (stored in another repository) from your local
@@ -47,28 +46,12 @@ Below is an example with optional parameters:
 ```{yaml}
 dashboard_name: "my-cool-dashboard"
 deploy_target: "shinyapps"
-install_terra_dependencies: true
-install_unit_dependencies: true
-extra_packages:
-  - sf
-  - data.table
-  - DT
 ```
 
 -   `dashboard_name`: Your application’s name on ShinyApps (or other
     hosting platform).
 
 -   `deploy_target`: Where you want to deploy (e.g., `"shinyapps"`).
-
--   `install_terra_dependencies`: Whether to install the GDAL libraries
-    (important for certain spatial packages like `sf` which is itself a
-    dependency of map plotting packages such as `leaflet`).
-
--   `install_unit_dependencies`: Whether to install the linux libraries
-    (important for the `units` package).
-
--   `extra_packages`: A list of additional packages to install beyond
-    what you have in your `renv.lock`.
 
 ## 2. Set Up Your Local Workflow
 
@@ -130,18 +113,10 @@ GitHub Actions runner will:
 
     -   `deploy_target`
 
-    -   etc.
-
-3.  **Install Dependencies** – Optionally installs GDAL libraries if
-    `install_terra_dependencies: true`.
-
-4.  **Restore R Dependencies** – If your project uses `renv`, it runs
+3.  **Restore R Dependencies** – If your project uses `renv`, it runs
     `renv::restore()` to ensure your local library is consistent.
 
-5.  **Install Extra Packages** – Installs any packages listed in
-    `extra_packages`.
-
-6.  **Deploy** – Calls the appropriate deployment method based on
+4.  **Deploy** – Calls the appropriate deployment method based on
     `deploy_target`.
 
     -   For ShinyApps.io, it uses `rsconnect::deployApp()`.
