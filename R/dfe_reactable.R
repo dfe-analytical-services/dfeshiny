@@ -54,7 +54,7 @@ dfe_reactable <- function(data, ...) {
       align = "left",
       class = "govuk-table__cell"
     ),
-    rowClass = "govuk-table__cell",
+    rowClass = "govuk-table__row",
     language = reactable::reactableLang(
       searchPlaceholder = "Search table..."
     ),
