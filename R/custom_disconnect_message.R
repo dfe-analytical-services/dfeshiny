@@ -123,8 +123,20 @@ custom_disconnect_message <- function(
         "  $(document).on('shiny:disconnected', function(event) {",
         "    $('#custom-disconnect-dialog').show();",
         "    $('#ss-overlay').show();",
-        "  })",
+        "  });",
         "});"
+      )
+    ),
+    tags$head(
+      tags$style(
+        HTML(
+          "
+          /* Hide the default Shiny disconnect message */
+          #shiny-disconnected-overlay {
+              display: none !important;
+          }
+          "
+        )
       )
     ),
     tags$div(
