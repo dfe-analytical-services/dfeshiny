@@ -37,7 +37,7 @@ test_that("dfe_reactable produces a properly configured reactable object", {
   expect_equal(col1$name, "Name")
   expect_equal(col1$type, "character")
   expect_equal(col1$html, TRUE)
-  expect_equal(col1$headerClassName, "bar-sort-header")
+  expect_equal(col1$headerClassName, "govuk-table__header")
 
   # Validate language configuration
   language <- attribs$language
