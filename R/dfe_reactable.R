@@ -43,7 +43,7 @@ dfe_reactable <- function(data, ...) {
     data,
     highlight = TRUE,
     borderless = TRUE,
-    showSortIcon = FALSE,
+    showSortIcon = TRUE,
     resizable = TRUE,
     fullWidth = TRUE,
     defaultColDef = reactable::colDef(
