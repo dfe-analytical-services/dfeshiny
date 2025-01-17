@@ -47,12 +47,14 @@ dfe_reactable <- function(data, ...) {
     resizable = TRUE,
     fullWidth = TRUE,
     defaultColDef = reactable::colDef(
-      headerClass = "bar-sort-header",
+      headerClass = "govuk-table__header",
       html = TRUE,
       na = "NA",
       minWidth = 65,
-      align = "left"
+      align = "left",
+      class = "govuk-table__cell"
     ),
+    rowClass = "govuk-table__cell",
     language = reactable::reactableLang(
       searchPlaceholder = "Search table..."
     ),
@@ -67,6 +69,7 @@ dfe_reactable <- function(data, ...) {
         borderRadius = "5px"
       )
     ),
+    class = "gov-table",
     ...
   )
 }
