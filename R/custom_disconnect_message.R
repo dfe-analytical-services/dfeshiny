@@ -129,7 +129,7 @@ custom_disconnect_message <- function(
     ),
     tags$head(
       tags$style(
-        HTML(
+        htmltools::HTML(
           "
           /* Hide the default Shiny disconnect message */
           #shiny-disconnected-overlay {
