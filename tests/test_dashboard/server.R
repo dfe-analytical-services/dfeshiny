@@ -16,5 +16,7 @@ server <- function(input, output, session) {
     google_analytics_key = ga_key # nolint: [object_usage_linter]
   )
 
-  output$reactable_example <- reactable::renderReactable(dfe_reactable(mtcars))
+  output$reactable_example <- reactable::renderReactable(
+     dfe_reactable(mtcars |> dplyr::select("mpg", "cyl", "hp", "gear"))
+  )
 }
