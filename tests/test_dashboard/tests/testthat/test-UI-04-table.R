@@ -10,4 +10,3 @@ test_that("Table renders as expected", {
   app$wait_for_idle(50)
   app$expect_values(output = "reactable_example")
 })
-

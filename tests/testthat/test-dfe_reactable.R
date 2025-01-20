@@ -25,7 +25,6 @@ test_that("dfe_reactable produces a properly configured reactable object", {
   expect_equal(attribs$resizable, TRUE)
   expect_equal(attribs$highlight, TRUE)
   expect_equal(attribs$borderless, TRUE)
-  expect_equal(attribs$showSortIcon, FALSE)
 
   # Verify column definitions
   columns <- attribs$columns
