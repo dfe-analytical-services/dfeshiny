@@ -58,6 +58,7 @@ jobs:
           if (!requireNamespace("rsconnect", quietly = TRUE)) install.packages("rsconnect")
 
       - name: Deploy to ShinyApps.io
+        if: github.event_name != 'pull_request'
         run: >
           Rscript
           -e "rsconnect::setAccountInfo(name = 'department-for-education', token = '${{secrets.SHINYAPPS_TOKEN}}', secret = '${{secrets.SHINYAPPS_SECRET}}')"
