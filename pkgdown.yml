@@ -3,7 +3,8 @@ pkgdown: 2.1.1
 pkgdown_sha: ~
 articles:
   implementing-cookies: implementing-cookies.html
-last_built: 2025-01-20T06:57Z
+  using-the-dfeshiny-deploy-template: using-the-dfeshiny-deploy-template.html
+last_built: 2025-01-22T10:08Z
 urls:
   reference: https://dfe-analytical-services.github.io/dfeshiny/reference
   article: https://dfe-analytical-services.github.io/dfeshiny/articles
