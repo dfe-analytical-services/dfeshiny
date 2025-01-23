@@ -40,7 +40,7 @@ jobs:
 
       - name: Set environment variables based on branch
         run: |
-          if [[ "${{ github.ref_name }}" == "main" ]]; then
+          if [ "${{ github.ref_name }}" == "main" ]; then
             echo "SHINYAPP_NAME=$DASHBOARD_NAME" >> $GITHUB_ENV
           else
             echo "SHINYAPP_NAME=dev-$DASHBOARD_NAME" >> $GITHUB_ENV
