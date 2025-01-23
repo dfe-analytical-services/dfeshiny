@@ -25,7 +25,7 @@ ui <- bslib::page_fluid(
     bslib::nav_panel(
       title = "Cookies",
       id = "cookies_panel_ui",
-      dfeshiny::cookies_panel_ui(google_analytics_key = ga_key)
+      dfeshiny::cookies_panel_ui(google_analytics_key = google_analytics_key)
     )
   )
 )
