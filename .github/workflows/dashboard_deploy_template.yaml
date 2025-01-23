@@ -39,6 +39,7 @@ jobs:
           echo "DEPLOY_TARGET=$DEPLOY_TARGET" >> $GITHUB_ENV
 
       - name: Set environment variables based on branch
+        shell: bash
         run: |
           if [ "${{ github.ref_name }}" == "main" ]; then
             echo "SHINYAPP_NAME=$DASHBOARD_NAME" >> $GITHUB_ENV
