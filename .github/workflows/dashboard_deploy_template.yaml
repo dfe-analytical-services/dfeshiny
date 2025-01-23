@@ -40,7 +40,11 @@ jobs:
 
       - name: Set environment variables based on branch
         run: |
-          echo "SHINYAPP_NAME=$DASHBOARD_NAME" >> $GITHUB_ENV
+          if [ "${{ github.ref_name }}" == "main" ]; then
+            echo "SHINYAPP_NAME=$DASHBOARD_NAME" >> $GITHUB_ENV
+          else
+            echo "SHINYAPP_NAME=dev-$DASHBOARD_NAME" >> $GITHUB_ENV
+          fi
 
       - name: Restore renv snapshot
         shell: Rscript {0}
