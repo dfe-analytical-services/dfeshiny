@@ -5,7 +5,7 @@
 \title{Custom disconnect message}
 \usage{
 custom_disconnect_message(
-  refresh = "Refresh page",
+  refresh = "refresh the page",
   dashboard_title = NULL,
   links = NULL,
   publication_name = NULL,
@@ -49,7 +49,7 @@ custom_disconnect_message(
     "https://department-for-education.shinyapps.io/dfe-shiny-template",
     "https://department-for-education.shinyapps.io/dfe-shiny-template-overflow/"
   ),
-  publication_name = "Explore Education Statistics Publication",
+  publication_name = "shiny template publication",
   publication_link =
     "https://explore-education-statistics.service.gov.uk/find-statistics/apprenticeships"
 )

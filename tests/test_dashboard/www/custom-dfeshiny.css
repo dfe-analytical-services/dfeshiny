@@ -1,0 +1,11 @@
+.govuk-width-container {
+  max-width: 100%;
+}
+
+.tab-content {
+  margin-right: 15px;
+}
+
+.container-fluid {
+  --bs-gutter-x: 0;
+}

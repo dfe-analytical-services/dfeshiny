@@ -1,19 +1,22 @@
 ui <- function(input, output, session) {
-  shiny::fluidPage(
+  # bslib page ================================================================
+  bslib::page_fluid(
     shinyjs::useShinyjs(),
-
-    # header function ---------------------------------------------------------
-
-    dfeshiny::header("Header Example"),
+    tags$head(
+      tags$link(
+        rel = "stylesheet",
+        type = "text/css",
+        href = "custom-dfeshiny.css"
+      )
+    ),
 
     # Custom disconnect =======================================================
     custom_disconnect_message(
-      refresh = "Refresh page",
       links = c(
         "https://department-for-education.shinyapps.io/dfe-shiny-template/",
         "https://department-for-education.shinyapps.io/dfe-shiny-template-overflow/"
       ),
-      publication_name = "Explore Education Statistics Publication",
+      publication_name = "source publication",
       publication_link =
         "https://explore-education-statistics.service.gov.uk/find-statistics/apprenticeships"
     ),
@@ -22,82 +25,118 @@ ui <- function(input, output, session) {
     dfe_cookies_script(),
     cookies_banner_ui(name = "The dfeshiny test dashboard"),
 
-    # Panels ==================================================================
-    shiny::navlistPanel(
-      "",
-      id = "navlistPanel",
-      widths = c(2, 8),
-      well = FALSE,
-      ## Support panel --------------------------------------------------------
-      shiny::tabPanel(
-        value = "support_panel",
-        "Support and feedback",
-        support_panel(
-          team_email = "explore.statistics@education.gov.uk",
-          repo_name = "https://github.com/dfe-analytical-services/dfeshiny/",
-          form_url = "https://forms.office.com"
-        )
-      ),
-      ## Accessibility panel --------------------------------------------------------
-      shiny::tabPanel(
-        value = "a11y_panel",
-        "Accessibility",
-        a11y_panel(
-          "DfE Shiny template",
-          "https://department-for-education.shinyapps.io/dfe-shiny-template",
-          "26th November 2023",
-          "28th November 2023",
-          "12th March 2024",
-          issues_contact = "https://github.com/dfe-analytical-services/shiny-template"
+    # header function =========================================================
+    dfeshiny::header("Header Example"),
+
+    # Core content ============================================================
+    bslib::layout_column_wrap(
+      width = NULL,
+      heights_equal = NULL,
+      style = htmltools::css(grid_template_columns = "min-content 1fr"),
+
+      # Left navigation =========================================================
+      shinyGovstyle::gov_box(
+
+        # fill = FALSE
+        id = "nav", # DO NOT REMOVE ID
+        shiny::tags$div(
+          id = "govuk-contents-box", # DO NOT REMOVE ID
+          class = "govuk-contents-box", # DO NOT REMOVE CLASS
+          shiny::tags$h2("Contents"),
+          shinyGovstyle::contents_link(
+            link_text = "Support panel",
+            input_id = "support_nav"
+          ),
+          shinyGovstyle::contents_link(
+            link_text = "Accessibility",
+            input_id = "accessibility_nav"
+          ),
+          shinyGovstyle::contents_link(
+            link_text = "Cookies",
+            input_id = "cookies_nav"
+          ),
+          shinyGovstyle::contents_link(
+            link_text = "Example text",
+            input_id = "text_example_nav"
+          )
         )
       ),
 
-      ## Cookies panel --------------------------------------------------------
-      shiny::tabPanel(
-        value = "cookies_panel_ui",
-        "Cookies",
-        cookies_panel_ui(google_analytics_key = ga_key) # nolint: [object_usage_linter]
-      ),
+      # Panels =================================================================
+      shinyGovstyle::gov_main_layout(
+        id = "main-col", # DO NOT REMOVE ID
 
-      ## Example text panel ---------------------------------------------------
-      shiny::tabPanel(
-        value = "text_example",
-        "Text example",
-        shiny::tags$h2("Hey, here's a heading"),
-        shiny::tags$p(
-          "Hey ",
-          external_link(
-            "https://shiny.posit.co/",
-            "R Shiny"
+        bslib::navset_hidden(
+          id = "left_nav",
+
+          # Support panel =======================================================
+          bslib::nav_panel(
+            "support_panel", dfeshiny::support_panel(
+              team_email = "explore.statistics@education.gov.uk",
+              repo_name = "https://github.com/dfe-analytical-services/dfeshiny/",
+              form_url = "https://forms.office.com"
+            )
           ),
-          " is so great we should show it off more."
-        ),
-        shiny::tags$p(
-          "Hey I think the greatest thing ever is ",
-          external_link(
-            "https://shiny.posit.co/",
-            "R Shiny"
+
+          # Accessibility panel =================================================
+          bslib::nav_panel(
+            "accessibility_panel",
+            dfeshiny::a11y_panel(
+              "DfE Shiny template",
+              "https://department-for-education.shinyapps.io/dfe-shiny-template",
+              "26th November 2023",
+              "28th November 2023",
+              "12th March 2024",
+              issues_contact = "https://github.com/dfe-analytical-services/shiny-template"
+            )
           ),
-          "."
-        ),
-        shiny::tags$p(
-          "Sometimes you just want to be in a cave without distractions",
-          " when writing code in ",
-          external_link(
-            "https://shiny.posit.co/",
-            "R Shiny",
-            add_warning = FALSE
+
+          # Cookies panel =======================================================
+          bslib::nav_panel(
+            "cookies_panel",
+            dfeshiny::cookies_panel_ui(google_analytics_key = ga_key) # nolint: [object_usage_linter]
           ),
-          "."
-        ),
-        shiny::tags$p(
-          "Sometimes you just want to be writing ",
-          external_link(
-            "https://shiny.posit.co/",
-            "R Shiny",
-            add_warning = FALSE
-          ),
-          " code in a cave without distractions."
+
+          # Example text panel for testing ======================================
+          bslib::nav_panel(
+            "text_example_panel",
+            shiny::tags$h2("Hey, here's a heading"),
+            shiny::tags$p(
+              "Hey ",
+              external_link(
+                "https://shiny.posit.co/",
+                "R Shiny"
+              ),
+              " is so great we should show it off more."
+            ),
+            shiny::tags$p(
+              "Hey I think the greatest thing ever is ",
+              external_link(
+                "https://shiny.posit.co/",
+                "R Shiny"
+              ),
+              "."
+            ),
+            shiny::tags$p(
+              "Sometimes you just want to be in a cave without distractions",
+              " when writing code in ",
+              external_link(
+                "https://shiny.posit.co/",
+                "R Shiny",
+                add_warning = FALSE
+              ),
+              "."
+            ),
+            shiny::tags$p(
+              "Sometimes you just want to be writing ",
+              external_link(
+                "https://shiny.posit.co/",
+                "R Shiny",
+                add_warning = FALSE
+              ),
+              " code in a cave without distractions."
+            )
+          )
         )
       )
     )

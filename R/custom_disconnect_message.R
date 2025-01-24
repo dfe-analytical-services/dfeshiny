@@ -31,7 +31,7 @@
 #'     "https://department-for-education.shinyapps.io/dfe-shiny-template",
 #'     "https://department-for-education.shinyapps.io/dfe-shiny-template-overflow/"
 #'   ),
-#'   publication_name = "Explore Education Statistics Publication",
+#'   publication_name = "shiny template publication",
 #'   publication_link =
 #'     "https://explore-education-statistics.service.gov.uk/find-statistics/apprenticeships"
 #' )
@@ -49,7 +49,7 @@
 #'   custom_refresh = "https://department-for-education.shinyapps.io/my-dashboard"
 #' )
 custom_disconnect_message <- function(
-    refresh = "Refresh page",
+    refresh = "refresh the page",
     dashboard_title = NULL,
     links = NULL,
     publication_name = NULL,
@@ -152,6 +152,7 @@ custom_disconnect_message <- function(
           if (is.null(custom_refresh)) {
             tags$a(
               id = "ss-reload-link",
+              class = "govuk-link",
               href = "#",
               refresh,
               onclick = "window.location.reload(true);",
@@ -159,6 +160,7 @@ custom_disconnect_message <- function(
             )
           } else {
             tags$a(
+              class = "govuk-link",
               id = "ss-reload-link",
               href = custom_refresh,
               refresh,
@@ -170,7 +172,10 @@ custom_disconnect_message <- function(
         if (length(links) > 1) {
           tags$p(
             "If you are still experiencing issues, please try our",
-            tags$a(href = links[2], "alternative site", .noWS = c("after")),
+            tags$a(
+              class = "govuk-link",
+              href = links[2], "alternative site", .noWS = c("after")
+            ),
             ". Apologies for the inconvenience."
           )
         },
@@ -194,10 +199,10 @@ custom_disconnect_message <- function(
         },
         tags$p(
           "Feel free to contact ",
-          dfeshiny::external_link(
+          tags$a(
+            class = "govuk-link",
             href = paste0("mailto:", support_contact),
-            support_contact,
-            add_warning = FALSE
+            support_contact
           ),
           " if you require further support."
         )

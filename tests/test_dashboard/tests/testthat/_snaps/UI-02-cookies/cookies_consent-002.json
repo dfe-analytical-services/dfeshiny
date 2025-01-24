@@ -1,14 +1,18 @@
 {
   "input": {
+    "accessibility_nav": 0,
     "cookies": {
       "dfe_analytics": "granted"
     },
     "cookies_banner-cookies_accept": 1,
     "cookies_banner-cookies_link": 1,
     "cookies_banner-cookies_reject": 0,
+    "cookies_nav": 0,
     "cookies_panel-cookies_analytics": "yes",
     "cookies_panel-submit_btn": 0,
-    "navlistPanel": "cookies_panel_ui"
+    "left_nav": "cookies_panel",
+    "support_nav": 0,
+    "text_example_nav": 0
   },
   "output": {
 
