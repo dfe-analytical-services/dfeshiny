@@ -174,6 +174,7 @@ support_panel <- function(
 
   # Build the support page ----------------------------------------------------
   shiny::tags$div(
+    style = "margin-top: 50px;",
     shiny::tags$h1("Support and feedback"),
     shiny::tags$h2("Give us feedback"),
     shiny::tags$div(
