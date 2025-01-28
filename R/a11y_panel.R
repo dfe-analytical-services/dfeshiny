@@ -107,7 +107,7 @@ a11y_panel <- function(
     stop("Error: If publication_slug is provided, then so should publication_name.")
   }
   shiny::tags$div(
-    style = "margin-top: 50px;",
+    style = "margin-top: 50px; margin-bottom: 50px",
     shiny::tags$h1(paste0("Accessibility statement for ", dashboard_title)),
     shiny::tags$p(
       "This accessibility statement applies to the",
