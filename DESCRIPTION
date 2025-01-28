@@ -24,7 +24,8 @@ Imports:
     shinyGovstyle,
     shinyjs,
     stringr,
-    styler
+    styler,
+    reactable
 Suggests: 
     devtools,
     diffviewer,

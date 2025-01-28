@@ -15,4 +15,8 @@ server <- function(input, output, session) {
     input_cookies = shiny::reactive(input$cookies),
     google_analytics_key = ga_key # nolint: [object_usage_linter]
   )
+
+  output$reactable_example <- reactable::renderReactable(
+     dfe_reactable(mtcars |> dplyr::select("mpg", "cyl", "hp", "gear"))
+  )
 }
