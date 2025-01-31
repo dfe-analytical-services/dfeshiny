@@ -93,16 +93,25 @@ data_checker <- function(datafile_log = "datafiles_log.csv",
 
 
 # Modified analytics check with replacement
-check_analytics_key_v2 <- function() {
-  ga_file <- "google-analytics.html"
-  ui_file <- "ui.R"
-  ga_pattern <- "G-Z967JJVQQX"
+check_analytics_key <- function(ga_file = "google-analytics.html",
+                                ui_file = "ui.R") {
+  # Define Google Analytics key pattern (matches G- or UA- followed by alphanumeric characters)
+  ga_pattern <- "(G-[A-Z0-9]{10}|UA-\d{6,9}-\d+)"
 
-  if (any(grepl(ga_pattern, readLines(ga_file))) &&
-      !(toupper(Sys.getenv("USERNAME")) %in% c("CFOSTER4", "CRACE", "LSELBY", "RBIELBY", "JMACHIN"))) {
+  # Read the file content
+  ga_content <- readLines(ga_file)
+  ui_content <- readLines(ui_file)
+
+  # Check if GA key pattern exists in the file
+  if (any(grepl(ga_pattern, ga_content))) {
+
+    # Replace all occurrences of GA keys with placeholders
     xfun::gsub_file(ga_file, ga_pattern, "G-XXXXXXXXXX")
     xfun::gsub_file(ui_file, ga_pattern, "XXXXXXXXXX")
-    system2("git", c("add", ga_file))
+
+    # Add the modified file to git
+    system2("git", c("add", ga_file, ui_file))
+
     message("Updated analytics tag")
     return(FALSE)  # Block commit to allow review
   }
@@ -110,7 +119,7 @@ check_analytics_key_v2 <- function() {
 }
 
 # Styling with change detection
-style_code_v2 <- function() {
+style_code <- function() {
   original <- list.files("R", full.names = TRUE) |>
     lapply(function(f) digest::digest(f, file = TRUE))
 
