@@ -15,6 +15,7 @@ URL: https://dfe-analytical-services.github.io/dfeshiny/
 Depends: 
     R (>= 2.10)
 Imports: 
+    dplyr,
     checkmate,
     glue,
     htmltools,
@@ -24,7 +25,9 @@ Imports:
     shinyGovstyle,
     shinyjs,
     stringr,
-    styler
+    styler,
+    xfun,
+    digest,
 Suggests: 
     devtools,
     diffviewer,
