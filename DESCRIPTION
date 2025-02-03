@@ -28,6 +28,7 @@ Imports:
     styler,
     xfun,
     digest,
+    reactable
 Suggests: 
     devtools,
     diffviewer,

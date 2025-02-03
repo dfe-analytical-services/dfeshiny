@@ -99,6 +99,14 @@ ui <- function(input, output, session) {
           ),
           " code in a cave without distractions."
         )
+      ),
+
+      ## Example table panel --------------------------------------------------------
+      shiny::tabPanel(
+        value = "table_panel_ui",
+        "Table example",
+        shiny::tags$h1("Reactable example"),
+        reactable::reactableOutput("reactable_example")
       )
     )
   )
