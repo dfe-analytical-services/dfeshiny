@@ -83,20 +83,25 @@ commit_hooks <- function(skip_analytics_key_check = FALSE) {
 #' @export
 data_checker <- function(datafile_log = "datafiles_log.csv",
                          ignore_file = ".gitignore") {
-  files <- NULL #assigning null variable to avoid rcmdcheck dplyr variable assignment error
+  files <- NULL # assigning null variable to avoid rcmdcheck dplyr variable assignment error
   all_ok <- TRUE
   suffixes <- "xlsx$|ods$|dat$|csv$|tex$|pdf$|zip$|gz$|parquet$|rda$|rds$"
   valid_statuses <- c("published", "reference", "dummy")
 
   # Read tracking files
-  tryCatch({
-    log_files <- utils::read.csv(datafile_log, stringsAsFactors = FALSE)
-    ign_files <- utils::read.csv(ignore_file, header = FALSE,
-                          stringsAsFactors = FALSE, col.names = "filename")
-  }, error = function(e) {
-    message("Error reading configuration files: ", e$message)
-    return(FALSE)
-  })
+  tryCatch(
+    {
+      log_files <- utils::read.csv(datafile_log, stringsAsFactors = FALSE)
+      ign_files <- utils::read.csv(ignore_file,
+        header = FALSE,
+        stringsAsFactors = FALSE, col.names = "filename"
+      )
+    },
+    error = function(e) {
+      message("Error reading configuration files: ", e$message)
+      return(FALSE)
+    }
+  )
 
   message("=== Gitignore Validation ===")
   if (ncol(ign_files) > 1) {
@@ -106,8 +111,10 @@ data_checker <- function(datafile_log = "datafiles_log.csv",
 
   space_files <- ign_files$filename[grepl(" ", ign_files$filename)]
   if (length(space_files) > 0) {
-    message("ERROR: Spaces in .gitignore entries:\n",
-            paste("-", space_files, collapse = "\n"))
+    message(
+      "ERROR: Spaces in .gitignore entries:\n",
+      paste("-", space_files, collapse = "\n")
+    )
     all_ok <- FALSE
   }
 
@@ -124,9 +131,11 @@ data_checker <- function(datafile_log = "datafiles_log.csv",
     rel_path <- gsub("^./", "", file)
 
     if (!rel_path %in% log_files$filename) {
-      message("Missing entry: ", rel_path, "\n",
-              "  - Add to datafiles_log.csv with status: ",
-              "published, reference, or dummy\n")
+      message(
+        "Missing entry: ", rel_path, "\n",
+        "  - Add to datafiles_log.csv with status: ",
+        "published, reference, or dummy\n"
+      )
       all_ok <- FALSE
       next
     }
@@ -136,14 +145,18 @@ data_checker <- function(datafile_log = "datafiles_log.csv",
 
     if (!status %in% valid_statuses) {
       if (!in_ignore && !grepl("unpublished", rel_path)) {
-        message("Unmanaged file: ", rel_path, "\n",
-                "  - Status: ", log_files$status[log_files$filename == rel_path], "\n",
-                "  - Valid statuses: ", paste(valid_statuses, collapse = ", "), "\n",
-                "  - Add to .gitignore if unpublished\n")
+        message(
+          "Unmanaged file: ", rel_path, "\n",
+          "  - Status: ", log_files$status[log_files$filename == rel_path], "\n",
+          "  - Valid statuses: ", paste(valid_statuses, collapse = ", "), "\n",
+          "  - Add to .gitignore if unpublished\n"
+        )
         all_ok <- FALSE
       } else {
-        message("Note: ", rel_path,
-                " is unpublished (ignored) but consider updating its status\n")
+        message(
+          "Note: ", rel_path,
+          " is unpublished (ignored) but consider updating its status\n"
+        )
       }
     }
   }
