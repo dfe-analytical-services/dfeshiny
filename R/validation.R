@@ -30,7 +30,7 @@ is_valid_repo_url <- function(url) {
   # Check that the repo_name is a valid dfe repo ------------------------------
   # TODO: Use RCurl to check another step further, if the URL is valid
   grepl(
-    "\\https://github.com/dfe-analytical-services/+.|dfe-gov-uk",
+    "\\https://github.com/dfe-analytical-services/+.|dfe-gov-uk |https://dfe-gov-uk.visualstudio.com/+.",
     as.character(url),
     ignore.case = TRUE
   )
