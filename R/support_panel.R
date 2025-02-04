@@ -157,8 +157,10 @@ support_panel <- function(
   if (is_valid_repo_url(repo_name) == FALSE) {
     stop(
       "Please ensure the repo_name argument is a valid URL for a repository on
-      the dfe-analytical-services GitHub area. For example:
-      repo_name = 'https://github.com/dfe-analytical-services/dfeR'.
+      either the dfe-analytical-services GitHub area, for example:
+      repo_name = 'https://github.com/dfe-analytical-services/dfeR',
+      or the dfe-gov-uk area, for example:
+      repo_name = 'https://dfe-gov-uk.visualstudio.com/stats-development/_git/dashboard-analytics'
       "
     )
   }

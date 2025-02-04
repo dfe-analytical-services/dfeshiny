@@ -61,6 +61,13 @@ test_that("repo URL needs to follow standard pattern", {
     )
   )
 
+  expect_no_error(
+    support_panel(
+      team_email = "cam@education.gov.uk",
+      repo_name = "https://dfe-gov-uk.visualstudio.com/stats-development/_git/dashboard-analytics"
+    )
+  )
+
   # Testing that it will fail if it's on GitHub but not in DfE area
   expect_error(
     support_panel(

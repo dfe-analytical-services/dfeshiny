@@ -17,6 +17,6 @@ server <- function(input, output, session) {
   )
 
   output$reactable_example <- reactable::renderReactable(
-     dfe_reactable(mtcars |> dplyr::select("mpg", "cyl", "hp", "gear"))
+    dfe_reactable(mtcars |> dplyr::select("mpg", "cyl", "hp", "gear"))
   )
 }
