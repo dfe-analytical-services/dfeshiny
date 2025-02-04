@@ -233,7 +233,7 @@ cookies_banner_server <- function(
       # updateTabsetPanel to have a cookie page for instance
       shiny::updateTabsetPanel(
         session = parent_session,
-        inputID = cookies_nav_id,
+        inputId = cookies_nav_id,
         selected = cookies_link_panel
       )
     })
@@ -351,6 +351,7 @@ Shiny.addCustomMessageHandler('analytics-consent', function(msg){
 #' @inherit cookies examples
 cookies_panel_ui <- function(id = "cookies_panel", google_analytics_key = NULL) {
   shiny::tags$div(
+    style = "margin-top: 50px; margin-bottom: 50px;",
     shiny::tags$h1("Cookies"),
     shiny::tags$p("Cookies are small files saved on your phone, tablet or
                         computer when you visit a website."),

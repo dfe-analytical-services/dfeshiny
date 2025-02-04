@@ -32,3 +32,7 @@ reference:
   desc: A wrapper for shinyGovstyle::header() that automatically uses the DfE logo.
   contents:
   - header
+- title: Charts and Tables
+  desc: Functions to create and manage tables and visualisations.
+  contents:
+  - dfe_reactable
