@@ -14,7 +14,7 @@
 #'
 #' # In the server.R script ===================================================
 #' shiny::observe({
-#'   set_bookmark_include(bookmarking_whitelist)
+#'   set_bookmark_include(session, input, bookmarking_whitelist)
 #' })
 #'
 #' observe({
@@ -26,14 +26,13 @@
 #' onBookmarked(function(url) {
 #'   updateQueryString(url)
 #' })
-set_bookmark_include <- function(bookmarking_whitelist) {
+set_bookmark_include <- function(session, input, bookmarking_whitelist) {
   # exclude the white list from complete list
   to_exclude <- setdiff(names(input), bookmarking_whitelist)
 
   # exclude all remaining inputs from bookmark
-  setBookmarkExclude(toExclude)
+  shiny::setBookmarkExclude(to_exclude)
 
-  print("bookmarked")
   # Trigger bookmarking whenever relevant inputs change
   session$doBookmark()
 }
