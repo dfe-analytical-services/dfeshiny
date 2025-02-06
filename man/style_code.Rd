@@ -10,6 +10,5 @@ style_code()
 TRUE if changes were made, FALSE otherwise.
 }
 \description{
-Styles R code in the \code{R} directory and detects changes.
-If changes are made, warns the user before committing.
+Styles all R scripts in the project and detects changes.
 }

@@ -4,10 +4,7 @@
 \alias{commit_hooks}
 \title{Commit Hooks for Data Validation, Analytics Check, and Code Styling}
 \usage{
-commit_hooks(skip_analytics_key_check = FALSE)
-}
-\arguments{
-\item{skip_analytics_key_check}{Logical. If TRUE, skips \code{check_analytics_key}.}
+commit_hooks()
 }
 \value{
 TRUE if all checks pass, FALSE otherwise.
@@ -16,7 +13,8 @@ TRUE if all checks pass, FALSE otherwise.
 This wrapper function executes a series of pre-commit checks, including:
 \itemize{
 \item Data file validation (\code{data_checker})
-\item Google Analytics key validation (\code{check_analytics_key}, can be skipped)
+\item Google Analytics key validation (\code{check_analytics_key}, skipped if running
+in shiny_template repo)
 \item Code styling check (\code{style_code})
 }
 }

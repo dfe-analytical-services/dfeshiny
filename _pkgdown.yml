@@ -42,5 +42,5 @@ reference:
     - check_analytics_key
     - commit_hooks
     - data_checker
-    - pre_commit_innit
     - style_code
+    - init_hooks

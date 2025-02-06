@@ -1,20 +1,17 @@
 #' Initialize Pre-commit Hook
 #'
 #' Creates a Git pre-commit hook that runs the `commit_hooks` function.
-#' If `skip_analytics_key_check` is set to TRUE, it will pass that argument to the script.
-#'
-#' @param skip_analytics_key_check Logical. If TRUE, skips `check_analytics_key` in the hook.
 #' @return The path to the pre-commit hook file if created successfully.
 #' @export
-pre_commit_innit <- function(skip_analytics_key_check = FALSE) {
+init_hooks <- function() {
   hook_path <- ".git/hooks/pre-commit"
 
   # Define hook content
-  hook_content <- sprintf("#!/usr/bin/env Rscript\ndfeshiny::commit_hooks(skip_analytics_key_check = %s)", skip_analytics_key_check)
+  hook_content <- sprintf("#!/usr/bin/env Rscript\ndfeshiny::commit_hooks()")
 
   # Ensure the hooks directory exists
-  if (!dir.exists(".git/hooks")) {
-    stop("Git hooks directory not found. Are you inside a Git repository?")
+  if (!dir.exists(".git")) {
+    stop(".git directory not found. Are you inside a Git repository?")
   }
 
   # Write the hook file
@@ -31,13 +28,13 @@ pre_commit_innit <- function(skip_analytics_key_check = FALSE) {
 #'
 #' This wrapper function executes a series of pre-commit checks, including:
 #' - Data file validation (`data_checker`)
-#' - Google Analytics key validation (`check_analytics_key`, can be skipped)
+#' - Google Analytics key validation (`check_analytics_key`, skipped if running
+#' in shiny_template repo)
 #' - Code styling check (`style_code`)
 #'
-#' @param skip_analytics_key_check Logical. If TRUE, skips `check_analytics_key`.
 #' @return TRUE if all checks pass, FALSE otherwise.
 #' @export
-commit_hooks <- function(skip_analytics_key_check = FALSE) {
+commit_hooks <- function() {
   all_pass <- TRUE
 
   message("Running data file validation...")
@@ -45,13 +42,13 @@ commit_hooks <- function(skip_analytics_key_check = FALSE) {
     all_pass <- FALSE
   }
 
-  if (!skip_analytics_key_check) {
+  if (!file.exists("shiny_template.Rproj")) {
     message("Running Google Analytics check...")
     if (!check_analytics_key()) {
       all_pass <- FALSE
     }
   } else {
-    message("Skipping Google Analytics check...")
+    message("Exectuing in shiny_template repo, Skipping Google Analytics check...")
   }
 
   message("Running code styling check...")
@@ -96,6 +93,7 @@ data_checker <- function(datafile_log = "datafiles_log.csv",
         header = FALSE,
         stringsAsFactors = FALSE, col.names = "filename"
       )
+      ign_text <- readLines(ignore_file, warn = FALSE)
     },
     error = function(e) {
       message("Error reading configuration files: ", e$message)
@@ -116,6 +114,14 @@ data_checker <- function(datafile_log = "datafiles_log.csv",
       paste("-", space_files, collapse = "\n")
     )
     all_ok <- FALSE
+  }
+
+  if (length(ign_text) > 0) {
+    last_line <- ign_text[length(ign_text)]
+    if (!grepl("^\\s*$", last_line)) {
+      message("ERROR: .gitignore does not end with a newline character.")
+      all_ok <- FALSE
+    }
   }
 
   message("\n=== Data File Validation ===")
@@ -182,13 +188,11 @@ data_checker <- function(datafile_log = "datafiles_log.csv",
 #' @export
 check_analytics_key <- function(ga_file = "google-analytics.html",
                                 ui_file = "ui.R") {
-  ga_pattern <- "(G-[A-Z0-9]{10}|UA-\\d{6,9}-\\d+)"
-
+  ga_pattern <- "Z967JJVQQX"
   ga_content <- readLines(ga_file)
-  ui_content <- readLines(ui_file)
 
   if (any(grepl(ga_pattern, ga_content))) {
-    xfun::gsub_file(ga_file, ga_pattern, "G-XXXXXXXXXX")
+    xfun::gsub_file(ga_file, paste0("G-",ga_pattern), "G-XXXXXXXXXX")
     xfun::gsub_file(ui_file, ga_pattern, "XXXXXXXXXX")
 
     system2("git", c("add", ga_file, ui_file))
@@ -201,20 +205,13 @@ check_analytics_key <- function(ga_file = "google-analytics.html",
 
 #' Check and Apply Code Styling
 #'
-#' Styles R code in the `R` directory and detects changes.
-#' If changes are made, warns the user before committing.
+#' Styles all R scripts in the project and detects changes.
 #'
 #' @return TRUE if changes were made, FALSE otherwise.
-#' @importFrom digest digest
+#' @importFrom magrittr %>%
 #' @export
-style_code <- function() {
-  original <- list.files("R", full.names = TRUE) |>
-    lapply(function(f) digest::digest(f, file = TRUE))
-
-  styler::style_dir("R")
-
-  updated <- list.files("R", full.names = TRUE) |>
-    lapply(function(f) digest::digest(f, file = TRUE))
-
-  any(original != updated)
+style_code <- function(){
+  styler::style_dir()  |>
+    magrittr::extract2("changed") |>
+    any()
 }
