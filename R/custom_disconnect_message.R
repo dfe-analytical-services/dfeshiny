@@ -50,12 +50,14 @@
 #' )
 custom_disconnect_message <- function(
     refresh = "Refresh page",
+    reset = "Reset page",
     dashboard_title = NULL,
     links = NULL,
     publication_name = NULL,
     publication_link = NULL,
     support_contact = "explore.statistics@education.gov.uk",
-    custom_refresh = NULL) {
+    custom_refresh = NULL,
+    custom_reset = NULL) {
   # Check links are valid
   is_valid_sites_list <- function(sites) {
     lapply(
@@ -78,6 +80,21 @@ custom_disconnect_message <- function(
       stop(
         paste0(
           "You have entered an invalid site link in the custom_refresh argument. It must be a site",
+          " on shinyapps.io."
+        )
+      )
+    }
+  }
+
+  if (!is.null(custom_reset)) {
+    is_valid_refresh <- function(reset) {
+      startsWith(stringr::str_trim(reset), "https://department-for-education.shinyapps.io/")
+    }
+
+    if (is_valid_refresh(custom_reset) == FALSE) {
+      stop(
+        paste0(
+          "You have entered an invalid site link in the custom_reset argument. It must be a site",
           " on shinyapps.io."
         )
       )
@@ -107,6 +124,7 @@ custom_disconnect_message <- function(
   # TODO: Add email validation once a11y panel PR is in
 
   checkmate::assert_string(refresh)
+  checkmate::assert_string(reset)
 
   # Attach CSS from inst/www/css/visually-hidden.css
   dependency <- htmltools::htmlDependency(
@@ -162,6 +180,23 @@ custom_disconnect_message <- function(
               id = "ss-reload-link",
               href = custom_refresh,
               refresh,
+              .noWS = c("after")
+            )
+          },
+          ", or ",
+          if (is.null(custom_reset)) {
+            tags$a(
+              id = "ss-reset-link",
+              href = "#",
+              reset,
+              onclick = "window.location.reload(false);",
+              .noWS = c("after")
+            )
+          } else {
+            tags$a(
+              id = "ss-reset-link",
+              href = custom_reset,
+              reset,
               .noWS = c("after")
             )
           },

@@ -179,3 +179,13 @@ test_that("Can customise refresh link, but not too much", {
     )
   )
 })
+
+
+test_that("Reset and Refresh links appear", {
+  expect_no_error(
+    custom_disconnect_message(
+      refresh = "Refresh page",
+      reset = "Reset page"
+    )
+  )
+})
