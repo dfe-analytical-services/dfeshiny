@@ -6,12 +6,14 @@
 \usage{
 custom_disconnect_message(
   refresh = "Refresh page",
+  reset = "Reset page",
   dashboard_title = NULL,
   links = NULL,
   publication_name = NULL,
   publication_link = NULL,
   support_contact = "explore.statistics@education.gov.uk",
-  custom_refresh = NULL
+  custom_refresh = NULL,
+  custom_reset = NULL
 )
 }
 \arguments{
