@@ -87,11 +87,11 @@ custom_disconnect_message <- function(
   }
 
   if (!is.null(custom_reset)) {
-    is_valid_refresh <- function(reset) {
+    is_valid_reset <- function(reset) {
       startsWith(stringr::str_trim(reset), "https://department-for-education.shinyapps.io/")
     }
 
-    if (is_valid_refresh(custom_reset) == FALSE) {
+    if (is_valid_reset(custom_reset) == FALSE) {
       stop(
         paste0(
           "You have entered an invalid site link in the custom_reset argument. It must be a site",
