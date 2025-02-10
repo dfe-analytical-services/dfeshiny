@@ -5,8 +5,8 @@
 \title{Custom disconnect message}
 \usage{
 custom_disconnect_message(
-  refresh = "Refresh page",
-  reset = "Reset page",
+  refresh = "refresh page (attempting to keep your last known selections)",
+  reset = "reset page (removing any previous selections)",
   dashboard_title = NULL,
   links = NULL,
   publication_name = NULL,

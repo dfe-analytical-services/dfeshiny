@@ -49,8 +49,8 @@
 #'   custom_refresh = "https://department-for-education.shinyapps.io/my-dashboard"
 #' )
 custom_disconnect_message <- function(
-    refresh = "Refresh page",
-    reset = "Reset page",
+    refresh = "refresh page (attempting to keep your last known selections)",
+    reset = "reset page (removing any previous selections)",
     dashboard_title = NULL,
     links = NULL,
     publication_name = NULL,
@@ -59,14 +59,7 @@ custom_disconnect_message <- function(
     custom_refresh = NULL,
     custom_reset = NULL) {
   # Check links are valid
-  is_valid_sites_list <- function(sites) {
-    lapply(
-      stringr::str_trim(sites), startsWith,
-      "https://department-for-education.shinyapps.io/"
-    )
-  }
-
-  if (FALSE %in% is_valid_sites_list(links) ||
+  if (FALSE %in% validate_dashboard_url(links) ||
     "https://department-for-education.shinyapps.io/" %in% links) { # nolint: [indentation_linter]
     stop("You have entered an invalid site link in the links argument.")
   }
