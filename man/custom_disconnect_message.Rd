@@ -19,6 +19,8 @@ custom_disconnect_message(
 \arguments{
 \item{refresh}{the text to appear that will refresh the page when clicked}
 
+\item{reset}{the text to appear that will reset the page when clicked}
+
 \item{dashboard_title}{Title of the dashboard}
 
 \item{links}{A vector of possible URLs for the public site. Should mostly just be a single URL,
@@ -35,6 +37,8 @@ explore.statistics@education.gov.uk}
 \item{custom_refresh}{Custom refresh link, defaults to refreshing the page, main value is if you
 have bookmarking enabled and want the refresh to send to the initial view instead of reloading
 any bookmarks}
+
+\item{custom_reset}{Custom reset link, defaults to resetting the page}
 }
 \value{
 A HTML overlay panel that appears when a user loses connection to a DfE R Shiny
