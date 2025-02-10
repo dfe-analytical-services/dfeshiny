@@ -5,6 +5,7 @@
 #' Create the HTML overlay panel to appear when a user loses connection to a dashboard.
 #'
 #' @param refresh the text to appear that will refresh the page when clicked
+#' @param reset the text to appear that will reset the page when clicked
 #' @param links A vector of possible URLs for the public site. Should mostly just be a single URL,
 #' but can be two URLs if an overflow site has been set up
 #' @param publication_name The parent publication name
@@ -16,6 +17,7 @@
 #' @param custom_refresh Custom refresh link, defaults to refreshing the page, main value is if you
 #' have bookmarking enabled and want the refresh to send to the initial view instead of reloading
 #' any bookmarks
+#' @param custom_reset Custom reset link, defaults to resetting the page
 #'
 #' @importFrom htmltools tags tagList
 #'
