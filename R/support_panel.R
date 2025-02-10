@@ -5,7 +5,7 @@
 #'
 #' @param team_email Your team e-mail address, must be a education.gov.uk email
 #' @param repo_name The repository URL, must be a valid URL for the
-#' dfe-analytical-services GitHub area
+#' dfe-analytical-services or dfe-gov-uk GitHub area
 #' @param ees_publication Whether the parent publication is hosted on Explore
 #' Education Statistics
 #' @param publication_name The parent publication name
