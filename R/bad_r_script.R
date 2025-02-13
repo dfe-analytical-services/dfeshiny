@@ -6,3 +6,4 @@ have_some_weird_indents <- data.frame("a" = 1,
                             "b" = 3,
                     "c" = 6,
                                 "d" = 0)
+# comment
