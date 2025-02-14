@@ -48,7 +48,7 @@ validate_dashboard_url <- function(url) {
     as.character(url),
     ignore.case = TRUE
   )
-  if (!valid) {
+  if (!all(valid)) {
     stop(paste(url, "is not a valid DfE dashboard deployment URL"))
   }
 }
