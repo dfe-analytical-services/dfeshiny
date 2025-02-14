@@ -43,13 +43,15 @@
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">custom_disconnect_message</span><span class="op">(</span></span>
-<span>  refresh <span class="op">=</span> <span class="st">"Refresh page"</span>,</span>
+<span>  refresh <span class="op">=</span> <span class="st">"refresh page (attempting to keep your last known selections)"</span>,</span>
+<span>  reset <span class="op">=</span> <span class="st">"reset page (removing any previous selections)"</span>,</span>
 <span>  dashboard_title <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  links <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  publication_name <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  publication_link <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  support_contact <span class="op">=</span> <span class="st">"explore.statistics@education.gov.uk"</span>,</span>
-<span>  custom_refresh <span class="op">=</span> <span class="cn">NULL</span></span>
+<span>  custom_refresh <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  custom_reset <span class="op">=</span> <span class="cn">NULL</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -59,6 +61,10 @@
 
 <dl><dt id="arg-refresh">refresh<a class="anchor" aria-label="anchor" href="#arg-refresh"></a></dt>
 <dd><p>the text to appear that will refresh the page when clicked</p></dd>
+
+
+<dt id="arg-reset">reset<a class="anchor" aria-label="anchor" href="#arg-reset"></a></dt>
+<dd><p>the text to appear that will reset the page when clicked</p></dd>
 
 
 <dt id="arg-dashboard-title">dashboard_title<a class="anchor" aria-label="anchor" href="#arg-dashboard-title"></a></dt>
@@ -89,6 +95,10 @@ explore.statistics@education.gov.uk</p></dd>
 have bookmarking enabled and want the refresh to send to the initial view instead of reloading
 any bookmarks</p></dd>
 
+
+<dt id="arg-custom-reset">custom_reset<a class="anchor" aria-label="anchor" href="#arg-custom-reset"></a></dt>
+<dd><p>Custom reset link, defaults to resetting the page</p></dd>
+
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
@@ -116,7 +126,8 @@ dashboard.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       Sorry, you have lost connection to the</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       DfE Shiny Template</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       dashboard at the moment, please </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       &lt;a id="ss-reload-link" href="#" onclick="window.location.reload(true);"&gt;Refresh page&lt;/a&gt;.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       &lt;a id="ss-reload-link" href="#" onclick="window.location.reload(true);"&gt;Refresh page&lt;/a&gt;, or </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       &lt;a id="ss-reset-link" href="#" onclick="window.location.reload(false);"&gt;reset page (removing any previous selections)&lt;/a&gt;.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     &lt;/p&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     &lt;p&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       If you are still experiencing issues, please try our</span>
@@ -146,7 +157,8 @@ dashboard.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       Sorry, you have lost connection to the</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       DfE Shiny Template</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       dashboard at the moment, please </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       &lt;a id="ss-reload-link" href="#" onclick="window.location.reload(true);"&gt;Refresh page&lt;/a&gt;.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       &lt;a id="ss-reload-link" href="#" onclick="window.location.reload(true);"&gt;Refresh page&lt;/a&gt;, or </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       &lt;a id="ss-reset-link" href="#" onclick="window.location.reload(false);"&gt;reset page (removing any previous selections)&lt;/a&gt;.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     &lt;/p&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     &lt;p&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       Feel free to contact &lt;a href="mailto:explore.statistics@education.gov.uk" target="_blank" rel="noopener noreferrer"&gt;explore.statistics@education.gov.uk&lt;span class="sr-only"&gt; (opens in new tab)&lt;/span&gt;&lt;/a&gt; if you require further support.</span>
@@ -165,7 +177,8 @@ dashboard.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     &lt;p&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       Sorry, you have lost connection to the</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       dashboard at the moment, please </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       &lt;a id="ss-reload-link" href="https://department-for-education.shinyapps.io/my-dashboard"&gt;Refresh page&lt;/a&gt;.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       &lt;a id="ss-reload-link" href="https://department-for-education.shinyapps.io/my-dashboard"&gt;refresh page (attempting to keep your last known selections)&lt;/a&gt;, or </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       &lt;a id="ss-reset-link" href="#" onclick="window.location.reload(false);"&gt;reset page (removing any previous selections)&lt;/a&gt;.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     &lt;/p&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     &lt;p&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       Feel free to contact &lt;a href="mailto:my.team@education.gov.uk" target="_blank" rel="noopener noreferrer"&gt;my.team@education.gov.uk&lt;span class="sr-only"&gt; (opens in new tab)&lt;/span&gt;&lt;/a&gt; if you require further support.</span>
