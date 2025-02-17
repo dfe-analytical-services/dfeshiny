@@ -63,7 +63,7 @@ a11y_panel <- function(
   date_tested <- validate_date(date_tested)
   date_prepared <- validate_date(date_prepared)
   date_reviewed <- validate_date(date_reviewed)
-  date_template_reviewed <- dfeshiny::validate_date(date_template_reviewed)
+  date_template_reviewed <- validate_date(date_template_reviewed)
   validate_dashboard_url(dashboard_url)
   if (
     lubridate::interval(
