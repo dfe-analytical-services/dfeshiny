@@ -5,6 +5,7 @@
 #' Create the HTML overlay panel to appear when a user loses connection to a dashboard.
 #'
 #' @param refresh the text to appear that will refresh the page when clicked
+#' @param reset the text to appear that will reset the page when clicked
 #' @param links A vector of possible URLs for the public site. Should mostly just be a single URL,
 #' but can be two URLs if an overflow site has been set up
 #' @param publication_name The parent publication name
@@ -16,6 +17,7 @@
 #' @param custom_refresh Custom refresh link, defaults to refreshing the page, main value is if you
 #' have bookmarking enabled and want the refresh to send to the initial view instead of reloading
 #' any bookmarks
+#' @param custom_reset Custom reset link, defaults to resetting the page
 #'
 #' @importFrom htmltools tags tagList
 #'
@@ -49,22 +51,17 @@
 #'   custom_refresh = "https://department-for-education.shinyapps.io/my-dashboard"
 #' )
 custom_disconnect_message <- function(
-    refresh = "Refresh page",
+    refresh = "refresh page (attempting to keep your last known selections)",
+    reset = "reset page (removing any previous selections)",
     dashboard_title = NULL,
     links = NULL,
     publication_name = NULL,
     publication_link = NULL,
     support_contact = "explore.statistics@education.gov.uk",
-    custom_refresh = NULL) {
+    custom_refresh = NULL,
+    custom_reset = NULL) {
   # Check links are valid
-  is_valid_sites_list <- function(sites) {
-    lapply(
-      stringr::str_trim(sites), startsWith,
-      "https://department-for-education.shinyapps.io/"
-    )
-  }
-
-  if (FALSE %in% is_valid_sites_list(links) ||
+  if (FALSE %in% validate_dashboard_url(links) ||
     "https://department-for-education.shinyapps.io/" %in% links) { # nolint: [indentation_linter]
     stop("You have entered an invalid site link in the links argument.")
   }
@@ -78,6 +75,21 @@ custom_disconnect_message <- function(
       stop(
         paste0(
           "You have entered an invalid site link in the custom_refresh argument. It must be a site",
+          " on shinyapps.io."
+        )
+      )
+    }
+  }
+
+  if (!is.null(custom_reset)) {
+    is_valid_reset <- function(reset) {
+      startsWith(stringr::str_trim(reset), "https://department-for-education.shinyapps.io/")
+    }
+
+    if (is_valid_reset(custom_reset) == FALSE) {
+      stop(
+        paste0(
+          "You have entered an invalid site link in the custom_reset argument. It must be a site",
           " on shinyapps.io."
         )
       )
@@ -107,6 +119,7 @@ custom_disconnect_message <- function(
   # TODO: Add email validation once a11y panel PR is in
 
   checkmate::assert_string(refresh)
+  checkmate::assert_string(reset)
 
   # Attach CSS from inst/www/css/visually-hidden.css
   dependency <- htmltools::htmlDependency(
@@ -162,6 +175,23 @@ custom_disconnect_message <- function(
               id = "ss-reload-link",
               href = custom_refresh,
               refresh,
+              .noWS = c("after")
+            )
+          },
+          ", or ",
+          if (is.null(custom_reset)) {
+            tags$a(
+              id = "ss-reset-link",
+              href = "#",
+              reset,
+              onclick = "window.location.reload(false);",
+              .noWS = c("after")
+            )
+          } else {
+            tags$a(
+              id = "ss-reset-link",
+              href = custom_reset,
+              reset,
               .noWS = c("after")
             )
           },

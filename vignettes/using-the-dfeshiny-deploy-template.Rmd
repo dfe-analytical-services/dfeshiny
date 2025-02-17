@@ -43,7 +43,7 @@ At the root of your project, add a file called
 `deploy_parameters.yaml`.\
 Below is an example with optional parameters:
 
-```{yaml}
+```
 dashboard_name: "my-cool-dashboard"
 deploy_target: "shinyapps"
 ```
@@ -62,7 +62,7 @@ reusable workflow.
 
 Here is a minimal example:
 
-```{yaml}
+```
 name: Deploy Dashboard
 
 on:
