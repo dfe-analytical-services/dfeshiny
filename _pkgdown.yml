@@ -41,3 +41,6 @@ reference:
   contents:
     - commit_hooks
     - init_hooks
+    - data_checker
+    - style_code
+    - check_analytics_key
