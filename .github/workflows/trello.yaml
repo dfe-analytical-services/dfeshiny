@@ -15,5 +15,4 @@ jobs:
           api-token: '${{ secrets.TRELLO_API_TOKEN }}'
           list-id: '63ce5064a4859b0387f46b9b'
           title-format: 'dfeshiny PR: ${title}'
-          label-ids: |
-          63ce4ffcbfa825468a8e2a69
+          label-ids: '63ce4ffcbfa825468a8e2a69'
