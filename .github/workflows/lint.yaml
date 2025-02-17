@@ -24,10 +24,13 @@ jobs:
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
           extra-packages: any::lintr, local::.
-          needs: lint, cyclocomp
 
       - name: Lint
-        run: lintr::lint_package()
+        run: |
+          # Pin the lintr version to avoid breaking changes with newer 3.2.0 version
+          # See: https://github.com/apache/arrow/pull/45524
+          pak::pak("lintr@3.1.2")
+          lintr::lint_package()
         shell: Rscript {0}
         env:
           LINTR_ERROR_ON_LINT: true
