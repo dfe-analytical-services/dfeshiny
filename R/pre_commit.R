@@ -34,6 +34,11 @@ init_hooks <- function() {
 #'
 #' @return TRUE if all checks pass, FALSE otherwise.
 #' @export
+#' @export
+#' @examples
+#' \dontrun{
+#' commit_hooks()
+#' }
 commit_hooks <- function() {
   all_pass <- TRUE
 
@@ -53,8 +58,12 @@ commit_hooks <- function() {
 
   message("Running code styling check...")
   if (style_code()) {
-    message("Code formatting was updated. Please review changes.")
+    message("Warning: Code failed styling checks.
+  \n`styler::style_dir()` has been run for you.
+  \nPlease check your files and dashboard still work.
+  \nThen re-stage and try committing again.")
     all_pass <- FALSE
+    quit(save = "no", status = 1, runLast = FALSE)
   }
 
   if (all_pass) {
@@ -68,7 +77,8 @@ commit_hooks <- function() {
 
 #' Validate Data Files and Gitignore Configuration
 #'
-#' Performs comprehensive checks on data file tracking and .gitignore configuration:
+#' Performs comprehensive checks on data file tracking and .gitignore
+#' configuration:
 #' 1. Validates .gitignore format
 #' 2. Checks data files against tracking log
 #' 3. Verifies file status classifications
@@ -77,10 +87,11 @@ commit_hooks <- function() {
 #' @param ignore_file path to gitignore file
 #' @return TRUE if all checks pass, FALSE otherwise
 #' @importFrom dplyr filter
-#' @export
+#' @keywords internal
 data_checker <- function(datafile_log = "datafiles_log.csv",
                          ignore_file = ".gitignore") {
-  files <- NULL # assigning null variable to avoid rcmdcheck dplyr variable assignment error
+  # assigning null variable to avoid rcmdcheck dplyr variable assignment error
+  files <- NULL
   all_ok <- TRUE
   suffixes <- "xlsx$|ods$|dat$|csv$|tex$|pdf$|zip$|gz$|parquet$|rda$|rds$"
   valid_statuses <- c("published", "reference", "dummy")
@@ -93,10 +104,23 @@ data_checker <- function(datafile_log = "datafiles_log.csv",
         header = FALSE,
         stringsAsFactors = FALSE, col.names = "filename"
       )
-      ign_text <- readLines(ignore_file, warn = FALSE)
+      ign_text <- readr::read_file(".gitignore")
     },
     error = function(e) {
-      message("Error reading configuration files: ", e$message)
+      message(
+        "Error reading configuration files: ", e$message, "\n",
+        "To protect against accidental publication of sensitive data, ",
+        "we require all dashboard repositories to contain a data files
+              log (datafiles_log.csv), ",
+        "which should list all data files in the repository and their
+              current status, e.g.:\n\n",
+        "filename,status\n",
+        "data/data_file.csv,published\n",
+        "data/unpublished_data.csv,unpublished\n",
+        "data/reference_data.csv,reference\n\n",
+        "Any files containing sensitive or unpublished data must also be
+              included in the .gitignore file."
+      )
       return(FALSE)
     }
   )
@@ -117,8 +141,7 @@ data_checker <- function(datafile_log = "datafiles_log.csv",
   }
 
   if (length(ign_text) > 0) {
-    last_line <- ign_text[length(ign_text)]
-    if (!grepl("^\\s*$", last_line)) {
+    if (substring(ign_text, nchar(ign_text)) != "\n") {
       message("ERROR: .gitignore does not end with a newline character.")
       all_ok <- FALSE
     }
@@ -170,9 +193,11 @@ data_checker <- function(datafile_log = "datafiles_log.csv",
   if (all_ok) {
     message("\nAll data file checks passed!")
     return(TRUE)
+  } else {
+    message("\nCommit blocked: Data validation issues detected")
+    quit(save = "no", status = 1, runLast = FALSE)
   }
 
-  message("\nCommit blocked: Data validation issues detected")
   return(FALSE)
 }
 
@@ -185,14 +210,14 @@ data_checker <- function(datafile_log = "datafiles_log.csv",
 #' @param ui_file Path to the UI script file.
 #' @return TRUE if no issues found, FALSE if replacements were made.
 #' @importFrom xfun gsub_file
-#' @export
+#' @keywords internal
 check_analytics_key <- function(ga_file = "google-analytics.html",
                                 ui_file = "ui.R") {
   ga_pattern <- "Z967JJVQQX"
   ga_content <- readLines(ga_file)
 
   if (any(grepl(ga_pattern, ga_content))) {
-    xfun::gsub_file(ga_file, paste0("G-",ga_pattern), "G-XXXXXXXXXX")
+    xfun::gsub_file(ga_file, paste0("G-", ga_pattern), "G-XXXXXXXXXX")
     xfun::gsub_file(ui_file, ga_pattern, "XXXXXXXXXX")
 
     system2("git", c("add", ga_file, ui_file))
@@ -209,9 +234,9 @@ check_analytics_key <- function(ga_file = "google-analytics.html",
 #'
 #' @return TRUE if changes were made, FALSE otherwise.
 #' @importFrom magrittr %>%
-#' @export
-style_code <- function(){
-  styler::style_dir()  |>
+#' @keywords internal
+style_code <- function() {
+  styler::style_dir() |>
     magrittr::extract2("changed") |>
     any()
 }

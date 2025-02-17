@@ -39,8 +39,5 @@ reference:
 - title: "Pre-commit Hooks"
   desc: "Functions for setting up and running pre-commit hooks"
   contents:
-    - check_analytics_key
     - commit_hooks
-    - data_checker
-    - style_code
     - init_hooks
