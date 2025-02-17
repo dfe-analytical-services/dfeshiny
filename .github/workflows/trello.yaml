@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: create a card
-        uses: nentgroup/pr-trello-action@v1
+        uses: nentgroup/pr-trello-action@v2
         with:
           api-key: '${{ secrets.TRELLO_API_KEY }}'
           api-token: '${{ secrets.TRELLO_API_TOKEN }}'
