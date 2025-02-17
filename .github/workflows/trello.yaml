@@ -1,4 +1,4 @@
-name: Create card from PR
+name: Trello PR card
 on:
   pull_request_target:
     types:
