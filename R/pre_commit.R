@@ -21,7 +21,7 @@ init_hooks <- function() {
   Sys.chmod(hook_path, mode = "0755")
 
   message("Pre-commit hook created at ", hook_path)
-  return(hook_path)
+  hook_path
 }
 
 #' Commit Hooks for Data Validation, Analytics Check, and Code Styling
@@ -72,7 +72,7 @@ commit_hooks <- function() {
   }
 
   message("\nCommit blocked: Issues detected.")
-  return(FALSE)
+  FALSE
 }
 
 #' Validate Data Files and Gitignore Configuration
@@ -98,14 +98,14 @@ data_checker <- function(datafile_log = "datafiles_log.csv",
 
   # Read tracking files
   ign_files <- utils::read.csv(ignore_file,
-                               header = FALSE,
-                               stringsAsFactors = FALSE, col.names = "filename"
+    header = FALSE,
+    stringsAsFactors = FALSE, col.names = "filename"
   )
 
   tryCatch(
     {
       log_files <- utils::read.csv(datafile_log, stringsAsFactors = FALSE)
-      if(!all(c("filename","status") %in% colnames(log_files))){
+      if (!all(c("filename", "status") %in% colnames(log_files))) {
         stop("data logfile must contain the columns filename and status")
       }
       ign_text <- readr::read_file(".gitignore")
@@ -125,7 +125,7 @@ data_checker <- function(datafile_log = "datafiles_log.csv",
         "Any files containing sensitive or unpublished data must also be
               included in the .gitignore file."
       )
-      return(FALSE)
+      FALSE
     }
   )
 
@@ -229,9 +229,9 @@ data_checker <- function(datafile_log = "datafiles_log.csv",
 check_analytics_key <- function(ga_file = "google-analytics.html",
                                 ui_file = "ui.R") {
   ga_pattern <- "Z967JJVQQX"
-  if (!file.exists(ga_file)){
-      message("skipping check for google analytics keys...")
-      return(TRUE)
+  if (!file.exists(ga_file)) {
+    message("skipping check for google analytics keys...")
+    return(TRUE)
   }
   ga_content <- readLines(ga_file)
 
