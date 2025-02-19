@@ -130,8 +130,8 @@ data_checker <- function(datafile_log = "datafiles_log.csv",
   )
 
   message("=== Gitignore Validation ===")
-  if (ncol(ign_files) > 1) {
-    message("ERROR: Commas detected in .gitignore")
+  if (grepl(",", ign_text)) {
+    stop("ERROR: Commas detected in .gitignore")
     all_ok <- FALSE
   }
 
@@ -160,6 +160,8 @@ data_checker <- function(datafile_log = "datafiles_log.csv",
       !grepl("renv|datafiles_log.csv", files)
     )
 
+  file_status_list <- list()
+
   for (file in current_files$files) {
     rel_path <- gsub("^./", "", file)
 
@@ -175,6 +177,8 @@ data_checker <- function(datafile_log = "datafiles_log.csv",
 
     status <- tolower(log_files$status[log_files$filename == rel_path])
     in_ignore <- rel_path %in% ign_files$filename
+
+    file_status_list[[rel_path]] <- status
 
     if (!status %in% valid_statuses) {
       if (!in_ignore && !grepl("unpublished", rel_path)) {
@@ -195,6 +199,12 @@ data_checker <- function(datafile_log = "datafiles_log.csv",
   }
 
   if (all_ok) {
+    message("\nThe following data files will all be included as part of this commit:")
+    for (file in names(file_status_list)) {
+      message("  - ", file, " (Status: ", file_status_list[[file]], ")")
+    }
+    message("\nThe above data files will all be included as part of this commit,
+            please double check the listed status for each file is as expected..")
     message("\nAll data file checks passed!")
     return(TRUE)
   } else {
@@ -204,6 +214,7 @@ data_checker <- function(datafile_log = "datafiles_log.csv",
 
   return(FALSE)
 }
+
 
 #' Check for and Replace Google Analytics Keys
 #'
