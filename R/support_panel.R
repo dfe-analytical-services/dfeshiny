@@ -5,7 +5,7 @@
 #'
 #' @param team_email Your team e-mail address, must be a education.gov.uk email
 #' @param repo_name The repository URL, must be a valid URL for the
-#' dfe-analytical-services GitHub area
+#' dfe-analytical-services GitHub area or the dfe-gov-uk Azure DevOps
 #' @param ees_publication Whether the parent publication is hosted on Explore
 #' Education Statistics
 #' @param publication_name The parent publication name
@@ -157,8 +157,10 @@ support_panel <- function(
   if (is_valid_repo_url(repo_name) == FALSE) {
     stop(
       "Please ensure the repo_name argument is a valid URL for a repository on
-      the dfe-analytical-services GitHub area. For example:
-      repo_name = 'https://github.com/dfe-analytical-services/dfeR'.
+      either the dfe-analytical-services GitHub area, for example:
+      repo_name = 'https://github.com/dfe-analytical-services/dfeR',
+      or the dfe-gov-uk area, for example:
+      repo_name = 'https://dfe-gov-uk.visualstudio.com/stats-development/_git/dashboard-analytics'
       "
     )
   }
