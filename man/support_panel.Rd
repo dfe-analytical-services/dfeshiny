@@ -20,7 +20,7 @@ support_panel(
 \item{team_email}{Your team e-mail address, must be a education.gov.uk email}
 
 \item{repo_name}{The repository URL, must be a valid URL for the
-dfe-analytical-services or dfe-gov-uk GitHub area}
+dfe-analytical-services GitHub area or the dfe-gov-uk Azure DevOps}
 
 \item{ees_publication}{Whether the parent publication is hosted on Explore
 Education Statistics}

@@ -96,40 +96,17 @@ data_checker <- function(datafile_log = "datafiles_log.csv",
   suffixes <- "xlsx$|ods$|dat$|csv$|tex$|pdf$|zip$|gz$|parquet$|rda$|rds$"
   valid_statuses <- c("published", "reference", "dummy")
 
-  # Read tracking files
-  ign_files <- utils::read.csv(ignore_file,
-    header = FALSE,
-    stringsAsFactors = FALSE, col.names = "filename"
-  )
+  message("=== .gitignore validation ===")
+  if(file.exists(ignore_file)){
+    ign_files <- utils::read.csv(ignore_file,
+      header = FALSE,
+      stringsAsFactors = FALSE, col.names = "filename"
+    )
+    ign_text <- readr::read_file(".gitignore")
+  } else {
+    stop(".gitignore file not detected, please add a .gitignore file to your project folder.")
+  }
 
-  tryCatch(
-    {
-      log_files <- utils::read.csv(datafile_log, stringsAsFactors = FALSE)
-      if (!all(c("filename", "status") %in% colnames(log_files))) {
-        stop("data logfile must contain the columns filename and status")
-      }
-      ign_text <- readr::read_file(".gitignore")
-    },
-    error = function(e) {
-      message(
-        "Error reading configuration files: ", e$message, "\n",
-        "To protect against accidental publication of sensitive data, ",
-        "we require all dashboard repositories to contain a data files
-              log (datafiles_log.csv), ",
-        "which should list all data files in the repository and their
-              current status, e.g.:\n\n",
-        "filename,status\n",
-        "data/data_file.csv,published\n",
-        "data/unpublished_data.csv,unpublished\n",
-        "data/reference_data.csv,reference\n\n",
-        "Any files containing sensitive or unpublished data must also be
-              included in the .gitignore file."
-      )
-      FALSE
-    }
-  )
-
-  message("=== Gitignore Validation ===")
   if (grepl(",", ign_text)) {
     stop("ERROR: Commas detected in .gitignore")
     all_ok <- FALSE
@@ -150,8 +127,28 @@ data_checker <- function(datafile_log = "datafiles_log.csv",
       all_ok <- FALSE
     }
   }
+  if(all_ok){message("Initial .gitignore validation passed")}
 
-  message("\n=== Data File Validation ===")
+  message("\n=== Data file validation ===")
+  if(!file.exists(datafile_log)){
+    stop(
+      "Error reading configuration file: ", datafile_log, "\n",
+      "To protect against accidental publication of sensitive data, ",
+      "we require all dashboard repositories to contain a data files log (datafiles_log.csv), ",
+      "which should list all data files in the repository and their current status, e.g.:\n\n",
+      "filename,status\n",
+      "data/data_file.csv,published\n",
+      "data/unpublished_data.csv,unpublished\n",
+      "data/reference_data.csv,reference\n\n",
+      "Any files containing sensitive or unpublished data must also be listed in the .gitignore."
+    )
+  } else {
+    log_files <- readr::read_csv(datafile_log)
+    if (!all(c("filename", "status") %in% colnames(log_files))) {
+      stop("The data logfile must contain the columns filename and status")
+    }
+  }
+
   current_files <- data.frame(
     files = list.files("./", recursive = TRUE, full.names = TRUE)
   ) |>

@@ -18,3 +18,4 @@ TRUE if no issues found, FALSE if replacements were made.
 Reads \code{google-analytics.html} and \code{ui.R} to check for Google Analytics keys.
 If found, replaces them with placeholder values and stages the files in git.
 }
+\keyword{internal}

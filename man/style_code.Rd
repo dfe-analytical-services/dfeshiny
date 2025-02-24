@@ -12,3 +12,4 @@ TRUE if changes were made, FALSE otherwise.
 \description{
 Styles all R scripts in the project and detects changes.
 }
+\keyword{internal}

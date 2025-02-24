@@ -18,3 +18,8 @@ in shiny_template repo)
 \item Code styling check (\code{style_code})
 }
 }
+\examples{
+\dontrun{
+commit_hooks()
+}
+}

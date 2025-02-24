@@ -15,10 +15,12 @@ data_checker(datafile_log = "datafiles_log.csv", ignore_file = ".gitignore")
 TRUE if all checks pass, FALSE otherwise
 }
 \description{
-Performs comprehensive checks on data file tracking and .gitignore configuration:
+Performs comprehensive checks on data file tracking and .gitignore
+configuration:
 \enumerate{
 \item Validates .gitignore format
 \item Checks data files against tracking log
 \item Verifies file status classifications
 }
 }
+\keyword{internal}
