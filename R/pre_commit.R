@@ -97,7 +97,7 @@ data_checker <- function(datafile_log = "datafiles_log.csv",
   valid_statuses <- c("published", "reference", "dummy")
 
   message("=== .gitignore validation ===")
-  if(file.exists(ignore_file)){
+  if (file.exists(ignore_file)) {
     ign_files <- utils::read.csv(ignore_file,
       header = FALSE,
       stringsAsFactors = FALSE, col.names = "filename"
@@ -127,10 +127,12 @@ data_checker <- function(datafile_log = "datafiles_log.csv",
       all_ok <- FALSE
     }
   }
-  if(all_ok){message("Initial .gitignore validation passed")}
+  if (all_ok) {
+    message("Initial .gitignore validation passed")
+  }
 
   message("\n=== Data file validation ===")
-  if(!file.exists(datafile_log)){
+  if (!file.exists(datafile_log)) {
     stop(
       "Error reading configuration file: ", datafile_log, "\n",
       "To protect against accidental publication of sensitive data, ",
