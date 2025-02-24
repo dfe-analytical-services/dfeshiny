@@ -36,3 +36,11 @@ reference:
   desc: Functions to create and manage tables and visualisations.
   contents:
   - dfe_reactable
+- title: "Pre-commit Hooks"
+  desc: "Functions for setting up and running pre-commit hooks"
+  contents:
+    - commit_hooks
+    - init_hooks
+    - data_checker
+    - style_code
+    - check_analytics_key
