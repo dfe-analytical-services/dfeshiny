@@ -8,9 +8,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: echo ref_name
-        run: echo running on branch ${GITHUB_REF_NAME}
+        run: echo running on branch ${GITHUB_REF}
       - name: create a card
-        if: startsWith(github.ref_name, 'eesp/')
+        if: startsWith(github.ref, 'eesp/')
         uses: nentgroup/pr-trello-action@v2
         with:
           api-key: '${{ secrets.TRELLO_API_KEY }}'
