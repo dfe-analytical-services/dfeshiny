@@ -1,0 +1,22 @@
+name: Create Trello card
+
+on:
+  workflow_call
+
+jobs:
+  create-card:
+    runs-on: ubuntu-latest
+    steps:
+      - name: echo ref_name
+        run: echo running on branch ${GITHUB_REF_NAME}
+      - name: create a card
+        if: startsWith(github.ref_name, 'eesp/')
+        uses: nentgroup/pr-trello-action@v2
+        with:
+          api-key: '${{ secrets.TRELLO_API_KEY }}'
+          api-token: '${{ secrets.TRELLO_API_TOKEN }}'
+          list-id: '63ce5064a4859b0387f46b9b'
+          title-format: 'Dashboard PR: ${title}'
+          label-ids: |
+             63ce4ffcbfa825468a8e2a69
+             67b364c6c93cf6560ce8bfdc
