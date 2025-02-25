@@ -1,14 +1,19 @@
 name: Create Trello card
 
 on:
-  workflow_call
+  workflow_call:
+    secrets:
+      TRELLO_API_KEY:
+        required: true
+      TRELLO_API_TOKEN:
+        required: true
 
 jobs:
   create-card:
     runs-on: ubuntu-latest
     steps:
       - name: echo ref_name
-        run: echo GITHUB.REF_NAME ${GITHUB_REF_NAME}
+        run: echo GITHUB.HEAD_REF_NAME ${GITHUB_HEAD_REF_NAME}
       - name: create a card
         uses: nentgroup/pr-trello-action@v2
         with:
