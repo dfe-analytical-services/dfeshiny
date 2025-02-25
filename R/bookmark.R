@@ -4,7 +4,9 @@
 #' This function allows for a whitelist of included inputs
 #' for bookmarking
 #'
-#' @param bookmarkingWhitelist list of inputs to include in bookmark
+#' @param bookmarking_whitelist list of inputs to include in bookmark
+#' @param input should be input, it pulls in the shiny inputs
+#' @param session default shiny session
 #' @return a bookmark with relevant inputs included
 #'
 #' @export
@@ -17,14 +19,10 @@
 #'   set_bookmark_include(session, input, bookmarking_whitelist)
 #' })
 #'
-#' observe({
+#' shiny::observe({
 #'   # Trigger this observer every time an input changes
 #'   reactiveValuesToList(input)
 #'   session$doBookmark()
-#' })
-#'
-#' onBookmarked(function(url) {
-#'   updateQueryString(url)
 #' })
 set_bookmark_include <- function(session, input, bookmarking_whitelist) {
   # exclude the white list from complete list
