@@ -19,4 +19,14 @@ server <- function(input, output, session) {
   output$reactable_example <- reactable::renderReactable(
     dfe_reactable(mtcars |> dplyr::select("mpg", "cyl", "hp", "gear"))
   )
+
+  shiny::observe({
+    set_bookmark_include(session, input, bookmarking_whitelist)
+  })
+
+  shiny::observe({
+    # Trigger this observer every time an input changes
+    shiny::reactiveValuesToList(input)
+    session$doBookmark()
+  })
 }

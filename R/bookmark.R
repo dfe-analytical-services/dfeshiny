@@ -21,7 +21,7 @@
 #'
 #' shiny::observe({
 #'   # Trigger this observer every time an input changes
-#'   reactiveValuesToList(input)
+#'   shiny::reactiveValuesToList(input)
 #'   session$doBookmark()
 #' })
 set_bookmark_include <- function(session, input, bookmarking_whitelist) {
