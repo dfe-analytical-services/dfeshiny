@@ -21,7 +21,7 @@ server <- function(input, output, session) {
   )
 
   shiny::observe({
-    set_bookmark_include(session, input, bookmarking_whitelist)
+    dfeshiny::set_bookmark_include(session, input, bookmarking_whitelist) # nolint: [object_usage_linter]
   })
 
   shiny::observe({
