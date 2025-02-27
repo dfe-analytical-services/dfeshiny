@@ -23,4 +23,4 @@ jobs:
           title-format: 'Dashboard PR: ${title}'
           label-ids: |
              63ce4ffcbfa825468a8e2a69
-             67b364c6c93cf6560ce8bfdc
+             67c069d5b93dcff3450d7054
