@@ -19,6 +19,6 @@ jobs:
           api-token: '${{ secrets.TRELLO_API_TOKEN }}'
           list-id: '63ce5064a4859b0387f46b9b' # "To review" column
           title-format: 'Dashboard PR: ${title}'
-          label-ids: |
-             63ce4ffcbfa825468a8e2a69 # "New / to discuss" label
-             67c069d5b93dcff3450d7054 # "public-dashboards" label
+          label-ids: |  # "New / to discuss" and "public-dashboards" labels
+             63ce4ffcbfa825468a8e2a69
+             67c069d5b93dcff3450d7054
