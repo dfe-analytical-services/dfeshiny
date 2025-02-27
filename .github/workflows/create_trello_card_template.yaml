@@ -12,15 +12,13 @@ jobs:
   create-card:
     runs-on: ubuntu-latest
     steps:
-      - name: echo ref_name
-        run: echo GITHUB.HEAD_REF_NAME ${GITHUB_HEAD_REF_NAME}
       - name: create a card
         uses: nentgroup/pr-trello-action@v2
         with:
           api-key: '${{ secrets.TRELLO_API_KEY }}'
           api-token: '${{ secrets.TRELLO_API_TOKEN }}'
-          list-id: '63ce5064a4859b0387f46b9b'
+          list-id: '63ce5064a4859b0387f46b9b' # "To review" column
           title-format: 'Dashboard PR: ${title}'
           label-ids: |
-             63ce4ffcbfa825468a8e2a69
-             67c069d5b93dcff3450d7054
+             63ce4ffcbfa825468a8e2a69 # "New / to discuss" label
+             67c069d5b93dcff3450d7054 # "public-dashboards" label
