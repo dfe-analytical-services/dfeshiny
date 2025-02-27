@@ -25,6 +25,7 @@
 #'   text.
 #' }
 #'
+#' @export
 #' @return A `reactable` HTML widget object.
 #'
 #' @examples
