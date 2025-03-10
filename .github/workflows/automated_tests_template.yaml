@@ -30,6 +30,7 @@ jobs:
         run: |
           if (!requireNamespace("renv", quietly = TRUE)) install.packages("renv")
           renv::restore()
+          renv::install("rstudio/chromote")
 
       - name: Set Chromote to new headless mode
         run: export CHROMOTE_HEADLESS="new"
@@ -37,4 +38,5 @@ jobs:
       - name: Run tests
         shell: Rscript {0}
         run: |
+          chromote::local_chrome_version(binary = "chrome-headless-shell", quiet = FALSE)
           shinytest2::test_app()
