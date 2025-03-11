@@ -4,7 +4,7 @@ pkgdown_sha: ~
 articles:
   implementing-cookies: implementing-cookies.html
   using-the-dfeshiny-deploy-template: using-the-dfeshiny-deploy-template.html
-last_built: 2025-03-04T12:07Z
+last_built: 2025-03-11T09:31Z
 urls:
   reference: https://dfe-analytical-services.github.io/dfeshiny/reference
   article: https://dfe-analytical-services.github.io/dfeshiny/articles
