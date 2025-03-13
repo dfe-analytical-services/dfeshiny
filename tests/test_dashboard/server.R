@@ -29,4 +29,6 @@ server <- function(input, output, session) {
     shiny::reactiveValuesToList(input)
     session$doBookmark()
   })
+  onBookmarked(updateQueryString)
+
 }
