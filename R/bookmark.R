@@ -24,6 +24,8 @@
 #'   shiny::reactiveValuesToList(input)
 #'   session$doBookmark()
 #' })
+#'  onBookmarked(updateQueryString)
+
 set_bookmark_include <- function(session, input, bookmarking_whitelist) {
   # exclude the white list from complete list
   to_exclude <- setdiff(names(input), bookmarking_whitelist)
