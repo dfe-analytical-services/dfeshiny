@@ -6,7 +6,6 @@
 #'
 #' @param bookmarking_whitelist list of inputs to include in bookmark
 #' @param input should be input, it pulls in the shiny inputs
-#' @param session default shiny session
 #' @return a bookmark with relevant inputs included
 #'
 #' @export
@@ -16,7 +15,7 @@
 #'
 #' # In the server.R script ===================================================
 #' shiny::observe({
-#'   set_bookmark_include(session, input, bookmarking_whitelist)
+#'   set_bookmark_include(input, bookmarking_whitelist)
 #' })
 #'
 #' shiny::observe({
@@ -26,13 +25,10 @@
 #' })
 #'  onBookmarked(updateQueryString)
 
-set_bookmark_include <- function(session, input, bookmarking_whitelist) {
+set_bookmark_include <- function(input, bookmarking_whitelist) {
   # exclude the white list from complete list
   to_exclude <- setdiff(names(input), bookmarking_whitelist)
 
   # exclude all remaining inputs from bookmark
   shiny::setBookmarkExclude(to_exclude)
-
-  # Trigger bookmarking whenever relevant inputs change
-  session$doBookmark()
 }

@@ -21,7 +21,7 @@ server <- function(input, output, session) {
   )
 
   shiny::observe({
-    dfeshiny::set_bookmark_include(session, input, bookmarking_whitelist) # nolint: [object_usage_linter]
+    dfeshiny::set_bookmark_include(input, bookmarking_whitelist) # nolint: [object_usage_linter]
   })
 
   shiny::observe({
@@ -29,6 +29,5 @@ server <- function(input, output, session) {
     shiny::reactiveValuesToList(input)
     session$doBookmark()
   })
-  onBookmarked(updateQueryString)
-
+  shiny::onBookmarked(updateQueryString)
 }

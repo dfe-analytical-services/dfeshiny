@@ -4,11 +4,9 @@
 \alias{set_bookmark_include}
 \title{DfE bookmark include}
 \usage{
-set_bookmark_include(session, input, bookmarking_whitelist)
+set_bookmark_include(input, bookmarking_whitelist)
 }
 \arguments{
-\item{session}{default shiny session}
-
 \item{input}{should be input, it pulls in the shiny inputs}
 
 \item{bookmarking_whitelist}{list of inputs to include in bookmark}
@@ -26,12 +24,13 @@ bookmarking_whitelist <- c("navlistPanel", "tabsetpanels")
 
 # In the server.R script ===================================================
 shiny::observe({
-  set_bookmark_include(session, input, bookmarking_whitelist)
+  set_bookmark_include(input, bookmarking_whitelist)
 })
 
 shiny::observe({
   # Trigger this observer every time an input changes
-  reactiveValuesToList(input)
+  shiny::reactiveValuesToList(input)
   session$doBookmark()
 })
+ onBookmarked(updateQueryString)
 }
