@@ -31,6 +31,6 @@ shiny::observe({
   # Trigger this observer every time an input changes
   shiny::reactiveValuesToList(input)
   session$doBookmark()
-})
  onBookmarked(updateQueryString)
+})
 }

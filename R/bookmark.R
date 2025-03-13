@@ -22,8 +22,8 @@
 #'   # Trigger this observer every time an input changes
 #'   shiny::reactiveValuesToList(input)
 #'   session$doBookmark()
-#' })
 #'  onBookmarked(updateQueryString)
+#' })
 
 set_bookmark_include <- function(input, bookmarking_whitelist) {
   # exclude the white list from complete list
