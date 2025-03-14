@@ -8,6 +8,10 @@ on:
         default: "./"
         required: false
         type: string
+      is_package:
+        description: "Is this part of a package"
+        default: 'false'
+        required: false
 
 
 jobs:
@@ -33,6 +37,7 @@ jobs:
           r-version: 4.4.2
 
       - name: Install dependencies
+        if: ${{ inputs.is_package == 'true' }}
         uses: r-lib/actions/setup-r-dependencies@v2
 
       - name: Restore packages
