@@ -12,6 +12,7 @@ on:
         description: "Is this part of a package"
         default: 'false'
         required: false
+        type: string
 
 
 jobs:
