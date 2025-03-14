@@ -29,5 +29,5 @@ server <- function(input, output, session) {
     shiny::reactiveValuesToList(input)
     session$doBookmark()
   })
-  shiny::onBookmarked(updateQueryString)
+  shiny::onBookmarked(updateQueryString) # nolint: [object_usage_linter]
 }
