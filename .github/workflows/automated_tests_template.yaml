@@ -53,4 +53,4 @@ jobs:
         shell: Rscript {0}
         run: |
           chromote::local_chrome_version(binary = "chrome-headless-shell", quiet = FALSE)
-          shinytest2::test_app( ${{ inputs.dashboard_path }})
+          shinytest2::test_app( '${{ inputs.dashboard_path }}')
