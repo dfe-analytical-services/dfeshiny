@@ -32,11 +32,18 @@ jobs:
           use-public-rspm: true
           r-version: 4.4.2
 
-      - name: Restore renv snapshot
+      - name: Install dependencies
+        uses: r-lib/actions/setup-r-dependencies@v2
+
+      - name: Restore packages
         shell: Rscript {0}
         run: |
           if (!requireNamespace("renv", quietly = TRUE)) install.packages("renv")
-          renv::restore()
+          if (file.exists("renv.lock")){
+             renv::restore()
+          } else {
+             warning("No renv.lock file found")
+          }
           renv::install("rstudio/chromote")
 
       - name: Set Chromote to new headless mode
