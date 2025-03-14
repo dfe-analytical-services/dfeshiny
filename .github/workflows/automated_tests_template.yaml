@@ -1,7 +1,14 @@
 name: Dashboard Deploy
 
 on:
-  workflow_call
+  workflow_call:
+    inputs:
+      dashboard_path:
+        description: "Path to dashboard"
+        default: "./"
+        required: false
+        type: string
+
 
 jobs:
   automatedTests:
@@ -39,4 +46,4 @@ jobs:
         shell: Rscript {0}
         run: |
           chromote::local_chrome_version(binary = "chrome-headless-shell", quiet = FALSE)
-          shinytest2::test_app()
+          shinytest2::test_app( ${{ inputs.dashboard_path }})
