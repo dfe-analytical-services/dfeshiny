@@ -6,6 +6,8 @@ on:
 
 name: Test dashboard
 
+jobs:
+  automatedTests:
     uses: dfe-analytical-services/dfeshiny/.github/workflows/automated_tests_template.yaml@bugfix/automated-test-workflow
     with:
       dashboard_path: "./tests/test_dashboard/"
