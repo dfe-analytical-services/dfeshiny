@@ -1,7 +1,19 @@
 name: Dashboard Deploy
 
 on:
-  workflow_call
+  workflow_call:
+    inputs:
+      dashboard_path:
+        description: "Path to dashboard"
+        default: "./"
+        required: false
+        type: string
+      is_package:
+        description: "Is this part of a package"
+        default: 'false'
+        required: false
+        type: string
+
 
 jobs:
   automatedTests:
@@ -25,11 +37,19 @@ jobs:
           use-public-rspm: true
           r-version: 4.4.2
 
-      - name: Restore renv snapshot
+      - name: Install dependencies
+        if: ${{ inputs.is_package == 'true' }}
+        uses: r-lib/actions/setup-r-dependencies@v2
+
+      - name: Restore packages
         shell: Rscript {0}
         run: |
           if (!requireNamespace("renv", quietly = TRUE)) install.packages("renv")
-          renv::restore()
+          if (file.exists("renv.lock")){
+             renv::restore()
+          } else {
+             warning("No renv.lock file found")
+          }
           renv::install("rstudio/chromote")
 
       - name: Set Chromote to new headless mode
@@ -39,4 +59,4 @@ jobs:
         shell: Rscript {0}
         run: |
           chromote::local_chrome_version(binary = "chrome-headless-shell", quiet = FALSE)
-          shinytest2::test_app()
+          shinytest2::test_app( '${{ inputs.dashboard_path }}')
