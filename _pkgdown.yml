@@ -6,6 +6,9 @@ template:
     pkgdown-nav-height: 81.4468px
 
 reference:
+- title: Bookmarks
+  contents:
+  - set_bookmark_include
 - title: Cookies
   contents:
   - has_concept("cookies")
