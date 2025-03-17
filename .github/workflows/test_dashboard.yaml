@@ -8,39 +8,7 @@ name: Test dashboard
 
 jobs:
   automatedTests:
-    runs-on: ${{ matrix.config.os }}
-
-    name: shiny-tests
-
-    strategy:
-      fail-fast: false
-      matrix:
-        config:
-          - {os: ubuntu-latest, r: 'release'}
-
-    env:
-      R_REMOTES_NO_ERRORS_FROM_WARNINGS: true
-      RSPM: ${{ matrix.config.rspm }}
-      RENV_PATHS_ROOT: ~/.local/share/renv
-
-    steps:
-      - uses: actions/checkout@v4
-
-      - uses: r-lib/actions/setup-r@v2
-        with:
-          use-public-rspm: true
-
-      - name: Install dependencies
-        uses: r-lib/actions/setup-r-dependencies@v2
-
-      - name: Run tests
-        shell: Rscript {0}
-        run: |
-          shiny::runTests("tests/test_dashboard", assert = TRUE)
-
-      - name: Upload test results
-        if: failure()
-        uses: actions/upload-artifact@master
-        with:
-          name: ${{ runner.os }}-r${{ matrix.config.r }}-tests
-          path: tests
+    uses: dfe-analytical-services/dfeshiny/.github/workflows/automated_tests_template.yaml@bugfix/automated-test-workflow
+    with:
+      dashboard_path: "./tests/test_dashboard/"
+      is_package: "true"
