@@ -34,8 +34,10 @@ install_air <- function() {
 
   if (
     any(
-      configs %like%
+      data.table::like(
+        configs,
         '"code_formatter_external_command": "~/.local/bin/air format"'
+      )
     )
   ) {
     message("referenced")
@@ -45,7 +47,7 @@ install_air <- function() {
     configs <- append(configs, new_line, after = 1)
     changes <- changes + 1
   }
-  if (any(configs %like% '"reformat_on_save": true')) {
+  if (any(data.table::like(configs, '"reformat_on_save": true'))) {
     message("active")
   } else {
     message("not active: activating now")
@@ -53,7 +55,7 @@ install_air <- function() {
     configs <- append(configs, new_line, after = 1)
     changes <- changes + 1
   }
-  if (any(configs %like% '"code_formatter": "external"')) {
+  if (any(data.table::like(configs, '"code_formatter": "external"'))) {
     message("external ref")
   } else {
     message("no external ref: ref now")
