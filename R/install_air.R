@@ -10,12 +10,8 @@
 
 install_air <- function() {
   # Check for air and settings - need package data.table to do this
-  if (system.file(package = "data.table") != "") {
-    library(data.table)
-  } else {
-    install.packages("data.table")
-    library(data.table)
-  }
+  if (!require(data.table))
+    install.packages("data.table", repos = "http://cran.us.r-project.org")
 
   if ("air" %in% system("ls ~/.config/.", intern = TRUE)) {
     message("installed")
