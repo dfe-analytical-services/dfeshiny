@@ -3,6 +3,8 @@
 #' @description checks for air installation status and installs it if
 #' required, updating the global settings if selected
 #'
+#' @importFrom data.table like
+#'
 #' @examples
 #' \dontrun{
 #' install_air()
@@ -10,9 +12,9 @@
 
 install_air <- function() {
   # Check for air and settings - need package data.table to do this
-  if (!requireNamespace("data.table")) {
-    install.packages("data.table", repos = "http://cran.us.r-project.org")
-  }
+  # if (!requireNamespace("data.table")) {
+  #   install.packages("data.table", repos = "http://cran.us.r-project.org")
+  # }
 
   if ("air" %in% system("ls ~/.config/.", intern = TRUE)) {
     message("installed")
@@ -21,7 +23,7 @@ install_air <- function() {
     platform <- Sys.info()[1]
     if (platform == "Windows") {
       system(
-        'powershell -ExecutionPolicy Bypass -c "irm https://github.com/posit-dev/air/releases/latest/download/air-installer.ps1 | iex"'
+        'powershell -ExecutionPolicy Bypass -c "irm https://github.com/posit-dev/air/releases/latest/download/air-installer.ps1 | iex"' # nolint: [object_usage_linter]
       )
     } else {
       system(
