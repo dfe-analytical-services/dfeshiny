@@ -11,13 +11,10 @@
 air_format_project <- function() {
   # check air is installed
   if ("air" %in% system("ls ~/.config/.", intern = TRUE)) {
-    message("installed")
+    system(
+      "air format ."
+    )
   } else {
-    message("air not installed, installing now")
-    dfeshiny::install_air()
+    message("air not installed, run install_air() before formatting again")
   }
-
-  system(
-    "air format ."
-  )
 }
