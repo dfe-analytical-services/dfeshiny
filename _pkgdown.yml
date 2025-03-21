@@ -6,6 +6,10 @@ template:
     pkgdown-nav-height: 81.4468px
 
 reference:
+- title: Air
+  contents:
+  - air_format_project
+  - install_air
 - title: Cookies
   contents:
   - has_concept("cookies")
