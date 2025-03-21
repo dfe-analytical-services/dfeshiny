@@ -4,6 +4,7 @@
 #' required, updating the global settings if selected
 #'
 #' @importFrom data.table like
+#' @export
 #'
 #' @examples
 #' \dontrun{

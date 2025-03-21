@@ -3,6 +3,8 @@
 #' @description formats the whole project using air
 #'
 #'
+#' @export
+#'
 #' @examples
 #' \dontrun{
 #' air_format_project()
