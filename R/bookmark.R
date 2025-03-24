@@ -16,9 +16,6 @@
 #' # In the server.R script ===================================================
 #' shiny::observe({
 #'   set_bookmark_include(input, bookmarking_whitelist)
-#' })
-#'
-#' shiny::observe({
 #'   # Trigger this observer every time an input changes
 #'   shiny::reactiveValuesToList(input)
 #'   session$doBookmark()

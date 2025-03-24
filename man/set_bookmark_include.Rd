@@ -25,12 +25,11 @@ bookmarking_whitelist <- c("navlistPanel", "tabsetpanels")
 # In the server.R script ===================================================
 shiny::observe({
   set_bookmark_include(input, bookmarking_whitelist)
-})
-
-shiny::observe({
   # Trigger this observer every time an input changes
   shiny::reactiveValuesToList(input)
   session$doBookmark()
- onBookmarked(updateQueryString(url))
+  onBookmarked(function(url) {
+    updateQueryString(url)
+  })
 })
 }
