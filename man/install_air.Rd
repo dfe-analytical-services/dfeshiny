@@ -4,7 +4,10 @@
 \alias{install_air}
 \title{Air Install}
 \usage{
-install_air()
+install_air(update_global_settings = TRUE)
+}
+\arguments{
+\item{update_global_settings}{auto update global settings, or don't}
 }
 \description{
 checks for air installation status and installs it if
