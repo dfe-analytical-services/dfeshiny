@@ -4,10 +4,13 @@
 \alias{air_format_project}
 \title{Air Format Project}
 \usage{
-air_format_project()
+air_format_project(target = ".")
+}
+\arguments{
+\item{target}{single file target for formatting}
 }
 \description{
-formats the whole project using air
+formats the whole project or single file using air
 }
 \examples{
 \dontrun{
