@@ -34,7 +34,7 @@ install_air <- function(update_global_settings = TRUE, check = FALSE) {
         )
       } else {
         system(
-          "curl -LsSf https://github.com/posit-dev/air/releases/latest/download/air-installer.sh | sh"
+          "curl -LsSf https://github.com/posit-dev/air/releases/latest/download/air-installer.sh | sh" # nolint: [object_usage_linter]
         )
       }
     }
