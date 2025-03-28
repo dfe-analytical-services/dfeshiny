@@ -5,10 +5,11 @@
 #' 2. Installing a Git pre-commit hook.
 #' 3. Setting up a GitHub Actions workflow for deployment.
 #'
-#' @param dashboard_name A character string specifying the dashboard name for the deployment configuration.
-#' If NULL, defaults to `"dfe-shiny-template"`.
+#' @param dashboard_name A character string specifying the dashboard name for
+#' the deployment configuration.
 #'
-#' @details This function runs `init_app()`, `init_commit_hooks()`, and `init_workflow()`
+#' @details This function runs `init_app()`, `init_commit_hooks()`, and
+#' `init_workflow()`
 #' in sequence to set up a working environment for a Shiny application.
 #'
 #' @return No return value. The function initializes the complete template.
@@ -18,10 +19,10 @@
 #' init_template(dashboard_name = "my-dashboard")
 #' }
 #' @export
-init_template <- function(dashboard_name = "dfe-shiny-template") {
+init_template <- function(dashboard_name) {
   message("Initializing the DFE Shiny template...")
 
-  # Step 1: Clone the Shiny template repository
+  # Step 1: set up basic app structure
   init_app()
 
   # Step 2: Install Git pre-commit hooks
@@ -33,36 +34,52 @@ init_template <- function(dashboard_name = "dfe-shiny-template") {
   message("DFE Shiny template setup completed successfully.")
 }
 
-#' Load DFE Template R Shiny App into the Working Directory
+#' Initialize a Shiny App Project Structure
 #'
-#' This function clones a template R Shiny application from the repository
-#' "https://github.com.mcas.ms/dfe-analytical-services/shiny-template"
-#' into the current working directory.
+#' Creates the basic file and directory structure for a Shiny application,
+#'  including:`global.R`, `ui.R`, `server.R`, a `data/` folder,
+#'  and a `tests/testthat/` folder.
 #'
-#' @details The function checks if Git is installed before attempting
-#' to clone the repository. If Git is not found, it stops with an error message.
-#' The downloaded repository contains a pre-configured R Shiny app template,
-#' which can be used as a starting point for development.
+#' @param path A character string specifying the root directory
+#' where the app structure should be created. Defaults to the current
+#' working directory (`"."`).
 #'
-#' @return No return value. The function downloads the Shiny app template
-#' into the current directory.
+#' @return No return value. The function is called for
+#' its side effects (i.e., file and folder creation).
+#'
 #' @examples
 #' \dontrun{
-#' init_app()
+#' init_app()              # Creates structure in current directory
+#' init_app("myShinyApp")  # Creates structure in 'myShinyApp' directory
 #' }
+#'
 #' @export
-init_app <- function() {
-  repo_url <- "https://github.com.mcas.ms/dfe-analytical-services/shiny-template"
+init_app <- function(path = ".") {
+  # Define the full paths
+  files <- c("global.R", "ui.R", "server.R")
+  dirs <- c("data", "tests/testthat")
 
-  # Check if Git is installed
-  if (system("git --version", intern = TRUE) == "") {
-    stop("Git is not installed or not found in the system PATH.")
+  # Create files
+  for (file in files) {
+    file_path <- file.path(path, file)
+    if (!file.exists(file_path)) {
+      file.create(file_path)
+      message("Created file: ", file_path)
+    } else {
+      message("File already exists: ", file_path)
+    }
   }
 
-  # Clone the repository into the current working directory
-  cmd <- sprintf("git clone %s", repo_url)
-  system(cmd)
-  message("Shiny template app cloned successfully into the current directory.")
+  # Create directories
+  for (dir in dirs) {
+    dir_path <- file.path(path, dir)
+    if (!dir.exists(dir_path)) {
+      dir.create(dir_path, recursive = TRUE)
+      message("Created directory: ", dir_path)
+    } else {
+      message("Directory already exists: ", dir_path)
+    }
+  }
 }
 
 #' Initialize Git Pre-Commit Hook for a Shiny App
@@ -126,7 +143,7 @@ init_commit_hooks <- function() {
 #' init_workflow(dashboard_name = "my-custom-dashboard")
 #' }
 #' @export
-init_workflow <- function(dashboard_name = "dfe-shiny-template") {
+init_workflow <- function(dashboard_name) {
   # Define paths
   workflows_dir <- ".github/workflows"
   workflow_file <- file.path(workflows_dir, "deploy-shiny.yaml")
