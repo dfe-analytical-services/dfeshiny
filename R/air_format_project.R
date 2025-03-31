@@ -13,7 +13,7 @@
 
 air_format_project <- function(target = ".") {
   # check air is installed
-  if ("air" %in% system("ls ~/.config/.", intern = TRUE)) {
+  if ("air" %in% system("ls ~/.local/bin/.", intern = TRUE)) {
     if (target == ".") {
       system(
         "air format ."
