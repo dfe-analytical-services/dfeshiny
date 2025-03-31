@@ -15,16 +15,25 @@
 #' }
 
 install_air <- function(update_global_settings = TRUE, check = FALSE) {
+  platform <- Sys.info()[1]
+
+  if(platform == "Windows") {
+    prog <- "air.exe"
+    home_loc <- Sys.getenv("USERPROFILE")
+  } else {
+    prog <- "air"
+    home_loc <- Sys.getenv("HOME")
+  }
+
   if (check == TRUE) {
-    if ("air" %in% system("ls ~/.local/bin/.", intern = TRUE)) {
+    if (file.exists(paste0(home_loc, "/.local/bin/", prog))) {
       message("check complete - air already installed")
     } else {
       message("check complete - air is not installed")
     }
   } else {
     # Check for air and settings - need package data.table to do this
-    platform <- Sys.info()[1]
-    if ("air" %in% system("ls ~/.local/bin/.", intern = TRUE)) {
+    if (file.exists(paste0(home_loc, "/.local/bin/", prog))) {
       message("installed")
     } else {
       message("air not installed: installing now")
@@ -42,9 +51,9 @@ install_air <- function(update_global_settings = TRUE, check = FALSE) {
     if (update_global_settings == TRUE) {
       if (Sys.getenv("RSTUDIO_CONFIG_DIR") == "") {
         if (platform == "Windows") {
-          gs_loc <- "~/AppData/Roaming/RStudio/rstudio-prefs.json"
+          gs_loc <- paste0(home_loc,"/AppData/Roaming/RStudio/rstudio-prefs.json")
         } else {
-          gs_loc <- "~/.config/rstudio/rstudio-prefs.json"
+          gs_loc <- paste0(home_loc,"/.config/rstudio/rstudio-prefs.json")
         }
       } else {
         gs_loc <- paste0(
@@ -61,14 +70,22 @@ install_air <- function(update_global_settings = TRUE, check = FALSE) {
           any(
             data.table::like(
               configs,
-              '"code_formatter_external_command": "~/.local/bin/air format"'
+              paste0('"code_formatter_external_command": "',
+                     home_loc,
+                     '/.local/bin/',
+                     prog,
+                     ' format"')
             )
           )
         ) {
           message("referenced")
         } else {
           message("not referenced")
-          new_line <- '"code_formatter_external_command": "~/.local/bin/air format",'
+          new_line <- paste0('"code_formatter_external_command": "',
+                             home_loc,
+                             '/.local/bin/',
+                             prog,
+                             ' format"')
           configs <- append(configs, new_line, after = 1)
           changes <- changes + 1
         }
