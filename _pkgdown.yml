@@ -8,8 +8,8 @@ template:
 reference:
 - title: Air
   contents:
-  - air_format_project
-  - install_air
+  - air_install
+  - air_formatter
 - title: Bookmarks
   contents:
   - set_bookmark_include
