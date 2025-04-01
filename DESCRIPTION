@@ -22,6 +22,7 @@ Imports:
     htmltools,
     lubridate,
     magrittr,
+    rstudio.prefs,
     shiny,
     shinyGovstyle,
     shinyjs,

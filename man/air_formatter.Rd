@@ -2,7 +2,7 @@
 % Please edit documentation in R/air_formatter.R
 \name{air_formatter}
 \alias{air_formatter}
-\title{Air - format Project}
+\title{Air - format files}
 \usage{
 air_formatter(target = ".")
 }
