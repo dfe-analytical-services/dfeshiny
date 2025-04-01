@@ -61,7 +61,7 @@ air_install <- function(update_global_settings = TRUE) {
   }
 }
 
-#' Air - format Project
+#' Air - format files
 #'
 #' @description formats the whole project or single file using air
 #'
@@ -73,7 +73,6 @@ air_install <- function(update_global_settings = TRUE) {
 #' \dontrun{
 #' air_formatter()
 #' }
-
 air_formatter <- function(target = ".") {
   platform <- Sys.info()[1]
 
@@ -102,4 +101,5 @@ air_formatter <- function(target = ".") {
       "Run install_air() before formatting again"
     )
   }
+  return(NULL)
 }
