@@ -4,10 +4,12 @@
 \alias{air_install}
 \title{Air Install}
 \usage{
-air_install(update_global_settings = TRUE)
+air_install(update_global_settings = TRUE, verbose = FALSE)
 }
 \arguments{
 \item{update_global_settings}{auto update global settings, or don't}
+
+\item{verbose}{Run in verbose mode}
 }
 \description{
 checks for air installation status and installs it if

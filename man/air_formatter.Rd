@@ -4,10 +4,12 @@
 \alias{air_formatter}
 \title{Air - format files}
 \usage{
-air_formatter(target = ".")
+air_formatter(target = ".", verbose = FALSE)
 }
 \arguments{
 \item{target}{single file target for formatting}
+
+\item{verbose}{Run in verbose mode}
 }
 \description{
 formats the whole project or single file using air

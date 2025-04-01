@@ -1,5 +1,5 @@
 test_that("air_formatter runs Air", {
-  air_install(update_global_settings = FALSE)
+  air_install(update_global_settings = FALSE, verbose = TRUE)
   temp_dir <- tempdir()
   test_script <- file(file.path(temp_dir, "air_test.R"))
   writeLines(
@@ -8,7 +8,7 @@ test_that("air_formatter runs Air", {
   )
   close(test_script)
 
-  air_formatter(file.path(temp_dir, "air_test.R"))
+  air_formatter(file.path(temp_dir, "air_test.R"), verbose = TRUE)
 
   formatted_code <- readLines(file.path(temp_dir, "air_test.R"))
 

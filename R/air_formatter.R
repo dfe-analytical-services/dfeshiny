@@ -4,6 +4,7 @@
 #' required, updating the global settings if selected
 #'
 #' @param update_global_settings auto update global settings, or don't
+#' @param verbose Run in verbose mode
 #'
 #' @importFrom data.table like
 #' @export
@@ -13,7 +14,7 @@
 #' air_install()
 #' }
 
-air_install <- function(update_global_settings = TRUE) {
+air_install <- function(update_global_settings = TRUE, verbose = FALSE) {
   platform <- Sys.info()[1]
 
   if (platform == "Windows") {
@@ -22,6 +23,10 @@ air_install <- function(update_global_settings = TRUE) {
   } else {
     air_executable <- "air"
     user_home <- Sys.getenv("HOME")
+  }
+
+  if (verbose) {
+    message("Looking for", air_executable, "in", user_home, "/.local/bin/")
   }
 
   # Check for air and settings - need package data.table to do this
@@ -66,6 +71,7 @@ air_install <- function(update_global_settings = TRUE) {
 #' @description formats the whole project or single file using air
 #'
 #' @param target single file target for formatting
+#' @param verbose Run in verbose mode
 #'
 #' @export
 #'
@@ -73,7 +79,7 @@ air_install <- function(update_global_settings = TRUE) {
 #' \dontrun{
 #' air_formatter()
 #' }
-air_formatter <- function(target = ".") {
+air_formatter <- function(target = ".", verbose = FALSE) {
   platform <- Sys.info()[1]
 
   if (platform == "Windows") {
@@ -85,6 +91,9 @@ air_formatter <- function(target = ".") {
   }
 
   air_path <- paste0(user_home, "\\.local\\bin\\", air_executable)
+  if (verbose) {
+    message("Expecting air executable to be in", air_path)
+  }
 
   # check air is installed
   if (file.exists(air_path)) {
