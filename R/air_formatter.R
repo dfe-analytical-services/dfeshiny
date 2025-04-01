@@ -90,7 +90,7 @@ air_formatter <- function(target = ".", verbose = FALSE) {
     user_home <- Sys.getenv("HOME")
   }
 
-  air_path <- paste0(user_home, "\\.local\\bin\\", air_executable)
+  air_path <- paste0(user_home, "/.local/bin/", air_executable)
   if (verbose) {
     message("Expecting air executable to be in", air_path)
   }
