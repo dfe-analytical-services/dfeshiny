@@ -1,4 +1,5 @@
 test_that("air_formatter runs Air", {
+  air_install(update_global_settings = FALSE)
   temp_dir <- tempdir()
   test_script <- file(file.path(temp_dir, "air_test.R"))
   writeLines(
