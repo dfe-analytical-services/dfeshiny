@@ -4,11 +4,11 @@
 \alias{init_template}
 \title{Initialize the DFE Shiny Template Setup}
 \usage{
-init_template(dashboard_name = "dfe-shiny-template")
+init_template(dashboard_name)
 }
 \arguments{
-\item{dashboard_name}{A character string specifying the dashboard name for the deployment configuration.
-If NULL, defaults to \code{"dfe-shiny-template"}.}
+\item{dashboard_name}{A character string specifying the dashboard name for
+the deployment configuration.}
 }
 \value{
 No return value. The function initializes the complete template.
@@ -22,7 +22,8 @@ This function sets up a complete DFE Shiny template by:
 }
 }
 \details{
-This function runs \code{init_app()}, \code{init_commit_hooks()}, and \code{init_workflow()}
+This function runs \code{init_app()}, \code{init_commit_hooks()}, and
+\code{init_workflow()}
 in sequence to set up a working environment for a Shiny application.
 }
 \examples{

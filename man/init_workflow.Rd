@@ -4,7 +4,7 @@
 \alias{init_workflow}
 \title{Initialize GitHub Actions Workflow for Shiny App Deployment}
 \usage{
-init_workflow(dashboard_name = "dfe-shiny-template")
+init_workflow(dashboard_name)
 }
 \arguments{
 \item{dashboard_name}{A character string specifying the dashboard name.

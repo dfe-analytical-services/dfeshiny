@@ -2,27 +2,28 @@
 % Please edit documentation in R/init_app.R
 \name{init_app}
 \alias{init_app}
-\title{Load DFE Template R Shiny App into the Working Directory}
+\title{Initialize a Shiny App Project Structure}
 \usage{
-init_app()
+init_app(path = ".")
+}
+\arguments{
+\item{path}{A character string specifying the root directory
+where the app structure should be created. Defaults to the current
+working directory (\code{"."}).}
 }
 \value{
-No return value. The function downloads the Shiny app template
-into the current directory.
+No return value. The function is called for
+its side effects (i.e., file and folder creation).
 }
 \description{
-This function clones a template R Shiny application from the repository
-"https://github.com.mcas.ms/dfe-analytical-services/shiny-template"
-into the current working directory.
-}
-\details{
-The function checks if Git is installed before attempting
-to clone the repository. If Git is not found, it stops with an error message.
-The downloaded repository contains a pre-configured R Shiny app template,
-which can be used as a starting point for development.
+Creates the basic file and directory structure for a Shiny application,
+including:\code{global.R}, \code{ui.R}, \code{server.R}, a \verb{data/} folder,
+and a \verb{tests/testthat/} folder.
 }
 \examples{
 \dontrun{
-init_app()
+init_app()              # Creates structure in current directory
+init_app("myShinyApp")  # Creates structure in 'myShinyApp' directory
 }
+
 }
