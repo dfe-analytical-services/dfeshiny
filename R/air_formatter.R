@@ -32,9 +32,9 @@ air_install <- function(update_global_settings = TRUE) {
     if (platform == "Windows") {
       system(
         paste(
-          'powershell -ExecutionPolicy Bypass',
-          '-c "irm https://github.com/posit-dev/air/releases/latest/download/air-installer.ps1',
-          ' | iex"'
+          "powershell -ExecutionPolicy Bypass",
+          "-c \"irm https://github.com/posit-dev/air/releases/latest/download/air-installer.ps1",
+          " | iex\""
         )
       )
     } else {

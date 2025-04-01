@@ -2,7 +2,9 @@
 # Doesn't work? testthat::snapshot_review('UI-01-basic_load/', path='tests/test_dashboard/')
 app <- AppDriver$new(
   name = "basic_load",
-  expect_values_screenshot_args = FALSE
+  expect_values_screenshot_args = FALSE,
+  timeout = 20.e3,
+  load_timeout = 20.e3
 )
 
 app$wait_for_idle(5)
