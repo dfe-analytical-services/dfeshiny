@@ -7,6 +7,7 @@ app$wait_for_idle(50)
 
 test_that("Table renders as expected", {
   # Check the initial rendering of the table
+  app$set_inputs(navlistPanel="table_panel_ui")
   app$wait_for_idle(50)
   app$expect_values(output = "reactable_example")
 })

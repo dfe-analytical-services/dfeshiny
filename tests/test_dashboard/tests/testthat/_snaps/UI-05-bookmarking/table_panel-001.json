@@ -1,4 +1,20 @@
 {
+  "input": {
+    "cookies": {
+
+    },
+    "cookies_banner-cookies_accept": 0,
+    "cookies_banner-cookies_link": 0,
+    "cookies_banner-cookies_reject": 0,
+    "cookies_panel-cookies_analytics": "no",
+    "cookies_panel-submit_btn": 0,
+    "navlistPanel": "table_panel_ui",
+    "reactable_example__reactable__page": 1,
+    "reactable_example__reactable__pageSize": 10,
+    "reactable_example__reactable__pages": 4,
+    "reactable_example__reactable__selected": null,
+    "reactable_example__reactable__sorted": null
+  },
   "output": {
     "reactable_example": {
       "x": {
@@ -275,5 +291,8 @@
 
       ]
     }
+  },
+  "export": {
+
   }
 }
