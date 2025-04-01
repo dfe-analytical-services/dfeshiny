@@ -15,12 +15,14 @@ URL: https://dfe-analytical-services.github.io/dfeshiny/
 Depends: 
     R (>= 2.10)
 Imports: 
+    data.table,
     dplyr,
     checkmate,
     glue,
     htmltools,
     lubridate,
     magrittr,
+    rstudio.prefs,
     shiny,
     shinyGovstyle,
     shinyjs,

@@ -6,6 +6,10 @@ template:
     pkgdown-nav-height: 81.4468px
 
 reference:
+- title: Air
+  contents:
+  - air_install
+  - air_formatter
 - title: Bookmarks
   contents:
   - set_bookmark_include
