@@ -83,11 +83,7 @@ init_base_app <- function(
   repo_name = "https://github.com/dfe-analytical-services/dashboard-name",
   feedback_form_url = ""
 ) {
-  # Define the full paths
-  files <- c("server.R")
-  dirs <- c("data", "tests/testthat")
-
-  init_global(
+  global_string <- init_global(
     path = path,
     google_analytics_key = google_analytics_key,
     dashboard_url = dashboard_url,
@@ -98,23 +94,17 @@ init_base_app <- function(
     repo_name = repo_name,
     feedback_form_url = feedback_form_url
   )
-  init_ui(
+  ui_string <- init_ui(
     path = path,
     team_email = team_email
   )
-
-  # Create files
-  for (file in files) {
-    file_path <- file.path(path, file)
-    if (!file.exists(file_path)) {
-      file.create(file_path)
-      message("Created file: ", file_path)
-    } else {
-      message("File already exists: ", file_path)
-    }
-  }
+  server_string <- init_server(
+    path = path
+  )
 
   # Create directories
+  # Define the full paths
+  dirs <- c("data", "tests/testthat")
   for (dir in dirs) {
     dir_path <- file.path(path, dir)
     if (!dir.exists(dir_path)) {
