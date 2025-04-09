@@ -2,11 +2,22 @@
 % Please edit documentation in R/create_dashboard.R
 \name{init_server}
 \alias{init_server}
-\title{Initialise ui.R}
+\title{Initialise server.R}
 \usage{
 init_server(path = ".", team_email = "team.name@education.gov.uk")
 }
+\arguments{
+\item{path}{The root directory where the app should be created. String, default: \code{"."}.}
+
+\item{team_email}{Email address for support contact. String, default:
+\code{"explore.statistics@education.gov.uk"}}
+}
 \description{
-Initialise ui.R
+Initialise server.R
+}
+\examples{
+\dontrun{
+init_server()
+}
 }
 \keyword{internal}

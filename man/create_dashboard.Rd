@@ -6,19 +6,44 @@
 \usage{
 create_dashboard(
   path = "./",
+  dashboard_title = "dfeshiny template",
   google_analytics_key = "XXXXXXXXX",
-  dashboard_url = "https://department-for-education.shinyapps.io/dashboard-name/",
-  site_title = "Dashboard name",
+  dashboard_url = "https://department-for-education.shinyapps.io/dfeshiny-template/",
   parent_pub_name = "Publication name",
   parent_publication =
-    "https://explore-education-statistics.service.gov.uk/find-statistics/publication-name",
-  team_email = "team.name@education.gov.uk",
-  repo_name = "https://github.com/dfe-analytical-services/dashboard-name",
-  feedback_form_url = ""
+    paste0("https://explore-education-statistics.service.gov.uk/find-statistics/",
+    "publication-name"),
+  team_email = "explore.statistics@education.gov.uk",
+  repo_name = "https://github.com/dfe-analytical-services/dfeshiny",
+  feedback_form_url = "",
+  verbose = FALSE
 )
 }
 \arguments{
+\item{path}{The root directory where the app should be created. String, default: \code{"."}.}
+
+\item{dashboard_title}{Site title for the dashboard. String, default: \code{"Shiny template"}}
+
+\item{google_analytics_key}{10 digit Google Analytics key if available. String, default:
+\code{"XXXXXXXXXX"}}
+
+\item{team_email}{Email address for support contact. String, default:
+\code{"explore.statistics@education.gov.uk"}}
+
+\item{repo_name}{The repository URL, must be a valid URL for the dfe-analytical-services GitHub
+area or the dfe-gov-uk Azure DevOps. String, default:
+\code{"https://github.com/dfe-analytical-services/dfeshiny"}}
+
 \item{feedback_form_url}{}
+
+\item{publication_name}{The name of the parent publication. String, default:
+\code{"Publication name"}}
+
+\item{publication_link}{Full URL for the publication on Explore Education. String, default: \code{ "https://explore-education-statistics.service.gov.uk/find-statistics/publication-name"}
+Statistics}
+
+\item{dashboard_link}{Full URL of the dashboard. String, default:
+\code{"https://department-for-education.shinyapps.io/shiny-template/"}}
 }
 \value{
 No return value. The function initializes the complete template.
@@ -38,7 +63,6 @@ in sequence to set up a working environment for a Shiny application.
 }
 \examples{
 \dontrun{
-init_template()
-init_template(dashboard_name = "my-dashboard")
+create_dashboard()
 }
 }

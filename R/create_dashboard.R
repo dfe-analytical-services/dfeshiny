@@ -5,14 +5,22 @@
 #' 2. Installing a Git pre-commit hook.
 #' 3. Setting up a GitHub Actions workflow for deployment.
 #'
-#' @param path
-#' @param google_analytics_key
-#' @param dashboard_url
-#' @param site_title
-#' @param parent_pub_name
-#' @param parent_publication
-#' @param team_email
-#' @param repo_name
+#' @param path The root directory where the app should be created. String, default: `"."`.
+#' @param google_analytics_key 10 digit Google Analytics key if available. String, default:
+#' `"XXXXXXXXXX"`
+#' @param publication_name The name of the parent publication. String, default:
+#' `"Publication name"`
+#' @param publication_link Full URL for the publication on Explore Education. String, default: `
+#' "https://explore-education-statistics.service.gov.uk/find-statistics/publication-name"`
+#' Statistics
+#' @param dashboard_title Site title for the dashboard. String, default: `"Shiny template"`
+#' @param dashboard_link Full URL of the dashboard. String, default:
+#' `"https://department-for-education.shinyapps.io/shiny-template/"`
+#' @param team_email Email address for support contact. String, default:
+#' `"explore.statistics@@education.gov.uk"`
+#' @param repo_name The repository URL, must be a valid URL for the dfe-analytical-services GitHub
+#' area or the dfe-gov-uk Azure DevOps. String, default:
+#' `"https://github.com/dfe-analytical-services/dfeshiny"`
 #' @param feedback_form_url
 #'
 #' @details This function runs `init_app()`, `init_commit_hooks()`, and
@@ -22,31 +30,45 @@
 #' @return No return value. The function initializes the complete template.
 #' @examples
 #' \dontrun{
-#' init_template()
-#' init_template(dashboard_name = "my-dashboard")
+#' create_dashboard()
 #' }
 #' @export
 create_dashboard <- function(
   path = "./",
-  google_analytics_key = 'XXXXXXXXX',
-  dashboard_url = "https://department-for-education.shinyapps.io/dashboard-name/",
-  site_title = "Dashboard name",
+  dashboard_title = "dfeshiny template",
+  google_analytics_key = "XXXXXXXXX",
+  dashboard_url = "https://department-for-education.shinyapps.io/dfeshiny-template/",
   parent_pub_name = "Publication name",
-  parent_publication = "https://explore-education-statistics.service.gov.uk/find-statistics/publication-name",
-  team_email = "team.name@education.gov.uk",
-  repo_name = "https://github.com/dfe-analytical-services/dashboard-name",
-  feedback_form_url = ""
+  parent_publication = paste0(
+    "https://explore-education-statistics.service.gov.uk/find-statistics/",
+    "publication-name"
+  ),
+  team_email = "explore.statistics@education.gov.uk",
+  repo_name = "https://github.com/dfe-analytical-services/dfeshiny",
+  feedback_form_url = "",
+  verbose = FALSE
 ) {
   message("Initializing the DFE Shiny template...")
 
   # Step 1: set up basic app structure
-  init_base_app()
+  init_base_app(
+    path = path,
+    google_analytics_key = google_analytics_key,
+    dashboard_url = dashboard_url,
+    site_title = site_title,
+    parent_pub_name = parent_pub_name,
+    parent_publication = parent_publication,
+    team_email = team_email,
+    repo_name = repo_name,
+    feedback_form_url = feedback_form_url,
+    verbose = verbose
+  )
 
   # Step 2: Install Git pre-commit hooks
   init_commit_hooks()
 
   # Step 3: Setup GitHub Actions workflow
-  init_workflow(dashboard_name = dashboard_name)
+  init_workflow(dashboard_name = site_title)
 
   message("DFE Shiny template setup completed successfully.")
 }
@@ -57,9 +79,6 @@ create_dashboard <- function(
 #'  including:`global.R`, `ui.R`, `server.R`, a `data/` folder,
 #'  and a `tests/testthat/` folder.
 #'
-#' @param path A character string specifying the root directory
-#' where the app structure should be created. Defaults to the current
-#' working directory (`"."`).
 #' @inheritParams create_dashboard
 #'
 #' @return No return value. The function is called for
@@ -68,22 +87,41 @@ create_dashboard <- function(
 #'
 #' @examples
 #' \dontrun{
-#' init_app()              # Creates structure in current directory
-#' init_app("myShinyApp")  # Creates structure in 'myShinyApp' directory
+#' init_base_app()              # Creates structure in current directory
 #' }
 #'
 init_base_app <- function(
   path = "./",
-  google_analytics_key = 'XXXXXXXXX',
+  google_analytics_key = "XXXXXXXXX",
   dashboard_url = "https://department-for-education.shinyapps.io/dashboard-name/",
   site_title = "Dashboard name",
   parent_pub_name = "Publication name",
-  parent_publication = "https://explore-education-statistics.service.gov.uk/find-statistics/publication-name",
+  parent_publication = paste0(
+    "https://explore-education-statistics.service.gov.uk/find-statistics/",
+    "publication-name"
+  ),
   team_email = "team.name@education.gov.uk",
   repo_name = "https://github.com/dfe-analytical-services/dashboard-name",
-  feedback_form_url = ""
+  feedback_form_url = "",
+  verbose = FALSE
 ) {
-  global_string <- init_global(
+  # Create directories
+  dirs <- c("data", "R/footer_pages", "tests/testthat")
+  for (dir in dirs) {
+    dir_path <- file.path(path, dir)
+    if (!dir.exists(dir_path)) {
+      dir.create(dir_path, recursive = TRUE)
+      dfeR::toggle_message("Created directory: ", dir_path, verbose = verbose)
+    } else {
+      dfeR::toggle_message(
+        "Directory already exists: ",
+        dir_path,
+        verbose = verbose
+      )
+    }
+  }
+
+  init_global(
     path = path,
     google_analytics_key = google_analytics_key,
     dashboard_url = dashboard_url,
@@ -94,49 +132,36 @@ init_base_app <- function(
     repo_name = repo_name,
     feedback_form_url = feedback_form_url
   )
-  ui_string <- init_ui(
+  init_ui(
     path = path,
     team_email = team_email
   )
-  server_string <- init_server(
+  init_server(
     path = path
   )
-
-  # Create directories
-  # Define the full paths
-  dirs <- c("data", "tests/testthat")
-  for (dir in dirs) {
-    dir_path <- file.path(path, dir)
-    if (!dir.exists(dir_path)) {
-      dir.create(dir_path, recursive = TRUE)
-      message("Created directory: ", dir_path)
-    } else {
-      message("Directory already exists: ", dir_path)
-    }
-  }
 }
 
 #' Initialise global.R
 #'
-#' @param google_analytics_key
-#' @param site_title
-#' @param parent_pub_name
-#' @param parent_publication
-#' @param team_email
-#' @param repo_name
-#' @param feedback_form_url
+#' @inheritParams create_dashboard
 #'
-#' @returns
+#' @returns NULL
 #' @keywords internal
 #'
 #' @examples
+#' \dontrun{
+#' init_global()
+#' }
 init_global <- function(
   path = "./",
-  google_analytics_key = 'XXXXXXXXX',
+  google_analytics_key = "XXXXXXXXX",
   dashboard_url = "https://department-for-education.shinyapps.io/dashboard-name/",
   site_title = "Dashboard name",
   parent_pub_name = "Publication name",
-  parent_publication = "https://explore-education-statistics.service.gov.uk/find-statistics/publication-name",
+  parent_publication = paste0(
+    "https://explore-education-statistics.service.gov.uk/find-statistics/",
+    "publication-name"
+  ),
   team_email = "team.name@education.gov.uk",
   repo_name = "https://github.com/dfe-analytical-services/dashboard-name",
   feedback_form_url = ""
@@ -193,7 +218,8 @@ init_global <- function(
       "# Source any scripts here. Scripts may be needed to process data before it gets",
       "# to the server file or to hold custom functions to keep the main files shorter.",
       "# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~",
-
+      "lapply(list.files(\"R/footer_pages/\", full.names = TRUE), source)",
+      "",
       "# Set global variables ========================================================",
       paste0("site_title <- \"", site_title, "\""),
       paste0("parent_pub_name <- \"", parent_pub_name, "\""),
@@ -213,16 +239,20 @@ init_global <- function(
   sink(file.path(path, "global.R"))
   globalr_script |> cat()
   sink()
+  return(NULL)
 }
 
 #' Initialise ui.R
 #'
 #' @inheritParams create_dashboard
 #'
-#' @returns
+#' @returns NULL
 #' @keywords internal
 #'
 #' @examples
+#' \dontrun{
+#' init_ui()
+#' }
 init_ui <- function(path = ".", team_email = "team.name@education.gov.uk") {
   uir_script <- paste(
     c(
@@ -354,17 +384,20 @@ init_ui <- function(path = ".", team_email = "team.name@education.gov.uk") {
   sink(file.path(path, "ui.R"))
   uir_script |> cat()
   sink()
-  return(uir_script)
+  return(NULL)
 }
 
-#' Initialise ui.R
+#' Initialise server.R
 #'
 #' @inheritParams create_dashboard
 #'
-#' @returns
+#' @returns NULL
 #' @keywords internal
 #'
 #' @examples
+#' \dontrun{
+#' init_server()
+#' }
 init_server <- function(
   path = ".",
   team_email = "team.name@education.gov.uk"
@@ -406,7 +439,8 @@ init_server <- function(
       "observeEvent(input$dashboard, nav_select(\"pages\", \"dashboard\"))",
       "observeEvent(input$footnotes, nav_select(\"pages\", \"footnotes\"))",
       "observeEvent(input$support, nav_select(\"pages\", \"support\"))",
-      "observeEvent(input$accessibility_statement,nav_select(\"pages\", \"accessibility_statement\"))",
+      "observeEvent(",
+      "input$accessibility_statement,nav_select(\"pages\", \"accessibility_statement\"))",
       "observeEvent(input$cookies_statement,nav_select(\"pages\", \"cookies_statement\")",
       ")",
       "",
@@ -421,7 +455,7 @@ init_server <- function(
       "",
       "# Update title ==============================================================",
       "# This changes the title based on the tab selections and is important for accessibility",
-      "# If on the main dashboard it uses the active tab from left_nav, else it uses the page input",
+      "# On the main dashboard it uses the active tab from left_nav, else it uses the page input",
       "observe({",
       "if (input$pages == \"dashboard\") {",
       "change_window_title(",

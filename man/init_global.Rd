@@ -11,16 +11,34 @@ init_global(
   site_title = "Dashboard name",
   parent_pub_name = "Publication name",
   parent_publication =
-    "https://explore-education-statistics.service.gov.uk/find-statistics/publication-name",
+    paste0("https://explore-education-statistics.service.gov.uk/find-statistics/",
+    "publication-name"),
   team_email = "team.name@education.gov.uk",
   repo_name = "https://github.com/dfe-analytical-services/dashboard-name",
   feedback_form_url = ""
 )
 }
 \arguments{
+\item{path}{The root directory where the app should be created. String, default: \code{"."}.}
+
+\item{google_analytics_key}{10 digit Google Analytics key if available. String, default:
+\code{"XXXXXXXXXX"}}
+
+\item{team_email}{Email address for support contact. String, default:
+\code{"explore.statistics@education.gov.uk"}}
+
+\item{repo_name}{The repository URL, must be a valid URL for the dfe-analytical-services GitHub
+area or the dfe-gov-uk Azure DevOps. String, default:
+\code{"https://github.com/dfe-analytical-services/dfeshiny"}}
+
 \item{feedback_form_url}{}
 }
 \description{
 Initialise global.R
+}
+\examples{
+\dontrun{
+init_global()
+}
 }
 \keyword{internal}
