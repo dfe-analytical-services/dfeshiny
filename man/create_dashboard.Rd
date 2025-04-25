@@ -6,8 +6,8 @@
 \usage{
 create_dashboard(
   path = "./",
-  dashboard_title = "dfeshiny template",
-  google_analytics_key = "XXXXXXXXX",
+  site_title = "dfeshiny template",
+  google_analytics_key = "XXXXXXXXXX",
   dashboard_url = "https://department-for-education.shinyapps.io/dfeshiny-template/",
   parent_pub_name = "Publication name",
   parent_publication =
@@ -22,7 +22,7 @@ create_dashboard(
 \arguments{
 \item{path}{The root directory where the app should be created. String, default: \code{"."}.}
 
-\item{dashboard_title}{Site title for the dashboard. String, default: \code{"Shiny template"}}
+\item{site_title}{Site title for the dashboard. String, default: \code{"Shiny template"}}
 
 \item{google_analytics_key}{10 digit Google Analytics key if available. String, default:
 \code{"XXXXXXXXXX"}}

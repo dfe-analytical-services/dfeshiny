@@ -25,6 +25,8 @@ init_base_app(
 \item{google_analytics_key}{10 digit Google Analytics key if available. String, default:
 \code{"XXXXXXXXXX"}}
 
+\item{site_title}{Site title for the dashboard. String, default: \code{"Shiny template"}}
+
 \item{team_email}{Email address for support contact. String, default:
 \code{"explore.statistics@education.gov.uk"}}
 

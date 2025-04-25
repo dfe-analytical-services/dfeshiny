@@ -13,7 +13,7 @@
 #' @param publication_link Full URL for the publication on Explore Education. String, default: `
 #' "https://explore-education-statistics.service.gov.uk/find-statistics/publication-name"`
 #' Statistics
-#' @param dashboard_title Site title for the dashboard. String, default: `"Shiny template"`
+#' @param site_title Site title for the dashboard. String, default: `"Shiny template"`
 #' @param dashboard_link Full URL of the dashboard. String, default:
 #' `"https://department-for-education.shinyapps.io/shiny-template/"`
 #' @param team_email Email address for support contact. String, default:
@@ -35,8 +35,8 @@
 #' @export
 create_dashboard <- function(
   path = "./",
-  dashboard_title = "dfeshiny template",
-  google_analytics_key = "XXXXXXXXX",
+  site_title = "dfeshiny template",
+  google_analytics_key = "XXXXXXXXXX",
   dashboard_url = "https://department-for-education.shinyapps.io/dfeshiny-template/",
   parent_pub_name = "Publication name",
   parent_publication = paste0(
@@ -50,7 +50,7 @@ create_dashboard <- function(
 ) {
   message("Initializing the DFE Shiny template...")
 
-  # Step 1: set up basic app structure
+  # Set up basic app structure
   init_base_app(
     path = path,
     google_analytics_key = google_analytics_key,
@@ -64,11 +64,20 @@ create_dashboard <- function(
     verbose = verbose
   )
 
-  # Step 2: Install Git pre-commit hooks
-  init_commit_hooks()
+  # Install Git pre-commit hooks
+  init_commit_hooks(path = path)
 
-  # Step 3: Setup GitHub Actions workflow
-  init_workflow(dashboard_name = site_title)
+  # Set up GitHub Actions workflow
+  init_workflow(
+    path = path,
+    site_title = site_title
+  )
+
+  # Set up Google Analytics
+  init_analytics(
+    path = path,
+    ga_code = google_analytics_key
+  )
 
   message("DFE Shiny template setup completed successfully.")
 }
@@ -130,14 +139,16 @@ init_base_app <- function(
     parent_publication = parent_publication,
     team_email = team_email,
     repo_name = repo_name,
-    feedback_form_url = feedback_form_url
+    feedback_form_url = feedback_form_url,
+    verbose = verbose
   )
   init_ui(
     path = path,
-    team_email = team_email
+    verbose = verbose
   )
   init_server(
-    path = path
+    path = path,
+    verbose = verbose
   )
 }
 
@@ -164,63 +175,12 @@ init_global <- function(
   ),
   team_email = "team.name@education.gov.uk",
   repo_name = "https://github.com/dfe-analytical-services/dashboard-name",
-  feedback_form_url = ""
+  feedback_form_url = "",
+  verbose = FALSE
 ) {
   globalr_script <- paste(
     c(
-      "# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~",
-      "# This is the global file.",
-      "# Use it to store functions, library calls, source files etc.",
-      "# Moving these out of the server file and into here improves performance as the",
-      "# global file is run only once when the app launches and stays consistent",
-      "# across users whereas the server and UI files are constantly interacting and",
-      "# responsive to user input.",
-      "# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~",
-      "",
-      "# Library calls ===============================================================",
-      "shhh <- suppressPackageStartupMessages # It's a library, so shhh!",
-
-      "## Core shiny and R packages --------------------------------------------------",
-      "shhh(library(shiny))",
-      "shhh(library(bslib))",
-      "shhh(library(shinytitle))",
-      "shhh(library(metathis))",
-
-      "## Custom packages ------------------------------------------------------------",
-      "shhh(library(dfeR))",
-      "shhh(library(dfeshiny))",
-      "shhh(library(shinyGovstyle))",
-      "shhh(library(afcolours))",
-
-      "## Creating charts and tables--------------------------------------------------",
-      "shhh(library(ggplot2))",
-      "shhh(library(ggiraph))",
-
-      "## Data and string manipulation -----------------------------------------------",
-      "shhh(library(dplyr))",
-      "shhh(library(stringr))",
-
-      "## Data downloads -------------------------------------------------------------",
-      "shhh(library(data.table))",
-
-      "## Testing dependencies -------------------------------------------------------",
-      "# These are not needed for the app itself but including them here keeps them in",
-      "# renv but avoids the app needlessly loading them, saving on load time.",
-      "# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~",
-      "if (FALSE) {",
-      "  shhh(library(shinytest2))",
-      "  shhh(library(testthat))",
-      "  shhh(library(lintr))",
-      "  shhh(library(styler))",
-      "}",
-
-      "# Source R scripts ============================================================",
-      "# Source any scripts here. Scripts may be needed to process data before it gets",
-      "# to the server file or to hold custom functions to keep the main files shorter.",
-      "# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~",
-      "lapply(list.files(\"R/footer_pages/\", full.names = TRUE), source)",
-      "",
-      "# Set global variables ========================================================",
+      readLines("inst/global_template.r"),
       paste0("site_title <- \"", site_title, "\""),
       paste0("parent_pub_name <- \"", parent_pub_name, "\""),
       paste0("parent_publication <- \"", parent_publication, "\""),
@@ -236,9 +196,12 @@ init_global <- function(
     ),
     collapse = "\n"
   )
-  sink(file.path(path, "global.R"))
-  globalr_script |> cat()
-  sink()
+  globalr_script |>
+    cat(file = file.path(path, "global.R"))
+  dfeR::toggle_message(
+    "create_dashboard: global.R created",
+    verbose = verbose
+  )
   return(NULL)
 }
 
@@ -253,137 +216,17 @@ init_global <- function(
 #' \dontrun{
 #' init_ui()
 #' }
-init_ui <- function(path = ".", team_email = "team.name@education.gov.uk") {
-  uir_script <- paste(
-    c(
-      "# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~",
-      "# This is the ui file. Use it to call elements created in your server file into",
-      "# the app, and define where they are placed, and define any user inputs.",
-      "#",
-      "# Other elements like charts, navigation bars etc. are completely up to you to",
-      "# decide what goes in. However, every element should meet accessibility",
-      "# requirements and user needs.",
-      "#",
-      "# This is the user-interface definition of a Shiny web application. You can",
-      "# run the application by clicking 'Run App' above.",
-      "#",
-      "# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~",
-      "",
-      "ui <- function(input, output, session) {",
-      "  page_fluid(",
-      "# Metadata for app ========================================================",
-      "tags$html(lang = \"en\"),",
-      "tags$head(HTML(paste0(\"<title>\", site_title, \"</title>\"))), # set in global.R",
-      "tags$head(tags$link(rel = \"shortcut icon\", href = \"dfefavicon.png\")),",
-      "# Add meta description for search engines",
-      "metathis::meta() %>%",
-      "meta_general(",
-      "application_name = site_title,",
-      "description = \"Interactive tool for exploring data\",",
-      "robots = \"index,follow\",",
-      "generator = \"R Shiny\",",
-      "subject = \"education\",",
-      "rating = \"General\",",
-      "referrer = \"no-referrer\"",
-      "),",
-      "",
-      "# Required to make the title update based on tab changes",
-      "shinytitle::use_shiny_title(),",
-
-      "## Custom CSS -------------------------------------------------------------",
-      "tags$head(",
-      "tags$link(",
-      "rel = \"stylesheet\",",
-      "type = \"text/css\",",
-      "href = \"dfe_shiny_gov_style.css\"",
-      ")",
-      "),",
-      "",
-      "## Custom disconnect function ---------------------------------------------",
-      "dfeshiny::custom_disconnect_message(",
-      "links = site_primary,",
-      "publication_name = parent_pub_name,",
-      "publication_link = parent_publication",
-      "),",
-      "tags$head(includeHTML((\"google-analytics.html\"))),",
-      "shinyjs::useShinyjs(),",
-      "dfeshiny::dfe_cookies_script(),",
-      "dfeshiny::cookies_banner_ui(",
-      "name = site_title",
-      "),",
-      "",
-      "## Header -----------------------------------------------------------------",
-      "dfeshiny::header(",
-      "header = site_title,",
-      "),",
-      "",
-      "## Beta banner ------------------------------------------------------------",
-      "shinyGovstyle::banner(",
-      "\"gds_phase_banner\",",
-      "\"Alpha\",",
-      "paste0(",
-      paste0(
-        "\"This dashboard is being developed, contact",
-        team_email,
-        " with any feedback\""
-      ),
-      ")",
-      "),",
-      "",
-      "# Page navigation =========================================================",
-      "# This switches between the supporting pages in the footer and the main dashboard",
-      "gov_main_layout(",
-      "bslib::navset_hidden(",
-      "id = \"pages\",",
-      "nav_panel(",
-      "\"dashboard\",",
-      "## Main dashboard ---------------------------------------------------",
-      "layout_columns(",
-      "# Override default wrapping breakpoints to avoid text overlap",
-      "col_widths = breakpoints(sm = c(4, 8), md = c(3, 9), lg = c(2, 9)),",
-      "## Left navigation ------------------------------------------------",
-      "dfe_contents_links(",
-      "links_list = c(",
-      "\"Panel 1\",",
-      "\"User guide\"",
-      ")",
-      "),",
-      "## Dashboard panels -----------------------------------------------",
-      "bslib::navset_hidden(",
-      "id = \"left_nav\",",
-      "nav_panel(",
-      "\"panel_1\",",
-      "prov_breakdowns_ui(id = \"panel_1\")",
-      "),",
-      "nav_panel(\"user_guide\", user_guide())",
-      ")",
-      ")",
-      "),",
-      "## Footer pages -------------------------------------------------------",
-      "nav_panel(\"footnotes\", footnotes_page()),",
-      "nav_panel(\"support\", support_page()),",
-      "nav_panel(\"accessibility_statement\", accessibility_page()),",
-      "nav_panel(\"cookies_statement\", cookies_page())",
-      ")",
-      "),",
-      "",
-      "# Footer ==================================================================",
-      "dfe_footer(",
-      "links_list = c(",
-      "\"Footnotes\",",
-      "\"Support\",",
-      "\"Accessibility statement\",",
-      "\"Cookies statement\"",
-      ")",
-      ")",
-      ")",
-      "}"
-    ),
-    collapse = "\n"
+init_ui <- function(
+  path = ".",
+  verbose = FALSE
+) {
+  uir_script <- readLines("inst/ui_template.r") |>
+    paste(collapse = "\n")
+  uir_script |> cat(file = file.path(path, "ui.R"))
+  dfeR::toggle_message(
+    "create_dashboard: ui.R created",
+    verbose = verbose
   )
-  sink(file.path(path, "ui.R"))
-  uir_script |> cat()
-  sink()
   return(NULL)
 }
 
@@ -400,81 +243,15 @@ init_ui <- function(path = ".", team_email = "team.name@education.gov.uk") {
 #' }
 init_server <- function(
   path = ".",
-  team_email = "team.name@education.gov.uk"
+  verbose = FALSE
 ) {
-  serverr_script <- paste(
-    c(
-      "# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~",
-      "# This is the server file.",
-      "# Use it to create interactive elements like tables, charts and text for your",
-      "# app.",
-      "#",
-      "# Anything you create in the server file won't appear in your app until you call",
-      "# it in the UI file. This server script gives examples of plots and value boxes",
-      "#",
-      "# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~",
-      "",
-      "server <- function(input, output, session) {",
-      "# Manage cookie consent",
-      "output$cookies_status <- dfeshiny::cookies_banner_server(",
-      "input_cookies = shiny::reactive(input$cookies),",
-      "parent_session = session,",
-      "google_analytics_key = google_analytics_key",
-      ")",
-      "",
-      "dfeshiny::cookies_panel_server(",
-      "input_cookies = shiny::reactive(input$cookies),",
-      "google_analytics_key = google_analytics_key",
-      ")",
-      "",
-      "# Navigation ================================================================",
-      "## Main content left navigation ---------------------------------------------",
-      "observeEvent(",
-      "input$panel_1,",
-      "nav_select(\"left_nav\", \"panel_1\")",
-      ")",
-      "observeEvent(input$user_guide, nav_select(\"left_nav\", \"user_guide\"))",
-      "",
-      "## Footer links -------------------------------------------------------------",
-      "observeEvent(input$dashboard, nav_select(\"pages\", \"dashboard\"))",
-      "observeEvent(input$footnotes, nav_select(\"pages\", \"footnotes\"))",
-      "observeEvent(input$support, nav_select(\"pages\", \"support\"))",
-      "observeEvent(",
-      "input$accessibility_statement,nav_select(\"pages\", \"accessibility_statement\"))",
-      "observeEvent(input$cookies_statement,nav_select(\"pages\", \"cookies_statement\")",
-      ")",
-      "",
-      "## Back links to main dashboard ---------------------------------------------",
-      "observeEvent(input$footnotes_to_dashboard, nav_select(\"pages\", \"dashboard\"))",
-      "observeEvent(input$support_to_dashboard, nav_select(\"pages\", \"dashboard\"))",
-      "observeEvent(input$cookies_to_dashboard, nav_select(\"pages\", \"dashboard\"))",
-      "observeEvent(",
-      "input$accessibility_to_dashboard,",
-      "nav_select(\"pages\", \"dashboard\")",
-      ")",
-      "",
-      "# Update title ==============================================================",
-      "# This changes the title based on the tab selections and is important for accessibility",
-      "# On the main dashboard it uses the active tab from left_nav, else it uses the page input",
-      "observe({",
-      "if (input$pages == \"dashboard\") {",
-      "change_window_title(",
-      "title = paste0(site_title, \" - \", gsub(\"_\", \" \", input$left_nav))",
-      ")",
-      "} else {",
-      "change_window_title(",
-      "title = paste0(site_title, \" - \", gsub(\"_\", \" \", input$pages))",
-      ")",
-      "}",
-      "})",
-      "",
-      "}"
-    ),
-    collapse = "\n"
+  serverr_script <- readLines("inst/server_template.r") |>
+    paste(collapse = "\n")
+  serverr_script |> cat(file = file.path(path, "server.R"))
+  dfeR::toggle_message(
+    "create_dashboard: server.R created",
+    verbose = verbose
   )
-  sink(file.path(path, "server.R"))
-  serverr_script |> cat()
-  sink()
   return(serverr_script)
 }
 
@@ -491,13 +268,15 @@ init_server <- function(
 #' is not a Git repository, it stops with an error message.
 #' The downloaded script ensures best practices before committing changes.
 #'
+#' @inheritParams create_dashboard
+#'
 #' @return No return value. The function installs the pre-commit hook.
 #' @examples
 #' \dontrun{
 #' init_commit_hooks()
 #' }
 #' @export
-init_commit_hooks <- function() {
+init_commit_hooks <- function(path = "./") {
   # Define the Git pre-commit hook file URL
   hook_url <- "https://raw.githubusercontent.com/dfe-analytical-services/shiny-template/main/.hooks/pre-commit.R"
 
@@ -509,12 +288,12 @@ init_commit_hooks <- function() {
   }
 
   # Define the destination path for the pre-commit hook
-  hook_path <- ".git/hooks/pre-commit"
+  hook_path <- file.path(path, ".git/hooks/pre-commit")
 
   # Download and write the file
   tryCatch(
     {
-      download.file(hook_url, hook_path, mode = "wb")
+      utils::download.file(hook_url, hook_path, mode = "wb")
       Sys.chmod(hook_path, mode = "755") # Make it executable
       message("Pre-commit hook installed successfully.")
     },
@@ -530,8 +309,7 @@ init_commit_hooks <- function() {
 #' It ensures that the `.github/workflows/` directory exists, downloads a
 #' deployment workflow file, and creates a configuration YAML file.
 #'
-#' @param dashboard_name A character string specifying the dashboard name.
-#' default value is `"dfe-shiny-template"`.
+#' @inheritParams create_dashboard
 #'
 #' @details If the `.github/workflows/` directory does not exist, it is created.
 #' The function then downloads the deployment workflow file and places it inside
@@ -545,7 +323,7 @@ init_commit_hooks <- function() {
 #' init_workflow(dashboard_name = "my-custom-dashboard")
 #' }
 #' @export
-init_workflow <- function(dashboard_name) {
+init_workflow <- function(site_title, path = "./") {
   # Define paths
   workflows_dir <- ".github/workflows"
   workflow_file <- file.path(workflows_dir, "deploy-shiny.yaml")
@@ -563,7 +341,7 @@ init_workflow <- function(dashboard_name) {
   # Download and save the workflow file
   tryCatch(
     {
-      download.file(workflow_url, workflow_file, mode = "wb")
+      utils::download.file(workflow_url, workflow_file, mode = "wb")
       message("GitHub Actions workflow file downloaded successfully.")
     },
     error = function(e) {
@@ -574,12 +352,12 @@ init_workflow <- function(dashboard_name) {
   # Create the deployment configuration YAML file
   yaml_content <- sprintf(
     "dashboard_name: %s\ndeploy_target: shinyapps\n",
-    dashboard_name
+    site_title
   )
 
   tryCatch(
     {
-      writeLines(yaml_content, config_file)
+      writeLines(yaml_content, file.path(path, config_file))
       message("Deployment configuration file created successfully.")
     },
     error = function(e) {

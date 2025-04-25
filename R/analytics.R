@@ -8,6 +8,7 @@
 #' @param ga_code The Google Analytics code for the dashboard
 #' @param create_file Boolean TRUE or FALSE, default is TRUE, false will return
 #' the HTML in the console and is used mainly for testing or comparisons
+#' @inheritParams create_dashboard
 #'
 #' @importFrom magrittr %>%
 #' @return NULL
@@ -17,7 +18,11 @@
 #' if (interactive()) {
 #'   init_analytics(ga_code = "0123456789")
 #' }
-init_analytics <- function(ga_code, create_file = TRUE) {
+init_analytics <- function(
+  ga_code,
+  path = "./",
+  create_file = TRUE
+) {
   if (!is.logical(create_file)) {
     stop("create_file must always be TRUE or FALSE")
   }
@@ -117,8 +122,10 @@ dashboard.
   } else {
     if (file.exists("google-analytics.html")) {
       message("Analytics file already exists.")
-      message("If you have any customisations in that file, make sure you've
-    backed those up before over-writing.")
+      message(
+        "If you have any customisations in that file, make sure you've
+    backed those up before over-writing."
+      )
       user_input <- readline(
         prompt = "Are you happy to overwrite the existing analytics script (y/N) "
       ) |>
@@ -132,10 +139,16 @@ dashboard.
       write_out <- TRUE
     }
     if (write_out) {
-      cat(html_script_with_id, file = "google-analytics.html", sep = "\n")
+      cat(
+        html_script_with_id,
+        file = file.path(path, "google-analytics.html"),
+        sep = "\n"
+      )
       message("")
       message("Google analytics script created as google-analytics.html.")
-      message("You'll need to add the following line to your ui.R script to start using analytics:")
+      message(
+        "You'll need to add the following line to your ui.R script to start using analytics:"
+      )
       message("")
       message("tags$head(includeHTML((google-analytics.html))),")
     } else {

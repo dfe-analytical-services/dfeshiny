@@ -15,7 +15,8 @@ init_global(
     "publication-name"),
   team_email = "team.name@education.gov.uk",
   repo_name = "https://github.com/dfe-analytical-services/dashboard-name",
-  feedback_form_url = ""
+  feedback_form_url = "",
+  verbose = FALSE
 )
 }
 \arguments{
@@ -23,6 +24,8 @@ init_global(
 
 \item{google_analytics_key}{10 digit Google Analytics key if available. String, default:
 \code{"XXXXXXXXXX"}}
+
+\item{site_title}{Site title for the dashboard. String, default: \code{"Shiny template"}}
 
 \item{team_email}{Email address for support contact. String, default:
 \code{"explore.statistics@education.gov.uk"}}

@@ -4,13 +4,10 @@
 \alias{init_ui}
 \title{Initialise ui.R}
 \usage{
-init_ui(path = ".", team_email = "team.name@education.gov.uk")
+init_ui(path = ".", verbose = FALSE)
 }
 \arguments{
 \item{path}{The root directory where the app should be created. String, default: \code{"."}.}
-
-\item{team_email}{Email address for support contact. String, default:
-\code{"explore.statistics@education.gov.uk"}}
 }
 \description{
 Initialise ui.R

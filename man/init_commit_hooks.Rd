@@ -4,7 +4,10 @@
 \alias{init_commit_hooks}
 \title{Initialize Git Pre-Commit Hook for a Shiny App}
 \usage{
-init_commit_hooks()
+init_commit_hooks(path = "./")
+}
+\arguments{
+\item{path}{The root directory where the app should be created. String, default: \code{"."}.}
 }
 \value{
 No return value. The function installs the pre-commit hook.

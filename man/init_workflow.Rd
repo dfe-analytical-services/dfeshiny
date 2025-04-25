@@ -4,11 +4,12 @@
 \alias{init_workflow}
 \title{Initialize GitHub Actions Workflow for Shiny App Deployment}
 \usage{
-init_workflow(dashboard_name)
+init_workflow(site_title, path = "./")
 }
 \arguments{
-\item{dashboard_name}{A character string specifying the dashboard name.
-default value is \code{"dfe-shiny-template"}.}
+\item{site_title}{Site title for the dashboard. String, default: \code{"Shiny template"}}
+
+\item{path}{The root directory where the app should be created. String, default: \code{"."}.}
 }
 \value{
 No return value. The function sets up the workflow and configuration.
