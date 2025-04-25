@@ -5,11 +5,12 @@
 #'
 #' @param links_list List of links for the navigation panel
 #'
-#' @returns
+#' @returns NULL
 #' @export
 #'
 #' @examples
-dfe_contents_links <- function(links_list) {
+#' dfe_content_links(c("Data", "Information"))
+dfe_content_links <- function(links_list) {
   # Add the HTML around the link and make an id by snake casing
   create_sidelink <- function(link_text) {
     tags$li(

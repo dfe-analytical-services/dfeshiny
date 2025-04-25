@@ -82,7 +82,7 @@ ui <- function(input, output, session) {
             # Override default wrapping breakpoints to avoid text overlap
             col_widths = breakpoints(sm = c(4, 8), md = c(3, 9), lg = c(2, 9)),
             ## Left navigation ------------------------------------------------
-            dfe_contents_links(
+            dfe_content_links(
               links_list = c(
                 "Panel 1",
                 "User guide"
