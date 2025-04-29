@@ -40,6 +40,11 @@
 #'   shinyApp(ui, server)
 #' }
 dfe_reactable <- function(data, ...) {
+  # Styling note: The govuk-table__header and govuk-table__cell styles are
+  # defined in shinyGovstyle (which currently loads the css on package load in
+  # zzz.R). As shinyGovstyle is a dependency for dfeshiny, then that css will
+  # automatically be available to dfeshiny when used and doesn't need defining
+  # in dfeshiny itself..
   reactable::reactable(
     data,
     highlight = TRUE,
