@@ -93,7 +93,7 @@ ui <- function(input, output, session) {
               id = "left_nav",
               nav_panel(
                 "panel_1",
-                prov_breakdowns_ui(id = "panel_1")
+                dashboard_page(id = "panel_1")
               ),
               nav_panel("user_guide", user_guide())
             )
