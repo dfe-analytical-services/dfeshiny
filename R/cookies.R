@@ -98,7 +98,7 @@ cookies_banner_ui <- function(
 ) {
   # Attach CSS from inst/www/css/cookie-banner.css
   dependency <- htmltools::htmlDependency(
-    name = "disconnect-dialogue",
+    name = "cookie-banner",
     version = as.character(utils::packageVersion("dfeshiny")[[1]]),
     src = c(href = "dfeshiny/css"),
     stylesheet = "cookie-banner.css"
