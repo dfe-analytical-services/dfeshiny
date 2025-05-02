@@ -7,30 +7,16 @@ on:
 
 name: lint.yaml
 
-permissions: read-all
+permissions:
+  actions: write
+  contents: read
+  packages: write
+  pull-requests: write
+  security-events: write
 
 jobs:
   lint:
-    runs-on: ubuntu-latest
-    env:
-      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
-    steps:
-      - uses: actions/checkout@v4
-
-      - uses: r-lib/actions/setup-r@v2
-        with:
-          use-public-rspm: true
-
-      - uses: r-lib/actions/setup-r-dependencies@v2
-        with:
-          extra-packages: any::lintr, local::.
-
-      - name: Lint
-        run: |
-          # Pin the lintr version to avoid breaking changes with newer 3.2.0 version
-          # See: https://github.com/apache/arrow/pull/45524
-          pak::pak("lintr@3.1.2")
-          lintr::lint_package()
-        shell: Rscript {0}
-        env:
-          LINTR_ERROR_ON_LINT: true
+    uses: dfe-analytical-services/dfeshiny/.github/workflows/lintr_reusable.yaml@new-feature/lintr-workflow-template
+    secrets:
+      SHINYAPPS_SECRET: ${{ secrets.SHINYAPPS_SECRET }}
+      SHINYAPPS_TOKEN: ${{ secrets.SHINYAPPS_TOKEN }}
