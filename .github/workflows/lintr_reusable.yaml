@@ -36,9 +36,9 @@ jobs:
         if: ${{ inputs.is_package == 'true' }}
         uses: r-lib/actions/setup-r-dependencies@v2
         with:
-          extra-packages:
-            - lintr
-            - cyclocomp
+          extra-packages: |
+            lintr
+            cyclocomp
 
       - name: Run lintr
         run: lintr::sarif_output(lintr::lint_dir("."), "lintr-results.sarif")
