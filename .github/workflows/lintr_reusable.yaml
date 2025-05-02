@@ -2,6 +2,12 @@ name: lintr scan
 
 on:
   workflow_call:
+    inputs:
+      is_package:
+        description: "Is this part of a package"
+        default: 'false'
+        required: false
+        type: string
     secrets:
       SHINYAPPS_SECRET:
         required: true
@@ -26,13 +32,22 @@ jobs:
         with:
           use-public-rspm: true
 
-      - name: Restore renv snapshot
+      - name: Install dependencies
+        if: ${{ inputs.is_package == 'true' }}
+        uses: r-lib/actions/setup-r-dependencies@v2
+
+      - name: Restore packages
         shell: Rscript {0}
         run: |
           if (!requireNamespace("renv", quietly = TRUE)) install.packages("renv")
-          renv::restore()
-          renv::install("lintr")
-          renv::install("cyclocomp")
+          if (file.exists("renv.lock")){
+             renv::restore()
+             renv::install("lintr")
+             renv::install("cyclocomp")
+          } else {
+             warning("No renv.lock file found")
+             install.packages(c("lintr", "cyclocomp"))
+          }
 
       - name: Run lintr
         run: lintr::sarif_output(lintr::lint_dir("."), "lintr-results.sarif")
