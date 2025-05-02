@@ -40,6 +40,14 @@ jobs:
             lintr
             cyclocomp
 
+      - name: renv restore packages
+        if: ${{ inputs.is_package == 'false' }}
+        run: |
+          renv::restore()
+          renv::install("lintr")
+          renv::install("cyclocomp")
+        shell: Rscript {0}
+
       - name: Run lintr
         run: lintr::sarif_output(lintr::lint_dir("."), "lintr-results.sarif")
         shell: Rscript {0}
