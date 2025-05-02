@@ -52,14 +52,7 @@ dfe_reactable <- function(data, ...) {
     showSortIcon = TRUE,
     resizable = TRUE,
     fullWidth = TRUE,
-    defaultColDef = reactable::colDef(
-      headerClass = "govuk-table__header",
-      html = TRUE,
-      na = "NA",
-      minWidth = 65,
-      align = "left",
-      class = "govuk-table__cell"
-    ),
+    defaultColDef = reactable::colDef(headerClass = "govuk-table__header",html = TRUE,na = "NA",minWidth = 65,align = "left",class = "govuk-table__cell"),
     rowClass = "govuk-table__row",
     language = reactable::reactableLang(
       searchPlaceholder = "Search table..."
