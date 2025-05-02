@@ -21,8 +21,18 @@ custom_disconnect_message(
 
 \item{reset}{the text to appear that will reset the page when clicked}
 
+\item{dashboard_title}{Title of the dashboard}
+
 \item{links}{A vector of possible URLs for the public site. Should mostly just be a single URL,
 but can be two URLs if an overflow site has been set up}
+
+\item{publication_name}{The parent publication name}
+
+\item{publication_link}{The link to the publication on Explore Education
+Statistics}
+
+\item{support_contact}{Email address for support contact, defaults to
+explore.statistics@education.gov.uk}
 
 \item{custom_refresh}{Custom refresh link, defaults to refreshing the page, main value is if you
 have bookmarking enabled and want the refresh to send to the initial view instead of reloading

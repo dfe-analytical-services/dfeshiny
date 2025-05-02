@@ -34,7 +34,7 @@ init_global(
 area or the dfe-gov-uk Azure DevOps. String, default:
 \code{"https://github.com/dfe-analytical-services/dfeshiny"}}
 
-\item{feedback_form_url}{}
+\item{verbose}{}
 }
 \description{
 Initialise global.R

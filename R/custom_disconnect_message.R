@@ -8,6 +8,12 @@
 #' @param reset the text to appear that will reset the page when clicked
 #' @param links A vector of possible URLs for the public site. Should mostly just be a single URL,
 #' but can be two URLs if an overflow site has been set up
+#' @param publication_name The parent publication name
+#' @param publication_link The link to the publication on Explore Education
+#' Statistics
+#' @param dashboard_title Title of the dashboard
+#' @param support_contact Email address for support contact, defaults to
+#' explore.statistics@@education.gov.uk
 #' @param custom_refresh Custom refresh link, defaults to refreshing the page, main value is if you
 #' have bookmarking enabled and want the refresh to send to the initial view instead of reloading
 #' any bookmarks

@@ -34,7 +34,7 @@ init_base_app(
 area or the dfe-gov-uk Azure DevOps. String, default:
 \code{"https://github.com/dfe-analytical-services/dfeshiny"}}
 
-\item{feedback_form_url}{}
+\item{verbose}{}
 }
 \value{
 No return value. The function is called for

@@ -8,6 +8,8 @@ init_ui(path = ".", verbose = FALSE)
 }
 \arguments{
 \item{path}{The root directory where the app should be created. String, default: \code{"."}.}
+
+\item{verbose}{}
 }
 \description{
 Initialise ui.R

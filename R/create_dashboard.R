@@ -8,20 +8,17 @@
 #' @param path The root directory where the app should be created. String, default: `"."`.
 #' @param google_analytics_key 10 digit Google Analytics key if available. String, default:
 #' `"XXXXXXXXXX"`
-#' @param publication_name The name of the parent publication. String, default:
-#' `"Publication name"`
-#' @param publication_link Full URL for the publication on Explore Education. String, default: `
-#' "https://explore-education-statistics.service.gov.uk/find-statistics/publication-name"`
-#' Statistics
-#' @param site_title Site title for the dashboard. String, default: `"Shiny template"`
-#' @param dashboard_link Full URL of the dashboard. String, default:
-#' `"https://department-for-education.shinyapps.io/shiny-template/"`
+#' @param site_title Site title for the dashboard. String, default: `"dfeshiny template"`
 #' @param team_email Email address for support contact. String, default:
 #' `"explore.statistics@@education.gov.uk"`
 #' @param repo_name The repository URL, must be a valid URL for the dfe-analytical-services GitHub
 #' area or the dfe-gov-uk Azure DevOps. String, default:
 #' `"https://github.com/dfe-analytical-services/dfeshiny"`
 #' @param feedback_form_url
+#' @param dashboard_url
+#' @param parent_pub_name
+#' @param parent_publication
+#' @param verbose
 #'
 #' @details This function runs `init_app()`, `init_commit_hooks()`, and
 #' `init_workflow()`

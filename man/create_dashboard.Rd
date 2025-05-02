@@ -34,16 +34,7 @@ create_dashboard(
 area or the dfe-gov-uk Azure DevOps. String, default:
 \code{"https://github.com/dfe-analytical-services/dfeshiny"}}
 
-\item{feedback_form_url}{}
-
-\item{publication_name}{The name of the parent publication. String, default:
-\code{"Publication name"}}
-
-\item{publication_link}{Full URL for the publication on Explore Education. String, default: \code{ "https://explore-education-statistics.service.gov.uk/find-statistics/publication-name"}
-Statistics}
-
-\item{dashboard_link}{Full URL of the dashboard. String, default:
-\code{"https://department-for-education.shinyapps.io/shiny-template/"}}
+\item{verbose}{}
 }
 \value{
 No return value. The function initializes the complete template.

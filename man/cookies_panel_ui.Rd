@@ -10,8 +10,8 @@ cookies_panel_ui(id = "cookies_panel", google_analytics_key = NULL)
 \item{id}{Shiny tag shared with cookies_panel_server(), can be any string set by
 the user as long as it matches the id in the cookies_panel_server()}
 
-\item{google_analytics_key}{Provide the GA 10 digit key of the form
-"ABCDE12345"}
+\item{google_analytics_key}{10 digit Google Analytics key if available. String, default:
+\code{"XXXXXXXXXX"}}
 }
 \value{
 a HTML div, containing standard cookies content for a public R
