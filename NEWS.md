@@ -3,6 +3,7 @@
 * Added extra flexibility to custom disconnect message in contact details and refresh link
 * Relaxed arguments in cookies banner so different IDs can be used for navigation panel
 * Fixed bug with inputId in the cookies banner
+* Re-structured cookie UI and added margins to cookie banner css
 
 # dfeshiny 0.5.3
 

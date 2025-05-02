@@ -92,7 +92,17 @@ dfe_cookies_script <- function() {
 #' @return shiny::tags$div()
 #' @export
 #' @inherit cookies examples
-cookies_banner_ui <- function(id = "cookies_banner", name = "DfE R-Shiny dashboard template") {
+cookies_banner_ui <- function(
+  id = "cookies_banner",
+  name = "DfE R-Shiny dashboard template"
+) {
+  # Attach CSS from inst/www/css/cookie-banner.css
+  dependency <- htmltools::htmlDependency(
+    name = "cookie-banner",
+    version = as.character(utils::packageVersion("dfeshiny")[[1]]),
+    src = c(href = "dfeshiny/css"),
+    stylesheet = "cookie-banner.css"
+  )
   shiny::tags$div(
     id = shiny::NS(id, "cookies_div"),
     class = "govuk-cookie-banner",
@@ -105,12 +115,12 @@ cookies_banner_ui <- function(id = "cookies_banner", name = "DfE R-Shiny dashboa
         class = "govuk-grid-row",
         shiny::tags$div(
           class = "govuk-grid-column-two-thirds",
-          shiny::tags$h2(
-            class = "govuk-cookie-banner__heading govuk-heading-m",
-            name
-          ),
           shiny::tags$div(
             class = "govuk-cookie-banner__content",
+            shiny::tags$h2(
+              class = "govuk-cookie-banner__heading govuk-heading-m",
+              name
+            ),
             shiny::tags$p(
               class = "govuk-body",
               "We use some essential cookies to make this service work."
@@ -119,27 +129,31 @@ cookies_banner_ui <- function(id = "cookies_banner", name = "DfE R-Shiny dashboa
               class = "govuk-body",
               "We'd also like to use analytics cookies so we can understand
               how you use the service and make improvements."
+            ),
+            shiny::tags$p(
+              class = "govuk-body",
+              shiny::actionLink(
+                shiny::NS(id, "cookies_link"),
+                "View cookie information"
+              )
+            ),
+            shiny::tags$div(
+              class = "govuk-button-group",
+              shinyGovstyle::button_Input(
+                shiny::NS(id, "cookies_accept"),
+                "Accept analytics cookies"
+              ),
+              shinyGovstyle::button_Input(
+                shiny::NS(id, "cookies_reject"),
+                "Reject analytics cookies"
+              )
             )
           )
         )
-      ),
-      shiny::tags$div(
-        class = "govuk-button-group",
-        shinyGovstyle::button_Input(
-          shiny::NS(id, "cookies_accept"),
-          "Accept analytics cookies"
-        ),
-        shinyGovstyle::button_Input(
-          shiny::NS(id, "cookies_reject"),
-          "Reject analytics cookies"
-        ),
-        shiny::actionLink(
-          shiny::NS(id, "cookies_link"),
-          "View cookie information"
-        )
       )
     )
-  )
+  ) |>
+    htmltools::attachDependencies(dependency, append = TRUE)
 }
 
 #' cookies_banner_server
@@ -170,12 +184,13 @@ cookies_banner_ui <- function(id = "cookies_banner", name = "DfE R-Shiny dashboa
 #'
 #' @inherit cookies examples
 cookies_banner_server <- function(
-    id = "cookies_banner",
-    input_cookies,
-    parent_session,
-    google_analytics_key = NULL,
-    cookies_link_panel = "cookies_panel_ui",
-    cookies_nav_id = "navlistPanel") {
+  id = "cookies_banner",
+  input_cookies,
+  parent_session,
+  google_analytics_key = NULL,
+  cookies_link_panel = "cookies_panel_ui",
+  cookies_nav_id = "navlistPanel"
+) {
   shiny::moduleServer(id, function(input, output, session) {
     if (is.null(google_analytics_key)) {
       warning("Please provide a valid Google Analytics key")
@@ -349,14 +364,21 @@ Shiny.addCustomMessageHandler('analytics-consent', function(msg){
 #' Shiny dashboard in DfE
 #' @export
 #' @inherit cookies examples
-cookies_panel_ui <- function(id = "cookies_panel", google_analytics_key = NULL) {
+cookies_panel_ui <- function(
+  id = "cookies_panel",
+  google_analytics_key = NULL
+) {
   shiny::tags$div(
     style = "margin-top: 50px; margin-bottom: 50px;",
     shiny::tags$h1("Cookies"),
-    shiny::tags$p("Cookies are small files saved on your phone, tablet or
-                        computer when you visit a website."),
-    shiny::tags$p("We use cookies to collect information about how you
-                        use our service."),
+    shiny::tags$p(
+      "Cookies are small files saved on your phone, tablet or
+                        computer when you visit a website."
+    ),
+    shiny::tags$p(
+      "We use cookies to collect information about how you
+                        use our service."
+    ),
     shiny::tags$h2("Essential cookies"),
     shinyGovstyle::govTable(
       inputId = "essential_cookies_table",
@@ -371,25 +393,36 @@ cookies_panel_ui <- function(id = "cookies_panel", google_analytics_key = NULL) 
       width_overwrite = c("one-quarter", "one-quarter", "one-quarter")
     ),
     shiny::tags$h2("Analytics cookies"),
-    shiny::tags$p("With your permission, we use Google Analytics to
+    shiny::tags$p(
+      "With your permission, we use Google Analytics to
                         collect data about how you use this service. This
-                        information helps us improve our service."),
-    shiny::tags$p("Google is not allowed to share our analytics data with
-                        anyone."),
-    shiny::tags$p("Google Analytics stores anonymised information
-                        about:"),
+                        information helps us improve our service."
+    ),
+    shiny::tags$p(
+      "Google is not allowed to share our analytics data with
+                        anyone."
+    ),
+    shiny::tags$p(
+      "Google Analytics stores anonymised information
+                        about:"
+    ),
     shiny::tags$ul(
       shiny::tags$li("How you got to this service"),
-      shiny::tags$li("The pages you visit on this service and how long you
-                         spend on them"),
+      shiny::tags$li(
+        "The pages you visit on this service and how long you
+                         spend on them"
+      ),
       shiny::tags$li("How you interact with these pages")
     ),
     shinyGovstyle::govTable(
       inputId = "ga_cookies_table",
       df = data.frame(
         Name = c("_ga", paste0("_ga_", google_analytics_key)),
-        Purpose = c("Used to distinguish users", "Used to persist
-                          session state"),
+        Purpose = c(
+          "Used to distinguish users",
+          "Used to persist
+                          session state"
+        ),
         Expires = c("13 months", "13 months")
       ),
       caption = "",
@@ -412,7 +445,8 @@ cookies_panel_ui <- function(id = "cookies_panel", google_analytics_key = NULL) 
           `data-module` = "govuk-radios",
           shiny::tags$div(
             class = "govuk-radios__item",
-            shiny::radioButtons(shiny::NS(id, "cookies_analytics"),
+            shiny::radioButtons(
+              shiny::NS(id, "cookies_analytics"),
               label = NULL,
               choices = list("Yes" = "yes", "No" = "no"),
               selected = "no",
@@ -422,7 +456,8 @@ cookies_panel_ui <- function(id = "cookies_panel", google_analytics_key = NULL) 
         )
       )
     ),
-    shiny::actionButton(shiny::NS(id, "submit_btn"),
+    shiny::actionButton(
+      shiny::NS(id, "submit_btn"),
       "Save cookie settings",
       class = "govuk-button"
     )
@@ -445,23 +480,31 @@ cookies_panel_ui <- function(id = "cookies_panel", google_analytics_key = NULL) 
 #' @family cookies
 #' @export
 #' @inherit cookies examples
-cookies_panel_server <- function(id = "cookies_panel",
-                                 input_cookies,
-                                 google_analytics_key = NULL) {
+cookies_panel_server <- function(
+  id = "cookies_panel",
+  input_cookies,
+  google_analytics_key = NULL
+) {
   shiny::moduleServer(id, module = function(input, output, session) {
     shiny::observeEvent(input_cookies(), {
       if (!is.null(input_cookies())) {
         if (!("dfe_analytics" %in% names(input_cookies()))) {
-          shiny::updateRadioButtons(session, "cookies_analytics",
+          shiny::updateRadioButtons(
+            session,
+            "cookies_analytics",
             selected = "no"
           )
         } else {
           if (input_cookies()$dfe_analytics == "denied") {
-            shiny::updateRadioButtons(session, "cookies_analytics",
+            shiny::updateRadioButtons(
+              session,
+              "cookies_analytics",
               selected = "no"
             )
           } else if (input_cookies()$dfe_analytics == "granted") {
-            shiny::updateRadioButtons(session, "cookies_analytics",
+            shiny::updateRadioButtons(
+              session,
+              "cookies_analytics",
               selected = "yes"
             )
           }
