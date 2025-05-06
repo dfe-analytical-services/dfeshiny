@@ -65,10 +65,12 @@ Given the above, we recommend avoiding shinyWidgets in DfE Shiny applications.
 
 ### Conditional panels
 
-Whilst conditional panels are useful in some cases, many dashboard creators have had an over-
-reliance on these elements. Conditional panels, when used inappropriately, can lead to 
-unnecessary code complexity and poor performance. It can often be much cleaner to use `uiOutput()` 
-with `renderUI()` for extended dashboard components or the `updateCheckboxGroupInput()`, 
-`updateRadioButtons()`, `updateSelectInput()`, etc functions for a range of individual components.
+Whilst [`conditionalPanel()`](https://shiny.posit.co/r/reference/shiny/1.4.0/conditionalpanel.html) 
+is useful in some cases, many dashboard creators have had an over-reliance on these elements. 
+Conditional panels, when used inappropriately, can lead to unnecessary code complexity and poor 
+performance. It can often be much cleaner to use `uiOutput()` with `renderUI()` for extended 
+dashboard components or the `updateCheckboxGroupInput()`, `updateRadioButtons()`, 
+`updateSelectInput()`, etc functions for a range of individual components.
+
 Understanding reactive elements properly is also a crucial element in developing well coded and 
 performant Shiny applications.
