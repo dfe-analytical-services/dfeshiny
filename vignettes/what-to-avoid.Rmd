@@ -1,0 +1,62 @@
+---
+title: "What to avoid"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{what-to-avoid}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(dfeshiny)
+```
+
+The R ecosystem provides a wide range of options to create different elements in dashboard type 
+apps in R-Shiny. Whilst this range of choice can be great for creating anything you want in any 
+style you favour, it also leads to a wide range of pitfalls that can undermine your work.
+
+This document outlines a range of packages and elements to avoid and the reasons why, but the key
+underlying considerations around many of these are:
+
+- Continuity: 
+  - Are functions and packages expected to have long term support from their developers?
+  - Are functions and packages contain complexities that will be difficult to pick up for whoever 
+  succeeds you?
+- Accessibility:
+  - Are the elements created by functions and packages assigned the appropriate html tags and 
+  labels?
+  - Do elements created by functions and packages work well with keyboard navigation when in 
+  screen reader mode?
+- Styling
+  - Do functions and packages allow you to create elements that are consistent with [Government Digital Service style guide](https://www.gov.uk/guidance/style-guide).
+  
+  
+## Packages to avoid
+
+### [shinydashboard](https://rstudio.github.io/shinydashboard/index.html)
+
+shinydashboard is now superseded and has been minimally maintained since 2018. It creates dashboard
+elements based on the web toolkit [Bootstrap v3](https://getbootstrap.com/docs/3.3/), which has 
+itself moved on to v5. This presents potential issues around continuity, accessibility and 
+functionality (in particular when moving to smaller screen sizes). As such we recommend using 
+[bslib](https://rstudio.github.io/bslib/) which provides equivalent functionality, but underpinned 
+by [Bootstrap v5](https://getbootstrap.com/docs/5.3/getting-started/introduction/), which allows 
+for better usability across different screen sizes (including high zoom on a computer screen).
+
+### [shinyWidgets](https://dreamrs.github.io/shinyWidgets/index.html)
+
+shinyWidgets provides a wide range of elements for use in Shiny that look good and allow some 
+useful advanced / customisable options. However, a large proportion of the widgets provided by 
+shinyWidgets do not assign appropriate html tags and labelling. As part of accessibility testing of
+DfE dashboards, shinyWidgets elements have consistently been flagged as problematic. They have
+confused testers using assistive technology, blocking them from being able to navigate through
+dashboards.
+
+Given the above, we recommend avoiding shinyWidgets in DfE Shiny applications.
