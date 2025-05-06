@@ -60,3 +60,15 @@ confused testers using assistive technology, blocking them from being able to na
 dashboards.
 
 Given the above, we recommend avoiding shinyWidgets in DfE Shiny applications.
+
+## Functions to avoid / use sparingly
+
+### Conditional panels
+
+Whilst conditional panels are useful in some cases, many dashboard creators have had an over-
+reliance on these elements. Conditional panels, when used inappropriately, can lead to 
+unnecessary code complexity and poor performance. It can often be much cleaner to use `uiOutput()` 
+with `renderUI()` for extended dashboard components or the `updateCheckboxGroupInput()`, 
+`updateRadioButtons()`, `updateSelectInput()`, etc functions for a range of individual components.
+Understanding reactive elements properly is also a crucial element in developing well coded and 
+performant Shiny applications.
