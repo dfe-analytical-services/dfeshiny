@@ -14,10 +14,10 @@
 #' @param repo_name The repository URL, must be a valid URL for the dfe-analytical-services GitHub
 #' area or the dfe-gov-uk Azure DevOps. String, default:
 #' `"https://github.com/dfe-analytical-services/dfeshiny"`
-#' @param feedback_form_url
-#' @param dashboard_url
-#' @param parent_pub_name
-#' @param parent_publication
+#' @param form_url URL for a feedback form for the dashboard
+#' @param dashboard_url  URL for the host dashboard
+#' @param publication_name The parent publication name
+#' @param publication_link
 #' @param verbose
 #'
 #' @details This function runs `init_app()`, `init_commit_hooks()`, and
@@ -35,14 +35,14 @@ create_dashboard <- function(
   site_title = "dfeshiny template",
   google_analytics_key = "XXXXXXXXXX",
   dashboard_url = "https://department-for-education.shinyapps.io/dfeshiny-template/",
-  parent_pub_name = "Publication name",
-  parent_publication = paste0(
+  publication_name = "Publication name",
+  publication_link = paste0(
     "https://explore-education-statistics.service.gov.uk/find-statistics/",
     "publication-name"
   ),
   team_email = "explore.statistics@education.gov.uk",
   repo_name = "https://github.com/dfe-analytical-services/dfeshiny",
-  feedback_form_url = "",
+  form_url = "",
   verbose = FALSE
 ) {
   message("Initializing the DFE Shiny template...")
@@ -53,11 +53,11 @@ create_dashboard <- function(
     google_analytics_key = google_analytics_key,
     dashboard_url = dashboard_url,
     site_title = site_title,
-    parent_pub_name = parent_pub_name,
-    parent_publication = parent_publication,
+    publication_name = publication_name,
+    publication_link = publication_link,
     team_email = team_email,
     repo_name = repo_name,
-    feedback_form_url = feedback_form_url,
+    form_url = form_url,
     verbose = verbose
   )
 
@@ -101,14 +101,14 @@ init_base_app <- function(
   google_analytics_key = "XXXXXXXXX",
   dashboard_url = "https://department-for-education.shinyapps.io/dashboard-name/",
   site_title = "Dashboard name",
-  parent_pub_name = "Publication name",
-  parent_publication = paste0(
+  publication_name = "Publication name",
+  publication_link = paste0(
     "https://explore-education-statistics.service.gov.uk/find-statistics/",
     "publication-name"
   ),
   team_email = "team.name@education.gov.uk",
   repo_name = "https://github.com/dfe-analytical-services/dashboard-name",
-  feedback_form_url = "",
+  form_url = "",
   verbose = FALSE
 ) {
   # Create directories
@@ -132,11 +132,11 @@ init_base_app <- function(
     google_analytics_key = google_analytics_key,
     dashboard_url = dashboard_url,
     site_title = site_title,
-    parent_pub_name = parent_pub_name,
-    parent_publication = parent_publication,
+    publication_name = publication_name,
+    publication_link = publication_link,
     team_email = team_email,
     repo_name = repo_name,
-    feedback_form_url = feedback_form_url,
+    form_url = form_url,
     verbose = verbose
   )
   init_ui(
@@ -165,25 +165,25 @@ init_global <- function(
   google_analytics_key = "XXXXXXXXX",
   dashboard_url = "https://department-for-education.shinyapps.io/dashboard-name/",
   site_title = "Dashboard name",
-  parent_pub_name = "Publication name",
-  parent_publication = paste0(
+  publication_name = "Publication name",
+  publication_link = paste0(
     "https://explore-education-statistics.service.gov.uk/find-statistics/",
     "publication-name"
   ),
   team_email = "team.name@education.gov.uk",
   repo_name = "https://github.com/dfe-analytical-services/dashboard-name",
-  feedback_form_url = "",
+  form_url = "",
   verbose = FALSE
 ) {
   globalr_script <- paste(
     c(
       readLines("inst/global_template.r"),
       paste0("site_title <- \"", site_title, "\""),
-      paste0("parent_pub_name <- \"", parent_pub_name, "\""),
-      paste0("parent_publication <- \"", parent_publication, "\""),
+      paste0("publication_name <- \"", publication_name, "\""),
+      paste0("publication_link <- \"", publication_link, "\""),
       paste0("team_email <- \"", team_email, "\""),
       paste0("repo_name <- \"", repo_name, "\""),
-      paste0("feedback_form_url <- \"", feedback_form_url, "\""),
+      paste0("form_url <- \"", form_url, "\""),
 
       "## Set the URLs that the site will be published to",
       paste0("site_primary <- \"", dashboard_url, "\""),

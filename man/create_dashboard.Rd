@@ -9,23 +9,27 @@ create_dashboard(
   site_title = "dfeshiny template",
   google_analytics_key = "XXXXXXXXXX",
   dashboard_url = "https://department-for-education.shinyapps.io/dfeshiny-template/",
-  parent_pub_name = "Publication name",
-  parent_publication =
+  publication_name = "Publication name",
+  publication_link =
     paste0("https://explore-education-statistics.service.gov.uk/find-statistics/",
     "publication-name"),
   team_email = "explore.statistics@education.gov.uk",
   repo_name = "https://github.com/dfe-analytical-services/dfeshiny",
-  feedback_form_url = "",
+  form_url = "",
   verbose = FALSE
 )
 }
 \arguments{
 \item{path}{The root directory where the app should be created. String, default: \code{"."}.}
 
-\item{site_title}{Site title for the dashboard. String, default: \code{"Shiny template"}}
+\item{site_title}{Site title for the dashboard. String, default: \code{"dfeshiny template"}}
 
 \item{google_analytics_key}{10 digit Google Analytics key if available. String, default:
 \code{"XXXXXXXXXX"}}
+
+\item{dashboard_url}{URL for the host dashboard}
+
+\item{publication_name}{The parent publication name}
 
 \item{team_email}{Email address for support contact. String, default:
 \code{"explore.statistics@education.gov.uk"}}
@@ -33,6 +37,8 @@ create_dashboard(
 \item{repo_name}{The repository URL, must be a valid URL for the dfe-analytical-services GitHub
 area or the dfe-gov-uk Azure DevOps. String, default:
 \code{"https://github.com/dfe-analytical-services/dfeshiny"}}
+
+\item{form_url}{URL for a feedback form for the dashboard}
 
 \item{verbose}{}
 }

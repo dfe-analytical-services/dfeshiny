@@ -14,7 +14,7 @@ cookies_banner_ui(
 \item{id}{Shiny tag shared with cookies_banner_server(), can be any string set
 by the user as long as it matches the id in the cookies_banner_server()}
 
-\item{site_title}{Site title for the dashboard. String, default: \code{"Shiny template"}}
+\item{site_title}{Site title for the dashboard. String, default: \code{"dfeshiny template"}}
 
 \item{name}{Name of the dashboard on which the cookie authorisation is being
 applied (deprecated, replaced by site_title)}

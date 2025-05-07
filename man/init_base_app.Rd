@@ -9,13 +9,13 @@ init_base_app(
   google_analytics_key = "XXXXXXXXX",
   dashboard_url = "https://department-for-education.shinyapps.io/dashboard-name/",
   site_title = "Dashboard name",
-  parent_pub_name = "Publication name",
-  parent_publication =
+  publication_name = "Publication name",
+  publication_link =
     paste0("https://explore-education-statistics.service.gov.uk/find-statistics/",
     "publication-name"),
   team_email = "team.name@education.gov.uk",
   repo_name = "https://github.com/dfe-analytical-services/dashboard-name",
-  feedback_form_url = "",
+  form_url = "",
   verbose = FALSE
 )
 }
@@ -25,7 +25,11 @@ init_base_app(
 \item{google_analytics_key}{10 digit Google Analytics key if available. String, default:
 \code{"XXXXXXXXXX"}}
 
-\item{site_title}{Site title for the dashboard. String, default: \code{"Shiny template"}}
+\item{dashboard_url}{URL for the host dashboard}
+
+\item{site_title}{Site title for the dashboard. String, default: \code{"dfeshiny template"}}
+
+\item{publication_name}{The parent publication name}
 
 \item{team_email}{Email address for support contact. String, default:
 \code{"explore.statistics@education.gov.uk"}}
@@ -33,6 +37,8 @@ init_base_app(
 \item{repo_name}{The repository URL, must be a valid URL for the dfe-analytical-services GitHub
 area or the dfe-gov-uk Azure DevOps. String, default:
 \code{"https://github.com/dfe-analytical-services/dfeshiny"}}
+
+\item{form_url}{URL for a feedback form for the dashboard}
 
 \item{verbose}{}
 }

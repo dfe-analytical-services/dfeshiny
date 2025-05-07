@@ -7,7 +7,7 @@
 init_workflow(site_title, path = "./")
 }
 \arguments{
-\item{site_title}{Site title for the dashboard. String, default: \code{"Shiny template"}}
+\item{site_title}{Site title for the dashboard. String, default: \code{"dfeshiny template"}}
 
 \item{path}{The root directory where the app should be created. String, default: \code{"."}.}
 }
