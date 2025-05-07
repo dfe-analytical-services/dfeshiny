@@ -31,6 +31,8 @@ create_dashboard(
 
 \item{publication_name}{The parent publication name}
 
+\item{publication_link}{URL link to the parent publication}
+
 \item{team_email}{Email address for support contact. String, default:
 \code{"explore.statistics@education.gov.uk"}}
 
@@ -40,7 +42,7 @@ area or the dfe-gov-uk Azure DevOps. String, default:
 
 \item{form_url}{URL for a feedback form for the dashboard}
 
-\item{verbose}{}
+\item{verbose}{RUn in verbose mode}
 }
 \value{
 No return value. The function initializes the complete template.

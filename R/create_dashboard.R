@@ -17,8 +17,8 @@
 #' @param form_url URL for a feedback form for the dashboard
 #' @param dashboard_url  URL for the host dashboard
 #' @param publication_name The parent publication name
-#' @param publication_link
-#' @param verbose
+#' @param publication_link URL link to the parent publication
+#' @param verbose RUn in verbose mode
 #'
 #' @details This function runs `init_app()`, `init_commit_hooks()`, and
 #' `init_workflow()`

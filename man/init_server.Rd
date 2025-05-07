@@ -9,7 +9,7 @@ init_server(path = ".", verbose = FALSE)
 \arguments{
 \item{path}{The root directory where the app should be created. String, default: \code{"."}.}
 
-\item{verbose}{}
+\item{verbose}{RUn in verbose mode}
 }
 \description{
 Initialise server.R
