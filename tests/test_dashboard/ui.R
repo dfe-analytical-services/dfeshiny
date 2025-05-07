@@ -2,6 +2,10 @@ ui <- function(input, output, session) {
   shiny::fluidPage(
     shinyjs::useShinyjs(),
 
+    # Cookies =================================================================
+    dfe_cookies_script(),
+    cookies_banner_ui(name = "The dfeshiny test dashboard"),
+
     # header function ---------------------------------------------------------
 
     dfeshiny::header("Header Example"),
@@ -18,9 +22,6 @@ ui <- function(input, output, session) {
         "https://explore-education-statistics.service.gov.uk/find-statistics/apprenticeships"
     ),
 
-    # Cookies =================================================================
-    dfe_cookies_script(),
-    cookies_banner_ui(name = "The dfeshiny test dashboard"),
 
     # Panels ==================================================================
     shiny::navlistPanel(
