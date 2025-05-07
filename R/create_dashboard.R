@@ -286,6 +286,10 @@ init_commit_hooks <- function(path = "./") {
 
   # Define the destination path for the pre-commit hook
   hook_path <- file.path(path, ".git/hooks/pre-commit")
+  if (!dir.exists(hook_path)) {
+    dir.create(hook_path, recursive = TRUE)
+    message(hook_path, " directory created.")
+  }
 
   # Download and write the file
   tryCatch(
@@ -322,9 +326,9 @@ init_commit_hooks <- function(path = "./") {
 #' @export
 init_workflow <- function(site_title, path = "./") {
   # Define paths
-  workflows_dir <- ".github/workflows"
+  workflows_dir <- file.path(path, ".github/workflows")
   workflow_file <- file.path(workflows_dir, "deploy-shiny.yaml")
-  config_file <- "deployment-config.yaml"
+  config_file <- file.path(path, "deployment-config.yaml")
 
   # Define GitHub workflow file URL
   workflow_url <- "https://raw.githubusercontent.com/dfe-analytical-services/shiny-template/main/.github/workflows/deploy-shiny.yaml"
@@ -332,7 +336,7 @@ init_workflow <- function(site_title, path = "./") {
   # Ensure the .github/workflows directory exists
   if (!dir.exists(workflows_dir)) {
     dir.create(workflows_dir, recursive = TRUE)
-    message(".github/workflows directory created.")
+    message(workflows_dir, " directory created.")
   }
 
   # Download and save the workflow file
@@ -354,7 +358,7 @@ init_workflow <- function(site_title, path = "./") {
 
   tryCatch(
     {
-      writeLines(yaml_content, file.path(path, config_file))
+      writeLines(yaml_content, config_file)
       message("Deployment configuration file created successfully.")
     },
     error = function(e) {
