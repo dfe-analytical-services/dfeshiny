@@ -1,0 +1,24 @@
+# Workflow derived from https://github.com/r-lib/actions/tree/v2/examples
+# Need help debugging build failures? Start at https://github.com/r-lib/actions#where-to-find-help
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+
+name: lintr
+
+permissions:
+  actions: write
+  contents: read
+  packages: write
+  pull-requests: write
+  security-events: write
+
+jobs:
+  lint:
+    uses: dfe-analytical-services/dfeshiny/.github/workflows/lintr_reusable.yaml@new-feature/lintr-workflow-template
+    with:
+      is_package: "true"
+    secrets:
+      SHINYAPPS_SECRET: ${{ secrets.SHINYAPPS_SECRET }}
+      SHINYAPPS_TOKEN: ${{ secrets.SHINYAPPS_TOKEN }}

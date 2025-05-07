@@ -137,7 +137,7 @@ custom_disconnect_message <- function(
   checkmate::assert_string(refresh)
   checkmate::assert_string(reset)
 
-  # Attach CSS from inst/www/css/visually-hidden.css
+  # Attach CSS from inst/www/css/dicsonnect-dialogue.css
   dependency <- htmltools::htmlDependency(
     name = "disconnect-dialogue",
     version = as.character(utils::packageVersion("dfeshiny")[[1]]),
