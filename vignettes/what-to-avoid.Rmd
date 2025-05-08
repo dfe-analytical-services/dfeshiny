@@ -30,7 +30,7 @@ underlying considerations around many of these are:
   - Do functions and packages contain complexities that will be difficult to pick up for whoever 
   succeeds you?
 - Accessibility:
-  - Are the elements created by functions and packages assigned the appropriate html tags and 
+  - Are the elements created by functions and packages assigned the appropriate HTML tags and 
   labels?
   - Do elements created by functions and packages work well with keyboard navigation when in 
   screen reader mode?
