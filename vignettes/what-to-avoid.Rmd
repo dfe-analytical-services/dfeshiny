@@ -35,7 +35,7 @@ underlying considerations around many of these are:
   - Do elements created by functions and packages work well with keyboard navigation when in 
   screen reader mode?
 - Styling
-  - Do functions and packages allow you to create elements that are consistent with [Government Digital Service style guide](https://www.gov.uk/guidance/style-guide).
+  - Do functions and packages allow you to create elements that are consistent with the [Government Digital Service style guide](https://www.gov.uk/guidance/style-guide).
   
   
 ## Packages to avoid
