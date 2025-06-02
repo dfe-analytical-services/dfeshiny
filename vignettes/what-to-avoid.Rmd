@@ -26,9 +26,12 @@ This document outlines a range of packages and elements to avoid and the reasons
 underlying considerations around many of these are:
 
 - Continuity: 
+  - Has the package been recently updated?
+  - Are the issues and pull requests raised on the repository getting responded to quickly (if code is visible on GitHub)?
   - Are functions and packages expected to have long term support from their developers?
   - Do functions and packages contain complexities that will be difficult to pick up for whoever 
   succeeds you?
+  - If it relies on other packages, is it using the latest version of those
 - Accessibility:
   - Are the elements created by functions and packages assigned the appropriate HTML tags and 
   labels?
@@ -36,7 +39,9 @@ underlying considerations around many of these are:
   screen reader mode?
 - Styling
   - Do functions and packages allow you to create elements that are consistent with the [Government Digital Service style guide](https://www.gov.uk/guidance/style-guide).
-  
+- Performance / efficiency
+  - Do they pull in lots of extra dependencies and code you don't need?
+  - How fast are the functions to run?
   
 ## Packages to avoid
 
@@ -61,6 +66,12 @@ dashboards.
 
 Given the above, we recommend avoiding shinyWidgets in DfE Shiny applications.
 
+### [Plotly]
+
+- Poor for accessibility
+- Defaults add a lot of elements that are mostly distracting / unhelpful
+- Tends to be very intensive and if used for lots of charts can really hit performance
+
 ## Functions to avoid / use sparingly
 
 ### Conditional panels
@@ -68,9 +79,15 @@ Given the above, we recommend avoiding shinyWidgets in DfE Shiny applications.
 Whilst [`conditionalPanel()`](https://shiny.posit.co/r/reference/shiny/1.4.0/conditionalpanel.html) 
 is useful in some cases, many dashboard creators have had an over-reliance on these elements. 
 Conditional panels, when used inappropriately, can lead to unnecessary code complexity and poor 
-performance. It can often be much cleaner to use `uiOutput()` with `renderUI()` for extended 
-dashboard components or the `updateCheckboxGroupInput()`, `updateRadioButtons()`, 
-`updateSelectInput()`, etc., functions for a range of individual components.
+performance. 
 
-Understanding reactive elements properly is also a crucial element in developing well coded and 
-performant Shiny applications.
+Specifically, the app still processes all the code contained within a conditional panel and then just hides the appropriate elements based on the condition. So if you do 5 different charts in a conditional panel, that's 5 charts your app is building each time, instead of just 1 if built with other methods.
+
+The alternatives to consider first are:
+
+- Dynamically update individual objects such as text, charts and tables within the `render*({})` environments.
+- Use `updateCheckboxGroupInput()`, `updateRadioButtons()`, `updateSelectInput()`, etc. functions for 
+dynamically updating labels and options in a range of individual inputs.
+- `uiOutput()` with `renderUI()` for extended dashboard components, although these should also be 
+used with caution.
+- Create modules for more complex UIs.
