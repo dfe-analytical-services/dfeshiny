@@ -45,7 +45,7 @@ underlying considerations around many of these are:
 shinydashboard is now superseded and has been minimally maintained since 2018. It creates dashboard
 elements based on the web toolkit [Bootstrap v3](https://getbootstrap.com/docs/3.3/), which has 
 itself moved on to v5. This presents potential issues around continuity, accessibility and 
-functionality (in particular when moving to smaller screen sizes). As such we recommend using 
+functionality (in particular when moving to smaller screen sizes). As such, we recommend using 
 [bslib](https://rstudio.github.io/bslib/) which provides equivalent functionality, but underpinned 
 by [Bootstrap v5](https://getbootstrap.com/docs/5.3/getting-started/introduction/), which allows 
 for better usability across different screen sizes (including high zoom on a computer screen).
