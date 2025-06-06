@@ -91,3 +91,9 @@ dynamically updating labels and options in a range of individual inputs.
 - `uiOutput()` with `renderUI()` for extended dashboard components, although these should also be 
 used with caution.
 - Create modules for more complex UIs.
+
+### `selectInput(multiple=TRUE)`
+
+The government design system explicitly avoids the use of allowing multiple selections via the select input component, due to "[a history of poor usability and assistive technology support](https://design-system.service.gov.uk/components/select/)". The recommendation from the government design system if you need to a user to pick more than one item from a list, is to use an alternative such as a list of checkboxes wherever possible.
+
+Note that the shinyGovstyle package's [`select_Input()`](https://dfe-analytical-services.github.io/shinyGovstyle/reference/select_Input.html) function provides the appropriate digital styling for the select component, whilst also limiting dashboard creators to only single selection inputs.
