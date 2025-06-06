@@ -2,7 +2,7 @@
 title: "What to avoid"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{what-to-avoid}
+  %\VignetteIndexEntry{What to avoid}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -17,6 +17,8 @@ knitr::opts_chunk$set(
 ```{r setup, include = FALSE}
 library(dfeshiny)
 ```
+
+## Introduction
 
 The R ecosystem provides a wide range of options to create different elements in dashboard type 
 apps in R-Shiny. Whilst this range of choice can be great for creating anything you want in any 
@@ -45,9 +47,9 @@ underlying considerations around many of these are:
   
 ## Packages to avoid
 
-### [shinydashboard](https://rstudio.github.io/shinydashboard/index.html)
+### shinydashboard
 
-shinydashboard is now superseded and has been minimally maintained since 2018. It creates dashboard
+[shinydashboard](https://rstudio.github.io/shinydashboard/index.html) is now superseded and has been minimally maintained since 2018. It creates dashboard
 elements based on the web toolkit [Bootstrap v3](https://getbootstrap.com/docs/3.3/), which has 
 itself moved on to v5. This presents potential issues around continuity, accessibility and 
 functionality (in particular when moving to smaller screen sizes). As such, we recommend using 
@@ -55,9 +57,9 @@ functionality (in particular when moving to smaller screen sizes). As such, we r
 by [Bootstrap v5](https://getbootstrap.com/docs/5.3/getting-started/introduction/), which allows 
 for better usability across different screen sizes (including high zoom on a computer screen).
 
-### [shinyWidgets](https://dreamrs.github.io/shinyWidgets/index.html)
+### shinyWidgets
 
-shinyWidgets provides a wide range of elements for use in Shiny that look good and allow some 
+[shinyWidgets](https://dreamrs.github.io/shinyWidgets/index.html) provides a wide range of elements for use in Shiny that look good and allow some 
 useful advanced / customisable options. However, a large proportion of the widgets provided by 
 shinyWidgets do not assign appropriate html tags and labelling. As part of accessibility testing of
 DfE dashboards, shinyWidgets elements have consistently been flagged as problematic. They have
@@ -66,11 +68,15 @@ dashboards.
 
 Given the above, we recommend avoiding shinyWidgets in DfE Shiny applications.
 
-### [Plotly]
+### Plotly
+
+[Plotly](https://plotly.com/r/) offers a range of functionality to add interactivity to charts. However, these come with the following issues:
 
 - Poor for accessibility
 - Defaults add a lot of elements that are mostly distracting / unhelpful
 - Tends to be very intensive and if used for lots of charts can really hit performance
+
+We generally advise either keeping chart interactivity to the essentials and using ggiraph in place of Plotly.
 
 ## Functions to avoid / use sparingly
 
@@ -92,8 +98,12 @@ dynamically updating labels and options in a range of individual inputs.
 used with caution.
 - Create modules for more complex UIs.
 
-### `selectInput(multiple=TRUE)`
+### Select input component with (multiple=TRUE)
 
-The government design system explicitly avoids the use of allowing multiple selections via the select input component, due to "[a history of poor usability and assistive technology support](https://design-system.service.gov.uk/components/select/)". The recommendation from the government design system if you need to a user to pick more than one item from a list, is to use an alternative such as a list of checkboxes wherever possible.
+The government design system explicitly avoids the use of allowing multiple selections via the select input component, due to "[a history of poor usability and assistive technology support](https://design-system.service.gov.uk/components/select/)". One particular set of testing reported the following in reference to the select multiple element.
+
+> Not a single participant relying on the keyboard or a desktop screen reader managed to select multiple non-contiguous options...
+
+As such, the recommendation from the government design system if you need to a user to pick more than one item from a list, is to use an alternative such as a list of checkboxes wherever possible.
 
 Note that the shinyGovstyle package's [`select_Input()`](https://dfe-analytical-services.github.io/shinyGovstyle/reference/select_Input.html) function provides the appropriate digital styling for the select component, whilst also limiting dashboard creators to only single selection inputs.
