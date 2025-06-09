@@ -1,0 +1,109 @@
+---
+title: "What to avoid"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{What to avoid}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup, include = FALSE}
+library(dfeshiny)
+```
+
+## Introduction
+
+The R ecosystem provides a wide range of options to create different elements in dashboard type 
+apps in R-Shiny. Whilst this range of choice can be great for creating anything you want in any 
+style you favour, it also leads to a wide range of pitfalls that can undermine your work.
+
+This document outlines a range of packages and elements to avoid and the reasons why, but the key
+underlying considerations around many of these are:
+
+- Continuity: 
+  - Has the package been recently updated?
+  - Are the issues and pull requests raised on the repository getting responded to quickly (if code is visible on GitHub)?
+  - Are functions and packages expected to have long term support from their developers?
+  - Do functions and packages contain complexities that will be difficult to pick up for whoever 
+  succeeds you?
+  - If it relies on other packages, is it using the latest version of those
+- Accessibility:
+  - Are the elements created by functions and packages assigned the appropriate HTML tags and 
+  labels?
+  - Do elements created by functions and packages work well with keyboard navigation when in 
+  screen reader mode?
+- Styling
+  - Do functions and packages allow you to create elements that are consistent with the [Government Digital Service style guide](https://www.gov.uk/guidance/style-guide).
+- Performance / efficiency
+  - Do they pull in lots of extra dependencies and code you don't need?
+  - How fast are the functions to run?
+  
+## Packages to avoid
+
+### shinydashboard
+
+[shinydashboard](https://rstudio.github.io/shinydashboard/index.html) is now superseded and has been minimally maintained since 2018. It creates dashboard
+elements based on the web toolkit [Bootstrap v3](https://getbootstrap.com/docs/3.3/), which has 
+itself moved on to v5. This presents potential issues around continuity, accessibility and 
+functionality (in particular when moving to smaller screen sizes). As such, we recommend using 
+[bslib](https://rstudio.github.io/bslib/), which provides equivalent functionality, but is underpinned 
+by [Bootstrap v5](https://getbootstrap.com/docs/5.3/getting-started/introduction/), which allows 
+for better usability across different screen sizes (including high zoom on a computer screen).
+
+### shinyWidgets
+
+[shinyWidgets](https://dreamrs.github.io/shinyWidgets/index.html) provides a wide range of elements for use in Shiny that look good and allow some 
+useful advanced / customisable options. However, a large proportion of the widgets provided by 
+shinyWidgets do not assign appropriate html tags and labelling. As part of accessibility testing of
+DfE dashboards, shinyWidgets elements have consistently been flagged as problematic. They have
+confused testers using assistive technology, blocking them from being able to navigate through
+dashboards.
+
+Given the above, we recommend avoiding shinyWidgets in DfE Shiny applications.
+
+### Plotly
+
+[Plotly](https://plotly.com/r/) offers a range of functionality to add interactivity to charts. However, these come with the following issues:
+
+- Poor for accessibility
+- Defaults add a lot of elements that are mostly distracting / unhelpful
+- Tends to be very intensive and if used for lots of charts can really hit performance
+
+We generally advise either keeping chart interactivity to the essentials and using ggiraph in place of Plotly.
+
+## Functions to avoid / use sparingly
+
+### Conditional panels
+
+Whilst [`conditionalPanel()`](https://shiny.posit.co/r/reference/shiny/1.4.0/conditionalpanel.html) 
+is useful in some cases, many dashboard creators have had an over-reliance on these elements. 
+Conditional panels, when used inappropriately, can lead to unnecessary code complexity and poor 
+performance. 
+
+Specifically, the app still processes all the code contained within a conditional panel and then just hides the appropriate elements based on the condition. So if you do 5 different charts in a conditional panel, that's 5 charts your app is building each time, instead of just 1 if built with other methods.
+
+The alternatives to consider first are:
+
+- Dynamically update individual objects such as text, charts and tables within the `render*({})` environments.
+- Use `updateCheckboxGroupInput()`, `updateRadioButtons()`, `updateSelectInput()`, etc. functions for 
+dynamically updating labels and options in a range of individual inputs.
+- `uiOutput()` with `renderUI()` for extended dashboard components, although these should also be 
+used with caution.
+- Create modules for more complex UIs.
+
+### Select input component with (multiple=TRUE)
+
+The [GOV.UK Design System](https://design-system.service.gov.uk/) explicitly avoids the use of allowing multiple selections via the select input component, due to "[a history of poor usability and assistive technology support](https://design-system.service.gov.uk/components/select/)". One particular set of testing reported the following in reference to the select multiple element.
+
+> Not a single participant relying on the keyboard or a desktop screen reader managed to select multiple non-contiguous options...
+
+As such, the recommendation from the GOV.UK Design System if you need to a user to pick more than one item from a list, is to use an alternative such as a list of checkboxes wherever possible.
+
+Note that the shinyGovstyle package's [`select_Input()`](https://dfe-analytical-services.github.io/shinyGovstyle/reference/select_Input.html) function provides the appropriate digital styling for the select component, whilst also limiting dashboard creators to only single selection inputs.
