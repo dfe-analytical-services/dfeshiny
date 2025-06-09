@@ -100,7 +100,7 @@ used with caution.
 
 ### Select input component with (multiple=TRUE)
 
-The government design system explicitly avoids the use of allowing multiple selections via the select input component, due to "[a history of poor usability and assistive technology support](https://design-system.service.gov.uk/components/select/)". One particular set of testing reported the following in reference to the select multiple element.
+The [GOV.UK Design System](https://design-system.service.gov.uk/) explicitly avoids the use of allowing multiple selections via the select input component, due to "[a history of poor usability and assistive technology support](https://design-system.service.gov.uk/components/select/)". One particular set of testing reported the following in reference to the select multiple element.
 
 > Not a single participant relying on the keyboard or a desktop screen reader managed to select multiple non-contiguous options...
 
