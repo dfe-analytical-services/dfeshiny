@@ -104,6 +104,6 @@ The [GOV.UK Design System](https://design-system.service.gov.uk/) explicitly avo
 
 > Not a single participant relying on the keyboard or a desktop screen reader managed to select multiple non-contiguous options...
 
-As such, the recommendation from the government design system if you need to a user to pick more than one item from a list, is to use an alternative such as a list of checkboxes wherever possible.
+As such, the recommendation from the GOV.UK Design System if you need to a user to pick more than one item from a list, is to use an alternative such as a list of checkboxes wherever possible.
 
 Note that the shinyGovstyle package's [`select_Input()`](https://dfe-analytical-services.github.io/shinyGovstyle/reference/select_Input.html) function provides the appropriate digital styling for the select component, whilst also limiting dashboard creators to only single selection inputs.
