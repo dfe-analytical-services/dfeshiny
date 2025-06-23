@@ -15,7 +15,7 @@ permissions:
   security-events: write
 
 jobs:
-  lint:
+  air:
     uses: dfe-analytical-services/dfeshiny/.github/workflows/air_reusable.yaml@workflows/air-reusable
     with:
       is_dashboard: "false"
