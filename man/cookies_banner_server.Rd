@@ -23,8 +23,8 @@ be \code{reactive(input$cookies)})}
 \item{parent_session}{This should be the R Shiny app session, expect it to
 always be \code{parent_session = session}}
 
-\item{google_analytics_key}{Provide the GA 10 digit key of the form
-"ABCDE12345"}
+\item{google_analytics_key}{10 digit Google Analytics key if available. String, default:
+\code{"XXXXXXXXXX"}}
 
 \item{cookies_link_panel}{name of the navigation panel that the cookie banner
 provides a link to, usually "cookies_panel_ui"}
