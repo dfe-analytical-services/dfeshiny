@@ -4,10 +4,12 @@
 \alias{header}
 \title{DfE header banner}
 \usage{
-header(header)
+header(header, ...)
 }
 \arguments{
 \item{header}{Text to use for the header of the dashboard}
+
+\item{...}{Further arguments passed to shinyGovstyle::header()}
 }
 \value{
 a header html shiny object
