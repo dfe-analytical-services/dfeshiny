@@ -8,11 +8,6 @@ on:
         default: 'false'
         required: false
         type: string
-    secrets:
-      SHINYAPPS_SECRET:
-        required: true
-      SHINYAPPS_TOKEN:
-        required: true
 
 jobs:
   lintr:
