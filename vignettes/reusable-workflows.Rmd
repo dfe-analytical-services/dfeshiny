@@ -61,7 +61,12 @@ If you need to link to a different board or update the API key and token variabl
 To implement the workflow, you can copy [.github/workflows/trello.yaml](https://github.com/dfe-analytical-services/dfeshiny/blob/main/.github/workflows/trello.yaml) into your own repository's .github/workflows folder.
 
 You can then update the title-format to reflect the name of your own repository.
-The list-id and lanel-ids parameters can then be updated as needed. For the 
+
+If the target board is the Statistics development team board, then leave the 
+api-key and api-token variables as is. If directing cards to a different board, 
+then you'll likely need to  [create a new trello api key](#create-a-new-trello-api-key) and update TRELLO_API_KEY and TRELLO_API_TOKEN to the corresponding organisation secrets for the new board.
+
+The list-id and label-ids parameters can then be updated as needed. For the 
 statistics development team board the relevant codes are:
 
 - list-id:
