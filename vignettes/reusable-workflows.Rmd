@@ -33,7 +33,32 @@ The dashboard deploy reusable workflow is covered separately in the
 
 ## Automated tests
 
+The automated tests reusable workflow triggers GitHub Actions to run 
+`shinytest2::test_app()` on your repository code. To enable this, simply copy the following code into a .yaml file in the .github/workflows/ folder of your repository.
+
+```
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+name: Test dashboard
+
+jobs:
+  automatedTests:
+    uses: dfe-analytical-services/dfeshiny/.github/workflows/automated_tests_template.yaml@main
+```
+
+And then add / commit / push to your remote GitHub repository.
+
 ## Lintr
+
+The lintr reusable workflow triggers GitHub Actions to run 
+`lintr::lint_dir()` on your repository code. This will not change any of your code, but will produce recommendations of improvements to code layout and styling. To enable this, simply copy 
+[.github/workflows/lintr.yml](https://github.com/dfe-analytical-services/dfeshiny/blob/main/.github/workflows/lintr.yml)
+to the .github/workflows/ folder of your repository and then add / commit / 
+push to your remote GitHub repository.
 
 ## Pull request Trello card creation
 
