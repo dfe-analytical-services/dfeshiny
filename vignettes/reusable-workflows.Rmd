@@ -14,7 +14,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-```{r setup}
+```{r setup, include = FALSE}
 library(dfeshiny)
 ```
 
@@ -29,7 +29,7 @@ The reusable workflows covered in this article are:
 - Pull request Trello card creation
 
 The dashboard deploy reusable workflow is covered separately in the 
-[using the dfeshiny deploy template article](articles/using-the-dfeshiny-deploy-template.html).
+[using the dfeshiny deploy template article](using-the-dfeshiny-deploy-template.html).
 
 ## Automated tests
 
