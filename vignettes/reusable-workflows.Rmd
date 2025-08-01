@@ -56,7 +56,7 @@ Once implemented, this will run `shinytest2` whenever a change is made to a pull
 
 Clicking into a given test result will show the steps taken to run the automated tests and under the **Run tests** stage, you can find the results of the tests as shown below.
 
-![Alt text](images/GA-automated-tests-results.png)
+![Image of the results of example automated tests viewed in GitHub Actions](images/GA-automated-tests-results.png)
 
 
 ## Lintr
