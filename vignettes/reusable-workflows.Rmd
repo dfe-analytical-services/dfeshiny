@@ -2,7 +2,7 @@
 title: "Reusable workflows"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{reusable-workflows}
+  %\VignetteIndexEntry{Reusable workflows}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -12,10 +12,6 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
-```
-
-```{r setup, include = FALSE}
-library(dfeshiny)
 ```
 
 We provide several reusable GitHub Actions workflows in dfeshiny. 
