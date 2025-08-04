@@ -14,9 +14,10 @@ knitr::opts_chunk$set(
 )
 ```
 
-We provide several reusable GitHub Actions workflows in dfeshiny. 
-These are primarily intended for use with dashboards, but can also be used with 
-other projects hosted on GitHub.
+We provide several reusable GitHub Actions workflows in dfeshiny (where 
+workflows are automated actions that can be triggered by events such as pull 
+requests in GitHub). These are primarily intended for use with dashboards, but 
+can also be used with other projects hosted on GitHub.
 
 The reusable workflows covered in this article are:
 
@@ -56,7 +57,7 @@ Once implemented, this will run `shinytest2` whenever a change is made to a pull
 
 Clicking into a given test result will show the steps taken to run the automated tests and under the **Run tests** stage, you can find the results of the tests as shown below.
 
-![Image of the results of example automated tests viewed in GitHub Actions](images/GA-automated-tests-results.png)
+![Image of the results of example automated tests viewed in GitHub Actions](./images/GA-automated-tests-results.png)
 
 
 ## Lintr
