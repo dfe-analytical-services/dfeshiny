@@ -65,7 +65,7 @@ Clicking into a given test result will show the steps taken to run the automated
 The lintr reusable workflow triggers GitHub Actions to run 
 `lintr::lint_dir()` on your repository code. This will not change any of your code, but will produce recommendations of improvements to code layout and styling. To enable this, simply copy 
 [.github/workflows/lintr.yml](https://github.com/dfe-analytical-services/dfeshiny/blob/main/.github/workflows/lintr.yml)
-to the .github/workflows/ folder of your repository and then add > commit > 
+to the .github/workflows/ folder of your repository, change the is_package parameter from true to false, and then add > commit > 
 push to your remote GitHub repository.
 
 Once set up, lintr will run on your code anytime you create or update a pull request and when anything gets merged into main. Results will be added as comments to the relevant pull request where relavent and also available through the GitHub actions tab in the same way as the shinytest2 results above.
