@@ -108,7 +108,7 @@ To implement the workflow, you can copy [.github/workflows/trello.yaml](https://
 If the target board is the Statistics development team board, then leave the 
 `api-key` and `api-token` variables as is. If directing cards to a different 
 board, then you'll likely need to  
-[create a new trello api key](#create-a-new-trello-api-key) and update 
+[create a new Trello API key](#create-a-new-trello-api-key) and update 
 TRELLO_API_KEY and TRELLO_API_TOKEN to the corresponding organisation secrets 
 for the new board.
 
