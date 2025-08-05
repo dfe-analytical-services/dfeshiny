@@ -3,9 +3,10 @@ pkgdown: 2.1.3
 pkgdown_sha: ~
 articles:
   implementing-cookies: implementing-cookies.html
+  reusable-workflows: reusable-workflows.html
   using-the-dfeshiny-deploy-template: using-the-dfeshiny-deploy-template.html
   what-to-avoid: what-to-avoid.html
-last_built: 2025-07-10T18:31Z
+last_built: 2025-08-05T09:51Z
 urls:
   reference: https://dfe-analytical-services.github.io/dfeshiny/reference
   article: https://dfe-analytical-services.github.io/dfeshiny/articles
