@@ -13,7 +13,7 @@
 #' @examples
 #'
 #' if (interactive()) {
-#'   ui <- fluidPage(
+#'   ui <- shiny::fluidPage(
 #'     dfeshiny::header(
 #'       header = "User Examples"
 #'     )
@@ -21,7 +21,7 @@
 #'
 #'   server <- function(input, output, session) {}
 #'
-#'   shinyApp(ui = ui, server = server)
+#'   shiny::shinyApp(ui = ui, server = server)
 #' }
 header <- function(header, ...) {
   shinyGovstyle::header(
