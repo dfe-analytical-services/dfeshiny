@@ -4,10 +4,12 @@
 \alias{init_analytics}
 \title{init_analytics}
 \usage{
-init_analytics(ga_code, create_file = TRUE)
+init_analytics(ga_code, path = "./", create_file = TRUE)
 }
 \arguments{
 \item{ga_code}{The Google Analytics code for the dashboard}
+
+\item{path}{The root directory where the app should be created. String, default: \code{"."}.}
 
 \item{create_file}{Boolean TRUE or FALSE, default is TRUE, false will return
 the HTML in the console and is used mainly for testing or comparisons}
