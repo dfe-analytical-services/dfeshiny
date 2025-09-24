@@ -44,9 +44,9 @@ jobs:
           renv::install("cyclocomp")
         shell: Rscript {0}
 
-      - name: load package
+      - name: Load package
         if: ${{ inputs.is_package == 'true' }}
-        run: devtools::load_package()
+        run: devtools::load_all()
         shell: Rscript {0}
         continue-on-error: true
 
