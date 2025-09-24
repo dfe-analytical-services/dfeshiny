@@ -34,6 +34,7 @@ jobs:
           extra-packages: |
             lintr
             cyclocomp
+            devtools
 
       - name: renv restore packages
         if: ${{ inputs.is_package == 'false' }}
@@ -42,6 +43,12 @@ jobs:
           renv::install("lintr")
           renv::install("cyclocomp")
         shell: Rscript {0}
+
+      - name: load package
+        if: ${{ inputs.is_package == 'true' }}
+        run: devtools::load_package()
+        shell: Rscript {0}
+        continue-on-error: true
 
       - name: Run lintr
         run: lintr::sarif_output(lintr::lint_dir("."), "lintr-results.sarif")
