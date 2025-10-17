@@ -85,17 +85,25 @@ dfe_cookies_script <- function() {
 #'
 #' @param id Shiny tag shared with cookies_banner_server(), can be any string set
 #' by the user as long as it matches the id in the cookies_banner_server()
+#' @inheritParams create_dashboard
 #' @param name Name of the dashboard on which the cookie authorisation is being
-#' applied
+#' applied (deprecated, replaced by site_title)
 #'
 #' @family cookies
 #' @return shiny::tags$div()
 #' @export
 #' @inherit cookies examples
 cookies_banner_ui <- function(
-  id = "cookies_banner",
-  name = "DfE R-Shiny dashboard template"
-) {
+    id = "cookies_banner",
+    site_title = "DfE R-Shiny dashboard template",
+    name = NULL
+    ) {
+  if(!is.null(name) & site_title == "DfE R-Shiny dashboard template"){
+    warning(
+      "The use of name as a parameter in cookies_banner_ui is deprecated. Please use site_title."
+      )
+    site_title <- name
+  }
   # Attach CSS from inst/www/css/cookie-banner.css
   dependency <- htmltools::htmlDependency(
     name = "cookie-banner",
@@ -117,10 +125,10 @@ cookies_banner_ui <- function(
           class = "govuk-grid-column-two-thirds",
           shiny::tags$div(
             class = "govuk-cookie-banner__content",
-            shiny::tags$h2(
-              class = "govuk-cookie-banner__heading govuk-heading-m",
-              name
-            ),
+          shiny::tags$h2(
+            class = "govuk-cookie-banner__heading govuk-heading-m",
+            site_title
+          ),
             shiny::tags$p(
               class = "govuk-body",
               "We use some essential cookies to make this service work."
@@ -171,12 +179,11 @@ cookies_banner_ui <- function(
 #' be `reactive(input$cookies)`)
 #' @param parent_session This should be the R Shiny app session, expect it to
 #' always be `parent_session = session`
-#' @param google_analytics_key Provide the GA 10 digit key of the form
-#' "ABCDE12345"
 #' @param cookies_link_panel name of the navigation panel that the cookie banner
 #' provides a link to, usually "cookies_panel_ui"
 #' @param cookies_nav_id ID of the navigation panel the cookie panel page is
 #' within, defaults to "navlistPanel"
+#' @inheritParams create_dashboard
 #'
 #' @family cookies
 #' @return NULL
@@ -356,8 +363,7 @@ Shiny.addCustomMessageHandler('analytics-consent', function(msg){
 #'
 #' @param id Shiny tag shared with cookies_panel_server(), can be any string set by
 #' the user as long as it matches the id in the cookies_panel_server()
-#' @param google_analytics_key Provide the GA 10 digit key of the form
-#' "ABCDE12345"
+#' @inheritParams create_dashboard
 #'
 #' @family cookies
 #' @return a HTML div, containing standard cookies content for a public R
@@ -365,9 +371,9 @@ Shiny.addCustomMessageHandler('analytics-consent', function(msg){
 #' @export
 #' @inherit cookies examples
 cookies_panel_ui <- function(
-  id = "cookies_panel",
-  google_analytics_key = NULL
-) {
+    id = "cookies_panel",
+    google_analytics_key = NULL
+    ) {
   shiny::tags$div(
     style = "margin-top: 50px; margin-bottom: 50px;",
     shiny::tags$h1("Cookies"),
@@ -474,8 +480,7 @@ cookies_panel_ui <- function(
 #' the user as long as it matches the id in the cookies_panel_ui()
 #' @param input_cookies The cookie input passed from cookies.js (should always
 #' be `reactive(input$cookies)`)
-#' @param google_analytics_key Provide the GA 10 digit key of the form
-#' "ABCDE12345"
+#' @inheritParams create_dashboard
 #'
 #' @family cookies
 #' @export

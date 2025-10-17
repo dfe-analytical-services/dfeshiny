@@ -16,6 +16,7 @@ Depends:
     R (>= 2.10)
 Imports: 
     dplyr,
+    dfeR,
     checkmate,
     glue,
     htmltools,
