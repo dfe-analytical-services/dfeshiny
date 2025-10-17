@@ -52,7 +52,7 @@ jobs:
 
       - name: Run lintr_pkg
         if: ${{ inputs.is_package == 'true' }}
-        run: lintr::sarif_output(lintr::lint_pkg(), "lintr-results.sarif")
+        run: lintr::sarif_output(lintr::lint_package(), "lintr-results.sarif")
         shell: Rscript {0}
         continue-on-error: true
 
