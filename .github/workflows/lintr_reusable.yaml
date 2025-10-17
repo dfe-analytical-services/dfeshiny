@@ -50,8 +50,15 @@ jobs:
         shell: Rscript {0}
         continue-on-error: true
 
-      - name: Run lintr
+      - name: Run lintr_pkg
+        if: ${{ inputs.is_package == 'true' }}
         run: lintr::sarif_output(lintr::lint_pkg(), "lintr-results.sarif")
+        shell: Rscript {0}
+        continue-on-error: true
+
+      - name: Run lintr_dir
+        if: ${{ inputs.is_package == 'false' }}
+        run: lintr::sarif_output(lintr::lint_dir("."), "lintr-results.sarif")
         shell: Rscript {0}
         continue-on-error: true
 
