@@ -1,0 +1,47 @@
+name: Air format check
+
+on:
+  workflow_call:
+    inputs:
+      is_dashboard:
+        description: "Is this scanning dashboard code"
+        default: 'true'
+        required: false
+        type: string
+
+jobs:
+  air:
+    runs-on: ubuntu-latest
+
+    container:
+      image: ghcr.io/dfe-analytical-services/dfe-r-base:latest
+      options: --user root
+      credentials:
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install the latest version of Air
+        uses: posit-dev/setup-air@v1
+        with:
+          version: "latest"
+
+      - name: Check standard locations
+        run: |
+          ls -a
+          air format R
+          air format tests
+
+      - name: Check dashboard scripts
+        if: ${{ inputs.is_dashboard == 'true' }}
+        run: |
+          air format *.R
+
+      - name: Suggest
+        uses: reviewdog/action-suggester@v1
+        with:
+          level: error
+          fail_level: error
+          tool_name: air
