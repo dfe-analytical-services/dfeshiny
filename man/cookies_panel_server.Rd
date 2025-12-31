@@ -17,8 +17,8 @@ the user as long as it matches the id in the cookies_panel_ui()}
 \item{input_cookies}{The cookie input passed from cookies.js (should always
 be \code{reactive(input$cookies)})}
 
-\item{google_analytics_key}{Provide the GA 10 digit key of the form
-"ABCDE12345"}
+\item{google_analytics_key}{10 digit Google Analytics key if available. String, default:
+\code{"XXXXXXXXXX"}}
 }
 \description{
 Create the server module of DfE R-Shiny cookies dashboard panel to be used

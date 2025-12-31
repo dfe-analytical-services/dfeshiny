@@ -6,6 +6,10 @@ template:
     pkgdown-nav-height: 81.4468px
 
 reference:
+- title: Creating a dashboard template
+  contents:
+  - create_dashboard
+  - starts_with("init")
 - title: Bookmarks
   contents:
   - set_bookmark_include
@@ -15,10 +19,6 @@ reference:
 - title: Connectivity
   contents:
   - custom_disconnect_message
-- title: Initialisation functions
-  desc: One time functions used to set up or update standardised scripts and workflows needed for your dashboard
-  contents:
-  - starts_with("init")
 - title: Links
   contents:
   - external_link

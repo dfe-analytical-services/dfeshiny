@@ -51,24 +51,32 @@
 #'   custom_refresh = "https://department-for-education.shinyapps.io/my-dashboard"
 #' )
 custom_disconnect_message <- function(
-    refresh = "refresh page (attempting to keep your last known selections)",
-    reset = "reset page (removing any previous selections)",
-    dashboard_title = NULL,
-    links = NULL,
-    publication_name = NULL,
-    publication_link = NULL,
-    support_contact = "explore.statistics@education.gov.uk",
-    custom_refresh = NULL,
-    custom_reset = NULL) {
+  refresh = "refresh page (attempting to keep your last known selections)",
+  reset = "reset page (removing any previous selections)",
+  dashboard_title = NULL,
+  links = NULL,
+  publication_name = NULL,
+  publication_link = NULL,
+  support_contact = "explore.statistics@education.gov.uk",
+  custom_refresh = NULL,
+  custom_reset = NULL
+) {
   # Check links are valid
-  if (FALSE %in% validate_dashboard_url(links) ||
-    "https://department-for-education.shinyapps.io/" %in% links) { # nolint: [indentation_linter]
+  if (
+    FALSE %in%
+      validate_dashboard_url(links) ||
+      "https://department-for-education.shinyapps.io/" %in% links
+  ) {
+    # nolint: [indentation_linter]
     stop("You have entered an invalid site link in the links argument.")
   }
 
   if (!is.null(custom_refresh)) {
     is_valid_refresh <- function(refresh) {
-      startsWith(stringr::str_trim(refresh), "https://department-for-education.shinyapps.io/")
+      startsWith(
+        stringr::str_trim(refresh),
+        "https://department-for-education.shinyapps.io/"
+      )
     }
 
     if (is_valid_refresh(custom_refresh) == FALSE) {
@@ -83,7 +91,10 @@ custom_disconnect_message <- function(
 
   if (!is.null(custom_reset)) {
     is_valid_reset <- function(reset) {
-      startsWith(stringr::str_trim(reset), "https://department-for-education.shinyapps.io/")
+      startsWith(
+        stringr::str_trim(reset),
+        "https://department-for-education.shinyapps.io/"
+      )
     }
 
     if (is_valid_reset(custom_reset) == FALSE) {
@@ -109,10 +120,15 @@ custom_disconnect_message <- function(
       startsWith(stringr::str_trim(link), pub_prefix)
     }
 
-    if (TRUE %in% is_valid_publication_link(publication_link) == FALSE ||
-      publication_link %in% pub_prefix) { # nolint: [indentation_linter]
-      stop("You have entered an invalid publication link in the publication_link
-         argument.")
+    if (
+      TRUE %in% is_valid_publication_link(publication_link) == FALSE ||
+        publication_link %in% pub_prefix
+    ) {
+      # nolint: [indentation_linter]
+      stop(
+        "You have entered an invalid publication link in the publication_link
+         argument."
+      )
     }
   }
 
@@ -204,7 +220,10 @@ custom_disconnect_message <- function(
             ". Apologies for the inconvenience."
           )
         },
-        if (!is.null(publication_name) && grepl("explore-education-statistics", publication_link)) {
+        if (
+          !is.null(publication_name) &&
+            grepl("explore-education-statistics", publication_link)
+        ) {
           tags$p(
             "The data used in this dashboard can also be viewed or downloaded via the ",
             dfeshiny::external_link(
@@ -236,7 +255,8 @@ custom_disconnect_message <- function(
     tags$div(id = "ss-overlay", style = "display: none;"),
     tags$head(htmltools::tags$style(
       glue::glue(
-        .open = "{{", .close = "}}",
+        .open = "{{",
+        .close = "}}",
         "#custom-disconnect-dialog a {
              display: {{ if (refresh == '') 'none' else 'inline' }} !important;
              color: #1d70b8 !important;

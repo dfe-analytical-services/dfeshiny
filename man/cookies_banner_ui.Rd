@@ -6,15 +6,18 @@
 \usage{
 cookies_banner_ui(
   id = "cookies_banner",
-  name = "DfE R-Shiny dashboard template"
+  site_title = "DfE R-Shiny dashboard template",
+  name = NULL
 )
 }
 \arguments{
 \item{id}{Shiny tag shared with cookies_banner_server(), can be any string set
 by the user as long as it matches the id in the cookies_banner_server()}
 
+\item{site_title}{Site title for the dashboard. String, default: \code{"dfeshiny template"}}
+
 \item{name}{Name of the dashboard on which the cookie authorisation is being
-applied}
+applied (deprecated, replaced by site_title)}
 }
 \value{
 shiny::tags$div()
