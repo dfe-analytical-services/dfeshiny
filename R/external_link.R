@@ -143,7 +143,9 @@ external_link <- function(href, link_text, add_warning = TRUE) {
   # Arbritary number that allows for R Shiny to be link text without a warning
   if (nchar(link_text) < 7) {
     warning(paste0(
-      "the link_text: ", link_text, ", is shorter than 7 characters, this is",
+      "the link_text: ",
+      link_text,
+      ", is shorter than 7 characters, this is",
       " unlikely to be descriptive for users, consider having more detailed",
       " link text"
     ))

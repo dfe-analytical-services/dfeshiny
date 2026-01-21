@@ -4,7 +4,11 @@
 # Where it's valid, the function will return it in a format of dd month yyyy
 validate_date <- function(date) {
   date_ld <- lubridate::dmy(date, quiet = TRUE)
-  date_template <- lubridate::stamp("1 January 2020", orders = "dmy", quiet = TRUE)
+  date_template <- lubridate::stamp(
+    "1 January 2020",
+    orders = "dmy",
+    quiet = TRUE
+  )
   if (is.na(date_ld)) {
     valid <- FALSE
     validation_message <- "is not in a valid date format, e.g. 8th August 2024 or 08/08/2024."

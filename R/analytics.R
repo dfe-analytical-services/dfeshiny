@@ -117,8 +117,10 @@ dashboard.
   } else {
     if (file.exists("google-analytics.html")) {
       message("Analytics file already exists.")
-      message("If you have any customisations in that file, make sure you've
-    backed those up before over-writing.")
+      message(
+        "If you have any customisations in that file, make sure you've
+    backed those up before over-writing."
+      )
       user_input <- readline(
         prompt = "Are you happy to overwrite the existing analytics script (y/N) "
       ) |>
@@ -135,7 +137,9 @@ dashboard.
       cat(html_script_with_id, file = "google-analytics.html", sep = "\n")
       message("")
       message("Google analytics script created as google-analytics.html.")
-      message("You'll need to add the following line to your ui.R script to start using analytics:")
+      message(
+        "You'll need to add the following line to your ui.R script to start using analytics:"
+      )
       message("")
       message("tags$head(includeHTML((google-analytics.html))),")
     } else {
