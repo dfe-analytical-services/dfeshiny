@@ -26,6 +26,7 @@ reference:
 - title: Maintenance
   contents:
   - tidy_code
+  - deps_shinytest2
 - title: Standard panels
   contents:
   - a11y_panel

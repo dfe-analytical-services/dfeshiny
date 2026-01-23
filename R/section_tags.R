@@ -52,34 +52,40 @@
 #'   )
 #' )
 #'
-section_tags <- function(heading = NULL,
-                         body,
-                         h_level = "h2") {
+section_tags <- function(heading = NULL, body, h_level = "h2") {
   # check that a body has been provided
 
   if (missing(body)) {
-    stop("Please provide a single text string or a `shiny::tagList()` object for the
-         'body' argument")
+    stop(
+      "Please provide a single text string or a `shiny::tagList()` object for the
+         'body' argument"
+    )
   }
 
   # check that h_level is an accepted one
 
   if (!h_level %in% c("h2", "h3", "h4")) {
-    stop("You used an unavailable h_level option.
-          Please use one of the following levels: 'h2','h3'or 'h4'")
+    stop(
+      "You used an unavailable h_level option.
+          Please use one of the following levels: 'h2','h3'or 'h4'"
+    )
   }
 
   # check for combined vector wrapping
   # if a vector is provided and its length is >1 then it's a combined vector
 
   if (is.vector(heading) && length(heading) > 1) {
-    stop("You provided a vector for the heading argument wrapped in c().
-         Please wrap it in shiny::tagList() instead.")
+    stop(
+      "You provided a vector for the heading argument wrapped in c().
+         Please wrap it in shiny::tagList() instead."
+    )
   }
 
   if (is.vector(body) && length(body) > 1) {
-    stop("You provided a vector for the body argument wrapped in c().
-         Please wrap it in shiny::tagList() instead.")
+    stop(
+      "You provided a vector for the body argument wrapped in c().
+         Please wrap it in shiny::tagList() instead."
+    )
   }
 
   # if headings are provided, do a check for h_level
@@ -123,7 +129,6 @@ section_tags <- function(heading = NULL,
       )
     )
   }
-
 
   return(result)
 }

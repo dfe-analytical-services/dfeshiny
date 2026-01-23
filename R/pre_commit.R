@@ -53,15 +53,19 @@ commit_hooks <- function() {
       all_pass <- FALSE
     }
   } else {
-    message("Exectuing in shiny_template repo, Skipping Google Analytics check...")
+    message(
+      "Exectuing in shiny_template repo, Skipping Google Analytics check..."
+    )
   }
 
   message("Running code styling check...")
   if (style_code()) {
-    message("Warning: Code failed styling checks.
+    message(
+      "Warning: Code failed styling checks.
   \n`styler::style_dir()` has been run for you.
   \nPlease check your files and dashboard still work.
-  \nThen re-stage and try committing again.")
+  \nThen re-stage and try committing again."
+    )
     all_pass <- FALSE
     quit(save = "no", status = 1, runLast = FALSE)
   }
@@ -88,8 +92,10 @@ commit_hooks <- function() {
 #' @return TRUE if all checks pass, FALSE otherwise
 #' @importFrom dplyr filter
 #' @keywords internal
-data_checker <- function(datafile_log = "datafiles_log.csv",
-                         ignore_file = ".gitignore") {
+data_checker <- function(
+  datafile_log = "datafiles_log.csv",
+  ignore_file = ".gitignore"
+) {
   # assigning null variable to avoid rcmdcheck dplyr variable assignment error
   files <- NULL
   all_ok <- TRUE
@@ -98,13 +104,17 @@ data_checker <- function(datafile_log = "datafiles_log.csv",
 
   message("=== .gitignore validation ===")
   if (file.exists(ignore_file)) {
-    ign_files <- utils::read.csv(ignore_file,
+    ign_files <- utils::read.csv(
+      ignore_file,
       header = FALSE,
-      stringsAsFactors = FALSE, col.names = "filename"
+      stringsAsFactors = FALSE,
+      col.names = "filename"
     )
     ign_text <- readr::read_file(".gitignore")
   } else {
-    stop(".gitignore file not detected, please add a .gitignore file to your project folder.")
+    stop(
+      ".gitignore file not detected, please add a .gitignore file to your project folder."
+    )
   }
 
   if (grepl(",", ign_text)) {
@@ -134,7 +144,9 @@ data_checker <- function(datafile_log = "datafiles_log.csv",
   message("\n=== Data file validation ===")
   if (!file.exists(datafile_log)) {
     stop(
-      "Error reading configuration file: ", datafile_log, "\n",
+      "Error reading configuration file: ",
+      datafile_log,
+      "\n",
       "To protect against accidental publication of sensitive data, ",
       "we require all dashboard repositories to contain a data files log (datafiles_log.csv), ",
       "which should list all data files in the repository and their current status, e.g.:\n\n",
@@ -166,7 +178,9 @@ data_checker <- function(datafile_log = "datafiles_log.csv",
 
     if (!rel_path %in% log_files$filename) {
       message(
-        "Missing entry: ", rel_path, "\n",
+        "Missing entry: ",
+        rel_path,
+        "\n",
         "  - Add to datafiles_log.csv with status: ",
         "published, reference, or dummy\n"
       )
@@ -182,15 +196,22 @@ data_checker <- function(datafile_log = "datafiles_log.csv",
     if (!status %in% valid_statuses) {
       if (!in_ignore && !grepl("unpublished", rel_path)) {
         message(
-          "Unmanaged file: ", rel_path, "\n",
-          "  - Status: ", log_files$status[log_files$filename == rel_path], "\n",
-          "  - Valid statuses: ", paste(valid_statuses, collapse = ", "), "\n",
+          "Unmanaged file: ",
+          rel_path,
+          "\n",
+          "  - Status: ",
+          log_files$status[log_files$filename == rel_path],
+          "\n",
+          "  - Valid statuses: ",
+          paste(valid_statuses, collapse = ", "),
+          "\n",
           "  - Add to .gitignore if unpublished\n"
         )
         all_ok <- FALSE
       } else {
         message(
-          "Note: ", rel_path,
+          "Note: ",
+          rel_path,
           " is unpublished (ignored) but consider updating its status\n"
         )
       }
@@ -198,12 +219,16 @@ data_checker <- function(datafile_log = "datafiles_log.csv",
   }
 
   if (all_ok) {
-    message("\nThe following data files will all be included as part of this commit:")
+    message(
+      "\nThe following data files will all be included as part of this commit:"
+    )
     for (file in names(file_status_list)) {
       message("  - ", file, " (Status: ", file_status_list[[file]], ")")
     }
-    message("\nThe above data files will all be included as part of this commit,
-            please double check the listed status for each file is as expected..")
+    message(
+      "\nThe above data files will all be included as part of this commit,
+            please double check the listed status for each file is as expected.."
+    )
     message("\nAll data file checks passed!")
     return(TRUE)
   } else {
@@ -225,8 +250,10 @@ data_checker <- function(datafile_log = "datafiles_log.csv",
 #' @return TRUE if no issues found, FALSE if replacements were made.
 #' @importFrom xfun gsub_file
 #' @keywords internal
-check_analytics_key <- function(ga_file = "google-analytics.html",
-                                ui_file = "ui.R") {
+check_analytics_key <- function(
+  ga_file = "google-analytics.html",
+  ui_file = "ui.R"
+) {
   ga_pattern <- "Z967JJVQQX"
   if (!file.exists(ga_file)) {
     message("skipping check for google analytics keys...")

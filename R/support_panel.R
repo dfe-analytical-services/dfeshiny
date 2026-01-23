@@ -132,15 +132,16 @@
 #'   )
 #' )
 support_panel <- function(
-    team_email = "",
-    repo_name = "",
-    ees_publication = TRUE,
-    publication_name = NULL,
-    publication_slug = "",
-    alt_href = NULL,
-    form_url = NULL,
-    custom_data_info = NULL,
-    extra_text = NULL) {
+  team_email = "",
+  repo_name = "",
+  ees_publication = TRUE,
+  publication_name = NULL,
+  publication_slug = "",
+  alt_href = NULL,
+  form_url = NULL,
+  custom_data_info = NULL,
+  extra_text = NULL
+) {
   if (is_valid_dfe_email(team_email) == FALSE) {
     stop(
       "You have entered an invalid email in the team_email argument.
@@ -210,7 +211,8 @@ support_panel <- function(
           href = paste0("mailto:", team_email),
           link_text = team_email,
           add_warning = FALSE
-        ), "."
+        ),
+        "."
       )
     ),
     shiny::tags$h2("Find more information on the data"),
@@ -240,7 +242,8 @@ support_panel <- function(
           dfeshiny::external_link(
             href = paste0(
               "https://explore-education-statistics.service.gov.uk/find-statistics/", # nolint: [line_length_linter]
-              publication_slug, "/data-guidance"
+              publication_slug,
+              "/data-guidance"
             ),
             link_text = "data guidance"
           ),
@@ -248,7 +251,8 @@ support_panel <- function(
           dfeshiny::external_link(
             href = paste0(
               "https://explore-education-statistics.service.gov.uk/find-statistics/", # nolint: [line_length_linter]
-              publication_slug, "#explore-data-and-files"
+              publication_slug,
+              "#explore-data-and-files"
             ),
             link_text = "tools to access and interrogate the underlying data"
           ),
