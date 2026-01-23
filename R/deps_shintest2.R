@@ -12,7 +12,7 @@
 #' }
 deps_shinytest2 <- function() {
   chromote::local_chrome_version(binary = "chrome-headless-shell", quiet = TRUE)
-  if (system.file(package = 'diffviewer') != "") {
+  if (system.file(package = "diffviewer") != "") {
     install.packages("diffviewer")
   }
 }
