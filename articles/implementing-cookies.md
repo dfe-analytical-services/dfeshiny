@@ -1,0 +1,110 @@
+# Implementing cookies consent
+
+Cookies are chunks of data that are stored by browsers to help websites
+store user preferences and other information. Most of our DfE data
+dashboards generally store two cookies, one to allow Google Analytics to
+differentiate between unique users and returning users and the second to
+store a user’s preference on whether they allow the use of the Google
+Analytics (or any additional custom) cookies.
+
+Assuming a dashboard is set up with at least the Google Analytics
+cookie, then gaining user consent is a mandatory requirement.
+
+> Note that to activate Google Analytics on your data dashboard, you
+> will need to contact the explore education statistics platforms team
+> at <explore.statistics@education.gov.uk> and request a Google
+> Analytics key.
+
+`dfeshiny` provides a standard Government Digital Service (GDS)
+compliant banner, a cookies information panel and the underlying code
+required to allow end users to give or withhold their consent for
+cookies to be used. If they withhold their consent, then tracking with
+Google Analytics will be halted (note that this will lead to your
+analytics underestimating your user base to some degree).
+
+Implementing cookies control on your dashboard is handled by several
+functions in `dfeshiny`, with the process outlined below.
+
+The cookies control requires some underlying javascript to remove and
+create cookies as well as switch Google Analytics on and off. This
+javascript needs including in your dashboard’s www/ folder, which can be
+achieved by running the following command from the R console in your
+dashboard project / repo:
+
+``` r
+dfeshiny::init_cookies()
+```
+
+Before adding the cookies consent banner, we recommend adding your
+Google Analytics key as a variable to your dashboard’s
+**[global.R](https://github.com/dfe-analytical-services/dfeshiny/blob/tests/test_dashboard/global.R)**
+file (replacing `ABCDE12345` below with the key provided by the Explore
+Education Statistics Platforms team):
+
+``` r
+google_analytics_key <- "ABCDE12345"
+```
+
+You will then need to add the necessary code to your **ui.R** file to a)
+run the javascript (`dfe_cookies_script`), b) create the consent banner
+(`cookies_banner_ui`), editing the dashboard name to match your own and
+c) add a cookies information panel (`cookies_panel_ui`):
+
+``` r
+ui <- function(input, output, session) {
+  shiny::fluidPage(
+    shinyjs::useShinyjs(),
+    dfeshiny::dfe_cookies_script(),
+    dfeshiny::cookies_banner_ui(
+      name = "Your dashboard name"
+    ),
+    shiny::navlistPanel(
+      "",
+      id = "navlistPanel",
+      widths = c(2, 8),
+      well = FALSE,
+      shiny::tabPanel(
+        value = "cookies_panel_ui",
+        "Cookies",
+        cookies_panel_ui(google_analytics_key = google_analytics_key)
+      )
+    )
+  )
+}
+```
+
+You should then add the `cookies_banner_server` and
+`cookies_panel_server` functions to your **server.R** script:
+
+``` r
+output$cookies_status <- dfeshiny::cookies_banner_server(
+  input_cookies = shiny::reactive(input$cookies),
+  parent_session = session,
+  google_analytics_key = google_analytics_key
+)
+
+dfeshiny::cookies_panel_server(
+  input_cookies = shiny::reactive(input$cookies),
+  google_analytics_key = google_analytics_key
+)
+```
+
+The ID for the UI panels is `navlistPanel`, and this is the default
+setting in the \_server functions, if this ID is different, you will
+need to set cookie_nav_id in
+[`cookies_panel_server()`](https://dfe-analytical-services.github.io/dfeshiny/reference/cookies_panel_server.md)
+to match your ID in the UI.
+
+In the above you should keep all of the flags as they are shown. Note
+that this assumes you have added `google_analytics_key` as a declared
+variable in your global.R file. If you’ve not done this, you’ll need to
+replace `google_analytics_key = google_analytics_key` to
+`google_analytics_key = "ABCDE12345"` (replacing “ABCDE12345” with your
+own key).
+
+With the above included, the user’s preference will itself be stored in
+a cookie (`dfe_analytics`), which by default expires after 365 days. The
+user can then also find information about the cookies stored by your
+dashboard and change their consent preference on a specific cookies
+consent panel on your dashboard that’s created by the `cookies_panel()`
+function.
