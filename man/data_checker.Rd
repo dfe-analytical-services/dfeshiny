@@ -2,7 +2,7 @@
 % Please edit documentation in R/pre_commit.R
 \name{data_checker}
 \alias{data_checker}
-\title{Validate Data Files and Gitignore Configuration}
+\title{Validate Data Files and Git ignore Configuration}
 \usage{
 data_checker(datafile_log = "datafiles_log.csv", ignore_file = ".gitignore")
 }

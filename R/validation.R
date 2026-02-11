@@ -22,7 +22,7 @@ validate_date <- function(date) {
   if (!valid) {
     stop(paste0("\"", date, "\" ", validation_message))
   }
-  return(date_template(date_ld))
+  date_template(date_ld)
 }
 
 # Some of the standard panels have text referring back to the dashboard repo, so
