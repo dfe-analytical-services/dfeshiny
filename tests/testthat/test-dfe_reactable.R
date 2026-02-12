@@ -21,36 +21,15 @@ test_that("dfe_reactable produces a properly configured reactable object", {
   attribs <- table_output$x$tag$attribs
   expect_type(attribs, "list")
 
-  # Verify key preconfigured attributes
-  expect_equal(attribs$resizable, TRUE)
-  expect_equal(attribs$highlight, TRUE)
-  expect_equal(attribs$borderless, TRUE)
-
-  # Verify column definitions
-  columns <- attribs$columns
-  expect_equal(length(columns), 3) # Ensure 3 columns are defined
-
-  # Validate the first column's attributes
-  col1 <- columns[[1]]
-  expect_equal(col1$id, "Name")
-  expect_equal(col1$name, "Name")
-  expect_equal(col1$type, "character")
-  expect_equal(col1$html, TRUE)
-  expect_equal(col1$headerClassName, "govuk-table__header")
-
-  # Validate language configuration
-  language <- attribs$language
-  expect_type(language, "list")
-  expect_equal(language$searchPlaceholder, "Search table...")
-
-  # Validate theme configuration
-  theme <- attribs$theme
-  expect_type(theme, "list")
-  expect_equal(theme$searchInputStyle$float, "right")
-  expect_equal(theme$searchInputStyle$width, "25%")
-  expect_equal(theme$searchInputStyle$border, "1px solid #ccc")
-
   # Validate the widget's overall class and package
   expect_equal(attr(table_output, "class"), c("reactable", "htmlwidget"))
   expect_equal(attr(table_output, "package"), "reactable")
+
+  # Take snapshot of table HTML
+  output_html <- htmltools::renderTags(table_output)$html
+
+  # Prevent unnecessary changes due to random IDs
+  stripped_ids <- gsub('"htmlwidget-[^"]*"', "", output_html)
+
+  expect_snapshot(stripped_ids)
 })

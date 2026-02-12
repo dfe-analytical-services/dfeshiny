@@ -20,9 +20,9 @@ external_link <- function(...) {
   # TODO: In v1.0.0 move this to lifecycle::deprecate_stop()
   # forcing users to update their code to use the new function
   lifecycle::deprecate_warn(
-    "1.0.0",
+    "0.6.0",
     "external_link()",
-    "shinyGovstyle::external_link()"
+    "shinyGovstyle::external_link()",
   )
   shinyGovstyle::external_link(...)
 }
