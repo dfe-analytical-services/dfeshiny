@@ -18,7 +18,10 @@ ui <- function(input, output, session) {
         "https://department-for-education.shinyapps.io/dfe-shiny-template-overflow/"
       ),
       publication_name = "Explore Education Statistics Publication",
-      publication_link = "https://explore-education-statistics.service.gov.uk/find-statistics/apprenticeships"
+      publication_link = paste0(
+        "https://explore-education-statistics.service.gov.uk",
+        "/find-statistics/apprenticeships"
+      )
     ),
 
     # Panels ==================================================================
