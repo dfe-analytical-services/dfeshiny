@@ -226,7 +226,7 @@ custom_disconnect_message <- function(
         ) {
           tags$p(
             "The data used in this dashboard can also be viewed or downloaded via the ",
-            dfeshiny::external_link(
+            shinyGovstyle::external_link(
               href = publication_link,
               publication_name
             ),
@@ -235,7 +235,7 @@ custom_disconnect_message <- function(
         } else if (!is.null(publication_name)) {
           tags$p(
             "The data used in this dashboard can also be viewed or downloaded from ",
-            dfeshiny::external_link(
+            shinyGovstyle::external_link(
               href = publication_link,
               publication_name
             )
@@ -243,7 +243,7 @@ custom_disconnect_message <- function(
         },
         tags$p(
           "Feel free to contact ",
-          dfeshiny::external_link(
+          shinyGovstyle::external_link(
             href = paste0("mailto:", support_contact),
             support_contact,
             add_warning = FALSE

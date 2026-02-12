@@ -127,7 +127,7 @@ a11y_panel <- function(
       "This accessibility statement applies to the",
       dashboard_url,
       "website. This website is run by the ",
-      external_link(
+      shinyGovstyle::external_link(
         href = "https://www.gov.uk/government/organisations/department-for-education",
         "Department for Education (DfE)"
       ),
@@ -158,7 +158,10 @@ a11y_panel <- function(
       "We've also made the website text as simple as possible to understand."
     ),
     shiny::tags$p(
-      external_link(href = "https://mcmw.abilitynet.org.uk/", "AbilityNet"),
+      shinyGovstyle::external_link(
+        href = "https://mcmw.abilitynet.org.uk/",
+        "AbilityNet"
+      ),
       " has advice on making your device easier to use if you have a disability."
     ),
     shiny::tags$h2("How accessible this website is"),
@@ -182,7 +185,7 @@ a11y_panel <- function(
         shiny::tags$p(
           "If you need information on this website in a different format please see the",
           " parent publication, ",
-          external_link(
+          shinyGovstyle::external_link(
             href = paste0(
               "https://explore-education-statistics.service.gov.uk/find-statistics/",
               publication_slug
@@ -216,7 +219,7 @@ a11y_panel <- function(
     ),
     shiny::tags$p(
       "If you are not happy with how we respond to your complaint, contact the ",
-      external_link(
+      shinyGovstyle::external_link(
         href = "https://www.equalityadvisoryservice.com/",
         "Equality Advisory and Support Service (EASS)"
       ),
@@ -232,7 +235,7 @@ a11y_panel <- function(
     if (all(is.null(specific_issues))) {
       shiny::tags$p(
         "This website is fully compliant with the ",
-        external_link(
+        shinyGovstyle::external_link(
           href = "https://www.w3.org/TR/WCAG22/",
           "Web Content Accessibility Guidelines version 2.2 AA standard"
         ),
@@ -242,7 +245,7 @@ a11y_panel <- function(
       shiny::tagList(
         shiny::tags$p(
           "This website is partially compliant with the ",
-          external_link(
+          shinyGovstyle::external_link(
             href = "https://www.w3.org/TR/WCAG22/",
             "Web Content Accessibility Guidelines version 2.2 AA standard"
           ),
@@ -265,12 +268,12 @@ a11y_panel <- function(
       "The template used for this website was last tested on",
       date_template_reviewed,
       " against ",
-      external_link(
+      shinyGovstyle::external_link(
         href = "https://www.w3.org/TR/WCAG22/",
         "Accessibility Guidelines WCAG2.2"
       ),
       ". The test was carried out by the ",
-      external_link(
+      shinyGovstyle::external_link(
         href = "https://digitalaccessibilitycentre.org/",
         "Digital accessibility centre (DAC)"
       ),
@@ -288,12 +291,12 @@ a11y_panel <- function(
       "This specific website was was last tested on ",
       date_tested,
       " against ",
-      external_link(
+      shinyGovstyle::external_link(
         href = "https://www.w3.org/TR/WCAG22/",
         "Accessibility Guidelines WCAG2.2"
       ),
       ". The test was carried out by the ",
-      external_link(
+      shinyGovstyle::external_link(
         href = "https://www.gov.uk/government/organisations/department-for-education",
         "Department for Education (DfE)"
       ),
@@ -309,7 +312,7 @@ a11y_panel <- function(
         if (is_valid_repo_url(issues_contact)) {
           shiny::tagList(
             "Our current list of issues to be resolved is available on our ",
-            external_link(
+            shinyGovstyle::external_link(
               href = paste0(issues_contact, "/issues"),
               "GitHub issues page"
             ),
@@ -339,7 +342,7 @@ a11y_panel <- function(
         "."
       ),
       "The statement was produced based on a combination of testing carried out by the ",
-      external_link(
+      shinyGovstyle::external_link(
         href = "https://digitalaccessibilitycentre.org/",
         "Digital accessibility centre (DAC)"
       ),
