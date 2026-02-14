@@ -1,4 +1,4 @@
-# Validate Data Files and Gitignore Configuration
+# Validate Data Files and Git ignore Configuration
 
 Performs comprehensive checks on data file tracking and .gitignore
 configuration:

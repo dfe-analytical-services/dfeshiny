@@ -73,7 +73,7 @@ section_tags(
   heading = "Heading test",
   body = shiny::tagList(
     "This is a body text test. Please contact us at",
-    dfeshiny::external_link(
+    shinyGovstyle::external_link(
       href = paste0("mailto:", "team@education.gov.uk"),
       link_text = "team@education.gov.uk",
       add_warning = FALSE
@@ -82,5 +82,5 @@ section_tags(
 )
 #> <h2>Heading test</h2>
 #> <p>
-#>   This is a body text test. Please contact us at<a href="mailto:team@education.gov.uk" target="_blank" rel="noopener noreferrer">team@education.gov.uk<span class="sr-only"> (opens in new tab)</span></a></p>
+#>   This is a body text test. Please contact us at<a href="mailto:team@education.gov.uk" class="govuk-link" target="_blank" rel="noopener noreferrer">team@education.gov.uk<span class="sr-only"> (opens in new tab)</span></a></p>
 ```

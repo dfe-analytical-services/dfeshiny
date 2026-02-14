@@ -1,8 +1,16 @@
 # Department for Education Reactable Wrapper
 
-A wrapper around the `reactable` function for creating styled,
-accessible, and user-friendly tables tailored to the Department for
-Education's requirements.
+**\[deprecated\]**
+
+A wrapper around
+[`shinyGovstyle::govReactable()`](https://rdrr.io/pkg/shinyGovstyle/man/govReactable.html),
+preserving the function here in dfeshiny for backwards compatibility in
+upcoming versions only.
+
+All logic and documentation is now in
+[`shinyGovstyle::govReactable()`](https://rdrr.io/pkg/shinyGovstyle/man/govReactable.html),
+so please refer to that function for more information, and update your
+code to use that function directly.
 
 ## Usage
 
@@ -18,47 +26,13 @@ dfe_reactable(data, ...)
 
 - ...:
 
-  Additional arguments passed to
-  [`reactable::reactable`](https://glin.github.io/reactable/reference/reactable.html).
+  Arguments passed to
+  [`shinyGovstyle::govReactable()`](https://rdrr.io/pkg/shinyGovstyle/man/govReactable.html).
 
 ## Value
 
-A `reactable` HTML widget object.
+The result of `shinyGovstyle::govReactable(...)`.
 
-## Details
+## See also
 
-The `dfe_reactable` function provides a pre-configured version of the
-`reactable` function with:
-
-- **Highlighting**: Row highlighting enabled.
-
-- **Borderless Table**: Removes borders for a clean look.
-
-- **Sort Icons Hidden**: Sort icons are not displayed by default.
-
-- **Resizable Columns**: Users can resize columns.
-
-- **Full Width**: Table expands to the full width of the container.
-
-- **Default Column Definition**: Custom column header styles, NA value
-  handling, and alignment.
-
-- **Custom Search Input**: A search bar styled to the Department for
-  Education's specifications.
-
-- **Custom Language**: Provides a user-friendly search placeholder text.
-
-## Examples
-
-``` r
-if (interactive()) {
-  library(shiny)
-  library(dfeshiny)
-  ui <- fluidPage(
-    h1("Example of dfe_reactable in a Shiny app"),
-    dfe_reactable(mtcars)
-  )
-  server <- function(input, output, session) {}
-  shinyApp(ui, server)
-}
-```
+[`shinyGovstyle::govReactable()`](https://rdrr.io/pkg/shinyGovstyle/man/govReactable.html)

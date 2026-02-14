@@ -1,7 +1,12 @@
 # Changelog
 
-## dfeshiny (development version)
+## dfeshiny 0.6.0
 
+- Deprecated
+  [`dfe_reactable()`](https://dfe-analytical-services.github.io/dfeshiny/reference/dfe_reactable.md),
+  [`external_link()`](https://dfe-analytical-services.github.io/dfeshiny/reference/external_link.md)
+  and `bad_link_text`, with the functions now moved to wrappers around
+  shinyGovstyle based equivalents
 - Added extra flexibility to custom disconnect message in contact
   details and refresh link
 - Relaxed arguments in cookies banner so different IDs can be used for

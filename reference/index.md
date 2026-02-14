@@ -38,9 +38,9 @@ workflows needed for your dashboard
 ## Links
 
 - [`external_link()`](https://dfe-analytical-services.github.io/dfeshiny/reference/external_link.md)
-  : External link
+  **\[deprecated\]** : External link
 - [`bad_link_text`](https://dfe-analytical-services.github.io/dfeshiny/reference/bad_link_text.md)
-  : Lookup for bad link text
+  **\[deprecated\]** : Lookup for bad link text
 
 ## Maintenance
 
@@ -77,7 +77,7 @@ logo.
 Functions to create and manage tables and visualisations.
 
 - [`dfe_reactable()`](https://dfe-analytical-services.github.io/dfeshiny/reference/dfe_reactable.md)
-  : Department for Education Reactable Wrapper
+  **\[deprecated\]** : Department for Education Reactable Wrapper
 
 ## Pre-commit Hooks
 
@@ -88,7 +88,7 @@ Functions for setting up and running pre-commit hooks
 - [`init_hooks()`](https://dfe-analytical-services.github.io/dfeshiny/reference/init_hooks.md)
   : Initialize Pre-commit Hook
 - [`data_checker()`](https://dfe-analytical-services.github.io/dfeshiny/reference/data_checker.md)
-  : Validate Data Files and Gitignore Configuration
+  : Validate Data Files and Git ignore Configuration
 - [`style_code()`](https://dfe-analytical-services.github.io/dfeshiny/reference/style_code.md)
   : Check and Apply Code Styling
 - [`check_analytics_key()`](https://dfe-analytical-services.github.io/dfeshiny/reference/check_analytics_key.md)

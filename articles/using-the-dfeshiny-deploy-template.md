@@ -1,6 +1,6 @@
 # Using the dfeshiny Deploy Template
 
-When developing DFE Shiny dashboards, it’s common to want a consistent,
+When developing DfE Shiny dashboards, it’s common to want a consistent,
 simple, and secure way to deploy applications to platforms such as
 ShinyApps.io or the new DfE hosting platform. This article shows how to
 use the dfeshiny reusable workflow template for GitHub Actions, with

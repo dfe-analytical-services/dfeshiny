@@ -67,7 +67,7 @@ to your remote GitHub repository.
 
 Once set up, lintr will run on your code anytime you create or update a
 pull request and when anything gets merged into main. Results will be
-added as comments to the relevant pull request where relavent and also
+added as comments to the relevant pull request where relevant and also
 available through the GitHub actions tab in the same way as the
 shinytest2 results above.
 
@@ -161,7 +161,7 @@ Power-Up:
 - Back on your Trello Power up, click manually generate a **token**
   (ignore the Secret, this is not needed).
   - Click Allow and then copy the API token that’s generated
-- And back to GitHub orgnasation secrets once more…
+- And back to GitHub organisation secrets once more…
   - If linking to a new board, click New organisation secret and paste
     the API token into the Value field. Choose a name for the key
     e.g. MY_TEAM_TRELLO_API_TOKEN

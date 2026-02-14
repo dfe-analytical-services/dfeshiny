@@ -95,10 +95,10 @@ custom_disconnect_message(
 #>       <a href="https://department-for-education.shinyapps.io/dfe-shiny-template-overflow/">alternative site</a>. Apologies for the inconvenience.
 #>     </p>
 #>     <p>
-#>       The data used in this dashboard can also be viewed or downloaded via the <a href="https://explore-education-statistics.service.gov.uk/find-statistics/apprenticeships" target="_blank" rel="noopener noreferrer">Explore Education Statistics Publication (opens in new tab)</a> on explore education statistics.
+#>       The data used in this dashboard can also be viewed or downloaded via the <a href="https://explore-education-statistics.service.gov.uk/find-statistics/apprenticeships" class="govuk-link" target="_blank" rel="noopener noreferrer">Explore Education Statistics Publication (opens in new tab)</a> on explore education statistics.
 #>     </p>
 #>     <p>
-#>       Feel free to contact <a href="mailto:explore.statistics@education.gov.uk" target="_blank" rel="noopener noreferrer">explore.statistics@education.gov.uk<span class="sr-only"> (opens in new tab)</span></a> if you require further support.
+#>       Feel free to contact <a href="mailto:explore.statistics@education.gov.uk" class="govuk-link" target="_blank" rel="noopener noreferrer">explore.statistics@education.gov.uk<span class="sr-only"> (opens in new tab)</span></a> if you require further support.
 #>     </p>
 #>   </div>
 #> </div>
@@ -122,7 +122,7 @@ custom_disconnect_message(
 #>       <a id="ss-reset-link" href="#" onclick="window.location.reload(false);">reset page (removing any previous selections)</a>.
 #>     </p>
 #>     <p>
-#>       Feel free to contact <a href="mailto:explore.statistics@education.gov.uk" target="_blank" rel="noopener noreferrer">explore.statistics@education.gov.uk<span class="sr-only"> (opens in new tab)</span></a> if you require further support.
+#>       Feel free to contact <a href="mailto:explore.statistics@education.gov.uk" class="govuk-link" target="_blank" rel="noopener noreferrer">explore.statistics@education.gov.uk<span class="sr-only"> (opens in new tab)</span></a> if you require further support.
 #>     </p>
 #>   </div>
 #> </div>
@@ -142,7 +142,7 @@ custom_disconnect_message(
 #>       <a id="ss-reset-link" href="#" onclick="window.location.reload(false);">reset page (removing any previous selections)</a>.
 #>     </p>
 #>     <p>
-#>       Feel free to contact <a href="mailto:my.team@education.gov.uk" target="_blank" rel="noopener noreferrer">my.team@education.gov.uk<span class="sr-only"> (opens in new tab)</span></a> if you require further support.
+#>       Feel free to contact <a href="mailto:my.team@education.gov.uk" class="govuk-link" target="_blank" rel="noopener noreferrer">my.team@education.gov.uk<span class="sr-only"> (opens in new tab)</span></a> if you require further support.
 #>     </p>
 #>   </div>
 #> </div>

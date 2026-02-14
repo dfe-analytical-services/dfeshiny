@@ -1,9 +1,6 @@
 # Lookup for bad link text
 
-A single column data frame, listing out known examples of bad link text
-that check for in the
-[`external_link()`](https://dfe-analytical-services.github.io/dfeshiny/reference/external_link.md)
-function.
+**\[deprecated\]**
 
 ## Usage
 
@@ -26,6 +23,16 @@ A data frame with 53 rows and 1 columns:
 Curated by explore.statistics@education.gov.uk
 
 ## Details
+
+`bad_link_text` has been superseded by
+[`shinyGovstyle::bad_link_text`](https://rdrr.io/pkg/shinyGovstyle/man/bad_link_text.html)
+and will no longer receive any updates. It will be removed in the next
+major version (v1.0.0).
+
+A single column data frame, listing out known examples of bad link text
+that check for in the
+[`external_link()`](https://dfe-analytical-services.github.io/dfeshiny/reference/external_link.md)
+function.
 
 We've started curating this list so we can create automated checks to
 help all link text to be as descriptive as possible in line with [WCAG

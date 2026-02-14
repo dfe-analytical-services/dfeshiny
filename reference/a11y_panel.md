@@ -107,7 +107,7 @@ a11y_panel(
 #>   <p>
 #>     This accessibility statement applies to the
 #>     https://department-for-education.shinyapps.io/dfe-shiny-template
-#>     website. This website is run by the <a href="https://www.gov.uk/government/organisations/department-for-education" target="_blank" rel="noopener noreferrer">Department for Education (DfE) (opens in new tab)</a>.
+#>     website. This website is run by the <a href="https://www.gov.uk/government/organisations/department-for-education" class="govuk-link" target="_blank" rel="noopener noreferrer">Department for Education (DfE) (opens in new tab)</a>.
 #>     This statement does not cover any other services run by the Department for Education 
 #>     (DfE) or GOV.UK.
 #>   </p>
@@ -123,7 +123,7 @@ a11y_panel(
 #>     </ul>
 #>   </div>
 #>   <p>We've also made the website text as simple as possible to understand.</p>
-#>   <p><a href="https://mcmw.abilitynet.org.uk/" target="_blank" rel="noopener noreferrer">AbilityNet (opens in new tab)</a> has advice on making your device easier to use if you have a disability.
+#>   <p><a href="https://mcmw.abilitynet.org.uk/" class="govuk-link" target="_blank" rel="noopener noreferrer">AbilityNet (opens in new tab)</a> has advice on making your device easier to use if you have a disability.
 #>   </p>
 #>   <h2>How accessible this website is</h2>
 #>   <p>We know some parts of this website are not fully accessible:</p>
@@ -136,7 +136,7 @@ a11y_panel(
 #>   <h2>Feedback and contact information</h2>
 #>   <p>
 #>     If you need information on this website in a different format please see the
-#>      parent publication, <a href="https://explore-education-statistics.service.gov.uk/find-statistics/la-and-school-expenditure" target="_blank" rel="noopener noreferrer">LA and school expenditure (opens in new tab)</a>.
+#>      parent publication, <a href="https://explore-education-statistics.service.gov.uk/find-statistics/la-and-school-expenditure" class="govuk-link" target="_blank" rel="noopener noreferrer">LA and school expenditure (opens in new tab)</a>.
 #>   </p>
 #>   <p>
 #>     More details are available on that service for alternative formats of this 
@@ -157,7 +157,7 @@ a11y_panel(
 #>     (the "accessibility regulations").
 #>   </p>
 #>   <p>
-#>     If you are not happy with how we respond to your complaint, contact the <a href="https://www.equalityadvisoryservice.com/" target="_blank" rel="noopener noreferrer">Equality Advisory and Support Service (EASS) (opens in new tab)</a>.
+#>     If you are not happy with how we respond to your complaint, contact the <a href="https://www.equalityadvisoryservice.com/" class="govuk-link" target="_blank" rel="noopener noreferrer">Equality Advisory and Support Service (EASS) (opens in new tab)</a>.
 #>   </p>
 #>   <h2>Technical information about this website's accessibility</h2>
 #>   <p>
@@ -167,7 +167,7 @@ a11y_panel(
 #>   </p>
 #>   <h3>Compliance status</h3>
 #>   <p>
-#>     This website is partially compliant with the <a href="https://www.w3.org/TR/WCAG22/" target="_blank" rel="noopener noreferrer">Web Content Accessibility Guidelines version 2.2 AA standard (opens in new tab)</a> due to the non-compliances listed below.
+#>     This website is partially compliant with the <a href="https://www.w3.org/TR/WCAG22/" class="govuk-link" target="_blank" rel="noopener noreferrer">Web Content Accessibility Guidelines version 2.2 AA standard (opens in new tab)</a> due to the non-compliances listed below.
 #>   </p>
 #>   <h3>Non accessible content</h3>
 #>   <p>The content listed below is non-accessible for the following reasons.
@@ -186,7 +186,7 @@ a11y_panel(
 #>   <p>
 #>     The template used for this website was last tested on
 #>     12 March 2024
-#>      against <a href="https://www.w3.org/TR/WCAG22/" target="_blank" rel="noopener noreferrer">Accessibility Guidelines WCAG2.2 (opens in new tab)</a>. The test was carried out by the <a href="https://digitalaccessibilitycentre.org/" target="_blank" rel="noopener noreferrer">Digital accessibility centre (DAC) (opens in new tab)</a>.
+#>      against <a href="https://www.w3.org/TR/WCAG22/" class="govuk-link" target="_blank" rel="noopener noreferrer">Accessibility Guidelines WCAG2.2 (opens in new tab)</a>. The test was carried out by the <a href="https://digitalaccessibilitycentre.org/" class="govuk-link" target="_blank" rel="noopener noreferrer">Digital accessibility centre (DAC) (opens in new tab)</a>.
 #>   </p>
 #>   <p>DAC tested a sample of pages to cover the core functionality of the service including:</p>
 #>   <div>
@@ -199,7 +199,7 @@ a11y_panel(
 #>   <p>
 #>     This specific website was was last tested on 
 #>     25 April 2024
-#>      against <a href="https://www.w3.org/TR/WCAG22/" target="_blank" rel="noopener noreferrer">Accessibility Guidelines WCAG2.2 (opens in new tab)</a>. The test was carried out by the <a href="https://www.gov.uk/government/organisations/department-for-education" target="_blank" rel="noopener noreferrer">Department for Education (DfE) (opens in new tab)</a>.
+#>      against <a href="https://www.w3.org/TR/WCAG22/" class="govuk-link" target="_blank" rel="noopener noreferrer">Accessibility Guidelines WCAG2.2 (opens in new tab)</a>. The test was carried out by the <a href="https://www.gov.uk/government/organisations/department-for-education" class="govuk-link" target="_blank" rel="noopener noreferrer">Department for Education (DfE) (opens in new tab)</a>.
 #>   </p>
 #>   <h2>What we're doing to improve accessibility</h2>
 #>   <p>
@@ -207,12 +207,12 @@ a11y_panel(
 #>     through a prioritised list of issues to resolve.
 #>   </p>
 #>   <p>
-#>     Our current list of issues to be resolved is available on our <a href="https://github.com/dfe-analytical-services/shiny-template/issues" target="_blank" rel="noopener noreferrer">GitHub issues page (opens in new tab)</a>.
+#>     Our current list of issues to be resolved is available on our <a href="https://github.com/dfe-analytical-services/shiny-template/issues" class="govuk-link" target="_blank" rel="noopener noreferrer">GitHub issues page (opens in new tab)</a>.
 #>   </p>
 #>   <h2>Preparation of this accessibility statement</h2>
 #>   <p>
 #>     This statement was prepared on 26 April 2024 and last reviewed on 02 November 2024.
-#>     The statement was produced based on a combination of testing carried out by the <a href="https://digitalaccessibilitycentre.org/" target="_blank" rel="noopener noreferrer">Digital accessibility centre (DAC) (opens in new tab)</a> and our own testing.
+#>     The statement was produced based on a combination of testing carried out by the <a href="https://digitalaccessibilitycentre.org/" class="govuk-link" target="_blank" rel="noopener noreferrer">Digital accessibility centre (DAC) (opens in new tab)</a> and our own testing.
 #>   </p>
 #> </div>
 ```
