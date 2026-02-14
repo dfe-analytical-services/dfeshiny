@@ -76,7 +76,7 @@
 #'   form_url = "www.myform.com",
 #'   custom_data_info = shiny::tagList(
 #'     "Please email results to",
-#'     external_link(
+#'     shinyGovstyle::external_link(
 #'       href = paste0("mailto:", "team@@education.gov.uk"),
 #'       link_text = "team@@education.gov.uk",
 #'       add_warning = FALSE
@@ -122,7 +122,7 @@
 #'       heading = "Heading",
 #'       body = shiny::tagList(
 #'         "Please email results to",
-#'         external_link(
+#'         shinyGovstyle::external_link(
 #'           href = paste0("mailto:", "team@@education.gov.uk"),
 #'           link_text = "team@@education.gov.uk",
 #'           add_warning = FALSE
@@ -186,7 +186,7 @@ support_panel <- function(
           "This dashboard is a new service that we are developing. If you
               have any feedback or suggestions for improvements, please submit
               them using our ",
-          dfeshiny::external_link(
+          shinyGovstyle::external_link(
             href = form_url,
             link_text = "feedback form"
           ),
@@ -207,7 +207,7 @@ support_panel <- function(
           "f you spot any errors or bugs while using this dashboard, please
               screenshot and email them to "
         ),
-        dfeshiny::external_link(
+        shinyGovstyle::external_link(
           href = paste0("mailto:", team_email),
           link_text = team_email,
           add_warning = FALSE
@@ -227,7 +227,7 @@ support_panel <- function(
           "The parent statistical release of this dashboard, along with
               methodological information,
               is available at ",
-          dfeshiny::external_link(
+          shinyGovstyle::external_link(
             href = paste0(
               "https://explore-education-statistics.service.gov.uk/find-statistics/", # nolint: [line_length_linter]
               publication_slug
@@ -239,7 +239,7 @@ support_panel <- function(
             )
           ),
           ". The statistical release provides additional ",
-          dfeshiny::external_link(
+          shinyGovstyle::external_link(
             href = paste0(
               "https://explore-education-statistics.service.gov.uk/find-statistics/", # nolint: [line_length_linter]
               publication_slug,
@@ -248,7 +248,7 @@ support_panel <- function(
             link_text = "data guidance"
           ),
           " and ",
-          dfeshiny::external_link(
+          shinyGovstyle::external_link(
             href = paste0(
               "https://explore-education-statistics.service.gov.uk/find-statistics/", # nolint: [line_length_linter]
               publication_slug,
@@ -263,7 +263,7 @@ support_panel <- function(
           "The parent statistical release of this dashboard, along with
               methodological information,
               is available at ",
-          dfeshiny::external_link(
+          shinyGovstyle::external_link(
             href = alt_href,
             link_text = publication_name
           ),
@@ -277,7 +277,7 @@ support_panel <- function(
     shiny::tags$p(
       "If you have questions about the dashboard or data within it,
             please contact us at ",
-      dfeshiny::external_link(
+      shinyGovstyle::external_link(
         href = paste0("mailto:", team_email),
         link_text = team_email,
         add_warning = FALSE
@@ -287,7 +287,7 @@ support_panel <- function(
     shiny::tags$h2("See the source code"),
     shiny::tags$p(
       "The source code for this dashboard is available in our ",
-      dfeshiny::external_link(
+      shinyGovstyle::external_link(
         href = paste0(
           repo_name
         ),

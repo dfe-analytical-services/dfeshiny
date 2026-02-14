@@ -44,7 +44,7 @@
 #'   heading = "Heading test",
 #'   body = shiny::tagList(
 #'     "This is a body text test. Please contact us at",
-#'     dfeshiny::external_link(
+#'     shinyGovstyle::external_link(
 #'       href = paste0("mailto:", "team@@education.gov.uk"),
 #'       link_text = "team@@education.gov.uk",
 #'       add_warning = FALSE

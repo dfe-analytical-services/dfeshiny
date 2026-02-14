@@ -1,5 +1,11 @@
 #' Lookup for bad link text
 #'
+#' `r lifecycle::badge("deprecated")`
+#'
+#' `bad_link_text` has been superseded by `shinyGovstyle::bad_link_text` and
+#' will no longer receive any updates. It will be removed in the next major
+#' version (v1.0.0).
+#'
 #' A single column data frame, listing out known examples of bad link text that
 #' check for in the `external_link()` function.
 #'

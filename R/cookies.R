@@ -253,7 +253,7 @@ cookies_banner_server <- function(
       )
     })
 
-    return(shiny::renderText({
+    shiny::renderText({
       cookies_text_stem <- "You have chosen to"
       cookies_text_tail <- "the use of cookies on this website."
       if (!is.null(input_cookies())) {
@@ -267,7 +267,7 @@ cookies_banner_server <- function(
       } else {
         "Cookies consent has not been confirmed."
       }
-    }))
+    })
   })
 }
 

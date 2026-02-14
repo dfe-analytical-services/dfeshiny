@@ -1,6 +1,6 @@
 Package: dfeshiny
 Title: DfE R Shiny Standards
-Version: 0.5.3.9000
+Version: 0.6.0
 Authors@R: c(
     person("Rich", "Bielby", , "richard.bielby@education.gov.uk", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0001-9070-9969")),
@@ -13,13 +13,14 @@ License: GPL (>= 3)
 URL: https://dfe-analytical-services.github.io/dfeshiny/
     https://www.github.com/dfe-analytical-services/dfeshiny/
 Depends: 
-    R (>= 2.10)
+    R (>= 4.1.0)
 Imports: 
     dplyr,
     checkmate,
     chromote,
     glue,
     htmltools,
+    lifecycle,
     lubridate,
     magrittr,
     shiny,
@@ -28,7 +29,6 @@ Imports:
     stringr,
     styler,
     xfun,
-    reactable,
     readr
 Suggests: 
     devtools,
@@ -38,6 +38,8 @@ Suggests:
     shinytest2,
     spelling,
     testthat (>= 3.0.0)
+Remotes: 
+    dfe-analytical-services/shinyGovstyle
 VignetteBuilder: 
     knitr
 Config/testthat/edition: 3

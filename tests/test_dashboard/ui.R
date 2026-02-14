@@ -18,10 +18,11 @@ ui <- function(input, output, session) {
         "https://department-for-education.shinyapps.io/dfe-shiny-template-overflow/"
       ),
       publication_name = "Explore Education Statistics Publication",
-      publication_link =
-        "https://explore-education-statistics.service.gov.uk/find-statistics/apprenticeships"
+      publication_link = paste0(
+        "https://explore-education-statistics.service.gov.uk",
+        "/find-statistics/apprenticeships"
+      )
     ),
-
 
     # Panels ==================================================================
     shiny::navlistPanel(
@@ -67,7 +68,7 @@ ui <- function(input, output, session) {
         shiny::tags$h2("Hey, here's a heading"),
         shiny::tags$p(
           "Hey ",
-          external_link(
+          shinyGovstyle::external_link(
             "https://shiny.posit.co/",
             "R Shiny"
           ),
@@ -75,7 +76,7 @@ ui <- function(input, output, session) {
         ),
         shiny::tags$p(
           "Hey I think the greatest thing ever is ",
-          external_link(
+          shinyGovstyle::external_link(
             "https://shiny.posit.co/",
             "R Shiny"
           ),
@@ -84,7 +85,7 @@ ui <- function(input, output, session) {
         shiny::tags$p(
           "Sometimes you just want to be in a cave without distractions",
           " when writing code in ",
-          external_link(
+          shinyGovstyle::external_link(
             "https://shiny.posit.co/",
             "R Shiny",
             add_warning = FALSE
@@ -93,7 +94,7 @@ ui <- function(input, output, session) {
         ),
         shiny::tags$p(
           "Sometimes you just want to be writing ",
-          external_link(
+          shinyGovstyle::external_link(
             "https://shiny.posit.co/",
             "R Shiny",
             add_warning = FALSE

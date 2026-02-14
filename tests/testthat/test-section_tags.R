@@ -40,23 +40,29 @@ test_that("errors are being generated for no/wrong inputs", {
   )
 
   # error for wrapping in c() instead of shiny::tagList()
-  expect_error(section_tags(heading = "a", body = c(
-    "b",
-    dfeshiny::external_link(
-      href = paste0("mailto:", "team@education.gov.uk"),
-      link_text = "team@education.gov.uk",
-      add_warning = FALSE
+  expect_error(section_tags(
+    heading = "a",
+    body = c(
+      "b",
+      shinyGovstyle::external_link(
+        href = paste0("mailto:", "team@education.gov.uk"),
+        link_text = "team@education.gov.uk",
+        add_warning = FALSE
+      )
     )
-  )))
+  ))
 
-  expect_error(section_tags(heading = c(
-    "a",
-    dfeshiny::external_link(
-      href = paste0("mailto:", "team@education.gov.uk"),
-      link_text = "team@education.gov.uk",
-      add_warning = FALSE
-    )
-  ), body = "c"))
+  expect_error(section_tags(
+    heading = c(
+      "a",
+      shinyGovstyle::external_link(
+        href = paste0("mailto:", "team@education.gov.uk"),
+        link_text = "team@education.gov.uk",
+        add_warning = FALSE
+      )
+    ),
+    body = "c"
+  ))
 })
 
 # testing outputs
