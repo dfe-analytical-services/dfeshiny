@@ -99,7 +99,7 @@ support_panel(
   form_url = "www.myform.com",
   custom_data_info = shiny::tagList(
     "Please email results to",
-    external_link(
+    shinyGovstyle::external_link(
       href = paste0("mailto:", "team@education.gov.uk"),
       link_text = "team@education.gov.uk",
       add_warning = FALSE
@@ -145,7 +145,7 @@ support_panel(
       heading = "Heading",
       body = shiny::tagList(
         "Please email results to",
-        external_link(
+        shinyGovstyle::external_link(
           href = paste0("mailto:", "team@education.gov.uk"),
           link_text = "team@education.gov.uk",
           add_warning = FALSE

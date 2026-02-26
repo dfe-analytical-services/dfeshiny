@@ -182,12 +182,6 @@
                 "id": ".rownames",
                 "name": "",
                 "type": "character",
-                "html": true,
-                "na": "NA",
-                "minWidth": 65,
-                "align": "left",
-                "className": "govuk-table__cell",
-                "headerClassName": "govuk-table__header",
                 "sortable": false,
                 "filterable": false,
                 "rowHeader": true
@@ -196,67 +190,49 @@
                 "id": "mpg",
                 "name": "mpg",
                 "type": "numeric",
+                "sortable": true,
                 "html": true,
                 "na": "NA",
-                "minWidth": 65,
                 "align": "left",
-                "className": "govuk-table__cell",
-                "headerClassName": "govuk-table__header"
+                "headerClassName": "bar-sort-header"
               },
               {
                 "id": "cyl",
                 "name": "cyl",
                 "type": "numeric",
+                "sortable": true,
                 "html": true,
                 "na": "NA",
-                "minWidth": 65,
                 "align": "left",
-                "className": "govuk-table__cell",
-                "headerClassName": "govuk-table__header"
+                "headerClassName": "bar-sort-header"
               },
               {
                 "id": "hp",
                 "name": "hp",
                 "type": "numeric",
+                "sortable": true,
                 "html": true,
                 "na": "NA",
-                "minWidth": 65,
                 "align": "left",
-                "className": "govuk-table__cell",
-                "headerClassName": "govuk-table__header"
+                "headerClassName": "bar-sort-header"
               },
               {
                 "id": "gear",
                 "name": "gear",
                 "type": "numeric",
+                "sortable": true,
                 "html": true,
                 "na": "NA",
-                "minWidth": 65,
                 "align": "left",
-                "className": "govuk-table__cell",
-                "headerClassName": "govuk-table__header"
+                "headerClassName": "bar-sort-header"
               }
             ],
-            "resizable": true,
+            "defaultPageSize": 10,
             "highlight": true,
             "borderless": true,
-            "className": "gov-table",
-            "rowClassName": "govuk-table__row",
-            "theme": {
-              "searchInputStyle": {
-                "float": "right",
-                "width": "25%",
-                "marginBottom": "10px",
-                "padding": "5px",
-                "fontSize": "14px",
-                "border": "1px solid #ccc",
-                "borderRadius": "5px"
-              }
-            },
-            "language": {
-              "searchPlaceholder": "Search table..."
-            },
-            "dataKey": "f5749b738003a58bb8ea7ea397ae8ca5",
+            "showSortIcon": false,
+            "className": "gov-table govuk-table",
+            "dataKey": "345d13f9bdef840c646d97e9722919cf",
             "static": false
           },
           "children": [

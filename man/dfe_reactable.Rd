@@ -9,43 +9,21 @@ dfe_reactable(data, ...)
 \arguments{
 \item{data}{A data frame to display in the table.}
 
-\item{...}{Additional arguments passed to \code{reactable::reactable}.}
+\item{...}{Arguments passed to \code{shinyGovstyle::govReactable()}.}
 }
 \value{
-A \code{reactable} HTML widget object.
+The result of \code{shinyGovstyle::govReactable(...)}.
 }
 \description{
-A wrapper around the \code{reactable} function for creating styled, accessible,
-and user-friendly tables tailored to the Department for Education's
-requirements.
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}
+
+A wrapper around \code{shinyGovstyle::govReactable()}, preserving the function
+here in dfeshiny for backwards compatibility in upcoming versions only.
+
+All logic and documentation is now in \code{shinyGovstyle::govReactable()}, so
+please refer to that function for more information, and update your code
+to use that function directly.
 }
-\details{
-The \code{dfe_reactable} function provides a pre-configured version of
-the \code{reactable} function with:
-\itemize{
-\item \strong{Highlighting}: Row highlighting enabled.
-\item \strong{Borderless Table}: Removes borders for a clean look.
-\item \strong{Sort Icons Hidden}: Sort icons are not displayed by default.
-\item \strong{Resizable Columns}: Users can resize columns.
-\item \strong{Full Width}: Table expands to the full width of the container.
-\item \strong{Default Column Definition}: Custom column header styles,
-NA value handling,
-and alignment.
-\item \strong{Custom Search Input}: A search bar styled to the Department
-for Education's specifications.
-\item \strong{Custom Language}: Provides a user-friendly search placeholder
-text.
-}
-}
-\examples{
-if (interactive()) {
-  library(shiny)
-  library(dfeshiny)
-  ui <- fluidPage(
-    h1("Example of dfe_reactable in a Shiny app"),
-    dfe_reactable(mtcars)
-  )
-  server <- function(input, output, session) {}
-  shinyApp(ui, server)
-}
+\seealso{
+\code{\link[shinyGovstyle:govReactable]{shinyGovstyle::govReactable()}}
 }

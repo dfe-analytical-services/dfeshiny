@@ -40,25 +40,26 @@
 #'   publication_name = "LA and school expenditure"
 #' )
 a11y_panel <- function(
-    dashboard_title,
-    dashboard_url,
-    date_tested,
-    date_prepared,
-    date_reviewed,
-    date_template_reviewed = "12 March 2024",
-    issues_contact = NULL,
-    publication_name = NULL,
-    publication_slug = NULL,
-    non_accessible_components = c(
-      "Keyboard navigation through the interactive charts is currently limited",
-      "Alternative text in interactive charts is limited to titles"
-    ),
-    specific_issues = c(
-      "Charts have non-accessible components that are inaccessible for keyboard users.",
-      "Chart tooltips are not compatible with screen reader use.",
-      "Some decorative images are not labelled appropriately as yet.",
-      "Some links are not appropriately labelled."
-    )) {
+  dashboard_title,
+  dashboard_url,
+  date_tested,
+  date_prepared,
+  date_reviewed,
+  date_template_reviewed = "12 March 2024",
+  issues_contact = NULL,
+  publication_name = NULL,
+  publication_slug = NULL,
+  non_accessible_components = c(
+    "Keyboard navigation through the interactive charts is currently limited",
+    "Alternative text in interactive charts is limited to titles"
+  ),
+  specific_issues = c(
+    "Charts have non-accessible components that are inaccessible for keyboard users.",
+    "Chart tooltips are not compatible with screen reader use.",
+    "Some decorative images are not labelled appropriately as yet.",
+    "Some links are not appropriately labelled."
+  )
+) {
   # Validate inputs
   date_tested <- validate_date(date_tested)
   date_prepared <- validate_date(date_prepared)
@@ -67,22 +68,31 @@ a11y_panel <- function(
   validate_dashboard_url(dashboard_url)
   if (
     lubridate::interval(
-      lubridate::dmy(date_prepared), lubridate::dmy(date_reviewed)
-    ) / lubridate::days(1) < 0
+      lubridate::dmy(date_prepared),
+      lubridate::dmy(date_reviewed)
+    ) /
+      lubridate::days(1) <
+      0
   ) {
     stop("date_reviewed should be later than date_prepared")
   }
   if (
     lubridate::interval(
-      lubridate::dmy(date_tested), lubridate::dmy(date_reviewed)
-    ) / lubridate::days(1) < 0
+      lubridate::dmy(date_tested),
+      lubridate::dmy(date_reviewed)
+    ) /
+      lubridate::days(1) <
+      0
   ) {
     stop("date_reviewed should be later than date_tested")
   }
   if (
     lubridate::interval(
-      lubridate::dmy(date_template_reviewed), lubridate::dmy(date_reviewed)
-    ) / lubridate::days(1) < 0
+      lubridate::dmy(date_template_reviewed),
+      lubridate::dmy(date_reviewed)
+    ) /
+      lubridate::days(1) <
+      0
   ) {
     warning(
       "The template has been through a review more recently than your dashboard, please get in ",
@@ -101,10 +111,14 @@ a11y_panel <- function(
     }
   }
   if (is.null(publication_name) && !is.null(publication_slug)) {
-    stop("Error: If publication_name is provided, then so should publication_slug.")
+    stop(
+      "Error: If publication_name is provided, then so should publication_slug."
+    )
   }
   if (!is.null(publication_name) && is.null(publication_slug)) {
-    stop("Error: If publication_slug is provided, then so should publication_name.")
+    stop(
+      "Error: If publication_slug is provided, then so should publication_name."
+    )
   }
   shiny::tags$div(
     style = "margin-top: 50px; margin-bottom: 50px",
@@ -113,7 +127,7 @@ a11y_panel <- function(
       "This accessibility statement applies to the",
       dashboard_url,
       "website. This website is run by the ",
-      external_link(
+      shinyGovstyle::external_link(
         href = "https://www.gov.uk/government/organisations/department-for-education",
         "Department for Education (DfE)"
       ),
@@ -140,17 +154,26 @@ a11y_panel <- function(
                     (including the most recent versions of JAWS, NVDA and VoiceOver)"
       )
     )),
-    shiny::tags$p("We've also made the website text as simple as possible to understand."),
     shiny::tags$p(
-      external_link(href = "https://mcmw.abilitynet.org.uk/", "AbilityNet"),
+      "We've also made the website text as simple as possible to understand."
+    ),
+    shiny::tags$p(
+      shinyGovstyle::external_link(
+        href = "https://mcmw.abilitynet.org.uk/",
+        "AbilityNet"
+      ),
       " has advice on making your device easier to use if you have a disability."
     ),
     shiny::tags$h2("How accessible this website is"),
     if (all(is.null(non_accessible_components))) {
-      shiny::tags$p("This website is fully compliant with accessibility standards.")
+      shiny::tags$p(
+        "This website is fully compliant with accessibility standards."
+      )
     } else {
       shiny::tagList(
-        shiny::tags$p("We know some parts of this website are not fully accessible:"),
+        shiny::tags$p(
+          "We know some parts of this website are not fully accessible:"
+        ),
         shiny::tags$div(tags$ol(
           tagList(lapply(non_accessible_components, shiny::tags$li))
         ))
@@ -162,7 +185,7 @@ a11y_panel <- function(
         shiny::tags$p(
           "If you need information on this website in a different format please see the",
           " parent publication, ",
-          external_link(
+          shinyGovstyle::external_link(
             href = paste0(
               "https://explore-education-statistics.service.gov.uk/find-statistics/",
               publication_slug
@@ -177,9 +200,11 @@ a11y_panel <- function(
         )
       )
     },
-    shiny::tags$p("We're always looking to improve the accessibility of this website.
+    shiny::tags$p(
+      "We're always looking to improve the accessibility of this website.
              If you find any problems not listed on this page or think we're not meeting
-             accessibility requirements, contact us:"),
+             accessibility requirements, contact us:"
+    ),
     shiny::tags$ul(tags$li(
       shiny::tags$a(
         href = "mailto:explore.statistics@education.gov.uk",
@@ -194,7 +219,7 @@ a11y_panel <- function(
     ),
     shiny::tags$p(
       "If you are not happy with how we respond to your complaint, contact the ",
-      external_link(
+      shinyGovstyle::external_link(
         href = "https://www.equalityadvisoryservice.com/",
         "Equality Advisory and Support Service (EASS)"
       ),
@@ -210,7 +235,7 @@ a11y_panel <- function(
     if (all(is.null(specific_issues))) {
       shiny::tags$p(
         "This website is fully compliant with the ",
-        external_link(
+        shinyGovstyle::external_link(
           href = "https://www.w3.org/TR/WCAG22/",
           "Web Content Accessibility Guidelines version 2.2 AA standard"
         ),
@@ -220,15 +245,17 @@ a11y_panel <- function(
       shiny::tagList(
         shiny::tags$p(
           "This website is partially compliant with the ",
-          external_link(
+          shinyGovstyle::external_link(
             href = "https://www.w3.org/TR/WCAG22/",
             "Web Content Accessibility Guidelines version 2.2 AA standard"
           ),
           " due to the non-compliances listed below."
         ),
         shiny::tags$h3("Non accessible content"),
-        shiny::tags$p("The content listed below is non-accessible for the following reasons.
-             We will address these issues to ensure our content is accessible."),
+        shiny::tags$p(
+          "The content listed below is non-accessible for the following reasons.
+             We will address these issues to ensure our content is accessible."
+        ),
         shiny::tags$div(tags$ol(
           tagList(lapply(specific_issues, shiny::tags$li))
         ))
@@ -241,12 +268,12 @@ a11y_panel <- function(
       "The template used for this website was last tested on",
       date_template_reviewed,
       " against ",
-      external_link(
+      shinyGovstyle::external_link(
         href = "https://www.w3.org/TR/WCAG22/",
         "Accessibility Guidelines WCAG2.2"
       ),
       ". The test was carried out by the ",
-      external_link(
+      shinyGovstyle::external_link(
         href = "https://digitalaccessibilitycentre.org/",
         "Digital accessibility centre (DAC)"
       ),
@@ -261,13 +288,15 @@ a11y_panel <- function(
       shiny::tags$li("charts, maps, and tables")
     )),
     shiny::tags$p(
-      "This specific website was was last tested on ", date_tested, " against ",
-      external_link(
+      "This specific website was was last tested on ",
+      date_tested,
+      " against ",
+      shinyGovstyle::external_link(
         href = "https://www.w3.org/TR/WCAG22/",
         "Accessibility Guidelines WCAG2.2"
       ),
       ". The test was carried out by the ",
-      external_link(
+      shinyGovstyle::external_link(
         href = "https://www.gov.uk/government/organisations/department-for-education",
         "Department for Education (DfE)"
       ),
@@ -283,7 +312,7 @@ a11y_panel <- function(
         if (is_valid_repo_url(issues_contact)) {
           shiny::tagList(
             "Our current list of issues to be resolved is available on our ",
-            external_link(
+            shinyGovstyle::external_link(
               href = paste0(issues_contact, "/issues"),
               "GitHub issues page"
             ),
@@ -313,7 +342,7 @@ a11y_panel <- function(
         "."
       ),
       "The statement was produced based on a combination of testing carried out by the ",
-      external_link(
+      shinyGovstyle::external_link(
         href = "https://digitalaccessibilitycentre.org/",
         "Digital accessibility centre (DAC)"
       ),
