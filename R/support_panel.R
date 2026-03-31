@@ -4,6 +4,7 @@
 #' Create the standard DfE R-Shiny support and feedback dashboard panel.
 #'
 #' @param team_email Your team e-mail address, must be a education.gov.uk email
+#' @param contact_name Named contact for the release
 #' @param repo_name The repository URL, must be a valid URL for the
 #' dfe-analytical-services GitHub area or the dfe-gov-uk Azure DevOps
 #' @param ees_publication Whether the parent publication is hosted on Explore
@@ -133,6 +134,7 @@
 #' )
 support_panel <- function(
   team_email = "",
+  contact_name = NULL,
   repo_name = "",
   ees_publication = TRUE,
   publication_name = NULL,
@@ -149,6 +151,13 @@ support_panel <- function(
     )
   }
 
+  if (!is.null(contact_name)) {
+    if (contact_name == "" | !is.character(contact_name)) {
+      stop(
+        "Please provide a valid string (or NULL) for the contact name"
+      )
+    }
+  }
   if (repo_name == "") {
     stop(
       "The repo_name argument is empty, please specify a value for repo_name"
@@ -276,14 +285,23 @@ support_panel <- function(
     shiny::tags$h2("Contact us"),
     shiny::tags$p(
       "If you have questions about the dashboard or data within it,
-            please contact us at ",
-      shinyGovstyle::external_link(
-        href = paste0("mailto:", team_email),
-        link_text = team_email,
-        add_warning = FALSE
-      ),
-      "."
+            please contact us at: "
     ),
+    shiny::tags$p(
+      paste0(
+        "E-mail: ",
+        shinyGovstyle::external_link(
+          href = paste0("mailto:", team_email),
+          link_text = team_email,
+          add_warning = FALSE
+        )
+      )
+    ),
+    if (!is.null(contact_name)) {
+      shiny::tags$p(
+        paste0("Contact-name:", contact_name)
+      )
+    },
     shiny::tags$h2("See the source code"),
     shiny::tags$p(
       "The source code for this dashboard is available in our ",
