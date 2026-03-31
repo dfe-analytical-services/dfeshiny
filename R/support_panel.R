@@ -284,22 +284,19 @@ support_panel <- function(
     extra_text,
     shiny::tags$h2("Contact us"),
     shiny::tags$p(
-      "If you have questions about the dashboard or data within it,
-            please contact us at: "
+      "Use the following contact details if you have questions about the dashboard or data within it."
     ),
     shiny::tags$p(
-      paste0(
         "E-mail: ",
         shinyGovstyle::external_link(
           href = paste0("mailto:", team_email),
           link_text = team_email,
           add_warning = FALSE
         )
-      )
     ),
     if (!is.null(contact_name)) {
       shiny::tags$p(
-        paste0("Contact-name:", contact_name)
+        paste("Contact-name:", contact_name)
       )
     },
     shiny::tags$h2("See the source code"),

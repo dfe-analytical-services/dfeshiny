@@ -36,6 +36,7 @@ ui <- function(input, output, session) {
         "Support and feedback",
         support_panel(
           team_email = "explore.statistics@education.gov.uk",
+          contact_name = "Rich Bielby",
           repo_name = "https://github.com/dfe-analytical-services/dfeshiny/",
           form_url = "https://forms.office.com"
         )

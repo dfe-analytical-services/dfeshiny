@@ -6,6 +6,7 @@ test_that("email needs to follow standard pattern", {
       repo_name = "https://github.com/dfe-analytical-services/dfeshiny"
     )
   )
+
   expect_no_error(
     support_panel(
       team_email = "cam1.race@education.gov.uk",
@@ -87,6 +88,24 @@ test_that("repo URL needs to follow standard pattern", {
     support_panel(
       team_email = "cam@education.gov.uk",
       repo_name = "https://explore-education-statistics.service.gov.uk/"
+    )
+  )
+
+  # Testing it will pass with a valid contact name
+  expect_no_error(
+    support_panel(
+      team_email = "cam@education.gov.uk",
+      contact_name = "Cam",
+      repo_name = "https://github.com/dfe-analytical-services/dfeshiny"
+    )
+  )
+
+  # Testing it will fail with a blank contact name
+  expect_error(
+    support_panel(
+      team_email = "cam@education.gov.uk",
+      contact_name = "",
+      repo_name = "https://github.com/dfe-analytical-services/dfeshiny"
     )
   )
 
