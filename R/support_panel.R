@@ -152,7 +152,7 @@ support_panel <- function(
   }
 
   if (!is.null(contact_name)) {
-    if (contact_name == "" | !is.character(contact_name)) {
+    if (contact_name == "" || !is.character(contact_name)) {
       stop(
         "Please provide a valid string (or NULL) for the contact name"
       )
@@ -284,7 +284,10 @@ support_panel <- function(
     extra_text,
     shiny::tags$h2("Contact us"),
     shiny::tags$p(
-      "Use the following contact details if you have questions about the dashboard or data within it."
+      paste0(
+        "Use the following contact details if you have questions about the dashboard or data ", 
+        "within it."
+      )
     ),
     shiny::tags$p(
       "E-mail: ",
