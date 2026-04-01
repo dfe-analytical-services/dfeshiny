@@ -1,0 +1,24 @@
+name: Create Trello card
+
+on:
+  workflow_call:
+    secrets:
+      TRELLO_API_KEY:
+        required: true
+      TRELLO_API_TOKEN:
+        required: true
+
+jobs:
+  create-card:
+    runs-on: ubuntu-latest
+    steps:
+      - name: create a card
+        uses: nentgroup/pr-trello-action@v2
+        with:
+          api-key: '${{ secrets.TRELLO_API_KEY }}'
+          api-token: '${{ secrets.TRELLO_API_TOKEN }}'
+          list-id: '63ce5064a4859b0387f46b9b' # "To review" column
+          title-format: 'Dashboard PR: ${title}'
+          label-ids: |  # "New / to discuss" and "public-dashboards" labels
+             63ce4ffcbfa825468a8e2a69
+             67c069d5b93dcff3450d7054

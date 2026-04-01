@@ -287,12 +287,12 @@ support_panel <- function(
       "Use the following contact details if you have questions about the dashboard or data within it."
     ),
     shiny::tags$p(
-        "E-mail: ",
-        shinyGovstyle::external_link(
-          href = paste0("mailto:", team_email),
-          link_text = team_email,
-          add_warning = FALSE
-        )
+      "E-mail: ",
+      shinyGovstyle::external_link(
+        href = paste0("mailto:", team_email),
+        link_text = team_email,
+        add_warning = FALSE
+      )
     ),
     if (!is.null(contact_name)) {
       shiny::tags$p(
