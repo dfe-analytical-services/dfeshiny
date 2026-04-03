@@ -14,4 +14,4 @@ permissions:
 
 jobs:
   air:
-    uses: dfe-analytical-services/dfeshiny/.github/workflows/air_reusable.yaml@main
+    uses: dfe-analytical-services/dfeshiny/.github/workflows/air_reusable.yaml@workflows/air-reusable
