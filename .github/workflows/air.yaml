@@ -9,7 +9,7 @@ name: air
 
 permissions:
   contents: read
-  packages: read
+  packages: write
   pull-requests: write
 
 jobs:
