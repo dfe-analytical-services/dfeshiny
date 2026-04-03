@@ -2,15 +2,9 @@ name: Air format check
 
 on:
   workflow_call:
-    inputs:
-      is_dashboard:
-        description: "Is this scanning dashboard code"
-        default: 'true'
-        required: false
-        type: string
 
 jobs:
-  air:
+  format-check:
     runs-on: ubuntu-latest
 
     container:
@@ -25,19 +19,9 @@ jobs:
 
       - name: Install the latest version of Air
         uses: posit-dev/setup-air@v1
-        with:
-          version: "latest"
 
-      - name: Check standard locations
-        run: |
-          ls -a
-          air format R
-          air format tests
-
-      - name: Check dashboard scripts
-        if: ${{ inputs.is_dashboard == 'true' }}
-        run: |
-          air format *.R
+      - name: Format
+        run: air format .
 
       - name: Suggest
         uses: reviewdog/action-suggester@v1
