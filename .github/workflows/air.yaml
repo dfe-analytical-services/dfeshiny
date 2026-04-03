@@ -5,7 +5,7 @@ on:
     branches: [main, master]
   pull_request:
 
-name: air
+name: Reusable
 
 permissions:
   contents: read
@@ -14,4 +14,5 @@ permissions:
 
 jobs:
   air:
+    name: Air
     uses: dfe-analytical-services/dfeshiny/.github/workflows/air_reusable.yaml@workflows/air-reusable
