@@ -4,7 +4,7 @@
 #' Create the standard DfE R-Shiny support and feedback dashboard panel.
 #'
 #' @param team_email Your team e-mail address, must be a education.gov.uk email
-#' @param contact_name Named contact for the release
+#' @param contact_name Named contact for the dashboard
 #' @param repo_name The repository URL, must be a valid URL for the
 #' dfe-analytical-services GitHub area or the dfe-gov-uk Azure DevOps
 #' @param ees_publication Whether the parent publication is hosted on Explore
@@ -152,7 +152,7 @@ support_panel <- function(
   }
 
   if (!is.null(contact_name)) {
-    if (contact_name == "" || !is.character(contact_name)) {
+    if (!is.character(contact_name) || length(contact_name) != 1 || contact_name == "") {
       stop(
         "Please provide a valid string (or NULL) for the contact name"
       )
@@ -299,7 +299,7 @@ support_panel <- function(
     ),
     if (!is.null(contact_name)) {
       shiny::tags$p(
-        paste("Contact-name:", contact_name)
+        paste("Contact name:", contact_name)
       )
     },
     shiny::tags$h2("See the source code"),
