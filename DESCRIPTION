@@ -38,8 +38,6 @@ Suggests:
     shinytest2,
     spelling,
     testthat (>= 3.0.0)
-Remotes: 
-    dfe-analytical-services/shinyGovstyle
 VignetteBuilder: 
     knitr
 Config/testthat/edition: 3
