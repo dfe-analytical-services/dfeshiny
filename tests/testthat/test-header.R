@@ -5,7 +5,7 @@ test_that("outputs are as expected", {
     unlist(use.names = FALSE)
 
   title_index <- header_vector |>
-    stringr::str_which("govuk-header__content govuk-header__product-name") +
+    stringr::str_which("govuk-header__service-name") +
     1
 
   expect_equal(
@@ -19,7 +19,7 @@ test_that("outputs are as expected", {
 
   expect_equal(
     header_vector[image_index],
-    "dfeshiny/DfE_logo_landscape.png"
+    "shinyGovstyle/images/Dept_logo.svg"
   )
 })
 

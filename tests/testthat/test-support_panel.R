@@ -90,7 +90,11 @@ test_that("repo URL needs to follow standard pattern", {
       repo_name = "https://explore-education-statistics.service.gov.uk/"
     )
   )
+  # Testing that it will fail if there is no repo_name
+  expect_error(support_panel(team_email = "cam@education.gov.uk"))
+})
 
+test_that("Testing contact name validation", {
   # Testing it will pass with a valid contact name
   expect_no_error(
     support_panel(
@@ -108,9 +112,6 @@ test_that("repo URL needs to follow standard pattern", {
       repo_name = "https://github.com/dfe-analytical-services/dfeshiny"
     )
   )
-
-  # Testing that it will fail if there is no repo_name
-  expect_error(support_panel(team_email = "cam@education.gov.uk"))
 })
 
 # Testing custom text inputs
