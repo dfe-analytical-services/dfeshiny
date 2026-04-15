@@ -7,6 +7,7 @@ Create the standard DfE R-Shiny support and feedback dashboard panel.
 ``` r
 support_panel(
   team_email = "",
+  contact_name = NULL,
   repo_name = "",
   ees_publication = TRUE,
   publication_name = NULL,
@@ -23,6 +24,10 @@ support_panel(
 - team_email:
 
   Your team e-mail address, must be a education.gov.uk email
+
+- contact_name:
+
+  Named contact for the release
 
 - repo_name:
 
@@ -108,10 +113,9 @@ support_panel(
 #>   </p>
 #>   
 #>   <h2>Contact us</h2>
+#>   <p>Use the following contact details if you have questions about the dashboard or data within it.</p>
 #>   <p>
-#>     If you have questions about the dashboard or data within it,
-#>             please contact us at <a href="mailto:my.team@education.gov.uk" class="govuk-link" target="_blank" rel="noopener noreferrer">my.team@education.gov.uk<span class="sr-only"> (opens in new tab)</span></a>.
-#>   </p>
+#>     E-mail: <a href="mailto:my.team@education.gov.uk" class="govuk-link" target="_blank" rel="noopener noreferrer">my.team@education.gov.uk<span class="sr-only"> (opens in new tab)</span></a></p>
 #>   <h2>See the source code</h2>
 #>   <p>
 #>     The source code for this dashboard is available in our <a href="https://github.com/dfe-analytical-services/my-repo" class="govuk-link" target="_blank" rel="noopener noreferrer">GitHub repository (opens in new tab)</a>.
@@ -137,16 +141,16 @@ shiny::navlistPanel(
 )
 #> <div class="row">
 #>   <div class="col-sm-2">
-#>     <ul class="nav nav-pills nav-stacked shiny-tab-input" id="navlistPanel" data-tabsetid="7545">
+#>     <ul class="nav nav-pills nav-stacked shiny-tab-input" id="navlistPanel" data-tabsetid="2224">
 #>       <li class="navbar-brand"></li>
 #>       <li class="active">
-#>         <a href="#tab-7545-2" data-toggle="tab" data-bs-toggle="tab" data-value="support_panel">Support and feedback</a>
+#>         <a href="#tab-2224-2" data-toggle="tab" data-bs-toggle="tab" data-value="support_panel">Support and feedback</a>
 #>       </li>
 #>     </ul>
 #>   </div>
 #>   <div class="col-sm-8">
-#>     <div class="tab-content" data-tabsetid="7545">
-#>       <div class="tab-pane active" data-value="support_panel" id="tab-7545-2">
+#>     <div class="tab-content" data-tabsetid="2224">
+#>       <div class="tab-pane active" data-value="support_panel" id="tab-2224-2">
 #>         <div style="margin-top: 50px; margin-bottom: 50px">
 #>           <h1>Support and feedback</h1>
 #>           <h2>Give us feedback</h2>
@@ -169,10 +173,9 @@ shiny::navlistPanel(
 #>           </p>
 #>           
 #>           <h2>Contact us</h2>
+#>           <p>Use the following contact details if you have questions about the dashboard or data within it.</p>
 #>           <p>
-#>             If you have questions about the dashboard or data within it,
-#>             please contact us at <a href="mailto:explore.statistics@education.gov.uk" class="govuk-link" target="_blank" rel="noopener noreferrer">explore.statistics@education.gov.uk<span class="sr-only"> (opens in new tab)</span></a>.
-#>           </p>
+#>             E-mail: <a href="mailto:explore.statistics@education.gov.uk" class="govuk-link" target="_blank" rel="noopener noreferrer">explore.statistics@education.gov.uk<span class="sr-only"> (opens in new tab)</span></a></p>
 #>           <h2>See the source code</h2>
 #>           <p>
 #>             The source code for this dashboard is available in our <a href="https://github.com/dfe-analytical-services/dfeshiny/" class="govuk-link" target="_blank" rel="noopener noreferrer">GitHub repository (opens in new tab)</a>.
@@ -213,10 +216,9 @@ support_panel(
 #>   <p>This is a sentence to test the ability to add custom text in the tab</p>
 #>   
 #>   <h2>Contact us</h2>
+#>   <p>Use the following contact details if you have questions about the dashboard or data within it.</p>
 #>   <p>
-#>     If you have questions about the dashboard or data within it,
-#>             please contact us at <a href="mailto:my.team@education.gov.uk" class="govuk-link" target="_blank" rel="noopener noreferrer">my.team@education.gov.uk<span class="sr-only"> (opens in new tab)</span></a>.
-#>   </p>
+#>     E-mail: <a href="mailto:my.team@education.gov.uk" class="govuk-link" target="_blank" rel="noopener noreferrer">my.team@education.gov.uk<span class="sr-only"> (opens in new tab)</span></a></p>
 #>   <h2>See the source code</h2>
 #>   <p>
 #>     The source code for this dashboard is available in our <a href="https://github.com/dfe-analytical-services/my-repo" class="govuk-link" target="_blank" rel="noopener noreferrer">GitHub repository (opens in new tab)</a>.
@@ -259,10 +261,9 @@ support_panel(
 #>     Please email results to<a href="mailto:team@education.gov.uk" class="govuk-link" target="_blank" rel="noopener noreferrer">team@education.gov.uk<span class="sr-only"> (opens in new tab)</span></a></p>
 #>   
 #>   <h2>Contact us</h2>
+#>   <p>Use the following contact details if you have questions about the dashboard or data within it.</p>
 #>   <p>
-#>     If you have questions about the dashboard or data within it,
-#>             please contact us at <a href="mailto:my.team@education.gov.uk" class="govuk-link" target="_blank" rel="noopener noreferrer">my.team@education.gov.uk<span class="sr-only"> (opens in new tab)</span></a>.
-#>   </p>
+#>     E-mail: <a href="mailto:my.team@education.gov.uk" class="govuk-link" target="_blank" rel="noopener noreferrer">my.team@education.gov.uk<span class="sr-only"> (opens in new tab)</span></a></p>
 #>   <h2>See the source code</h2>
 #>   <p>
 #>     The source code for this dashboard is available in our <a href="https://github.com/dfe-analytical-services/my-repo" class="govuk-link" target="_blank" rel="noopener noreferrer">GitHub repository (opens in new tab)</a>.
@@ -295,10 +296,9 @@ support_panel(
 #>   <h2>heading</h2>
 #>   <p>this is a body</p>
 #>   <h2>Contact us</h2>
+#>   <p>Use the following contact details if you have questions about the dashboard or data within it.</p>
 #>   <p>
-#>     If you have questions about the dashboard or data within it,
-#>             please contact us at <a href="mailto:my.team@education.gov.uk" class="govuk-link" target="_blank" rel="noopener noreferrer">my.team@education.gov.uk<span class="sr-only"> (opens in new tab)</span></a>.
-#>   </p>
+#>     E-mail: <a href="mailto:my.team@education.gov.uk" class="govuk-link" target="_blank" rel="noopener noreferrer">my.team@education.gov.uk<span class="sr-only"> (opens in new tab)</span></a></p>
 #>   <h2>See the source code</h2>
 #>   <p>
 #>     The source code for this dashboard is available in our <a href="https://github.com/dfe-analytical-services/my-repo" class="govuk-link" target="_blank" rel="noopener noreferrer">GitHub repository (opens in new tab)</a>.
@@ -340,10 +340,9 @@ support_panel(
 #>   <h2>heading 2</h2>
 #>   <p>this is another example of a text</p>
 #>   <h2>Contact us</h2>
+#>   <p>Use the following contact details if you have questions about the dashboard or data within it.</p>
 #>   <p>
-#>     If you have questions about the dashboard or data within it,
-#>             please contact us at <a href="mailto:my.team@education.gov.uk" class="govuk-link" target="_blank" rel="noopener noreferrer">my.team@education.gov.uk<span class="sr-only"> (opens in new tab)</span></a>.
-#>   </p>
+#>     E-mail: <a href="mailto:my.team@education.gov.uk" class="govuk-link" target="_blank" rel="noopener noreferrer">my.team@education.gov.uk<span class="sr-only"> (opens in new tab)</span></a></p>
 #>   <h2>See the source code</h2>
 #>   <p>
 #>     The source code for this dashboard is available in our <a href="https://github.com/dfe-analytical-services/my-repo" class="govuk-link" target="_blank" rel="noopener noreferrer">GitHub repository (opens in new tab)</a>.
@@ -390,10 +389,9 @@ support_panel(
 #>   <p>
 #>     Please email results to<a href="mailto:team@education.gov.uk" class="govuk-link" target="_blank" rel="noopener noreferrer">team@education.gov.uk<span class="sr-only"> (opens in new tab)</span></a></p>
 #>   <h2>Contact us</h2>
+#>   <p>Use the following contact details if you have questions about the dashboard or data within it.</p>
 #>   <p>
-#>     If you have questions about the dashboard or data within it,
-#>             please contact us at <a href="mailto:my.team@education.gov.uk" class="govuk-link" target="_blank" rel="noopener noreferrer">my.team@education.gov.uk<span class="sr-only"> (opens in new tab)</span></a>.
-#>   </p>
+#>     E-mail: <a href="mailto:my.team@education.gov.uk" class="govuk-link" target="_blank" rel="noopener noreferrer">my.team@education.gov.uk<span class="sr-only"> (opens in new tab)</span></a></p>
 #>   <h2>See the source code</h2>
 #>   <p>
 #>     The source code for this dashboard is available in our <a href="https://github.com/dfe-analytical-services/my-repo" class="govuk-link" target="_blank" rel="noopener noreferrer">GitHub repository (opens in new tab)</a>.
