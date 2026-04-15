@@ -11,7 +11,10 @@ test_that("HTML headings output from function", {
   expect_equal(paste(output$children[[1]]), "<h1>Cookies</h1>")
   expect_equal(paste(output$children[[4]]), "<h2>Essential cookies</h2>")
   expect_equal(paste(output$children[[6]]), "<h2>Analytics cookies</h2>")
-  expect_equal(paste(output$children[[13]]), "<h2>Change your cookie settings</h2>")
+  expect_equal(
+    paste(output$children[[13]]),
+    "<h2>Change your cookie settings</h2>"
+  )
 })
 
 test_that("GA key pulls into table output", {

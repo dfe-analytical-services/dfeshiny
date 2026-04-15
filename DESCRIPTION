@@ -24,7 +24,7 @@ Imports:
     lubridate,
     magrittr,
     shiny,
-    shinyGovstyle,
+    shinyGovstyle (>= 0.2.0),
     shinyjs,
     stringr,
     styler,

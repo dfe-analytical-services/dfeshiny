@@ -25,10 +25,22 @@ test_that("GA key pulls into HTML", {
 
   # Expect to find a couple of other key parts
   expect_equal(output[1], "<script>")
-  expect_true(grepl("window\\.dataLayer = window\\.dataLayer \\|\\| \\[\\]", output[3]))
-  expect_true(grepl("window\\.dataLayer = window\\.dataLayer \\|\\| \\[\\]", output[17]))
-  expect_true(grepl("function gtag\\(\\)\\{dataLayer\\.push\\(arguments\\)\\;\\}", output[4]))
-  expect_true(grepl("function gtag\\(\\)\\{dataLayer\\.push\\(arguments\\)\\;\\}", output[18]))
+  expect_true(grepl(
+    "window\\.dataLayer = window\\.dataLayer \\|\\| \\[\\]",
+    output[3]
+  ))
+  expect_true(grepl(
+    "window\\.dataLayer = window\\.dataLayer \\|\\| \\[\\]",
+    output[17]
+  ))
+  expect_true(grepl(
+    "function gtag\\(\\)\\{dataLayer\\.push\\(arguments\\)\\;\\}",
+    output[4]
+  ))
+  expect_true(grepl(
+    "function gtag\\(\\)\\{dataLayer\\.push\\(arguments\\)\\;\\}",
+    output[18]
+  ))
 })
 
 test_that("Rejects non-boolean for create_file", {
