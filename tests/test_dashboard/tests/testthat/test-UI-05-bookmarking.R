@@ -15,7 +15,10 @@ test_that("A11y panel bookmark test", {
 
 test_that("Cookies panel bookmark test", {
   # Run your tests on the bookmarked `app`
-  bookmark_url <- paste0(base_url, "?_inputs_=&navlistPanel=\"cookies_panel_ui\"")
+  bookmark_url <- paste0(
+    base_url,
+    "?_inputs_=&navlistPanel=\"cookies_panel_ui\""
+  )
   # Open the bookmark URL in a new AppDriver object
   app <- shinytest2::AppDriver$new(bookmark_url, name = "cookies_panel")
   app$expect_values()

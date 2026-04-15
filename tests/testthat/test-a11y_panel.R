@@ -200,7 +200,10 @@ test_that("HTML headings output from function", {
     paste(output$children[[3]]),
     "<h2>How you should be able to use this website</h2>"
   )
-  expect_equal(paste(output$children[[8]]), "<h2>How accessible this website is</h2>")
+  expect_equal(
+    paste(output$children[[8]]),
+    "<h2>How accessible this website is</h2>"
+  )
   expect_equal(
     paste(output$children[[10]]),
     "<h2>Feedback and contact information</h2>"
@@ -212,7 +215,10 @@ test_that("HTML headings output from function", {
   )
   expect_equal(paste(output$children[[19]]), "<h3>Compliance status</h3>")
   expect_equal(paste(output$children[[21]]), "<h3>Disproportionate burden</h3>")
-  expect_equal(paste(output$children[[23]]), "<h2>How we tested this website</h2>")
+  expect_equal(
+    paste(output$children[[23]]),
+    "<h2>How we tested this website</h2>"
+  )
   expect_equal(
     paste(output$children[[28]]),
     "<h2>What we're doing to improve accessibility</h2>"
@@ -223,20 +229,17 @@ test_that("HTML headings output from function", {
   )
 })
 
-test_that(
-  "Params occur in expected places",
-  {
-    expect_true(
-      grepl(
-        "https://department-for-education.shinyapps.io/dfe-shiny-template",
-        paste0(output$children[[2]])
-      )
+test_that("Params occur in expected places", {
+  expect_true(
+    grepl(
+      "https://department-for-education.shinyapps.io/dfe-shiny-template",
+      paste0(output$children[[2]])
     )
-    expect_true(
-      grepl(
-        "https://github.com/dfe-analytical-services/shiny-template/issues",
-        paste0(output$children[[30]])
-      )
+  )
+  expect_true(
+    grepl(
+      "https://github.com/dfe-analytical-services/shiny-template/issues",
+      paste0(output$children[[30]])
     )
-  }
-)
+  )
+})
