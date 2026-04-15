@@ -6,6 +6,7 @@ test_that("email needs to follow standard pattern", {
       repo_name = "https://github.com/dfe-analytical-services/dfeshiny"
     )
   )
+
   expect_no_error(
     support_panel(
       team_email = "cam1.race@education.gov.uk",
@@ -89,9 +90,28 @@ test_that("repo URL needs to follow standard pattern", {
       repo_name = "https://explore-education-statistics.service.gov.uk/"
     )
   )
-
   # Testing that it will fail if there is no repo_name
   expect_error(support_panel(team_email = "cam@education.gov.uk"))
+})
+
+test_that("Testing contact name validation", {
+  # Testing it will pass with a valid contact name
+  expect_no_error(
+    support_panel(
+      team_email = "cam@education.gov.uk",
+      contact_name = "Cam",
+      repo_name = "https://github.com/dfe-analytical-services/dfeshiny"
+    )
+  )
+
+  # Testing it will fail with a blank contact name
+  expect_error(
+    support_panel(
+      team_email = "cam@education.gov.uk",
+      contact_name = "",
+      repo_name = "https://github.com/dfe-analytical-services/dfeshiny"
+    )
+  )
 })
 
 # Testing custom text inputs
@@ -156,9 +176,12 @@ test_that("HTML headings output from function", {
   # This checks the headings are in the expected positions in the HTML output the function returns
   expect_equal(paste(output$children[[1]]), "<h1>Support and feedback</h1>")
   expect_equal(paste(output$children[[2]]), "<h2>Give us feedback</h2>")
-  expect_equal(paste(output$children[[4]]), "<h2>Find more information on the data</h2>")
+  expect_equal(
+    paste(output$children[[4]]),
+    "<h2>Find more information on the data</h2>"
+  )
   expect_equal(paste(output$children[[7]]), "<h2>Contact us</h2>")
-  expect_equal(paste(output$children[[9]]), "<h2>See the source code</h2>")
+  expect_equal(paste(output$children[[11]]), "<h2>See the source code</h2>")
 })
 
 

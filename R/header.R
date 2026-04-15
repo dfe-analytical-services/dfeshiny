@@ -25,12 +25,8 @@
 #' }
 header <- function(header, ...) {
   shinyGovstyle::header(
-    logo = "dfeshiny/DfE_logo_landscape.png",
-    main_text = "",
-    secondary_text = header,
-    main_link = "https://www.gov.uk/government/organisations/department-for-education",
-    logo_width = 132.98,
-    logo_height = 32,
+    org_name = "Department for Education",
+    service_name = header,
     ...
   )
 }
