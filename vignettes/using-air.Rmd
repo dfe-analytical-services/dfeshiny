@@ -1,0 +1,128 @@
+---
+title: "Using Air to format code"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Using Air to format R code}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+[Air](https://posit-dev.github.io/air/) is an R code formatter developed by
+Posit. It automatically formats your R code to a consistent style, similar to
+how [styler](https://styler.r-lib.org/) works but faster and with easier to
+use built in options inside Positron. Air is new and built on 
+[Rust](https://rust-lang.org/), which gives it great speed, and is the 
+successor to `styler`.
+
+Previously in DfE we used to use a custom `tidy_code()` function, and pre-commit
+hooks to format our code, however on bigger repositories this was painfully slow and
+could add a minute or more to each commit. Using Air removes this and makes code
+formatting almost effortless (and maybe even fun).
+
+There are several ways to use Air, ranging from full local setup to only relying on
+a GitHub Actions workflow. We recommend both where possible.
+
+Using Air locally, especially using the format on save feature available in Positron,
+works incredibly well and will mean you never have to think about code formatting again.
+
+Every repository should have the Air GitHub workflow for two reasons:
+
+1. All PRs (and therefore code changes) will be tested for formatting
+2. Everyone can contribute without needing to go through any hoops of local setup
+
+Be aware, if you are adding Air to an existing repository you are likely to make
+a lot of changes at once. It is best to do that on a clean PR, and when there
+are no other open PRs that you are likely to have conflicts with.
+
+## Option 1: Positron (local)
+
+[Positron](https://positron.posit.co/) is the successor to R Studio, and if you 
+haven't tried it yet, you absolutely should. It comes with Air built in as the 
+default R formatter. No extension is needed.
+
+If you are working in dfeshiny, format on save is already configured
+for you via the `.vscode/settings.json` file at the root of the project.
+
+To enable this in your own projects, open your user or workspace settings
+(`Ctrl+Shift+P` > "Open User Settings (JSON)") and add the following to your 
+config file:
+
+```json
+{
+  "[r]": {
+    "editor.defaultFormatter": "Posit.air-vscode",
+    "editor.formatOnSave": true
+  }
+}
+```
+
+You'll then find that whenever you edit then save a file, the formatting is
+automatically applied. It's blazing fast so be careful, if you blink you'll
+miss it. This is the main recommended way of using Air.
+
+## Option 2: R Studio (local)
+
+We've added helper functions to make it easier to use Air in R Studio.
+
+From [dfeR](https://dfe-analytical-services.github.io/dfeR/index.html),
+you can use the following to install Air and set up the defaults:
+
+``` r
+dfeR::air_install(update_rstudio_settings = TRUE)
+```
+
+This will set up save on format, as well as install Air itself.
+
+You can also format your whole project (or specify individual scripts) using:
+
+``` r
+dfeR::air_style()
+```
+
+## Option 3: GitHub Actions workflow (every project)
+
+Acting as an automated safeguard, and a shortcut for those who do not have 
+Air set up locally, we provide a reusable GitHub Actions workflow that 
+checks R code formatting on every pull request. 
+
+Any formatting issues are surfaced as suggested changes directly on the pull
+request, so they can be applied directly in GitHub without needing Air 
+installed locally.
+
+Note that where there are lots of changes, you can go to the `files` tab in
+GitHub and batch all changes up into a single commit to save having to do
+lots of separate commits.
+
+To set up this workflow in your repository, copy the following into a `.yaml` 
+file in your `.github/workflows/` folder:
+
+```yaml
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+
+name: air
+
+permissions:
+  contents: read
+  packages: read
+  pull-requests: write
+
+jobs:
+  format-check:
+    uses: dfe-analytical-services/dfeshiny/.github/workflows/air_reusable.yaml@main
+```
+
+Once added, the workflow will run on every pull request and push to main. If
+any files are not formatted correctly, suggested fixes will appear as review
+comments on the pull request. Accepting the suggestions will apply the
+formatting automatically as a new commit, remember to pull the branch again before
+making any further changes on it!
