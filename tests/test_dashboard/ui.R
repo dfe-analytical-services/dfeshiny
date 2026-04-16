@@ -6,8 +6,10 @@ ui <- function(input, output, session) {
     dfe_cookies_script(),
     cookies_banner_ui(name = "The dfeshiny test dashboard"),
 
-    # header function ---------------------------------------------------------
+    # This forces a full width layout that plays better with dashboard apps
+    shinyGovstyle::full_width_overrides(),
 
+    # header function ---------------------------------------------------------
     dfeshiny::header("Header Example"),
 
     # Custom disconnect =======================================================
