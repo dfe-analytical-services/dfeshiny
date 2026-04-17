@@ -20,7 +20,7 @@ support_panel(
 \arguments{
 \item{team_email}{Your team e-mail address, must be a education.gov.uk email}
 
-\item{contact_name}{Named contact for the release}
+\item{contact_name}{Named contact for the dashboard}
 
 \item{repo_name}{The repository URL, must be a valid URL for the
 dfe-analytical-services GitHub area or the dfe-gov-uk Azure DevOps}
