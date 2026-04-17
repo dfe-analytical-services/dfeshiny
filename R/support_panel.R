@@ -252,8 +252,7 @@ support_panel <- function(
       } else {
         shinyGovstyle::gov_text(
           "The parent statistical release of this dashboard, along with
-              methodological information,
-              is available at ",
+              the methodology, is available at ",
           shinyGovstyle::external_link(
             href = alt_href,
             link_text = publication_name
