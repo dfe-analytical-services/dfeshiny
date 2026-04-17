@@ -187,11 +187,11 @@ support_panel <- function(
   # Build the support page ----------------------------------------------------
   shiny::tags$div(
     style = "margin-top: 50px; margin-bottom: 50px",
-    shiny::tags$h1("Support and feedback"),
-    shiny::tags$h2("Give us feedback"),
+    shinyGovstyle::heading_text("Support and feedback", size = "xl", level = 1),
+    shinyGovstyle::heading_text("Give us feedback", size = "l", level = 2),
     shiny::tags$div(
       if (!is.null(form_url)) {
-        shiny::tags$p(
+        shinyGovstyle::gov_text(
           "This dashboard is a new service that we are developing. If you
               have any feedback or suggestions for improvements, please submit
               them using our ",
@@ -202,11 +202,11 @@ support_panel <- function(
           "."
         )
       } else {
-        shiny::tags$p(
+        shinyGovstyle::gov_text(
           "This dashboard is a new service that we are developing."
         )
       },
-      shiny::tags$p(
+      shinyGovstyle::gov_text(
         paste0(
           ifelse(
             !is.null(form_url),
@@ -224,7 +224,7 @@ support_panel <- function(
         "."
       )
     ),
-    shiny::tags$h2("Find more information on the data"),
+    shinyGovstyle::heading_text("Find more information on the data", size = "l", level = 2),
     # if custom_data_info is provided, use section_tags
     # to get tag list for custom text
     if (!is.null(custom_data_info)) {
@@ -232,10 +232,9 @@ support_panel <- function(
       # if custom_data_info  is not provided, run code as usual
     } else {
       if (ees_publication) {
-        shiny::tags$p(
+        shinyGovstyle::gov_text(
           "The parent statistical release of this dashboard, along with
-              methodological information,
-              is available at ",
+              the methodology, is available at ",
           shinyGovstyle::external_link(
             href = paste0(
               "https://explore-education-statistics.service.gov.uk/find-statistics/", # nolint: [line_length_linter]
@@ -247,28 +246,11 @@ support_panel <- function(
               "explore education statistics"
             )
           ),
-          ". The statistical release provides additional ",
-          shinyGovstyle::external_link(
-            href = paste0(
-              "https://explore-education-statistics.service.gov.uk/find-statistics/", # nolint: [line_length_linter]
-              publication_slug,
-              "/data-guidance"
-            ),
-            link_text = "data guidance"
-          ),
-          " and ",
-          shinyGovstyle::external_link(
-            href = paste0(
-              "https://explore-education-statistics.service.gov.uk/find-statistics/", # nolint: [line_length_linter]
-              publication_slug,
-              "#explore-data-and-files"
-            ),
-            link_text = "tools to access and interrogate the underlying data"
-          ),
-          " contained in this dashboard."
+          ". Access to the underlying data for this dashboard can be found under the 'Explore and download data' tab from the above link.
+              The methodology used to prepare the data can be found under the 'Methodology' tab."
         )
       } else {
-        shiny::tags$p(
+        shinyGovstyle::gov_text(
           "The parent statistical release of this dashboard, along with
               methodological information,
               is available at ",
@@ -282,14 +264,14 @@ support_panel <- function(
     },
     # to add extra sections before the contact us section
     extra_text,
-    shiny::tags$h2("Contact us"),
-    shiny::tags$p(
+    shinyGovstyle::heading_text("Contact us", size = "l", level = 2),
+    shinyGovstyle::gov_text(
       paste0(
         "Use the following contact details if you have questions about the dashboard or data ", 
         "within it."
       )
     ),
-    shiny::tags$p(
+    shinyGovstyle::gov_text(
       "E-mail: ",
       shinyGovstyle::external_link(
         href = paste0("mailto:", team_email),
@@ -298,12 +280,12 @@ support_panel <- function(
       )
     ),
     if (!is.null(contact_name)) {
-      shiny::tags$p(
+      shinyGovstyle::gov_text(
         paste("Contact name:", contact_name)
       )
     },
-    shiny::tags$h2("See the source code"),
-    shiny::tags$p(
+    shinyGovstyle::heading_text("See the source code", size = "l", level = 2),
+    shinyGovstyle::gov_text(
       "The source code for this dashboard is available in our ",
       shinyGovstyle::external_link(
         href = paste0(
