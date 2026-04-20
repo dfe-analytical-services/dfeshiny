@@ -152,7 +152,11 @@ support_panel <- function(
   }
 
   if (!is.null(contact_name)) {
-    if (!is.character(contact_name) || length(contact_name) != 1 || contact_name == "") {
+    if (
+      !is.character(contact_name) ||
+        length(contact_name) != 1 ||
+        contact_name == ""
+    ) {
       stop(
         "Please provide a valid string (or NULL) for the contact name"
       )
@@ -224,7 +228,11 @@ support_panel <- function(
         "."
       )
     ),
-    shinyGovstyle::heading_text("Find more information on the data", size = "l", level = 2),
+    shinyGovstyle::heading_text(
+      "Find more information on the data",
+      size = "l",
+      level = 2
+    ),
     # if custom_data_info is provided, use section_tags
     # to get tag list for custom text
     if (!is.null(custom_data_info)) {
@@ -246,7 +254,8 @@ support_panel <- function(
               "explore education statistics"
             )
           ),
-          ". Access to the underlying data for this dashboard can be found under the 'Explore and download data' tab from the above link.
+          ". Access to the underlying data for this dashboard can be found under the 
+              'Explore and download data' tab from the above link.
               The methodology used to prepare the data can be found under the 'Methodology' tab."
         )
       } else {
@@ -266,7 +275,7 @@ support_panel <- function(
     shinyGovstyle::heading_text("Contact us", size = "l", level = 2),
     shinyGovstyle::gov_text(
       paste0(
-        "Use the following contact details if you have questions about the dashboard or data ", 
+        "Use the following contact details if you have questions about the dashboard or data ",
         "within it."
       )
     ),
@@ -285,7 +294,7 @@ support_panel <- function(
     },
     shinyGovstyle::heading_text("See the source code", size = "l", level = 2),
     shinyGovstyle::gov_text(
-        "Use the following contact details if you have questions about the dashboard or data ",
+      "Use the following contact details if you have questions about the dashboard or data ",
       shinyGovstyle::external_link(
         href = paste0(
           repo_name
