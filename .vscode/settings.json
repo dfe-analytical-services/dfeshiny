@@ -1,0 +1,6 @@
+{
+  "[r]": {
+    "editor.defaultFormatter": "Posit.air-vscode",
+    "editor.formatOnSave": true
+  }
+}

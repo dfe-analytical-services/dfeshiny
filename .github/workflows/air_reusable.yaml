@@ -1,0 +1,35 @@
+name: Air format check
+
+on:
+  workflow_call:
+
+jobs:
+  format_check:
+    name: Format check
+    runs-on: ubuntu-latest
+
+    container:
+      image: ghcr.io/dfe-analytical-services/dfe-r-base:latest
+      options: --user root
+      credentials:
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install the latest version of Air
+        uses: posit-dev/setup-air@v1
+
+      - name: Format
+        run: air format .
+
+      - name: Set git safe directory
+        run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
+
+      - name: Suggest
+        uses: reviewdog/action-suggester@v1
+        with:
+          level: error
+          fail_level: error
+          tool_name: air

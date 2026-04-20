@@ -1,4 +1,5 @@
 ABCDE
+Addins
 Analytics
 Borderless
 CMD
@@ -12,6 +13,7 @@ Organisation
 Plotly
 Pre
 README
+RStudio
 Reactable
 Resizable
 SHINYAPPS
@@ -37,6 +39,7 @@ ees
 favicons
 favour
 ffcbfa
+formatter
 ggiraph
 github
 gitignore
