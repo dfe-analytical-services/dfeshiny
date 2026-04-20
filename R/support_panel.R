@@ -285,7 +285,7 @@ support_panel <- function(
     },
     shinyGovstyle::heading_text("See the source code", size = "l", level = 2),
     shinyGovstyle::gov_text(
-      "The source code for this dashboard is available in our ",
+        "Use the following contact details if you have questions about the dashboard or data ",
       shinyGovstyle::external_link(
         href = paste0(
           repo_name
