@@ -122,8 +122,12 @@ a11y_panel <- function(
   }
   shiny::tags$div(
     style = "margin-top: 50px; margin-bottom: 50px",
-    shiny::tags$h1(paste0("Accessibility statement for ", dashboard_title)),
-    shiny::tags$p(
+    shinyGovstyle::heading_text(
+      paste0("Accessibility statement for ", dashboard_title),
+      size = "xl",
+      level = 1
+    ),
+    shinyGovstyle::gov_text(
       "This accessibility statement applies to the",
       dashboard_url,
       "website. This website is run by the ",
@@ -135,54 +139,66 @@ a11y_panel <- function(
       "This statement does not cover any other services run by the Department for Education ",
       "(DfE) or GOV.UK."
     ),
-    shiny::tags$h2("How you should be able to use this website"),
-    shiny::tags$p(
+    shinyGovstyle::heading_text(
+      "How you should be able to use this website",
+      size = "l",
+      level = 2
+    ),
+    shinyGovstyle::gov_text(
       "We want as many people as possible to be able to use this website. You should be able to:"
     ),
-    shiny::tags$div(tags$ul(
-      shiny::tags$li(
-        "change colours, contrast levels and fonts using browser or device settings"
-      ),
-      shiny::tags$li(
-        "zoom in up to 400% without the text spilling off the screen"
-      ),
-      shiny::tags$li(
-        "navigate most of the website using a keyboard or speech recognition software"
-      ),
-      shiny::tags$li(
-        "listen to most of the website using a screen reader
+    shiny::tags$div(
+      shinyGovstyle::gov_list(
+        type = "bullet",
+        list(
+          "change colours, contrast levels and fonts using browser or device settings",
+          "zoom in up to 400% without the text spilling off the screen",
+          "navigate most of the website using a keyboard or speech recognition software",
+          "listen to most of the website using a screen reader
                     (including the most recent versions of JAWS, NVDA and VoiceOver)"
+        )
       )
-    )),
-    shiny::tags$p(
+    ),
+    shinyGovstyle::gov_text(
       "We've also made the website text as simple as possible to understand."
     ),
-    shiny::tags$p(
+    shinyGovstyle::gov_text(
       shinyGovstyle::external_link(
         href = "https://mcmw.abilitynet.org.uk/",
         "AbilityNet"
       ),
       " has advice on making your device easier to use if you have a disability."
     ),
-    shiny::tags$h2("How accessible this website is"),
+    shinyGovstyle::heading_text(
+      "How accessible this website is",
+      size = "l",
+      level = 2
+    ),
     if (all(is.null(non_accessible_components))) {
-      shiny::tags$p(
+      shinyGovstyle::gov_text(
         "This website is fully compliant with accessibility standards."
       )
     } else {
       shiny::tagList(
-        shiny::tags$p(
+        shinyGovstyle::gov_text(
           "We know some parts of this website are not fully accessible:"
         ),
-        shiny::tags$div(tags$ol(
-          tagList(lapply(non_accessible_components, shiny::tags$li))
-        ))
+        shiny::tags$div(
+          shinyGovstyle::gov_list(
+            type = "number",
+            non_accessible_components
+          )
+        )
       )
     },
-    shiny::tags$h2("Feedback and contact information"),
+    shinyGovstyle::heading_text(
+      "Feedback and contact information",
+      size = "l",
+      level = 2
+    ),
     if (!is.null(publication_slug)) {
       shiny::tagList(
-        shiny::tags$p(
+        shinyGovstyle::gov_text(
           "If you need information on this website in a different format please see the",
           " parent publication, ",
           shinyGovstyle::external_link(
@@ -194,30 +210,33 @@ a11y_panel <- function(
           ),
           "."
         ),
-        shiny::tags$p(
+        shinyGovstyle::gov_text(
           "More details are available on that service for alternative formats of this ",
           "data."
         )
       )
     },
-    shiny::tags$p(
+    shinyGovstyle::gov_text(
       "We're always looking to improve the accessibility of this website.
              If you find any problems not listed on this page or think we're not meeting
              accessibility requirements, contact us:"
     ),
-    shiny::tags$ul(tags$li(
-      shiny::tags$a(
-        href = "mailto:explore.statistics@education.gov.uk",
-        "explore.statistics@education.gov.uk"
+    shinyGovstyle::gov_list(
+      type = "bullet",
+      list(
+        shinyGovstyle::gov_link(
+          "explore.statistics@education.gov.uk",
+          href = "mailto:explore.statistics@education.gov.uk"
+        )
       )
-    )),
-    shiny::tags$h2("Enforcement procedure"),
-    shiny::tags$p(
+    ),
+    shinyGovstyle::heading_text("Enforcement procedure", size = "l", level = 2),
+    shinyGovstyle::gov_text(
       "The Equality and Human Rights Commission (EHRC) is responsible for enforcing the Public ",
       "Sector Bodies (Websites and Mobile Applications) (No. 2) Accessibility Regulations 2018",
       "(the \"accessibility regulations\")."
     ),
-    shiny::tags$p(
+    shinyGovstyle::gov_text(
       "If you are not happy with how we respond to your complaint, contact the ",
       shinyGovstyle::external_link(
         href = "https://www.equalityadvisoryservice.com/",
@@ -225,15 +244,19 @@ a11y_panel <- function(
       ),
       "."
     ),
-    shiny::tags$h2("Technical information about this website's accessibility"),
-    shiny::tags$p(
+    shinyGovstyle::heading_text(
+      "Technical information about this website's accessibility",
+      size = "l",
+      level = 2
+    ),
+    shinyGovstyle::gov_text(
       "The Department for Education (DfE) is committed to making its website accessible, in ",
       "accordance with the Public Sector Bodies (Websites and Mobile Applications) (No. 2) ",
       "Accessibility Regulations 2018."
     ),
-    shiny::tags$h3("Compliance status"),
+    shinyGovstyle::heading_text("Compliance status", size = "m", level = 3),
     if (all(is.null(specific_issues))) {
-      shiny::tags$p(
+      shinyGovstyle::gov_text(
         "This website is fully compliant with the ",
         shinyGovstyle::external_link(
           href = "https://www.w3.org/TR/WCAG22/",
@@ -243,7 +266,7 @@ a11y_panel <- function(
       )
     } else {
       shiny::tagList(
-        shiny::tags$p(
+        shinyGovstyle::gov_text(
           "This website is partially compliant with the ",
           shinyGovstyle::external_link(
             href = "https://www.w3.org/TR/WCAG22/",
@@ -251,20 +274,35 @@ a11y_panel <- function(
           ),
           " due to the non-compliances listed below."
         ),
-        shiny::tags$h3("Non accessible content"),
-        shiny::tags$p(
+        shinyGovstyle::heading_text(
+          "Non accessible content",
+          size = "m",
+          level = 3
+        ),
+        shinyGovstyle::gov_text(
           "The content listed below is non-accessible for the following reasons.
              We will address these issues to ensure our content is accessible."
         ),
-        shiny::tags$div(tags$ol(
-          tagList(lapply(specific_issues, shiny::tags$li))
-        ))
+        shiny::tags$div(
+          shinyGovstyle::gov_list(
+            type = "number",
+            specific_issues
+          )
+        )
       )
     },
-    shiny::tags$h3("Disproportionate burden"),
-    shiny::tags$p("Not applicable."),
-    shiny::tags$h2("How we tested this website"),
-    shiny::tags$p(
+    shinyGovstyle::heading_text(
+      "Disproportionate burden",
+      size = "m",
+      level = 3
+    ),
+    shinyGovstyle::gov_text("Not applicable."),
+    shinyGovstyle::heading_text(
+      "How we tested this website",
+      size = "l",
+      level = 2
+    ),
+    shinyGovstyle::gov_text(
       "The template used for this website was last tested on",
       date_template_reviewed,
       " against ",
@@ -279,15 +317,20 @@ a11y_panel <- function(
       ),
       "."
     ),
-    shiny::tags$p(
+    shinyGovstyle::gov_text(
       "DAC tested a sample of pages to cover the core functionality of the service including:"
     ),
-    shiny::tags$div(tags$ul(
-      shiny::tags$li("navigation"),
-      shiny::tags$li("interactive dropdown selections"),
-      shiny::tags$li("charts, maps, and tables")
-    )),
-    shiny::tags$p(
+    shiny::tags$div(
+      shinyGovstyle::gov_list(
+        type = "bullet",
+        list(
+          "navigation",
+          "interactive dropdown selections",
+          "charts, maps, and tables"
+        )
+      )
+    ),
+    shinyGovstyle::gov_text(
       "This specific website was was last tested on ",
       date_tested,
       " against ",
@@ -302,12 +345,16 @@ a11y_panel <- function(
       ),
       "."
     ),
-    shiny::tags$h2("What we're doing to improve accessibility"),
-    shiny::tags$p(
+    shinyGovstyle::heading_text(
+      "What we're doing to improve accessibility",
+      size = "l",
+      level = 2
+    ),
+    shinyGovstyle::gov_text(
       "We plan to continually test the service for accessibility issues, and are working ",
       "through a prioritised list of issues to resolve."
     ),
-    shiny::tags$p(
+    shinyGovstyle::gov_text(
       if (!is.null(issues_contact)) {
         if (is_valid_repo_url(issues_contact)) {
           shiny::tagList(
@@ -321,9 +368,9 @@ a11y_panel <- function(
         } else {
           shiny::tagList(
             "To discuss our current list of issues to be resolved contact us at",
-            shiny::tags$a(
-              href = paste0("mailto:", issues_contact),
-              issues_contact
+            shinyGovstyle::gov_link(
+              issues_contact,
+              href = paste0("mailto:", issues_contact)
             ),
             "."
           )
@@ -332,8 +379,12 @@ a11y_panel <- function(
         " "
       },
     ),
-    shiny::tags$h2("Preparation of this accessibility statement"),
-    shiny::tags$p(
+    shinyGovstyle::heading_text(
+      "Preparation of this accessibility statement",
+      size = "l",
+      level = 2
+    ),
+    shinyGovstyle::gov_text(
       paste0(
         "This statement was prepared on ",
         date_prepared,
