@@ -149,7 +149,6 @@ a11y_panel <- function(
     ),
     shiny::tags$div(
       shinyGovstyle::gov_list(
-        type = "bullet",
         list(
           "change colours, contrast levels and fonts using browser or device settings",
           "zoom in up to 400% without the text spilling off the screen",
@@ -183,12 +182,9 @@ a11y_panel <- function(
         shinyGovstyle::gov_text(
           "We know some parts of this website are not fully accessible:"
         ),
-        shiny::tags$div(
-          shinyGovstyle::gov_list(
-            type = "number",
-            non_accessible_components
-          )
-        )
+        shiny::tags$div(tags$ol(
+          tagList(lapply(non_accessible_components, shiny::tags$li))
+        ))
       )
     },
     shinyGovstyle::heading_text(
@@ -222,7 +218,6 @@ a11y_panel <- function(
              accessibility requirements, contact us:"
     ),
     shinyGovstyle::gov_list(
-      type = "bullet",
       list(
         shinyGovstyle::gov_link(
           "explore.statistics@education.gov.uk",
@@ -283,12 +278,9 @@ a11y_panel <- function(
           "The content listed below is non-accessible for the following reasons.
              We will address these issues to ensure our content is accessible."
         ),
-        shiny::tags$div(
-          shinyGovstyle::gov_list(
-            type = "number",
-            specific_issues
-          )
-        )
+        shiny::tags$div(tags$ol(
+          tagList(lapply(specific_issues, shiny::tags$li))
+        ))
       )
     },
     shinyGovstyle::heading_text(
@@ -322,7 +314,6 @@ a11y_panel <- function(
     ),
     shiny::tags$div(
       shinyGovstyle::gov_list(
-        type = "bullet",
         list(
           "navigation",
           "interactive dropdown selections",
