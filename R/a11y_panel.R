@@ -219,9 +219,9 @@ a11y_panel <- function(
     ),
     shinyGovstyle::gov_list(
       list(
-        shinyGovstyle::gov_link(
-          "explore.statistics@education.gov.uk",
-          href = "mailto:explore.statistics@education.gov.uk"
+        shiny::tags$a(
+          href = "mailto:explore.statistics@education.gov.uk",
+          "explore.statistics@education.gov.uk"
         )
       )
     ),
@@ -359,9 +359,9 @@ a11y_panel <- function(
         } else {
           shiny::tagList(
             "To discuss our current list of issues to be resolved contact us at",
-            shinyGovstyle::gov_link(
-              issues_contact,
-              href = paste0("mailto:", issues_contact)
+            shiny::tags$a(
+              href = paste0("mailto:", issues_contact),
+              issues_contact
             ),
             "."
           )
