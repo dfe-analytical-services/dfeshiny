@@ -5,9 +5,12 @@ tag_test <- section_tags(
 )
 
 test_that("section_tags outputs are as expected", {
-  expect_equal(paste(tag_test[[1]]), "<h2>hello</h2>")
+  expect_equal(
+    paste(tag_test[[1]]),
+    "<h2 class=\"govuk-heading-l\" id=\"hello\">hello</h2>"
+  )
 
-  expect_equal(paste(tag_test[[2]]), "<p>body</p>")
+  expect_equal(paste(tag_test[[2]]), "<p class=\"govuk-body\">body</p>")
 })
 
 # testing errors

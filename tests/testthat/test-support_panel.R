@@ -212,7 +212,10 @@ output <- support_panel(
 test_that("Custom texts outputs", {
   # This checks the custom text inputs are in the expected positions
   # in the HTML output the function returns
-  expect_equal(paste(output$children[[5]]), "<p>test text</p>")
+  expect_equal(
+    paste(output$children[[5]]),
+    "<p class=\"govuk-body\">test text</p>"
+  )
 })
 
 output <- support_panel(
@@ -231,6 +234,12 @@ output <- support_panel(
 test_that("Extra texts outputs", {
   # This checks the custom text inputs are in the expected positions
   # in the HTML output the function returns
-  expect_equal(paste(output$children[[6]][[1]]), "<h2>heading text</h2>")
-  expect_equal(paste(output$children[[6]][[2]]), "<p>body text</p>")
+  expect_equal(
+    paste(output$children[[6]][[1]]),
+    "<h2 class=\"govuk-heading-l\" id=\"heading_text\">heading text</h2>"
+  )
+  expect_equal(
+    paste(output$children[[6]][[2]]),
+    "<p class=\"govuk-body\">body text</p>"
+  )
 })
