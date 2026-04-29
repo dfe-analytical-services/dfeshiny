@@ -93,30 +93,36 @@ section_tags <- function(heading = NULL, body, h_level = "h2") {
     # if h_level = "h4"
     if (h_level == "h4") {
       result <- shiny::tagList(
-        shiny::tags$h4(
-          heading
+        shinyGovstyle::heading_text(
+          heading,
+          size = "s",
+          level = 4
         ),
-        shiny::tags$p(
+        shinyGovstyle::gov_text(
           body
         )
       )
       # if h_level = "h4"
     } else if (h_level == "h3") {
       result <- shiny::tagList(
-        shiny::tags$h3(
-          heading
+        shinyGovstyle::heading_text(
+          heading,
+          size = "m",
+          level = 3
         ),
-        shiny::tags$p(
+        shinyGovstyle::gov_text(
           body
         )
       )
     } else {
       # otherwise, use h2
       result <- shiny::tagList(
-        shiny::tags$h2(
-          heading
+        shinyGovstyle::heading_text(
+          heading,
+          size = "l",
+          level = 2
         ),
-        shiny::tags$p(
+        shinyGovstyle::gov_text(
           body
         )
       )
@@ -124,7 +130,7 @@ section_tags <- function(heading = NULL, body, h_level = "h2") {
     # if no heading is provided, just output the body
   } else {
     result <- shiny::tagList(
-      shiny::tags$p(
+      shinyGovstyle::gov_text(
         body
       )
     )
