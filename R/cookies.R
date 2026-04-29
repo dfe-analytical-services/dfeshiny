@@ -117,21 +117,19 @@ cookies_banner_ui <- function(
           class = "govuk-grid-column-two-thirds",
           shiny::tags$div(
             class = "govuk-cookie-banner__content",
-            shiny::tags$h2(
-              class = "govuk-cookie-banner__heading govuk-heading-m",
-              name
+            shinyGovstyle::heading_text(
+              "govuk-cookie-banner__heading govuk-heading-m",
+              size = "l",
+              level = 2
             ),
-            shiny::tags$p(
-              class = "govuk-body",
+            shinyGovstyle::gov_text(
               "We use some essential cookies to make this service work."
             ),
-            shiny::tags$p(
-              class = "govuk-body",
+            shinyGovstyle::gov_text(
               "We'd also like to use analytics cookies so we can understand
               how you use the service and make improvements."
             ),
-            shiny::tags$p(
-              class = "govuk-body",
+            shinyGovstyle::gov_text(
               shiny::actionLink(
                 shiny::NS(id, "cookies_link"),
                 "View cookie information"
@@ -370,16 +368,24 @@ cookies_panel_ui <- function(
 ) {
   shiny::tags$div(
     style = "margin-top: 50px; margin-bottom: 50px;",
-    shiny::tags$h1("Cookies"),
-    shiny::tags$p(
+    shinyGovstyle::heading_text(
+      "Cookies",
+      size = "xl",
+      level = 1
+    ),
+    shinyGovstyle::gov_text(
       "Cookies are small files saved on your phone, tablet or
                         computer when you visit a website."
     ),
-    shiny::tags$p(
+    shinyGovstyle::gov_text(
       "We use cookies to collect information about how you
                         use our service."
     ),
-    shiny::tags$h2("Essential cookies"),
+    shinyGovstyle::heading_text(
+      "Essential cookies",
+      size = "l",
+      level = 2
+    ),
     shinyGovstyle::govTable(
       inputId = "essential_cookies_table",
       df = data.frame(
@@ -392,27 +398,30 @@ cookies_panel_ui <- function(
       num_col = NULL,
       width_overwrite = c("one-quarter", "one-quarter", "one-quarter")
     ),
-    shiny::tags$h2("Analytics cookies"),
-    shiny::tags$p(
+    shinyGovstyle::heading_text(
+      "Analytics cookies",
+      size = "l",
+      level = 2
+    ),
+    shinyGovstyle::gov_text(
       "With your permission, we use Google Analytics to
                         collect data about how you use this service. This
                         information helps us improve our service."
     ),
-    shiny::tags$p(
+    shinyGovstyle::gov_text(
       "Google is not allowed to share our analytics data with
                         anyone."
     ),
-    shiny::tags$p(
+    shinyGovstyle::gov_text(
       "Google Analytics stores anonymised information
                         about:"
     ),
-    shiny::tags$ul(
-      shiny::tags$li("How you got to this service"),
-      shiny::tags$li(
-        "The pages you visit on this service and how long you
-                         spend on them"
-      ),
-      shiny::tags$li("How you interact with these pages")
+    shinyGovstyle::gov_list(
+      list(
+        "How you got to this service",
+        "The pages you visit on this service and how long you spend on them",
+        "How you interact with these pages"
+      )
     ),
     shinyGovstyle::govTable(
       inputId = "ga_cookies_table",
@@ -431,7 +440,11 @@ cookies_panel_ui <- function(
       width_overwrite = c("one-quarter", "one-quarter", "one-quarter")
     ),
     shiny::br(),
-    shiny::tags$h2("Change your cookie settings"),
+    shinyGovstyle::heading_text(
+      "Change your cookie settings",
+      size = "l",
+      level = 2
+    ),
     shiny::tags$div(
       class = "govuk-form-group",
       tags$fieldset(
