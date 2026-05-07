@@ -32,6 +32,7 @@ achieved by running the following command from the R console in your
 dashboard project / repo:
 
 ``` r
+
 dfeshiny::init_cookies()
 ```
 
@@ -42,6 +43,7 @@ file (replacing `ABCDE12345` below with the key provided by the Explore
 Education Statistics Platforms team):
 
 ``` r
+
 google_analytics_key <- "ABCDE12345"
 ```
 
@@ -51,6 +53,7 @@ run the javascript (`dfe_cookies_script`), b) create the consent banner
 c) add a cookies information panel (`cookies_panel_ui`):
 
 ``` r
+
 ui <- function(input, output, session) {
   shiny::fluidPage(
     shinyjs::useShinyjs(),
@@ -77,6 +80,7 @@ You should then add the `cookies_banner_server` and
 `cookies_panel_server` functions to your **server.R** script:
 
 ``` r
+
 output$cookies_status <- dfeshiny::cookies_banner_server(
   input_cookies = shiny::reactive(input$cookies),
   parent_session = session,

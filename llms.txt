@@ -14,12 +14,14 @@ If you are using
 project (recommended):
 
 ``` r
+
 renv::install("dfe-analytical-services/dfeshiny")
 ```
 
 Otherwise:
 
 ``` r
+
 # install.packages("devtools")
 devtools::install_github("dfe-analytical-services/dfeshiny")
 ```
@@ -27,12 +29,14 @@ devtools::install_github("dfe-analytical-services/dfeshiny")
 To update the version when you’re using renv, simply:
 
 ``` r
+
 renv::update("dfe-analytical-services/dfeshiny")
 ```
 
 and then snapshot to update the lockfile
 
 ``` r
+
 renv::snapshot()
 ```
 

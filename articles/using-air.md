@@ -66,6 +66,7 @@ From [dfeR](https://dfe-analytical-services.github.io/dfeR/index.html),
 you can use the following to install Air and set up the defaults:
 
 ``` r
+
 dfeR::air_install(update_rstudio_settings = TRUE)
 ```
 
@@ -75,6 +76,7 @@ You can also format your whole project (or specify individual scripts)
 using:
 
 ``` r
+
 dfeR::air_style()
 ```
 

@@ -31,6 +31,7 @@ a header html shiny object
 ## Examples
 
 ``` r
+
 if (interactive()) {
   ui <- fluidPage(
     dfeshiny::header(

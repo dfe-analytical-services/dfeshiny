@@ -48,6 +48,7 @@ heading.
 ## Examples
 
 ``` r
+
 # Example for text heading and body
 section_tags(
   heading = "Heading test",
