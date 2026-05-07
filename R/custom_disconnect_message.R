@@ -174,7 +174,7 @@ custom_disconnect_message <- function(
       tags$div(
         id = "ss-connect-refresh",
         role = "alert",
-        tags$p(
+        shinyGovstyle::gov_text(
           "Sorry, you have lost connection to the",
           dashboard_title,
           "dashboard at the moment, please ",
@@ -214,7 +214,7 @@ custom_disconnect_message <- function(
           "."
         ),
         if (length(links) > 1) {
-          tags$p(
+          shinyGovstyle::gov_text(
             "If you are still experiencing issues, please try our",
             tags$a(href = links[2], "alternative site", .noWS = c("after")),
             ". Apologies for the inconvenience."
@@ -224,7 +224,7 @@ custom_disconnect_message <- function(
           !is.null(publication_name) &&
             grepl("explore-education-statistics", publication_link)
         ) {
-          tags$p(
+          shinyGovstyle::gov_text(
             "The data used in this dashboard can also be viewed or downloaded via the ",
             shinyGovstyle::external_link(
               href = publication_link,
@@ -233,7 +233,7 @@ custom_disconnect_message <- function(
             " on explore education statistics."
           )
         } else if (!is.null(publication_name)) {
-          tags$p(
+          shinyGovstyle::gov_text(
             "The data used in this dashboard can also be viewed or downloaded from ",
             shinyGovstyle::external_link(
               href = publication_link,
@@ -241,7 +241,7 @@ custom_disconnect_message <- function(
             )
           )
         },
-        tags$p(
+        shinyGovstyle::gov_text(
           "Feel free to contact ",
           shinyGovstyle::external_link(
             href = paste0("mailto:", support_contact),
