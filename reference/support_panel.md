@@ -142,16 +142,16 @@ shiny::navlistPanel(
 )
 #> <div class="row">
 #>   <div class="col-sm-2">
-#>     <ul class="nav nav-pills nav-stacked shiny-tab-input" id="navlistPanel" data-tabsetid="3766">
+#>     <ul class="nav nav-pills nav-stacked shiny-tab-input" id="navlistPanel" data-tabsetid="2109">
 #>       <li class="navbar-brand"></li>
 #>       <li class="active">
-#>         <a href="#tab-3766-2" data-toggle="tab" data-bs-toggle="tab" data-value="support_panel">Support and feedback</a>
+#>         <a href="#tab-2109-2" data-toggle="tab" data-bs-toggle="tab" data-value="support_panel">Support and feedback</a>
 #>       </li>
 #>     </ul>
 #>   </div>
 #>   <div class="col-sm-8">
-#>     <div class="tab-content" data-tabsetid="3766">
-#>       <div class="tab-pane active" data-value="support_panel" id="tab-3766-2">
+#>     <div class="tab-content" data-tabsetid="2109">
+#>       <div class="tab-pane active" data-value="support_panel" id="tab-2109-2">
 #>         <div style="margin-top: 50px; margin-bottom: 50px">
 #>           <h1 class="govuk-heading-xl" id="support_and_feedback">Support and feedback</h1>
 #>           <h2 class="govuk-heading-l" id="give_us_feedback">Give us feedback</h2>
