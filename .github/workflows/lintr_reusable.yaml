@@ -44,15 +44,14 @@ jobs:
           renv::install("cyclocomp")
         shell: Rscript {0}
 
-      - name: Load package
+      - name: Load package and run lintr
         if: ${{ inputs.is_package == 'true' }}
-        run: devtools::load_all()
-        shell: Rscript {0}
-        continue-on-error: true
-
-      - name: Run lintr_pkg
-        if: ${{ inputs.is_package == 'true' }}
-        run: lintr::sarif_output(lintr::lint_package(), "lintr-results.sarif")
+        run: |
+          tryCatch(
+            devtools::load_all(),
+            error = function(e) message("load_all failed: ", conditionMessage(e))
+          )
+          lintr::sarif_output(lintr::lint_package(), "lintr-results.sarif")
         shell: Rscript {0}
         continue-on-error: true
 
@@ -63,7 +62,7 @@ jobs:
         continue-on-error: true
 
       - name: Upload analysis results to GitHub
-        uses: github/codeql-action/upload-sarif@v3
+        uses: github/codeql-action/upload-sarif@v4
         with:
           sarif_file: lintr-results.sarif
           wait-for-processing: true
