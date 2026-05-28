@@ -118,7 +118,7 @@ cookies_banner_ui <- function(
           shiny::tags$div(
             class = "govuk-cookie-banner__content",
             shinyGovstyle::heading_text(
-              "govuk-cookie-banner__heading govuk-heading-m",
+              name,
               size = "l",
               level = 2
             ),
@@ -417,7 +417,7 @@ cookies_panel_ui <- function(
                         about:"
     ),
     shinyGovstyle::gov_list(
-      list(
+      c(
         "How you got to this service",
         "The pages you visit on this service and how long you spend on them",
         "How you interact with these pages"
@@ -458,10 +458,10 @@ cookies_panel_ui <- function(
           `data-module` = "govuk-radios",
           shiny::tags$div(
             class = "govuk-radios__item",
-            shiny::radioButtons(
-              shiny::NS(id, "cookies_analytics"),
+            shinyGovstyle::radio_button_Input(
+              inputId = "cookies_analytics",
               label = NULL,
-              choices = list("Yes" = "yes", "No" = "no"),
+              choices = c("Yes" = "yes", "No" = "no"),
               selected = "no",
               inline = TRUE
             )
