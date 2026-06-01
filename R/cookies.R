@@ -459,9 +459,9 @@ cookies_panel_ui <- function(
           shiny::tags$div(
             class = "govuk-radios__item",
             shinyGovstyle::radio_button_Input(
-              inputId = "cookies_analytics",
+              inputId = shiny::NS(id, "cookies_analytics"),
               label = NULL,
-              choices = c("Yes" = "yes", "No" = "no"),
+              choices = list("Yes" = "yes", "No" = "no"),
               selected = "no",
               inline = TRUE
             )
