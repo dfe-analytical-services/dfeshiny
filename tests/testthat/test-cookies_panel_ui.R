@@ -8,12 +8,21 @@ test_that("Output has class 'shiny.tag'", {
 
 test_that("HTML headings output from function", {
   # This checks the headings are in the expected positions in the HTML output the function returns
-  expect_equal(paste(output$children[[1]]), "<h1>Cookies</h1>")
-  expect_equal(paste(output$children[[4]]), "<h2>Essential cookies</h2>")
-  expect_equal(paste(output$children[[6]]), "<h2>Analytics cookies</h2>")
+  expect_equal(
+    paste(output$children[[1]]),
+    "<h1 class=\"govuk-heading-xl\" id=\"cookies\">Cookies</h1>"
+  )
+  expect_equal(
+    paste(output$children[[4]]),
+    "<h2 class=\"govuk-heading-l\" id=\"essential_cookies\">Essential cookies</h2>"
+  )
+  expect_equal(
+    paste(output$children[[6]]),
+    "<h2 class=\"govuk-heading-l\" id=\"analytics_cookies\">Analytics cookies</h2>"
+  )
   expect_equal(
     paste(output$children[[13]]),
-    "<h2>Change your cookie settings</h2>"
+    "<h2 class=\"govuk-heading-l\" id=\"change_your_cookie_settings\">Change your cookie settings</h2>"
   )
 })
 
