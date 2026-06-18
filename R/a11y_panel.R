@@ -124,7 +124,7 @@ a11y_panel <- function(
     style = "margin-top: 50px; margin-bottom: 50px",
     shinyGovstyle::heading_text(
       paste0("Accessibility statement for ", dashboard_title),
-      size = "xl",
+      size = "l",
       level = 1
     ),
     shinyGovstyle::gov_text(
@@ -141,7 +141,7 @@ a11y_panel <- function(
     ),
     shinyGovstyle::heading_text(
       "How you should be able to use this website",
-      size = "l",
+      size = "m",
       level = 2
     ),
     shinyGovstyle::gov_text(
@@ -170,7 +170,7 @@ a11y_panel <- function(
     ),
     shinyGovstyle::heading_text(
       "How accessible this website is",
-      size = "l",
+      size = "m",
       level = 2
     ),
     if (all(is.null(non_accessible_components))) {
@@ -192,7 +192,7 @@ a11y_panel <- function(
     },
     shinyGovstyle::heading_text(
       "Feedback and contact information",
-      size = "l",
+      size = "m",
       level = 2
     ),
     if (!is.null(publication_slug)) {
@@ -228,7 +228,7 @@ a11y_panel <- function(
         )
       )
     ),
-    shinyGovstyle::heading_text("Enforcement procedure", size = "l", level = 2),
+    shinyGovstyle::heading_text("Enforcement procedure", size = "m", level = 2),
     shinyGovstyle::gov_text(
       "The Equality and Human Rights Commission (EHRC) is responsible for enforcing the Public ",
       "Sector Bodies (Websites and Mobile Applications) (No. 2) Accessibility Regulations 2018",
@@ -244,7 +244,7 @@ a11y_panel <- function(
     ),
     shinyGovstyle::heading_text(
       "Technical information about this website's accessibility",
-      size = "l",
+      size = "m",
       level = 2
     ),
     shinyGovstyle::gov_text(
@@ -252,7 +252,7 @@ a11y_panel <- function(
       "accordance with the Public Sector Bodies (Websites and Mobile Applications) (No. 2) ",
       "Accessibility Regulations 2018."
     ),
-    shinyGovstyle::heading_text("Compliance status", size = "m", level = 3),
+    shinyGovstyle::heading_text("Compliance status", size = "s", level = 3),
     if (all(is.null(specific_issues))) {
       shinyGovstyle::gov_text(
         "This website is fully compliant with the ",
@@ -274,7 +274,7 @@ a11y_panel <- function(
         ),
         shinyGovstyle::heading_text(
           "Non accessible content",
-          size = "m",
+          size = "s",
           level = 3
         ),
         shinyGovstyle::gov_text(
@@ -291,13 +291,13 @@ a11y_panel <- function(
     },
     shinyGovstyle::heading_text(
       "Disproportionate burden",
-      size = "m",
+      size = "s",
       level = 3
     ),
     shinyGovstyle::gov_text("Not applicable."),
     shinyGovstyle::heading_text(
       "How we tested this website",
-      size = "l",
+      size = "m",
       level = 2
     ),
     shinyGovstyle::gov_text(
@@ -344,7 +344,7 @@ a11y_panel <- function(
     ),
     shinyGovstyle::heading_text(
       "What we're doing to improve accessibility",
-      size = "l",
+      size = "m",
       level = 2
     ),
     shinyGovstyle::gov_text(
@@ -378,7 +378,7 @@ a11y_panel <- function(
     ),
     shinyGovstyle::heading_text(
       "Preparation of this accessibility statement",
-      size = "l",
+      size = "m",
       level = 2
     ),
     shinyGovstyle::gov_text(

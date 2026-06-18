@@ -119,7 +119,7 @@ cookies_banner_ui <- function(
             class = "govuk-cookie-banner__content",
             shinyGovstyle::heading_text(
               name,
-              size = "l",
+              size = "m",
               level = 2
             ),
             shinyGovstyle::gov_text(
@@ -370,7 +370,7 @@ cookies_panel_ui <- function(
     style = "margin-top: 50px; margin-bottom: 50px;",
     shinyGovstyle::heading_text(
       "Cookies",
-      size = "xl",
+      size = "l",
       level = 1
     ),
     shinyGovstyle::gov_text(
@@ -383,7 +383,7 @@ cookies_panel_ui <- function(
     ),
     shinyGovstyle::heading_text(
       "Essential cookies",
-      size = "l",
+      size = "m",
       level = 2
     ),
     shinyGovstyle::govTable(
@@ -400,7 +400,7 @@ cookies_panel_ui <- function(
     ),
     shinyGovstyle::heading_text(
       "Analytics cookies",
-      size = "l",
+      size = "m",
       level = 2
     ),
     shinyGovstyle::gov_text(
@@ -442,7 +442,7 @@ cookies_panel_ui <- function(
     shiny::br(),
     shinyGovstyle::heading_text(
       "Change your cookie settings",
-      size = "l",
+      size = "m",
       level = 2
     ),
     shiny::tags$div(
