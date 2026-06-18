@@ -191,8 +191,8 @@ support_panel <- function(
   # Build the support page ----------------------------------------------------
   shiny::tags$div(
     style = "margin-top: 50px; margin-bottom: 50px",
-    shinyGovstyle::heading_text("Support and feedback", size = "xl", level = 1),
-    shinyGovstyle::heading_text("Give us feedback", size = "l", level = 2),
+    shinyGovstyle::heading_text("Support and feedback", size = "l", level = 1),
+    shinyGovstyle::heading_text("Give us feedback", size = "m", level = 2),
     shiny::tags$div(
       if (!is.null(form_url)) {
         shinyGovstyle::gov_text(
@@ -230,7 +230,7 @@ support_panel <- function(
     ),
     shinyGovstyle::heading_text(
       "Find more information on the data",
-      size = "l",
+      size = "m",
       level = 2
     ),
     # if custom_data_info is provided, use section_tags
@@ -272,7 +272,7 @@ support_panel <- function(
     },
     # to add extra sections before the contact us section
     extra_text,
-    shinyGovstyle::heading_text("Contact us", size = "l", level = 2),
+    shinyGovstyle::heading_text("Contact us", size = "m", level = 2),
     shinyGovstyle::gov_text(
       paste0(
         "Use the following contact details if you have questions about the dashboard or data ",
@@ -292,7 +292,7 @@ support_panel <- function(
         paste("Contact name:", contact_name)
       )
     },
-    shinyGovstyle::heading_text("See the source code", size = "l", level = 2),
+    shinyGovstyle::heading_text("See the source code", size = "m", level = 2),
     shinyGovstyle::gov_text(
       "Use the following contact details if you have questions about the dashboard or data ",
       shinyGovstyle::external_link(

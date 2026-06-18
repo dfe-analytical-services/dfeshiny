@@ -194,47 +194,76 @@ test_that("HTML headings output from function", {
   # This checks the headings are in the expected positions in the HTML output the function returns
   expect_equal(
     paste(output$children[[1]]),
-    "<h1 class=\"govuk-heading-xl\" id=\"accessibility_statement_for_dfe_shiny_template\">Accessibility statement for DfE Shiny template</h1>"
+    paste0(
+      "<h1 class=\"govuk-heading-l\" ",
+      "id=\"accessibility_statement_for_dfe_shiny_template\">",
+      "Accessibility statement for DfE Shiny template</h1>"
+    )
   )
   expect_equal(
     paste(output$children[[3]]),
-    "<h2 class=\"govuk-heading-l\" id=\"how_you_should_be_able_to_use_this_website\">How you should be able to use this website</h2>"
+    paste0(
+      "<h2 class=\"govuk-heading-m\" ",
+      "id=\"how_you_should_be_able_to_use_this_website\">",
+      "How you should be able to use this website</h2>"
+    )
   )
   expect_equal(
     paste(output$children[[8]]),
-    "<h2 class=\"govuk-heading-l\" id=\"how_accessible_this_website_is\">How accessible this website is</h2>"
+    paste0(
+      "<h2 class=\"govuk-heading-m\" id=\"how_accessible_this_website_is\">",
+      "How accessible this website is</h2>"
+    )
   )
   expect_equal(
     paste(output$children[[10]]),
-    "<h2 class=\"govuk-heading-l\" id=\"feedback_and_contact_information\">Feedback and contact information</h2>"
+    paste0(
+      "<h2 class=\"govuk-heading-m\" id=\"feedback_and_contact_information\">",
+      "Feedback and contact information</h2>"
+    )
   )
   expect_equal(
     paste(output$children[[14]]),
-    "<h2 class=\"govuk-heading-l\" id=\"enforcement_procedure\">Enforcement procedure</h2>"
+    "<h2 class=\"govuk-heading-m\" id=\"enforcement_procedure\">Enforcement procedure</h2>"
   )
   expect_equal(
     paste(output$children[[17]]),
-    "<h2 class=\"govuk-heading-l\" id=\"technical_information_about_this_websites_accessibility\">Technical information about this website's accessibility</h2>"
+    paste0(
+      "<h2 class=\"govuk-heading-m\" ",
+      "id=\"technical_information_about_this_websites_accessibility\">",
+      "Technical information about this website's accessibility</h2>"
+    )
   )
   expect_equal(
     paste(output$children[[19]]),
-    "<h3 class=\"govuk-heading-m\" id=\"compliance_status\">Compliance status</h3>"
+    "<h3 class=\"govuk-heading-s\" id=\"compliance_status\">Compliance status</h3>"
   )
   expect_equal(
     paste(output$children[[21]]),
-    "<h3 class=\"govuk-heading-m\" id=\"disproportionate_burden\">Disproportionate burden</h3>"
+    "<h3 class=\"govuk-heading-s\" id=\"disproportionate_burden\">Disproportionate burden</h3>"
   )
   expect_equal(
     paste(output$children[[23]]),
-    "<h2 class=\"govuk-heading-l\" id=\"how_we_tested_this_website\">How we tested this website</h2>"
+    paste0(
+      "<h2 class=\"govuk-heading-m\" ",
+      "id=\"how_we_tested_this_website\">How we tested this website</h2>"
+    )
   )
   expect_equal(
     paste(output$children[[28]]),
-    "<h2 class=\"govuk-heading-l\" id=\"what_were_doing_to_improve_accessibility\">What we're doing to improve accessibility</h2>"
+    paste0(
+      "<h2 class=\"govuk-heading-m\" ",
+      "id=\"what_were_doing_to_improve_accessibility\">",
+      "What we're doing to improve accessibility</h2>"
+    )
   )
   expect_equal(
     paste(output$children[[31]]),
-    "<h2 class=\"govuk-heading-l\" id=\"preparation_of_this_accessibility_statement\">Preparation of this accessibility statement</h2>"
+    paste0(
+      "<h2 class=\"govuk-heading-m\" ",
+      "id=\"preparation_of_this_accessibility_statement\">",
+      "Preparation of this accessibility statement</h2>"
+    )
   )
 })
 
