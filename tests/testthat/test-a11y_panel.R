@@ -246,8 +246,7 @@ test_that("HTML headings output from function", {
     paste(output$children[[23]]),
     paste0(
       "<h2 class=\"govuk-heading-m\" ",
-      "
-      id=\"how_we_tested_this_website\">How we tested this website</h2>"
+      "id=\"how_we_tested_this_website\">How we tested this website</h2>"
     )
   )
   expect_equal(
