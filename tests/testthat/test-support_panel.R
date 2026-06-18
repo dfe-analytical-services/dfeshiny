@@ -176,26 +176,26 @@ test_that("HTML headings output from function", {
   # This checks the headings are in the expected positions in the HTML output the function returns
   expect_equal(
     paste(output$children[[1]]),
-    "<h1 class=\"govuk-heading-xl\" id=\"support_and_feedback\">Support and feedback</h1>"
+    "<h1 class=\"govuk-heading-l\" id=\"support_and_feedback\">Support and feedback</h1>"
   )
   expect_equal(
     paste(output$children[[2]]),
-    "<h2 class=\"govuk-heading-l\" id=\"give_us_feedback\">Give us feedback</h2>"
+    "<h2 class=\"govuk-heading-m\" id=\"give_us_feedback\">Give us feedback</h2>"
   )
   expect_equal(
     paste(output$children[[4]]),
     paste0(
-      "<h2 class=\"govuk-heading-l\" id=\"find_more_information_on_the_data\">",
+      "<h2 class=\"govuk-heading-m\" id=\"find_more_information_on_the_data\">",
       "Find more information on the data</h2>"
     )
   )
   expect_equal(
     paste(output$children[[7]]),
-    "<h2 class=\"govuk-heading-l\" id=\"contact_us\">Contact us</h2>"
+    "<h2 class=\"govuk-heading-m\" id=\"contact_us\">Contact us</h2>"
   )
   expect_equal(
     paste(output$children[[11]]),
-    "<h2 class=\"govuk-heading-l\" id=\"see_the_source_code\">See the source code</h2>"
+    "<h2 class=\"govuk-heading-m\" id=\"see_the_source_code\">See the source code</h2>"
   )
 })
 

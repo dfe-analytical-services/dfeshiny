@@ -95,10 +95,10 @@ if (interactive()) {
 }
 }
 \seealso{
-Other cookies: 
+Other cookies:
 \code{\link{cookies}},
-\code{\link{cookies_banner_ui}()},
-\code{\link{cookies_panel_server}()},
-\code{\link{cookies_panel_ui}()}
+\code{\link[=cookies_banner_ui]{cookies_banner_ui()}},
+\code{\link[=cookies_panel_server]{cookies_panel_server()}},
+\code{\link[=cookies_panel_ui]{cookies_panel_ui()}}
 }
 \concept{cookies}

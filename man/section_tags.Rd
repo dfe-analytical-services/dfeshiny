@@ -62,7 +62,7 @@ section_tags(
 \seealso{
 \code{\link[=support_panel]{support_panel()}}
 
-\link[htmltools:builder]{htmltools::tags}
+\link[htmltools:tags]{htmltools::tags}
 
 \code{\link[htmltools:tagList]{htmltools::tagList()}}
 }
