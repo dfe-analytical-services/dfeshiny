@@ -53,11 +53,15 @@ jobs:
         run: |
           if (!requireNamespace("renv", quietly = TRUE)) install.packages("renv")
           renv::restore()
+          renv::snapshot()
 
       - name: Install rsconnect
         shell: Rscript {0}
         run: |
-          if (!requireNamespace("rsconnect", quietly = TRUE)) install.packages("rsconnect")
+          if (!requireNamespace("rsconnect", quietly = TRUE)) {
+             install.packages("rsconnect")
+             renv::snapshot()
+          }
 
       - name: Deploy to ShinyApps.io
         if: github.event_name != 'pull_request'
