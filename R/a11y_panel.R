@@ -221,7 +221,7 @@ a11y_panel <- function(
              accessibility requirements, contact us:"
     ),
     shinyGovstyle::gov_list(
-      c(
+      shiny::tags$li(
         shiny::tags$a(
           href = "mailto:explore.statistics@education.gov.uk",
           "explore.statistics@education.gov.uk"
