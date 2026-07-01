@@ -220,8 +220,9 @@ a11y_panel <- function(
              If you find any problems not listed on this page or think we're not meeting
              accessibility requirements, contact us:"
     ),
-    shinyGovstyle::gov_list(
-      c(
+    shinyGovstyle::insert_text(
+      inputId = "contact_email",
+      content = shiny::tags$p(
         shiny::tags$a(
           href = "mailto:explore.statistics@education.gov.uk",
           "explore.statistics@education.gov.uk"
