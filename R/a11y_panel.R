@@ -155,7 +155,8 @@ a11y_panel <- function(
           "navigate most of the website using a keyboard or speech recognition software",
           "listen to most of the website using a screen reader
                     (including the most recent versions of JAWS, NVDA and VoiceOver)"
-        )
+        ),
+        style = "bullet"
       )
     ),
     shinyGovstyle::gov_text(
@@ -325,7 +326,8 @@ a11y_panel <- function(
           "navigation",
           "interactive dropdown selections",
           "charts, maps, and tables"
-        )
+        ),
+        style = "bullet"
       )
     ),
     shinyGovstyle::gov_text(
