@@ -155,7 +155,8 @@ a11y_panel <- function(
           "navigate most of the website using a keyboard or speech recognition software",
           "listen to most of the website using a screen reader
                     (including the most recent versions of JAWS, NVDA and VoiceOver)"
-        )
+        ),
+        style = "bullet"
       )
     ),
     shinyGovstyle::gov_text(
@@ -220,8 +221,9 @@ a11y_panel <- function(
              If you find any problems not listed on this page or think we're not meeting
              accessibility requirements, contact us:"
     ),
-    shinyGovstyle::gov_list(
-      c(
+    shinyGovstyle::insert_text(
+      inputId = "contact_email",
+      content = shiny::tags$p(
         shiny::tags$a(
           href = "mailto:explore.statistics@education.gov.uk",
           "explore.statistics@education.gov.uk"
@@ -324,7 +326,8 @@ a11y_panel <- function(
           "navigation",
           "interactive dropdown selections",
           "charts, maps, and tables"
-        )
+        ),
+        style = "bullet"
       )
     ),
     shinyGovstyle::gov_text(
