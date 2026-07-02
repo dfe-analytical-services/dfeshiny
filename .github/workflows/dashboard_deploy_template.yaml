@@ -54,7 +54,6 @@ jobs:
           if (!requireNamespace("renv", quietly = TRUE)) install.packages("renv")
           renv::init(bare = TRUE)
           renv::restore()
-          renv::snapshot()
           renv::status()
 
       - name: Install rsconnect
@@ -62,7 +61,6 @@ jobs:
         run: |
           if (!requireNamespace("rsconnect", quietly = TRUE)) {
              install.packages("rsconnect")
-             renv::snapshot()
              renv::status()
           }
 
