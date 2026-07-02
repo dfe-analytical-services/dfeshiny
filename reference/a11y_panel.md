@@ -114,7 +114,7 @@ a11y_panel(
 #>   <h2 class="govuk-heading-m" id="how_you_should_be_able_to_use_this_website">How you should be able to use this website</h2>
 #>   <p class="govuk-body">We want as many people as possible to be able to use this website. You should be able to:</p>
 #>   <div>
-#>     <ul class="govuk-list ">
+#>     <ul class="govuk-list govuk-list--bullet">
 #>       <li>change colours, contrast levels and fonts using browser or device settings</li>
 #>       <li>zoom in up to 400% without the text spilling off the screen</li>
 #>       <li>navigate most of the website using a keyboard or speech recognition software</li>
@@ -145,11 +145,11 @@ a11y_panel(
 #>   <p class="govuk-body">We're always looking to improve the accessibility of this website.
 #>              If you find any problems not listed on this page or think we're not meeting
 #>              accessibility requirements, contact us:</p>
-#>   <ul class="govuk-list ">
-#>     <li>a</li>
-#>     <li>mailto:explore.statistics@education.gov.uk</li>
-#>     <li>explore.statistics@education.gov.uk</li>
-#>   </ul>
+#>   <div id="contact_email" class="govuk-inset-text">
+#>     <p>
+#>       <a href="mailto:explore.statistics@education.gov.uk">explore.statistics@education.gov.uk</a>
+#>     </p>
+#>   </div>
 #>   <h2 class="govuk-heading-m" id="enforcement_procedure">Enforcement procedure</h2>
 #>   <p class="govuk-body">
 #>     The Equality and Human Rights Commission (EHRC) is responsible for enforcing the Public 
@@ -190,7 +190,7 @@ a11y_panel(
 #>   </p>
 #>   <p class="govuk-body">DAC tested a sample of pages to cover the core functionality of the service including:</p>
 #>   <div>
-#>     <ul class="govuk-list ">
+#>     <ul class="govuk-list govuk-list--bullet">
 #>       <li>navigation</li>
 #>       <li>interactive dropdown selections</li>
 #>       <li>charts, maps, and tables</li>
