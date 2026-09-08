@@ -68,16 +68,16 @@ jobs:
 
       - name: Create .Renviron
         run: |
-          if [ -n "${{ secrets.MY_API_TOKEN }}" ]; then
+          if [ -n "${{ secrets.CARTO_API_TOKEN }}" ]; then
+            ls -l .Renviron
+            echo "Writing CARTO_API_TOKEN to .Renviron"
             echo "CARTO_API_TOKEN=${{ secrets.CARTO_API_TOKEN }}" > .Renviron
-            ls .Renviron
+            ls -l .Renviron
           fi
           
       - name: Deploy to ShinyApps.io
         if: github.event_name != 'pull_request'
         shell: Rscript {0}
         run: |
-          list.files('./')
-          rsconnect::writeManifest()
           rsconnect::setAccountInfo(name = 'department-for-education', token = '${{secrets.SHINYAPPS_TOKEN}}', secret = '${{secrets.SHINYAPPS_SECRET}}')
           rsconnect::deployApp(appName='${{env.SHINYAPP_NAME}}', forceUpdate = TRUE)
