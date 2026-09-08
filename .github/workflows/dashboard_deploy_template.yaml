@@ -12,6 +12,8 @@ on:
         required: true
       SHINYAPPS_TOKEN:
         required: true
+      CARTO_API_TOKEN:
+        required: false
 
 jobs:
   deployShiny:
@@ -64,6 +66,12 @@ jobs:
              renv::status()
           }
 
+      - name: Create .Renviron
+        run: |
+          if [ -n "${{ secrets.MY_API_TOKEN }}" ]; then
+            echo "CARTO_API_TOKEN=${{ secrets.CARTO_API_TOKEN }}" > .Renviron
+          fi
+          
       - name: Deploy to ShinyApps.io
         if: github.event_name != 'pull_request'
         run: >
