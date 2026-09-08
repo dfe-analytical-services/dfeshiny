@@ -29,16 +29,16 @@
 #' @export
 #'
 #' @examples
-a11y_panel(
-  "DfE Shiny template",
-  "https://department-for-education.shinyapps.io/dfe-shiny-template",
-  "25th April 2024",
-  "26th April 2024",
-  "2nd November 2024",
-  issues_contact = "https://github.com/dfe-analytical-services/shiny-template",
-  publication_slug = "la-and-school-expenditure",
-  publication_name = "LA and school expenditure"
-)
+#' a11y_panel(
+#'   "DfE Shiny template",
+#'   "https://department-for-education.shinyapps.io/dfe-shiny-template",
+#'   "25th April 2024",
+#'   "26th April 2024",
+#'   "2nd November 2024",
+#'   issues_contact = "https://github.com/dfe-analytical-services/shiny-template",
+#'   publication_slug = "la-and-school-expenditure",
+#'   publication_name = "LA and school expenditure"
+#' )
 a11y_panel <- function(
   dashboard_title,
   dashboard_url,
