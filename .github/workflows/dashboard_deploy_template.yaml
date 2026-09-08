@@ -70,11 +70,14 @@ jobs:
         run: |
           if [ -n "${{ secrets.MY_API_TOKEN }}" ]; then
             echo "CARTO_API_TOKEN=${{ secrets.CARTO_API_TOKEN }}" > .Renviron
+            ls .Renviron
           fi
           
       - name: Deploy to ShinyApps.io
         if: github.event_name != 'pull_request'
-        run: >
-          Rscript
-          -e "rsconnect::setAccountInfo(name = 'department-for-education', token = '${{secrets.SHINYAPPS_TOKEN}}', secret = '${{secrets.SHINYAPPS_SECRET}}')"
-          -e "rsconnect::deployApp(appName='${{env.SHINYAPP_NAME}}', forceUpdate = TRUE)"
+        shell: Rscript {0}
+        run: |
+          list.files('./')
+          rsconnect::writeManifest()
+          rsconnect::setAccountInfo(name = 'department-for-education', token = '${{secrets.SHINYAPPS_TOKEN}}', secret = '${{secrets.SHINYAPPS_SECRET}}')
+          rsconnect::deployApp(appName='${{env.SHINYAPP_NAME}}', forceUpdate = TRUE)
