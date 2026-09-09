@@ -69,7 +69,6 @@ jobs:
       - name: Create .Renviron
         run: |
           if [ -n "${{ secrets.CARTO_API_TOKEN }}" ]; then
-            ls -l .Renviron
             echo "Writing CARTO_API_TOKEN to .Renviron"
             echo "CARTO_API_TOKEN=${{ secrets.CARTO_API_TOKEN }}" > .Renviron
             ls -l .Renviron
