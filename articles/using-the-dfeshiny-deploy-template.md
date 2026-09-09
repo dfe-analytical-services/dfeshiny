@@ -1,4 +1,4 @@
-# Using the dfeshiny Deploy Template
+# Using the dfeshiny reusable deploy workflow
 
 When developing DfE Shiny dashboards, it’s common to want a consistent,
 simple, and secure way to deploy applications to platforms such as
@@ -99,6 +99,38 @@ GitHub Actions runner will:
     `deploy_target`.
 
     - For ShinyApps.io, it uses `rsconnect::deployApp()`.
+
+## Carto API key
+
+If your dashboard uses the leaflet package with Carto sourced maps, you
+will need to set up an API key. As ShinyApps does not accomodate
+environment variables itself, the API key needs injecting into deploys
+via the deploy workflow. The steps to do this are as follows:
+
+- Register for an API key on the [Carto
+  website](https://carto.com/basemaps/apikey/) using your team mailbox
+  as the contact email
+- Add that key as an environment secret for your GitHub repo (settings
+  \> Secrets and variables \> Actions)
+- Add the following to your .github/workflows/deploy-shiny.yaml file,
+  replacing the name of the secret with your own:
+  - `CARTO_API_TOKEN: ${{ secrets.CARTO_API_KEY }}`
+- Add the key to any code where using Carto maps following the example
+  below (updating the map style from Voyager to whichever you are using,
+  e.g. light_nolabels):
+
+``` r
+
+addTiles(
+  urlTemplate = paste0(
+    "https://basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.png?key=",
+    Sys.getenv("CARTO_API_TOKEN")
+  )
+)
+```
+
+For more extensive guidance on using a Carto API key, please refer back
+to the [Carto guidance](https://carto.com/basemaps/apikey/).
 
 ## Summary
 
