@@ -1,8 +1,8 @@
 ---
-title: "Using the dfeshiny Deploy Template"
+title: "Using the dfeshiny reusable deploy workflow"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Using the dfeshiny Deploy Template}
+  %\VignetteIndexEntry{Using the dfeshiny reusable deploy workflow}
   %\VignetteEncoding{UTF-8}
   %\VignetteEngine{knitr::rmarkdown}
 editor_options: 
@@ -120,6 +120,25 @@ GitHub Actions runner will:
     `deploy_target`.
 
     -   For ShinyApps.io, it uses `rsconnect::deployApp()`.
+
+## Carto API key
+
+If your dashboard uses the leaflet package with Carto sourced maps, you will need to set up an API key. As ShinyApps does not accomodate environment variables itself, the API key needs injecting into deploys via the deploy workflow. The steps to do this are as follows:
+
+- Register for an API key on the [Carto website](https://carto.com/basemaps/apikey/)
+- Add that key as an environment secret for your GitHub repo (settings > Secrets and variables > Actions)
+- Add the following to your .github/workflows/deploy-shiny.yaml file, replacing the name of the secret with your own:
+  - `CARTO_API_TOKEN: ${{ secrets.CARTO_API_KEY }}`
+- Add the key to any code where using Carto maps following the example below:
+
+```{r eval=FALSE}
+addTiles(
+   urlTemplate = paste0(
+      "https://basemaps.cartocdn.com/rastertiles/light_nolabels/{z}/{x}/{y}.png?key=",
+      Sys.getenv("CARTO_API_TOKEN")
+   )
+)
+```
 
 ## Summary
 
