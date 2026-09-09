@@ -140,6 +140,8 @@ addTiles(
 )
 ```
 
+For more extensive guidance on using a Carto API key, please refer back to the [Carto guidance](https://carto.com/basemaps/apikey/).
+
 ## Summary
 
 Using a reusable GitHub Actions workflow template:
