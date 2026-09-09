@@ -35,9 +35,11 @@ Imports:
     xfun,
     readr
 Suggests: 
+    cyclocomp,
     devtools,
     diffviewer,
     knitr,
+    lintr,
     rmarkdown,
     shinytest2,
     spelling,

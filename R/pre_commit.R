@@ -236,7 +236,7 @@ data_checker <- function(
     quit(save = "no", status = 1, runLast = FALSE)
   }
 
-  return(FALSE)
+  FALSE
 }
 
 

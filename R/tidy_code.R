@@ -42,5 +42,5 @@ tidy_code <- function(subdirs = c("R", "tests")) {
             please review any changes made."
     )
   }
-  return(any(script_changes))
+  any(script_changes)
 }
