@@ -126,9 +126,9 @@ GitHub Actions runner will:
 If your dashboard uses the leaflet package with Carto sourced maps, you will need to set up an API key. As ShinyApps does not accomodate environment variables itself, the API key needs injecting into deploys via the deploy workflow. The steps to do this are as follows:
 
 - Register for an API key on the [Carto website](https://carto.com/basemaps/apikey/) using your team mailbox as the contact email
-- Add that key as an environment secret for your GitHub repo (settings > Secrets and variables > Actions)
-- Add the following to your .github/workflows/deploy-shiny.yaml file, replacing the name of the secret with your own:
-  - `CARTO_API_TOKEN: ${{ secrets.CARTO_API_KEY }}`
+- Add that key as an environment secret for your GitHub repo (settings > Secrets and variables > Actions). You can use whatever name you want, but we've used `CARTO_API_TOKEN` in the example below (`secrets.CARTO_API_TOKEN`).
+- Add the following to your .github/workflows/deploy-shiny.yaml file, replacing the name of the secret with whatever you've used:
+  - `CARTO_API_TOKEN: ${{ secrets.CARTO_API_TOKEN }}`
 - Add the key to any code where using Carto maps following the example below (updating the map style from Voyager to whichever you are using, e.g. light_nolabels):
 
 ```{r eval=FALSE}
