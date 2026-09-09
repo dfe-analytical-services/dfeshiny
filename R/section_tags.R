@@ -130,5 +130,5 @@ section_tags <- function(heading = NULL, body, h_level = "h2") {
     )
   }
 
-  return(result)
+  result
 }
