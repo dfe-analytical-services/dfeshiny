@@ -111,10 +111,12 @@ via the deploy workflow. The steps to do this are as follows:
   website](https://carto.com/basemaps/apikey/) using your team mailbox
   as the contact email
 - Add that key as an environment secret for your GitHub repo (settings
-  \> Secrets and variables \> Actions)
+  \> Secrets and variables \> Actions). You can use whatever name you
+  want, but we’ve used `CARTO_API_TOKEN` in the example below (which is
+  referenced from within the workflow as `secrets.CARTO_API_TOKEN`).
 - Add the following to your .github/workflows/deploy-shiny.yaml file,
-  replacing the name of the secret with your own:
-  - `CARTO_API_TOKEN: ${{ secrets.CARTO_API_KEY }}`
+  replacing the name of the secret with whatever you’ve used:
+  - `CARTO_API_TOKEN: ${{ secrets.CARTO_API_TOKEN }}`
 - Add the key to any code where using Carto maps following the example
   below (updating the map style from Voyager to whichever you are using,
   e.g. light_nolabels):

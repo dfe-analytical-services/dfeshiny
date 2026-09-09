@@ -26,7 +26,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">dfeshiny</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.6.3</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.6.4</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -192,11 +192,14 @@ via the deploy workflow. The steps to do this are as follows:</p>
 <li>Register for an API key on the <a href="https://carto.com/basemaps/apikey/" class="external-link">Carto website</a> using your
 team mailbox as the contact email</li>
 <li>Add that key as an environment secret for your GitHub repo (settings
-&gt; Secrets and variables &gt; Actions)</li>
+&gt; Secrets and variables &gt; Actions). You can use whatever name you
+want, but we’ve used <code>CARTO_API_TOKEN</code> in the example below
+(which is referenced from within the workflow as
+<code>secrets.CARTO_API_TOKEN</code>).</li>
 <li>Add the following to your .github/workflows/deploy-shiny.yaml file,
-replacing the name of the secret with your own:
+replacing the name of the secret with whatever you’ve used:
 <ul>
-<li><code>CARTO_API_TOKEN: ${{ secrets.CARTO_API_KEY }}</code></li>
+<li><code>CARTO_API_TOKEN: ${{ secrets.CARTO_API_TOKEN }}</code></li>
 </ul>
 </li>
 <li>Add the key to any code where using Carto maps following the example
