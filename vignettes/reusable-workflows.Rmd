@@ -54,6 +54,20 @@ And then add > commit > push to your remote GitHub repository.
 
 Once implemented, this will run `shinytest2` whenever a change is made to a pull request or your main branch on GitHub. The results can be found in the checks section of your pull request and Actions tab of your repository.
 
+### Git LFS support
+
+If your repository uses [Git LFS](https://git-lfs.github.com/) to store large files (e.g. data files), pass `use_lfs: "true"` so the workflow installs `git-lfs` and downloads the real files instead of LFS pointers:
+
+```
+jobs:
+  automatedTests:
+    uses: dfe-analytical-services/dfeshiny/.github/workflows/automated_tests_template.yaml@main
+    with:
+      use_lfs: "true"
+```
+
+The same `use_lfs` input is available on the dashboard deploy template. If you enable it for tests you should also enable it for deployment, otherwise the deploy will push LFS pointer files instead of the actual data.
+
 Clicking into a given test result will show the steps taken to run the automated tests and under the **Run tests** stage, you can find the results of the tests as shown below.
 
 ![Image of the results of example automated tests viewed in GitHub Actions](./images/GA-automated-tests-results.png)

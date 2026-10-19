@@ -1,5 +1,7 @@
 # dfeshiny 0.6.0
 
+* Added optional `use_lfs` input to the automated tests and dashboard deploy reusable workflows, enabling Git LFS support for repositories that store large files
+* Fixed the `CHROMOTE_HEADLESS` environment variable in the automated tests template so it persists across steps
 * Deprecated `dfe_reactable()`, `external_link()` and `bad_link_text`, with the functions now moved to wrappers around shinyGovstyle based equivalents
 * Added extra flexibility to custom disconnect message in contact details and refresh link
 * Relaxed arguments in cookies banner so different IDs can be used for navigation panel
