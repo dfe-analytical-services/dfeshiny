@@ -1,3 +1,7 @@
+# dfeshiny (development version)
+
+* Use shinyGovstyle 0.3.0 or later from CRAN instead of the GitHub development version.
+
 # dfeshiny 0.6.0
 
 * Deprecated `dfe_reactable()`, `external_link()` and `bad_link_text`, with the functions now moved to wrappers around shinyGovstyle based equivalents

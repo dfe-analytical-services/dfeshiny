@@ -221,7 +221,7 @@ a11y_panel <- function(
              If you find any problems not listed on this page or think we're not meeting
              accessibility requirements, contact us:"
     ),
-    shinyGovstyle::insert_text(
+    shinyGovstyle::inset_text(
       inputId = "contact_email",
       content = shiny::tags$p(
         shiny::tags$a(

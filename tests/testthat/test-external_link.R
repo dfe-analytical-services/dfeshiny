@@ -41,15 +41,24 @@ test_that("Rejects dodgy link text", {
   expect_error(external_link("https://shiny.posit.co/", "www.google.com"))
 })
 
-test_that("Rejects non-boolean for add_warning", {
+test_that("Rejects unsupported values for add_warning", {
   expect_error(
     external_link(
       "https://shiny.posit.co/",
       "R Shiny",
       add_warning = "Funky non-boolean"
     ),
-    "add_warning must be a TRUE or FALSE value"
+    'add_warning must be TRUE, FALSE, or "icon"'
   )
+})
+
+test_that("Icon warnings retain the hidden new-tab warning", {
+  link <- external_link("https://shiny.posit.co/", "R Shiny", add_warning = "icon")
+
+  expect_match(as.character(link), 'class="sr-only"> (opens in new tab)</span>', fixed = TRUE)
+  expect_match(as.character(link), 'aria-hidden="true"', fixed = TRUE)
+  expect_equal(link$attribs$target, "_blank")
+  expect_equal(link$attribs$rel, "noopener noreferrer")
 })
 
 test_that("New tab warning always stays for non-visual users", {

@@ -248,7 +248,62 @@
 
       ],
       "deps": [
-
+        {
+          "name": "stylecss",
+          "version": "0.3.0",
+          "src": {
+            "href": "shinyGovstyle/css"
+          },
+          "meta": null,
+          "script": null,
+          "stylesheet": "govuk-frontend-6.6.0.min.css",
+          "head": null,
+          "attachment": null,
+          "package": null,
+          "all_files": true
+        },
+        {
+          "name": "width-overrides",
+          "version": "0.3.0",
+          "src": {
+            "href": "shinyGovstyle/css"
+          },
+          "meta": null,
+          "script": null,
+          "stylesheet": "width-overrides.css",
+          "head": null,
+          "attachment": null,
+          "package": null,
+          "all_files": true
+        },
+        {
+          "name": "update_page_title",
+          "version": "0.3.0",
+          "src": {
+            "href": "shinyGovstyle/js"
+          },
+          "meta": null,
+          "script": "update_page_title.js",
+          "stylesheet": null,
+          "head": null,
+          "attachment": null,
+          "package": null,
+          "all_files": true
+        },
+        {
+          "name": "reactable-overrides",
+          "version": "0.3.0",
+          "src": {
+            "href": "shinyGovstyle/css"
+          },
+          "meta": null,
+          "script": null,
+          "stylesheet": "reactable-overrides.css",
+          "head": null,
+          "attachment": null,
+          "package": null,
+          "all_files": true
+        }
       ]
     }
   }

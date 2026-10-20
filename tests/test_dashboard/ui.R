@@ -1,13 +1,11 @@
 ui <- function(input, output, session) {
-  shiny::fluidPage(
+  shinyGovstyle::gov_page(
+    width = "full",
     shinyjs::useShinyjs(),
 
     # Cookies =================================================================
     dfe_cookies_script(),
     cookies_banner_ui(name = "The dfeshiny test dashboard"),
-
-    # This forces a full width layout that plays better with dashboard apps
-    shinyGovstyle::full_width_overrides(),
 
     # header function ---------------------------------------------------------
     dfeshiny::header("Header Example"),
@@ -27,6 +25,7 @@ ui <- function(input, output, session) {
     ),
 
     # Panels ==================================================================
+    # Retain Bootstrap gutters around the navigation and panels.
     shiny::navlistPanel(
       "",
       id = "navlistPanel",
@@ -113,6 +112,7 @@ ui <- function(input, output, session) {
         shiny::tags$h1("Reactable example"),
         reactable::reactableOutput("reactable_example")
       )
-    )
+    ) |>
+      shiny::div(class = "container-fluid")
   )
 }
