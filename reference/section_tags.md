@@ -83,5 +83,5 @@ section_tags(
 )
 #> <h2>Heading test</h2>
 #> <p>
-#>   This is a body text test. Please contact us at<a href="mailto:team@education.gov.uk" class="govuk-link" target="_blank" rel="noopener noreferrer">team@education.gov.uk<span class="sr-only"> (opens in new tab)</span></a></p>
+#>   This is a body text test. Please contact us at<a href="mailto:team@education.gov.uk" class="govuk-link">team@education.gov.uk</a></p>
 ```

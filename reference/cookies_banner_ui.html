@@ -13,7 +13,7 @@ need to include the dfe_cookies_script() function in their ui.R file."><meta pro
 
     <a class="navbar-brand me-2" href="../index.html">dfeshiny</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.6.4</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.7.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -100,24 +100,30 @@ applied</p></dd>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co"># This will be what is in your ui.R script ===============================</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html" class="external-link">fluidPage</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>  <span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu">shinyGovstyle</span><span class="fu">::</span><span class="fu"><a href="https://dfe-analytical-services.github.io/shinyGovstyle/reference/gov_page.html" class="external-link">gov_page</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>    <span class="co"># Place these lines above your header ----------------------------------</span></span></span>
 <span class="r-in"><span>    <span class="fu"><a href="https://rdrr.io/pkg/shinyjs/man/useShinyjs.html" class="external-link">useShinyjs</a></span><span class="op">(</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>    <span class="fu"><a href="cookies.html">dfe_cookies_script</a></span><span class="op">(</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>    <span class="fu">cookies_banner_ui</span><span class="op">(</span>name <span class="op">=</span> <span class="st">"My DfE R-Shiny data dashboard"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span></span></span>
+<span class="r-in"><span>    <span class="fu"><a href="header.html">header</a></span><span class="op">(</span><span class="st">"My DfE R-Shiny data dashboard"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    <span class="fu">shinyGovstyle</span><span class="fu">::</span><span class="fu"><a href="https://dfe-analytical-services.github.io/shinyGovstyle/reference/service_navigation.html" class="external-link">service_navigation</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>      links <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Cookies"</span> <span class="op">=</span> <span class="st">"cookies_panel_ui"</span><span class="op">)</span></span></span>
+<span class="r-in"><span>    <span class="op">)</span>,</span></span>
+<span class="r-in"><span></span></span>
 <span class="r-in"><span>    <span class="co"># Place the cookies panel under the header but in the main content -----</span></span></span>
-<span class="r-in"><span>    <span class="co"># Example of placing as a panel within navlistPanel</span></span></span>
-<span class="r-in"><span>    <span class="fu">shiny</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/navlistPanel.html" class="external-link">navlistPanel</a></span><span class="op">(</span></span></span>
-<span class="r-in"><span>      <span class="st">""</span>,</span></span>
-<span class="r-in"><span>      id <span class="op">=</span> <span class="st">"navlistPanel"</span>,</span></span>
-<span class="r-in"><span>      widths <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">8</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>      well <span class="op">=</span> <span class="cn">FALSE</span>,</span></span>
-<span class="r-in"><span>      <span class="co">## Cookies panel -----------------------------------------------------</span></span></span>
-<span class="r-in"><span>      <span class="fu">shiny</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/tabPanel.html" class="external-link">tabPanel</a></span><span class="op">(</span></span></span>
-<span class="r-in"><span>        value <span class="op">=</span> <span class="st">"cookies_panel_ui"</span>,</span></span>
-<span class="r-in"><span>        <span class="st">"Cookies"</span>,</span></span>
-<span class="r-in"><span>        <span class="fu"><a href="cookies_panel_ui.html">cookies_panel_ui</a></span><span class="op">(</span>google_analytics_key <span class="op">=</span> <span class="va">google_analytics_key</span><span class="op">)</span></span></span>
+<span class="r-in"><span>    <span class="co"># Example of placing as a panel within a hidden tabsetPanel, which the</span></span></span>
+<span class="r-in"><span>    <span class="co"># service navigation links switch between</span></span></span>
+<span class="r-in"><span>    <span class="fu">shinyGovstyle</span><span class="fu">::</span><span class="fu"><a href="https://dfe-analytical-services.github.io/shinyGovstyle/reference/layouts.html" class="external-link">gov_main_layout</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>      <span class="fu">shiny</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/tabsetPanel.html" class="external-link">tabsetPanel</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>        id <span class="op">=</span> <span class="st">"dashboard_page"</span>,</span></span>
+<span class="r-in"><span>        type <span class="op">=</span> <span class="st">"hidden"</span>,</span></span>
+<span class="r-in"><span>        <span class="co">## Cookies panel ---------------------------------------------------</span></span></span>
+<span class="r-in"><span>        <span class="fu">shiny</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/tabPanel.html" class="external-link">tabPanel</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>          value <span class="op">=</span> <span class="st">"cookies_panel_ui"</span>,</span></span>
+<span class="r-in"><span>          <span class="st">"Cookies"</span>,</span></span>
+<span class="r-in"><span>          <span class="fu"><a href="cookies_panel_ui.html">cookies_panel_ui</a></span><span class="op">(</span>google_analytics_key <span class="op">=</span> <span class="va">google_analytics_key</span><span class="op">)</span></span></span>
+<span class="r-in"><span>        <span class="op">)</span></span></span>
 <span class="r-in"><span>      <span class="op">)</span></span></span>
 <span class="r-in"><span>    <span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="op">)</span></span></span>
@@ -125,11 +131,24 @@ applied</p></dd>
 <span class="r-in"><span>  <span class="co"># This will be in your server.R file =====================================</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="va">server</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span>, <span class="va">session</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span>    <span class="co"># Server logic for the service navigation links -------------------------</span></span></span>
+<span class="r-in"><span>    <span class="fu">shinyGovstyle</span><span class="fu">::</span><span class="fu"><a href="https://dfe-analytical-services.github.io/shinyGovstyle/reference/service_navigation_server.html" class="external-link">service_navigation_server</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>      <span class="va">session</span>,</span></span>
+<span class="r-in"><span>      tabset_id <span class="op">=</span> <span class="st">"dashboard_page"</span>,</span></span>
+<span class="r-in"><span>      link_to_panel <span class="op">=</span> <span class="st">"cookies_panel_ui"</span></span></span>
+<span class="r-in"><span>    <span class="op">)</span></span></span>
+<span class="r-in"><span>    <span class="co"># Keep the active navigation link in sync, including when the cookie</span></span></span>
+<span class="r-in"><span>    <span class="co"># banner's link switches the page</span></span></span>
+<span class="r-in"><span>    <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/observeEvent.html" class="external-link">observeEvent</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">dashboard_page</span>, <span class="op">{</span></span></span>
+<span class="r-in"><span>      <span class="fu">shinyGovstyle</span><span class="fu">::</span><span class="fu"><a href="https://dfe-analytical-services.github.io/shinyGovstyle/reference/update_service_navigation.html" class="external-link">update_service_navigation</a></span><span class="op">(</span><span class="va">session</span>, <span class="va">input</span><span class="op">$</span><span class="va">dashboard_page</span><span class="op">)</span></span></span>
+<span class="r-in"><span>    <span class="op">}</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
 <span class="r-in"><span>    <span class="co"># Server logic for the pop up banner, can be placed anywhere in server.R -</span></span></span>
 <span class="r-in"><span>    <span class="va">output</span><span class="op">$</span><span class="va">cookies_status</span> <span class="op">&lt;-</span> <span class="fu">dfeshiny</span><span class="fu">::</span><span class="fu"><a href="cookies_banner_server.html">cookies_banner_server</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>      input_cookies <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/reactive.html" class="external-link">reactive</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">cookies</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>      google_analytics_key <span class="op">=</span> <span class="va">google_analytics_key</span>,</span></span>
-<span class="r-in"><span>      parent_session <span class="op">=</span> <span class="va">session</span></span></span>
+<span class="r-in"><span>      parent_session <span class="op">=</span> <span class="va">session</span>,</span></span>
+<span class="r-in"><span>      cookies_nav_id <span class="op">=</span> <span class="st">"dashboard_page"</span></span></span>
 <span class="r-in"><span>    <span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>    <span class="co"># Server logic for the panel, can be placed anywhere in server.R -------</span></span></span>

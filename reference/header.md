@@ -1,7 +1,7 @@
 # DfE header banner
 
 This function uses
-[`shinyGovstyle::header()`](https://rdrr.io/pkg/shinyGovstyle/man/header.html)
+[`shinyGovstyle::header()`](https://dfe-analytical-services.github.io/shinyGovstyle/reference/header.html)
 to create a header banner using the DfE logo.
 
 ## Usage
@@ -26,7 +26,7 @@ a header html shiny object
 
 ## See also
 
-[`shinyGovstyle::header()`](https://rdrr.io/pkg/shinyGovstyle/man/header.html)
+[`shinyGovstyle::header()`](https://dfe-analytical-services.github.io/shinyGovstyle/reference/header.html)
 
 ## Examples
 

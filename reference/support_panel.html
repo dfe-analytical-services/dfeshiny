@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">dfeshiny</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.6.4</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.7.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -141,7 +141,7 @@ dashboard in DfE</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     &lt;/p&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     &lt;p class="govuk-body"&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       Alternatively, if you spot any errors or bugs while using this dashboard, please</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>               screenshot and email them to &lt;a href="mailto:my.team@education.gov.uk" class="govuk-link" target="_blank" rel="noopener noreferrer"&gt;my.team@education.gov.uk&lt;span class="sr-only"&gt; (opens in new tab)&lt;/span&gt;&lt;/a&gt;.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>               screenshot and email them to &lt;a href="mailto:my.team@education.gov.uk" class="govuk-link"&gt;my.team@education.gov.uk&lt;/a&gt;.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     &lt;/p&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;/div&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;h2 class="govuk-heading-m" id="find_more_information_on_the_data"&gt;Find more information on the data&lt;/h2&gt;</span>
@@ -155,76 +155,76 @@ dashboard in DfE</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;h2 class="govuk-heading-m" id="contact_us"&gt;Contact us&lt;/h2&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;p class="govuk-body"&gt;Use the following contact details if you have questions about the dashboard or data within it.&lt;/p&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;p class="govuk-body"&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     E-mail: &lt;a href="mailto:my.team@education.gov.uk" class="govuk-link" target="_blank" rel="noopener noreferrer"&gt;my.team@education.gov.uk&lt;span class="sr-only"&gt; (opens in new tab)&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     E-mail: &lt;a href="mailto:my.team@education.gov.uk" class="govuk-link"&gt;my.team@education.gov.uk&lt;/a&gt;&lt;/p&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;h2 class="govuk-heading-m" id="see_the_source_code"&gt;See the source code&lt;/h2&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;p class="govuk-body"&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     Use the following contact details if you have questions about the dashboard or data &lt;a href="https://github.com/dfe-analytical-services/my-repo" class="govuk-link" target="_blank" rel="noopener noreferrer"&gt;GitHub repository (opens in new tab)&lt;/a&gt;.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;/p&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;/div&gt;</span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># Often you will use this inside a set of navigation tabs, e.g.</span></span></span>
-<span class="r-in"><span><span class="fu">shiny</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/navlistPanel.html" class="external-link">navlistPanel</a></span><span class="op">(</span></span></span>
-<span class="r-in"><span>  <span class="st">""</span>,</span></span>
-<span class="r-in"><span>  id <span class="op">=</span> <span class="st">"navlistPanel"</span>,</span></span>
-<span class="r-in"><span>  widths <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">8</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>  well <span class="op">=</span> <span class="cn">FALSE</span>,</span></span>
-<span class="r-in"><span>  <span class="co">## Support panel --------------------------------------------------------</span></span></span>
-<span class="r-in"><span>  <span class="fu">shiny</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/tabPanel.html" class="external-link">tabPanel</a></span><span class="op">(</span></span></span>
-<span class="r-in"><span>    value <span class="op">=</span> <span class="st">"support_panel"</span>,</span></span>
-<span class="r-in"><span>    <span class="st">"Support and feedback"</span>,</span></span>
-<span class="r-in"><span>    <span class="fu">support_panel</span><span class="op">(</span></span></span>
-<span class="r-in"><span>      team_email <span class="op">=</span> <span class="st">"explore.statistics@education.gov.uk"</span>,</span></span>
-<span class="r-in"><span>      repo_name <span class="op">=</span> <span class="st">"https://github.com/dfe-analytical-services/dfeshiny/"</span>,</span></span>
-<span class="r-in"><span>      form_url <span class="op">=</span> <span class="st">"https://forms.office.com"</span></span></span>
+<span class="r-in"><span><span class="co"># Often you will use this as a page inside a hidden tabsetPanel, with</span></span></span>
+<span class="r-in"><span><span class="co"># shinyGovstyle::service_navigation() providing the links between pages, e.g.</span></span></span>
+<span class="r-in"><span><span class="fu">shinyGovstyle</span><span class="fu">::</span><span class="fu"><a href="https://dfe-analytical-services.github.io/shinyGovstyle/reference/layouts.html" class="external-link">gov_main_layout</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>  <span class="fu">shiny</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/tabsetPanel.html" class="external-link">tabsetPanel</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>    id <span class="op">=</span> <span class="st">"dashboard_page"</span>,</span></span>
+<span class="r-in"><span>    type <span class="op">=</span> <span class="st">"hidden"</span>,</span></span>
+<span class="r-in"><span>    <span class="co">## Support panel ------------------------------------------------------</span></span></span>
+<span class="r-in"><span>    <span class="fu">shiny</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/tabPanel.html" class="external-link">tabPanel</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>      value <span class="op">=</span> <span class="st">"support_panel"</span>,</span></span>
+<span class="r-in"><span>      <span class="st">"Support and feedback"</span>,</span></span>
+<span class="r-in"><span>      <span class="fu">support_panel</span><span class="op">(</span></span></span>
+<span class="r-in"><span>        team_email <span class="op">=</span> <span class="st">"explore.statistics@education.gov.uk"</span>,</span></span>
+<span class="r-in"><span>        repo_name <span class="op">=</span> <span class="st">"https://github.com/dfe-analytical-services/dfeshiny/"</span>,</span></span>
+<span class="r-in"><span>        form_url <span class="op">=</span> <span class="st">"https://forms.office.com"</span></span></span>
+<span class="r-in"><span>      <span class="op">)</span></span></span>
 <span class="r-in"><span>    <span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;div class="row"&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;div class="col-sm-2"&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     &lt;ul class="nav nav-pills nav-stacked shiny-tab-input" id="navlistPanel" data-tabsetid="7210"&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       &lt;li class="navbar-brand"&gt;&lt;/li&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       &lt;li class="active"&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         &lt;a href="#tab-7210-2" data-toggle="tab" data-bs-toggle="tab" data-value="support_panel"&gt;Support and feedback&lt;/a&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       &lt;/li&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     &lt;/ul&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;/div&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;div class="col-sm-8"&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     &lt;div class="tab-content" data-tabsetid="7210"&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       &lt;div class="tab-pane active" data-value="support_panel" id="tab-7210-2"&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         &lt;div style="margin-top: 50px; margin-bottom: 50px"&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>           &lt;h1 class="govuk-heading-l" id="support_and_feedback"&gt;Support and feedback&lt;/h1&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>           &lt;h2 class="govuk-heading-m" id="give_us_feedback"&gt;Give us feedback&lt;/h2&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>           &lt;div&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>             &lt;p class="govuk-body"&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>               This dashboard is a new service that we are developing. If you</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;div class="govuk-width-container"&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;main id="main" role="main" tabindex="-1" class="govuk-main-wrapper"&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     &lt;div class="tabbable"&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       &lt;ul class="nav nav-hidden shiny-tab-input" id="dashboard_page" data-tabsetid="1230"&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         &lt;li class="active"&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>           &lt;a href="#tab-1230-1" data-toggle="tab" data-bs-toggle="tab" data-value="support_panel"&gt;Support and feedback&lt;/a&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         &lt;/li&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       &lt;/ul&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       &lt;div class="tab-content" data-tabsetid="1230"&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         &lt;div class="tab-pane active" data-value="support_panel" id="tab-1230-1"&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>           &lt;div style="margin-top: 50px; margin-bottom: 50px"&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>             &lt;h1 class="govuk-heading-l" id="support_and_feedback"&gt;Support and feedback&lt;/h1&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>             &lt;h2 class="govuk-heading-m" id="give_us_feedback"&gt;Give us feedback&lt;/h2&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>             &lt;div&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>               &lt;p class="govuk-body"&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                 This dashboard is a new service that we are developing. If you</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>               have any feedback or suggestions for improvements, please submit</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>               them using our &lt;a href="https://forms.office.com" class="govuk-link" target="_blank" rel="noopener noreferrer"&gt;feedback form (opens in new tab)&lt;/a&gt;.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>             &lt;/p&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>               &lt;/p&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>               &lt;p class="govuk-body"&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                 Alternatively, if you spot any errors or bugs while using this dashboard, please</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>               screenshot and email them to &lt;a href="mailto:explore.statistics@education.gov.uk" class="govuk-link"&gt;explore.statistics@education.gov.uk&lt;/a&gt;.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>               &lt;/p&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>             &lt;/div&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>             &lt;h2 class="govuk-heading-m" id="find_more_information_on_the_data"&gt;Find more information on the data&lt;/h2&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>             &lt;p class="govuk-body"&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>               Alternatively, if you spot any errors or bugs while using this dashboard, please</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>               screenshot and email them to &lt;a href="mailto:explore.statistics@education.gov.uk" class="govuk-link" target="_blank" rel="noopener noreferrer"&gt;explore.statistics@education.gov.uk&lt;span class="sr-only"&gt; (opens in new tab)&lt;/span&gt;&lt;/a&gt;.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>             &lt;/p&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>           &lt;/div&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>           &lt;h2 class="govuk-heading-m" id="find_more_information_on_the_data"&gt;Find more information on the data&lt;/h2&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>           &lt;p class="govuk-body"&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>             The parent statistical release of this dashboard, along with</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>               The parent statistical release of this dashboard, along with</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>               the methodology, is available at &lt;a href="https://explore-education-statistics.service.gov.uk/find-statistics/" class="govuk-link" target="_blank" rel="noopener noreferrer"&gt;explore education statistics (opens in new tab)&lt;/a&gt;. Access to the underlying data for this dashboard can be found under the </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>               'Explore and download data' tab from the above link.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>               The methodology used to prepare the data can be found under the 'Methodology' tab.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>           &lt;/p&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>           &lt;h2 class="govuk-heading-m" id="contact_us"&gt;Contact us&lt;/h2&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>           &lt;p class="govuk-body"&gt;Use the following contact details if you have questions about the dashboard or data within it.&lt;/p&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>           &lt;p class="govuk-body"&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>             E-mail: &lt;a href="mailto:explore.statistics@education.gov.uk" class="govuk-link" target="_blank" rel="noopener noreferrer"&gt;explore.statistics@education.gov.uk&lt;span class="sr-only"&gt; (opens in new tab)&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>           &lt;h2 class="govuk-heading-m" id="see_the_source_code"&gt;See the source code&lt;/h2&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>           &lt;p class="govuk-body"&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>             Use the following contact details if you have questions about the dashboard or data &lt;a href="https://github.com/dfe-analytical-services/dfeshiny/" class="govuk-link" target="_blank" rel="noopener noreferrer"&gt;GitHub repository (opens in new tab)&lt;/a&gt;.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>           &lt;/p&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>             &lt;/p&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>             &lt;h2 class="govuk-heading-m" id="contact_us"&gt;Contact us&lt;/h2&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>             &lt;p class="govuk-body"&gt;Use the following contact details if you have questions about the dashboard or data within it.&lt;/p&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>             &lt;p class="govuk-body"&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>               E-mail: &lt;a href="mailto:explore.statistics@education.gov.uk" class="govuk-link"&gt;explore.statistics@education.gov.uk&lt;/a&gt;&lt;/p&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>             &lt;h2 class="govuk-heading-m" id="see_the_source_code"&gt;See the source code&lt;/h2&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>             &lt;p class="govuk-body"&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>               Use the following contact details if you have questions about the dashboard or data &lt;a href="https://github.com/dfe-analytical-services/dfeshiny/" class="govuk-link" target="_blank" rel="noopener noreferrer"&gt;GitHub repository (opens in new tab)&lt;/a&gt;.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>             &lt;/p&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>           &lt;/div&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>         &lt;/div&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       &lt;/div&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     &lt;/div&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;/div&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;/main&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;/div&gt;</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Example for adding custom text</span></span></span>
@@ -250,7 +250,7 @@ dashboard in DfE</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     &lt;/p&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     &lt;p class="govuk-body"&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       Alternatively, if you spot any errors or bugs while using this dashboard, please</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>               screenshot and email them to &lt;a href="mailto:my.team@education.gov.uk" class="govuk-link" target="_blank" rel="noopener noreferrer"&gt;my.team@education.gov.uk&lt;span class="sr-only"&gt; (opens in new tab)&lt;/span&gt;&lt;/a&gt;.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>               screenshot and email them to &lt;a href="mailto:my.team@education.gov.uk" class="govuk-link"&gt;my.team@education.gov.uk&lt;/a&gt;.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     &lt;/p&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;/div&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;h2 class="govuk-heading-m" id="find_more_information_on_the_data"&gt;Find more information on the data&lt;/h2&gt;</span>
@@ -259,7 +259,7 @@ dashboard in DfE</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;h2 class="govuk-heading-m" id="contact_us"&gt;Contact us&lt;/h2&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;p class="govuk-body"&gt;Use the following contact details if you have questions about the dashboard or data within it.&lt;/p&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;p class="govuk-body"&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     E-mail: &lt;a href="mailto:my.team@education.gov.uk" class="govuk-link" target="_blank" rel="noopener noreferrer"&gt;my.team@education.gov.uk&lt;span class="sr-only"&gt; (opens in new tab)&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     E-mail: &lt;a href="mailto:my.team@education.gov.uk" class="govuk-link"&gt;my.team@education.gov.uk&lt;/a&gt;&lt;/p&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;h2 class="govuk-heading-m" id="see_the_source_code"&gt;See the source code&lt;/h2&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;p class="govuk-body"&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     Use the following contact details if you have questions about the dashboard or data &lt;a href="https://github.com/dfe-analytical-services/my-repo" class="govuk-link" target="_blank" rel="noopener noreferrer"&gt;GitHub repository (opens in new tab)&lt;/a&gt;.</span>
@@ -276,7 +276,7 @@ dashboard in DfE</p>
 <span class="r-in"><span>  form_url <span class="op">=</span> <span class="st">"www.myform.com"</span>,</span></span>
 <span class="r-in"><span>  custom_data_info <span class="op">=</span> <span class="fu">shiny</span><span class="fu">::</span><span class="fu"><a href="https://rstudio.github.io/htmltools/reference/tagList.html" class="external-link">tagList</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>    <span class="st">"Please email results to"</span>,</span></span>
-<span class="r-in"><span>    <span class="fu">shinyGovstyle</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/shinyGovstyle/man/external_link.html" class="external-link">external_link</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>    <span class="fu">shinyGovstyle</span><span class="fu">::</span><span class="fu"><a href="https://dfe-analytical-services.github.io/shinyGovstyle/reference/external_link.html" class="external-link">external_link</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>      href <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"mailto:"</span>, <span class="st">"team@education.gov.uk"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>      link_text <span class="op">=</span> <span class="st">"team@education.gov.uk"</span>,</span></span>
 <span class="r-in"><span>      add_warning <span class="op">=</span> <span class="cn">FALSE</span></span></span>
@@ -294,17 +294,17 @@ dashboard in DfE</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     &lt;/p&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     &lt;p class="govuk-body"&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       Alternatively, if you spot any errors or bugs while using this dashboard, please</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>               screenshot and email them to &lt;a href="mailto:my.team@education.gov.uk" class="govuk-link" target="_blank" rel="noopener noreferrer"&gt;my.team@education.gov.uk&lt;span class="sr-only"&gt; (opens in new tab)&lt;/span&gt;&lt;/a&gt;.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>               screenshot and email them to &lt;a href="mailto:my.team@education.gov.uk" class="govuk-link"&gt;my.team@education.gov.uk&lt;/a&gt;.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     &lt;/p&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;/div&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;h2 class="govuk-heading-m" id="find_more_information_on_the_data"&gt;Find more information on the data&lt;/h2&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;p&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Please email results to&lt;a href="mailto:team@education.gov.uk" class="govuk-link" target="_blank" rel="noopener noreferrer"&gt;team@education.gov.uk&lt;span class="sr-only"&gt; (opens in new tab)&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     Please email results to&lt;a href="mailto:team@education.gov.uk" class="govuk-link"&gt;team@education.gov.uk&lt;/a&gt;&lt;/p&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;h2 class="govuk-heading-m" id="contact_us"&gt;Contact us&lt;/h2&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;p class="govuk-body"&gt;Use the following contact details if you have questions about the dashboard or data within it.&lt;/p&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;p class="govuk-body"&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     E-mail: &lt;a href="mailto:my.team@education.gov.uk" class="govuk-link" target="_blank" rel="noopener noreferrer"&gt;my.team@education.gov.uk&lt;span class="sr-only"&gt; (opens in new tab)&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     E-mail: &lt;a href="mailto:my.team@education.gov.uk" class="govuk-link"&gt;my.team@education.gov.uk&lt;/a&gt;&lt;/p&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;h2 class="govuk-heading-m" id="see_the_source_code"&gt;See the source code&lt;/h2&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;p class="govuk-body"&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     Use the following contact details if you have questions about the dashboard or data &lt;a href="https://github.com/dfe-analytical-services/my-repo" class="govuk-link" target="_blank" rel="noopener noreferrer"&gt;GitHub repository (opens in new tab)&lt;/a&gt;.</span>
@@ -329,7 +329,7 @@ dashboard in DfE</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     &lt;p class="govuk-body"&gt;This dashboard is a new service that we are developing.&lt;/p&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     &lt;p class="govuk-body"&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       If you spot any errors or bugs while using this dashboard, please</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>               screenshot and email them to &lt;a href="mailto:my.team@education.gov.uk" class="govuk-link" target="_blank" rel="noopener noreferrer"&gt;my.team@education.gov.uk&lt;span class="sr-only"&gt; (opens in new tab)&lt;/span&gt;&lt;/a&gt;.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>               screenshot and email them to &lt;a href="mailto:my.team@education.gov.uk" class="govuk-link"&gt;my.team@education.gov.uk&lt;/a&gt;.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     &lt;/p&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;/div&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;h2 class="govuk-heading-m" id="find_more_information_on_the_data"&gt;Find more information on the data&lt;/h2&gt;</span>
@@ -339,7 +339,7 @@ dashboard in DfE</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;h2 class="govuk-heading-m" id="contact_us"&gt;Contact us&lt;/h2&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;p class="govuk-body"&gt;Use the following contact details if you have questions about the dashboard or data within it.&lt;/p&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;p class="govuk-body"&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     E-mail: &lt;a href="mailto:my.team@education.gov.uk" class="govuk-link" target="_blank" rel="noopener noreferrer"&gt;my.team@education.gov.uk&lt;span class="sr-only"&gt; (opens in new tab)&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     E-mail: &lt;a href="mailto:my.team@education.gov.uk" class="govuk-link"&gt;my.team@education.gov.uk&lt;/a&gt;&lt;/p&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;h2 class="govuk-heading-m" id="see_the_source_code"&gt;See the source code&lt;/h2&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;p class="govuk-body"&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     Use the following contact details if you have questions about the dashboard or data &lt;a href="https://github.com/dfe-analytical-services/my-repo" class="govuk-link" target="_blank" rel="noopener noreferrer"&gt;GitHub repository (opens in new tab)&lt;/a&gt;.</span>
@@ -367,7 +367,7 @@ dashboard in DfE</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     &lt;p class="govuk-body"&gt;This dashboard is a new service that we are developing.&lt;/p&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     &lt;p class="govuk-body"&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       If you spot any errors or bugs while using this dashboard, please</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>               screenshot and email them to &lt;a href="mailto:my.team@education.gov.uk" class="govuk-link" target="_blank" rel="noopener noreferrer"&gt;my.team@education.gov.uk&lt;span class="sr-only"&gt; (opens in new tab)&lt;/span&gt;&lt;/a&gt;.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>               screenshot and email them to &lt;a href="mailto:my.team@education.gov.uk" class="govuk-link"&gt;my.team@education.gov.uk&lt;/a&gt;.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     &lt;/p&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;/div&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;h2 class="govuk-heading-m" id="find_more_information_on_the_data"&gt;Find more information on the data&lt;/h2&gt;</span>
@@ -384,7 +384,7 @@ dashboard in DfE</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;h2 class="govuk-heading-m" id="contact_us"&gt;Contact us&lt;/h2&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;p class="govuk-body"&gt;Use the following contact details if you have questions about the dashboard or data within it.&lt;/p&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;p class="govuk-body"&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     E-mail: &lt;a href="mailto:my.team@education.gov.uk" class="govuk-link" target="_blank" rel="noopener noreferrer"&gt;my.team@education.gov.uk&lt;span class="sr-only"&gt; (opens in new tab)&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     E-mail: &lt;a href="mailto:my.team@education.gov.uk" class="govuk-link"&gt;my.team@education.gov.uk&lt;/a&gt;&lt;/p&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;h2 class="govuk-heading-m" id="see_the_source_code"&gt;See the source code&lt;/h2&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;p class="govuk-body"&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     Use the following contact details if you have questions about the dashboard or data &lt;a href="https://github.com/dfe-analytical-services/my-repo" class="govuk-link" target="_blank" rel="noopener noreferrer"&gt;GitHub repository (opens in new tab)&lt;/a&gt;.</span>
@@ -402,7 +402,7 @@ dashboard in DfE</p>
 <span class="r-in"><span>      heading <span class="op">=</span> <span class="st">"Heading"</span>,</span></span>
 <span class="r-in"><span>      body <span class="op">=</span> <span class="fu">shiny</span><span class="fu">::</span><span class="fu"><a href="https://rstudio.github.io/htmltools/reference/tagList.html" class="external-link">tagList</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>        <span class="st">"Please email results to"</span>,</span></span>
-<span class="r-in"><span>        <span class="fu">shinyGovstyle</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/shinyGovstyle/man/external_link.html" class="external-link">external_link</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>        <span class="fu">shinyGovstyle</span><span class="fu">::</span><span class="fu"><a href="https://dfe-analytical-services.github.io/shinyGovstyle/reference/external_link.html" class="external-link">external_link</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>          href <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"mailto:"</span>, <span class="st">"team@education.gov.uk"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>          link_text <span class="op">=</span> <span class="st">"team@education.gov.uk"</span>,</span></span>
 <span class="r-in"><span>          add_warning <span class="op">=</span> <span class="cn">FALSE</span></span></span>
@@ -418,7 +418,7 @@ dashboard in DfE</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     &lt;p class="govuk-body"&gt;This dashboard is a new service that we are developing.&lt;/p&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     &lt;p class="govuk-body"&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       If you spot any errors or bugs while using this dashboard, please</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>               screenshot and email them to &lt;a href="mailto:my.team@education.gov.uk" class="govuk-link" target="_blank" rel="noopener noreferrer"&gt;my.team@education.gov.uk&lt;span class="sr-only"&gt; (opens in new tab)&lt;/span&gt;&lt;/a&gt;.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>               screenshot and email them to &lt;a href="mailto:my.team@education.gov.uk" class="govuk-link"&gt;my.team@education.gov.uk&lt;/a&gt;.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     &lt;/p&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;/div&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;h2 class="govuk-heading-m" id="find_more_information_on_the_data"&gt;Find more information on the data&lt;/h2&gt;</span>
@@ -430,11 +430,11 @@ dashboard in DfE</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;/p&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;h2&gt;Heading&lt;/h2&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;p&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Please email results to&lt;a href="mailto:team@education.gov.uk" class="govuk-link" target="_blank" rel="noopener noreferrer"&gt;team@education.gov.uk&lt;span class="sr-only"&gt; (opens in new tab)&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     Please email results to&lt;a href="mailto:team@education.gov.uk" class="govuk-link"&gt;team@education.gov.uk&lt;/a&gt;&lt;/p&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;h2 class="govuk-heading-m" id="contact_us"&gt;Contact us&lt;/h2&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;p class="govuk-body"&gt;Use the following contact details if you have questions about the dashboard or data within it.&lt;/p&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;p class="govuk-body"&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     E-mail: &lt;a href="mailto:my.team@education.gov.uk" class="govuk-link" target="_blank" rel="noopener noreferrer"&gt;my.team@education.gov.uk&lt;span class="sr-only"&gt; (opens in new tab)&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     E-mail: &lt;a href="mailto:my.team@education.gov.uk" class="govuk-link"&gt;my.team@education.gov.uk&lt;/a&gt;&lt;/p&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;h2 class="govuk-heading-m" id="see_the_source_code"&gt;See the source code&lt;/h2&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;p class="govuk-body"&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     Use the following contact details if you have questions about the dashboard or data &lt;a href="https://github.com/dfe-analytical-services/my-repo" class="govuk-link" target="_blank" rel="noopener noreferrer"&gt;GitHub repository (opens in new tab)&lt;/a&gt;.</span>

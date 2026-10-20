@@ -25,7 +25,7 @@ Curated by explore.statistics@education.gov.uk
 ## Details
 
 `bad_link_text` has been superseded by
-[`shinyGovstyle::bad_link_text`](https://rdrr.io/pkg/shinyGovstyle/man/bad_link_text.html)
+[`shinyGovstyle::bad_link_text`](https://dfe-analytical-services.github.io/shinyGovstyle/reference/bad_link_text.html)
 and will no longer receive any updates. It will be removed in the next
 major version (v1.0.0).
 

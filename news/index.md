@@ -1,5 +1,16 @@
 # Changelog
 
+## dfeshiny 0.7.0
+
+- Use shinyGovstyle 0.3.0 or later from CRAN instead of the GitHub
+  development version.
+- [`init_analytics()`](https://dfe-analytical-services.github.io/dfeshiny/reference/init_analytics.md)
+  now also tracks clicks on shinyGovstyle service navigation links.
+- Examples and the cookies vignette now use the shinyGovstyle service
+  navigation layout, and explain how to set `cookies_nav_id` in
+  [`cookies_banner_server()`](https://dfe-analytical-services.github.io/dfeshiny/reference/cookies_banner_server.md)
+  for it.
+
 ## dfeshiny 0.6.0
 
 - Deprecated
@@ -26,7 +37,7 @@
   [`dfeshiny::header()`](https://dfe-analytical-services.github.io/dfeshiny/reference/header.md)
   function to produce a standardised header incorporating the current
   DfE logo. This is a wrapper function to
-  [`shinyGovstyle::header()`](https://rdrr.io/pkg/shinyGovstyle/man/header.html),
+  [`shinyGovstyle::header()`](https://dfe-analytical-services.github.io/shinyGovstyle/reference/header.html),
   reducing the range of options.
 
 ## dfeshiny 0.5.1
