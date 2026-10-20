@@ -4,6 +4,7 @@ app <- AppDriver$new(
 )
 
 app$wait_for_idle(50)
+app$click("text_example")
 
 all_text <- app$get_text("p")
 

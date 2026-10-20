@@ -1,5 +1,6 @@
 {
   "input": {
+    "a11y_panel": 0,
     "cookies": {
 
     },
@@ -8,7 +9,11 @@
     "cookies_banner-cookies_reject": 0,
     "cookies_panel-cookies_analytics": "no",
     "cookies_panel-submit_btn": 0,
-    "navlistPanel": "a11y_panel"
+    "cookies_panel_ui": 0,
+    "dashboard_page": "a11y_panel",
+    "support_panel": 0,
+    "table_panel_ui": 0,
+    "text_example": 0
   },
   "output": {
 
