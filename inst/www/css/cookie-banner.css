@@ -7,8 +7,3 @@
 .govuk-cookie-banner__content {
   margin-left: 15px;
 }
-
-/* Keep the banner's floated content clear of the following header. */
-.govuk-cookie-banner__message {
-  margin-bottom: 0;
-}
