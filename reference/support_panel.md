@@ -144,13 +144,13 @@ shinyGovstyle::gov_main_layout(
 #> <div class="govuk-width-container">
 #>   <main id="main" role="main" tabindex="-1" class="govuk-main-wrapper">
 #>     <div class="tabbable">
-#>       <ul class="nav nav-hidden shiny-tab-input" id="dashboard_page" data-tabsetid="1230">
+#>       <ul class="nav nav-hidden shiny-tab-input" id="dashboard_page" data-tabsetid="5004">
 #>         <li class="active">
-#>           <a href="#tab-1230-1" data-toggle="tab" data-bs-toggle="tab" data-value="support_panel">Support and feedback</a>
+#>           <a href="#tab-5004-1" data-toggle="tab" data-bs-toggle="tab" data-value="support_panel">Support and feedback</a>
 #>         </li>
 #>       </ul>
-#>       <div class="tab-content" data-tabsetid="1230">
-#>         <div class="tab-pane active" data-value="support_panel" id="tab-1230-1">
+#>       <div class="tab-content" data-tabsetid="5004">
+#>         <div class="tab-pane active" data-value="support_panel" id="tab-5004-1">
 #>           <div style="margin-top: 50px; margin-bottom: 50px">
 #>             <h1 class="govuk-heading-l" id="support_and_feedback">Support and feedback</h1>
 #>             <h2 class="govuk-heading-m" id="give_us_feedback">Give us feedback</h2>
