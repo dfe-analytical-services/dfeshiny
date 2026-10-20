@@ -1,4 +1,4 @@
-# dfeshiny (development version)
+# dfeshiny 0.7.0
 
 * Use shinyGovstyle 0.3.0 or later from CRAN instead of the GitHub development version.
 
