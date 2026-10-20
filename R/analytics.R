@@ -92,7 +92,7 @@ dashboard.
   });
 
   $(document).on('click', 'ul#navigation a.govuk-service-navigation__link', function(e) {
-    gtag('event', 'service navigation', {'event_category' : 'service nav click',
+    gtag('event', 'service navigation', {'event_category' : 'Top level navigation',
     'event_label' : this.id
     });
   });
