@@ -61,20 +61,21 @@ support_panel(
   form_url = "www.myform.com"
 )
 
-# Often you will use this inside a set of navigation tabs, e.g.
-shiny::navlistPanel(
-  "",
-  id = "navlistPanel",
-  widths = c(2, 8),
-  well = FALSE,
-  ## Support panel --------------------------------------------------------
-  shiny::tabPanel(
-    value = "support_panel",
-    "Support and feedback",
-    support_panel(
-      team_email = "explore.statistics@education.gov.uk",
-      repo_name = "https://github.com/dfe-analytical-services/dfeshiny/",
-      form_url = "https://forms.office.com"
+# Often you will use this as a page inside a hidden tabsetPanel, with
+# shinyGovstyle::service_navigation() providing the links between pages, e.g.
+shinyGovstyle::gov_main_layout(
+  shiny::tabsetPanel(
+    id = "dashboard_page",
+    type = "hidden",
+    ## Support panel ------------------------------------------------------
+    shiny::tabPanel(
+      value = "support_panel",
+      "Support and feedback",
+      support_panel(
+        team_email = "explore.statistics@education.gov.uk",
+        repo_name = "https://github.com/dfe-analytical-services/dfeshiny/",
+        form_url = "https://forms.office.com"
+      )
     )
   )
 )

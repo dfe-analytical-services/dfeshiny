@@ -1,6 +1,6 @@
 Package: dfeshiny
 Title: DfE R Shiny Standards
-Version: 0.6.4
+Version: 0.7.0
 Authors@R: c(
     person("Rich", "Bielby", , "richard.bielby@education.gov.uk", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0001-9070-9969")),
@@ -28,7 +28,7 @@ Imports:
     lubridate,
     magrittr,
     shiny,
-    shinyGovstyle (>= 0.2.0),
+    shinyGovstyle (>= 0.3.0),
     shinyjs,
     stringr,
     styler,
@@ -44,8 +44,6 @@ Suggests:
     shinytest2,
     spelling,
     testthat (>= 3.0.0)
-Remotes: 
-    dfe-analytical-services/shinyGovstyle
 VignetteBuilder: 
     knitr
 Config/testthat/edition: 3

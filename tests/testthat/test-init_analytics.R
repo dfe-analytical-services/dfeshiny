@@ -43,6 +43,17 @@ test_that("GA key pulls into HTML", {
   ))
 })
 
+test_that("Script tracks service navigation clicks", {
+  output <- capture.output(init_analytics("TESTYTESTY", create_file = FALSE))
+
+  expect_true(any(grepl(
+    "ul#navigation a.govuk-service-navigation__link",
+    output,
+    fixed = TRUE
+  )))
+  expect_true(any(grepl("'service navigation'", output, fixed = TRUE)))
+})
+
 test_that("Rejects non-boolean for create_file", {
   expect_error(init_analytics("TESTYTESTY", create_file = "Funky non-boolean"))
 })
