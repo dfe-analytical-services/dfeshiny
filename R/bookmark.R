@@ -11,7 +11,9 @@
 #' @export
 #' @examples
 #' # You will need a line such as this in your global.R script ================
-#' bookmarking_whitelist <- c("navlistPanel", "tabsetpanels")
+#' # Here "dashboard_page" is the id of the tabsetPanel that your
+#' # shinyGovstyle::service_navigation() links switch between
+#' bookmarking_whitelist <- c("dashboard_page")
 #'
 #' # In the server.R script ===================================================
 #' shiny::observe({

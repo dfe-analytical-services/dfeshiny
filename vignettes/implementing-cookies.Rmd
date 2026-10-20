@@ -62,35 +62,53 @@ javascript (`dfe_cookies_script`), b) create the consent banner
 
 ```{r eval=FALSE}
 ui <- function(input, output, session) {
-  shiny::fluidPage(
+  shinyGovstyle::gov_page(
     shinyjs::useShinyjs(),
     dfeshiny::dfe_cookies_script(),
     dfeshiny::cookies_banner_ui(
       name = "Your dashboard name"
     ),
-    shiny::navlistPanel(
-      "",
-      id = "navlistPanel",
-      widths = c(2, 8),
-      well = FALSE,
-      shiny::tabPanel(
-        value = "cookies_panel_ui",
-        "Cookies",
-        cookies_panel_ui(google_analytics_key = google_analytics_key)
+    dfeshiny::header("Your dashboard name"),
+    shinyGovstyle::service_navigation(
+      links = c("Cookies" = "cookies_panel_ui")
+    ),
+    shinyGovstyle::gov_main_layout(
+      shiny::tabsetPanel(
+        id = "dashboard_page",
+        type = "hidden",
+        shiny::tabPanel(
+          value = "cookies_panel_ui",
+          "Cookies",
+          dfeshiny::cookies_panel_ui(google_analytics_key = google_analytics_key)
+        )
       )
     )
   )
 }
 ```
 
-You should then add the `cookies_banner_server` and `cookies_panel_server` 
-functions to your **server.R** script:
+You should then add the `cookies_banner_server` and `cookies_panel_server`
+functions to your **server.R** script, alongside the server logic for the
+service navigation:
 
 ```{r eval=FALSE}
+shinyGovstyle::service_navigation_server(
+  session,
+  tabset_id = "dashboard_page",
+  link_to_panel = "cookies_panel_ui"
+)
+
+# Keep the active navigation link in sync, including when the cookie banner's
+# link switches the page
+shiny::observeEvent(input$dashboard_page, {
+  shinyGovstyle::update_service_navigation(session, input$dashboard_page)
+})
+
 output$cookies_status <- dfeshiny::cookies_banner_server(
   input_cookies = shiny::reactive(input$cookies),
   parent_session = session,
-  google_analytics_key = google_analytics_key
+  google_analytics_key = google_analytics_key,
+  cookies_nav_id = "dashboard_page"
 )
 
 dfeshiny::cookies_panel_server(
@@ -99,7 +117,10 @@ dfeshiny::cookies_panel_server(
 )
 ```
 
-The ID for the UI panels is `navlistPanel`, and this is the default setting in the _server functions, if this ID is different, you will need to set cookie_nav_id in `cookies_panel_server()` to match your ID in the UI.
+The link in the cookie banner switches to the cookies page using the `id` of
+the `shiny::tabsetPanel()` the page is in. `cookies_banner_server()` defaults
+`cookies_nav_id` to `"navlistPanel"`, so you need to set `cookies_nav_id` to
+match your own `id` in the UI (`"dashboard_page"` in the example above).
 
 In the above you should keep all of the flags as they are shown. Note that this 
 assumes you have added `google_analytics_key` as a declared variable in your 
