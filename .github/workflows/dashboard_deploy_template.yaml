@@ -86,7 +86,6 @@ jobs:
             "dfe-analytical-services/dfeshiny",
             upgrade = "never",
             auth_token = Sys.getenv("GITHUB_TOKEN"),
-            dependencies = FALSE,
             quiet = FALSE
           )
 
