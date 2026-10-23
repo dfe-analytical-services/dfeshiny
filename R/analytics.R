@@ -91,6 +91,12 @@ dashboard.
     });
   });
 
+  $(document).on('click', 'ul#navigation a.govuk-service-navigation__link', function(e) {
+    gtag('event', 'service navigation', {'event_category' : 'Top level navigation',
+    'event_label' : this.id
+    });
+  });
+
 
   $(document).on('click', 'a#download_data', function(e) {
     gtag('event', 'Download button', {'event_category' : 'Download button click'

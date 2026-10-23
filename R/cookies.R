@@ -20,24 +20,30 @@
 #'
 #'   # This will be what is in your ui.R script ===============================
 #'
-#'   ui <- fluidPage(
+#'   ui <- shinyGovstyle::gov_page(
 #'     # Place these lines above your header ----------------------------------
 #'     useShinyjs(),
 #'     dfe_cookies_script(),
 #'     cookies_banner_ui(name = "My DfE R-Shiny data dashboard"),
 #'
+#'     header("My DfE R-Shiny data dashboard"),
+#'     shinyGovstyle::service_navigation(
+#'       links = c("Cookies" = "cookies_panel_ui")
+#'     ),
+#'
 #'     # Place the cookies panel under the header but in the main content -----
-#'     # Example of placing as a panel within navlistPanel
-#'     shiny::navlistPanel(
-#'       "",
-#'       id = "navlistPanel",
-#'       widths = c(2, 8),
-#'       well = FALSE,
-#'       ## Cookies panel -----------------------------------------------------
-#'       shiny::tabPanel(
-#'         value = "cookies_panel_ui",
-#'         "Cookies",
-#'         cookies_panel_ui(google_analytics_key = google_analytics_key)
+#'     # Example of placing as a panel within a hidden tabsetPanel, which the
+#'     # service navigation links switch between
+#'     shinyGovstyle::gov_main_layout(
+#'       shiny::tabsetPanel(
+#'         id = "dashboard_page",
+#'         type = "hidden",
+#'         ## Cookies panel ---------------------------------------------------
+#'         shiny::tabPanel(
+#'           value = "cookies_panel_ui",
+#'           "Cookies",
+#'           cookies_panel_ui(google_analytics_key = google_analytics_key)
+#'         )
 #'       )
 #'     )
 #'   )
@@ -45,11 +51,24 @@
 #'   # This will be in your server.R file =====================================
 #'
 #'   server <- function(input, output, session) {
+#'     # Server logic for the service navigation links -------------------------
+#'     shinyGovstyle::service_navigation_server(
+#'       session,
+#'       tabset_id = "dashboard_page",
+#'       link_to_panel = "cookies_panel_ui"
+#'     )
+#'     # Keep the active navigation link in sync, including when the cookie
+#'     # banner's link switches the page
+#'     observeEvent(input$dashboard_page, {
+#'       shinyGovstyle::update_service_navigation(session, input$dashboard_page)
+#'     })
+#'
 #'     # Server logic for the pop up banner, can be placed anywhere in server.R -
 #'     output$cookies_status <- dfeshiny::cookies_banner_server(
 #'       input_cookies = reactive(input$cookies),
 #'       google_analytics_key = google_analytics_key,
-#'       parent_session = session
+#'       parent_session = session,
+#'       cookies_nav_id = "dashboard_page"
 #'     )
 #'
 #'     # Server logic for the panel, can be placed anywhere in server.R -------
@@ -173,8 +192,11 @@ cookies_banner_ui <- function(
 #' "ABCDE12345"
 #' @param cookies_link_panel name of the navigation panel that the cookie banner
 #' provides a link to, usually "cookies_panel_ui"
-#' @param cookies_nav_id ID of the navigation panel the cookie panel page is
-#' within, defaults to "navlistPanel"
+#' @param cookies_nav_id `id` of the `shiny::tabsetPanel()` or
+#' `shiny::navlistPanel()` that the cookies panel is within, defaults to
+#' "navlistPanel". If you use `shinyGovstyle::service_navigation()`, set this
+#' to the `id` of the hidden `shiny::tabsetPanel()` it switches between, e.g.
+#' "dashboard_page"
 #'
 #' @family cookies
 #' @return NULL

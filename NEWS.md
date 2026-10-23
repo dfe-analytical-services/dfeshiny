@@ -1,3 +1,9 @@
+# dfeshiny 0.7.0
+
+* Use shinyGovstyle 0.3.0 or later from CRAN instead of the GitHub development version.
+* `init_analytics()` now also tracks clicks on shinyGovstyle service navigation links.
+* Examples and the cookies vignette now use the shinyGovstyle service navigation layout, and explain how to set `cookies_nav_id` in `cookies_banner_server()` for it.
+
 # dfeshiny 0.6.0
 
 * Added optional `use_lfs` input to the automated tests and dashboard deploy reusable workflows, enabling Git LFS support for repositories that store large files

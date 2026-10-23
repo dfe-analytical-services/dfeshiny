@@ -1,35 +1,26 @@
-# create output for testing
+test_that("Header contains the organisation, service name and primary logo", {
+  output <- dfeshiny::header(header = "hello")
+  query <- htmltools::tagQuery(output)
 
-test_that("outputs are as expected", {
-  header_vector <- dfeshiny::header(header = "hello") |>
-    unlist(use.names = FALSE)
+  service <- query$find(".govuk-header__service-name")$selectedTags()
+  expect_length(service, 1)
+  expect_equal(service[[1]]$children[[1]], "hello")
 
-  title_index <- header_vector |>
-    stringr::str_which("govuk-header__service-name") +
-    1
+  primary_logo <- query$find(".govuk-header__logo")$selectedTags()[[1]]
+  expect_null(primary_logo$attribs$`aria-hidden`)
+  logo_query <- htmltools::tagQuery(primary_logo)
+  organisation <- logo_query$find(".govuk-header__product-name")$selectedTags()
+  expect_equal(organisation[[1]]$children[[1]], "Department for Education")
 
-  expect_equal(
-    header_vector[title_index],
-    "hello"
-  )
-
-  image_index <- header_vector |>
-    stringr::str_which("img") +
-    1
-
-  expect_equal(
-    header_vector[image_index],
-    "shinyGovstyle/images/Dept_logo.svg"
-  )
+  images <- logo_query$find("img")$selectedTags()
+  expect_length(images, 1)
+  expect_equal(images[[1]]$attribs$src, "shinyGovstyle/images/Dept_logo.svg")
 })
 
 test_that("Header handles additional shinyGovstyle header inputs", {
-  header_vector <- header(
-    "Site title",
-    logo_alt_text = "Logo alt text"
-  ) |>
-    unlist(use.names = FALSE)
-  expect_true(
-    "Logo alt text" %in% header_vector
-  )
+  output <- header("Site title", logo_alt_text = "Logo alt text")
+  primary_logo <- htmltools::tagQuery(output)$find(".govuk-header__logo")$selectedTags()[[1]]
+  image <- htmltools::tagQuery(primary_logo)$find("img")$selectedTags()[[1]]
+
+  expect_equal(image$attribs$alt, "Logo alt text")
 })
