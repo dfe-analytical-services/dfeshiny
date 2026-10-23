@@ -64,7 +64,7 @@ jobs:
           renv::install("rstudio/chromote")
 
       - name: Set Chromote to new headless mode
-        run: echo "CHROMOTE_HEADLESS=new" >> $GITHUB_ENV
+        run: export CHROMOTE_HEADLESS="new"
 
       - name: Run tests
         shell: Rscript {0}
