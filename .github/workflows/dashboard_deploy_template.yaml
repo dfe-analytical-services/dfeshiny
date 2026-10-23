@@ -70,7 +70,7 @@ jobs:
           renv::record("rsconnect")
           renv::record("dfe-analytical-services/dfeshiny@v0.7.0")
           renv::restore()
-          renv::status()
+          rsconnect::writeManifest()
 
       - name: Create .Renviron
         shell: bash
