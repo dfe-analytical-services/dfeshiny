@@ -97,7 +97,7 @@ jobs:
           curl -I -H "Authorization: Bearer ${GITHUB_TOKEN}" \
             https://api.github.com/repos/dfe-analytical-services/dfeshiny
 
-          git ls-remote https://github.com/dfe-analytical-services/dfeshiny.git | head
+          git ls-remote https://github.com/dfe-analytical-services/dfeshiny.git | sed -n '1,5p'
 
       - name: Test GitHub package access in R
         shell: Rscript {0}
@@ -127,7 +127,7 @@ jobs:
           Sys.setenv(GITHUB_PAT = Sys.getenv("GITHUB_PAT"))
           Sys.setenv(R_REMOTES_NO_ERRORS_FROM_WARNINGS = "true")
           Sys.setenv(GIT_CURL_VERBOSE = "1")
-          
+
           rsconnect::setAccountInfo(
             name = 'department-for-education', 
             token = '${{secrets.SHINYAPPS_TOKEN}}', 
