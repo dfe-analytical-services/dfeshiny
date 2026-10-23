@@ -90,5 +90,18 @@ jobs:
         if: github.event_name != 'pull_request'
         shell: Rscript {0}
         run: |
-          rsconnect::setAccountInfo(name = 'department-for-education', token = '${{secrets.SHINYAPPS_TOKEN}}', secret = '${{secrets.SHINYAPPS_SECRET}}')
-          rsconnect::deployApp(appName='${{env.SHINYAPP_NAME}}', forceUpdate = TRUE)
+          # Ensure the same token is visible inside the R process used by rsconnect
+          Sys.setenv(GITHUB_TOKEN = Sys.getenv("GITHUB_TOKEN"))
+          Sys.setenv(GITHUB_PAT = Sys.getenv("GITHUB_PAT"))
+          Sys.setenv(R_REMOTES_NO_ERRORS_FROM_WARNINGS = "true")
+
+          rsconnect::setAccountInfo(
+            name = 'department-for-education', 
+            token = '${{secrets.SHINYAPPS_TOKEN}}', 
+            secret = '${{secrets.SHINYAPPS_SECRET}}'
+          )
+
+          rsconnect::deployApp(
+            appName='${{env.SHINYAPP_NAME}}', 
+            forceUpdate = TRUE
+          )
