@@ -110,13 +110,7 @@ jobs:
           print(Sys.getenv(c("GITHUB_TOKEN", "GITHUB_PAT")))
           options(timeout = 600)
 
-          remotes::install_github(
-            "dfe-analytical-services/dfeshiny",
-            ref = "bugfix/deploy-ghtoken",
-            upgrade = "never",
-            dependencies = FALSE,
-            quiet = FALSE
-          )
+          renv::install("dfe-analytical-services/dfeshiny")
     
       - name: Deploy to ShinyApps.io
         if: github.event_name != 'pull_request'
