@@ -41,18 +41,6 @@ jobs:
           git config --global url."https://x-access-token:${GITHUB_TOKEN}@github.com/".insteadOf "https://github.com/"
           git config --global --add safe.directory "$GITHUB_WORKSPACE"
 
-      - name: Check GitHub access before restore
-        shell: bash
-        run: |
-          echo "GITHUB_TOKEN present: ${GITHUB_TOKEN:+yes}"
-          echo "GITHUB_PAT present: ${GITHUB_PAT:+yes}"
-
-          curl -fsSL \
-            -H "Authorization: Bearer ${GITHUB_TOKEN}" \
-            https://api.github.com/rate_limit
-
-          git ls-remote --heads https://github.com/dfe-analytical-services/dfeshiny.git | sed -n '1,5p'
-
       - name: Read parameters
         shell: bash
         run: |
@@ -74,33 +62,14 @@ jobs:
         shell: Rscript {0}
         run: |
           Sys.setenv(GITHUB_TOKEN = Sys.getenv("GITHUB_TOKEN"))
-          Sys.setenv(GITHUB_PAT = Sys.getenv("GITHUB_PAT"))
           Sys.setenv(R_REMOTES_NO_ERRORS_FROM_WARNINGS = "false")
-          options(timeout = 600)
 
           if (!requireNamespace("renv", quietly = TRUE)) install.packages("renv")
-          if (!requireNamespace("remotes", quietly = TRUE)) install.packages("remotes")
-
-          # direct check of the package source before renv restore
-          remotes::install_github(
-            "dfe-analytical-services/dfeshiny",
-            upgrade = "never",
-            auth_token = Sys.getenv("GITHUB_TOKEN"),
-            quiet = FALSE
-          )
 
           renv::init(bare = TRUE)
+          renv::record("rsconnect")
           renv::restore()
           renv::status()
-
-      - name: Install rsconnect
-        shell: Rscript {0}
-        run: |
-          Sys.setenv(GITHUB_TOKEN = Sys.getenv("GITHUB_TOKEN"))
-          Sys.setenv(GITHUB_PAT = Sys.getenv("GITHUB_PAT"))
-          if (!requireNamespace("rsconnect", quietly = TRUE)) {
-            install.packages("rsconnect")
-          }
 
       - name: Create .Renviron
         shell: bash
@@ -116,7 +85,6 @@ jobs:
         shell: Rscript {0}
         run: |
           Sys.setenv(GITHUB_TOKEN = Sys.getenv("GITHUB_TOKEN"))
-          Sys.setenv(GITHUB_PAT = Sys.getenv("GITHUB_PAT"))
           Sys.setenv(R_REMOTES_NO_ERRORS_FROM_WARNINGS = "false")
 
           rsconnect::setAccountInfo(
@@ -127,5 +95,6 @@ jobs:
 
           rsconnect::deployApp(
             appName = '${{ env.SHINYAPP_NAME }}',
-            forceUpdate = TRUE
+            forceUpdate = TRUE, 
+            envVars = c('GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }}')
           )
