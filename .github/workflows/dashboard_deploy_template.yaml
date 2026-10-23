@@ -32,7 +32,19 @@ jobs:
         with:
           use-public-rspm: true
           r-version: 4.5.3
-      
+
+      - name: Expose default GitHub token for package installs
+        shell: bash
+        run: |
+          echo "GITHUB_TOKEN=${{ github.token }}" >> "$GITHUB_ENV"
+          echo "GITHUB_PAT=${{ github.token }}" >> "$GITHUB_ENV"
+
+      - name: Check GitHub API access
+        shell: bash
+        run: |
+          curl -sS -H "Authorization: Bearer ${GITHUB_TOKEN}" \
+            https://api.github.com/rate_limit
+
       - name: Read parameters
         run: |
           DASHBOARD_NAME=$(yq -r '.dashboard_name' ${{ inputs.parameter_file }})
