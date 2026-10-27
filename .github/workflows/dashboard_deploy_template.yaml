@@ -19,12 +19,6 @@ jobs:
   deployShiny:
     runs-on: ubuntu-latest
 
-    env:
-      GITHUB_TOKEN: ${{ github.token }}
-      GITHUB_PAT: ${{ github.pat }}
-      GIT_TERMINAL_PROMPT: "0"
-      R_REMOTES_NO_ERRORS_FROM_WARNINGS: "false"
-
     container:
       image: ghcr.io/dfe-analytical-services/dfe-r-base:latest
       options: --user root
