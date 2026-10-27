@@ -21,7 +21,7 @@ jobs:
 
     env:
       GITHUB_TOKEN: ${{ github.token }}
-      GITHUB_PAT: ${{ github.token }}
+      GITHUB_PAT: ${{ github.pat }}
       GIT_TERMINAL_PROMPT: "0"
       R_REMOTES_NO_ERRORS_FROM_WARNINGS: "false"
 
@@ -61,8 +61,6 @@ jobs:
       - name: Restore renv snapshot
         shell: Rscript {0}
         run: |
-          Sys.setenv(GITHUB_TOKEN = Sys.getenv("GITHUB_TOKEN"))
-          Sys.setenv(R_REMOTES_NO_ERRORS_FROM_WARNINGS = "false")
 
           if (!requireNamespace("renv", quietly = TRUE)) install.packages("renv")
 
@@ -78,6 +76,10 @@ jobs:
           if [ -n "${{ secrets.CARTO_API_TOKEN }}" ]; then
             echo "Writing CARTO_API_TOKEN to .Renviron"
             echo "CARTO_API_TOKEN=${{ secrets.CARTO_API_TOKEN }}" > .Renviron
+            echo "Writing GITHUB PAT, Actor and Token to .Renviron"
+            echo "GITHUB_PAT=${{ github.pat }}" > .Renviron
+            echo "GITHUB_ACTOR=${{ github.actor }}" > .Renviron
+            echo "GITHUB_TOKEN=${{ github.token }}" > .Renviron
             ls -l .Renviron
           fi
 
@@ -85,7 +87,6 @@ jobs:
         if: github.event_name != 'pull_request'
         shell: Rscript {0}
         run: |
-          Sys.setenv(GITHUB_TOKEN = Sys.getenv("GITHUB_TOKEN"))
           Sys.setenv(R_REMOTES_NO_ERRORS_FROM_WARNINGS = "false")
 
           rsconnect::setAccountInfo(
@@ -96,6 +97,5 @@ jobs:
 
           rsconnect::deployApp(
             appName = '${{ env.SHINYAPP_NAME }}',
-            forceUpdate = TRUE, 
-            envVars = c('GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }}')
+            forceUpdate = TRUE
           )
