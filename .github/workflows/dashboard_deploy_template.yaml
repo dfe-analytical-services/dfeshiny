@@ -29,6 +29,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Configure git to use GitHub token
+        shell: bash
+        run: |
+          git config --global url."https://x-access-token:${GITHUB_TOKEN}@github.com/".insteadOf "https://github.com/"
+          git config --global --add safe.directory "$GITHUB_WORKSPACE"
+
       - name: Read parameters
         shell: bash
         run: |
@@ -49,14 +55,8 @@ jobs:
       - name: Restore renv snapshot
         shell: Rscript {0}
         run: |
-
           if (!requireNamespace("renv", quietly = TRUE)) install.packages("renv")
-
-          renv::init(bare = TRUE)
-          renv::record("rsconnect")
-          renv::record("dfe-analytical-services/dfeshiny@v0.7.0")
           renv::restore()
-          rsconnect::writeManifest()
 
       - name: Create .Renviron
         shell: bash
