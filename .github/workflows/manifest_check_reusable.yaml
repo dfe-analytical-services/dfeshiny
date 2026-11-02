@@ -43,6 +43,33 @@ jobs:
           manifest <- jsonlite::read_json(manifest_path)
           lock <- jsonlite::read_json(lock_path)
 
+          # File check: the bundle rsconnect would deploy must match the
+          # manifest exactly (catches new, deleted and changed files).
+          if (!requireNamespace("rsconnect", quietly = TRUE)) install.packages("rsconnect")
+          bundle_files <- setdiff(
+            rsconnect::listBundleFiles(dir)$contents,
+            "manifest.json"
+          )
+          manifest_files <- setdiff(names(manifest$files), "manifest.json")
+
+          new_files <- setdiff(bundle_files, manifest_files)
+          removed_files <- setdiff(manifest_files, bundle_files)
+
+          common_files <- intersect(bundle_files, manifest_files)
+          current_md5 <- unname(tools::md5sum(file.path(dir, common_files)))
+          manifest_md5 <- vapply(
+            manifest$files[common_files],
+            function(f) as.character(f$checksum),
+            character(1)
+          )
+          changed_files <- common_files[current_md5 != unname(manifest_md5)]
+
+          file_problems <- c(
+            if (length(new_files)) paste("Files not in manifest:", toString(new_files)),
+            if (length(removed_files)) paste("Files in manifest but missing:", toString(removed_files)),
+            if (length(changed_files)) paste("Files changed since manifest:", toString(changed_files))
+          )
+
           manifest_pkgs <- vapply(
             manifest$packages,
             function(p) as.character(p$description$Version),
@@ -58,6 +85,7 @@ jobs:
           not_in_manifest <- setdiff(names(lock_pkgs), names(manifest_pkgs))
 
           problems <- c(
+            file_problems,
             if (length(missing)) paste("In manifest but not renv.lock:", toString(missing)),
             if (length(mismatch)) {
               paste0("Version mismatch: ", mismatch, " (manifest ", manifest_pkgs[mismatch],
