@@ -1,0 +1,76 @@
+name: Manifest Check
+
+on:
+  workflow_call:
+    inputs:
+      manifest_dir:
+        description: "Directory containing manifest.json and renv.lock (relative to repo root)"
+        required: false
+        type: string
+        default: "."
+
+jobs:
+  checkManifest:
+    runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/dfe-analytical-services/dfe-r-base:latest
+      options: --user root
+      credentials:
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check manifest.json is present and up to date
+        shell: Rscript {0}
+        env:
+          MANIFEST_DIR: ${{ inputs.manifest_dir }}
+        run: |
+          dir <- Sys.getenv("MANIFEST_DIR", ".")
+          manifest_path <- file.path(dir, "manifest.json")
+          lock_path <- file.path(dir, "renv.lock")
+
+          if (!file.exists(manifest_path)) {
+            stop("No manifest.json found at '", manifest_path,
+                 "'. Create it with rsconnect::writeManifest().", call. = FALSE)
+          }
+          if (!file.exists(lock_path)) {
+            stop("No renv.lock found at '", lock_path,
+                 "' to compare the manifest against.", call. = FALSE)
+          }
+
+          manifest <- jsonlite::read_json(manifest_path)
+          lock <- jsonlite::read_json(lock_path)
+
+          manifest_pkgs <- vapply(
+            manifest$packages,
+            function(p) as.character(p$description$Version),
+            character(1)
+          )
+          lock_pkgs <- vapply(lock$Packages, function(p) as.character(p$Version), character(1))
+
+          # Only compare packages present in both; renv.lock can contain
+          # extra tooling (e.g. renv, rsconnect) that is not in the manifest.
+          missing <- setdiff(names(manifest_pkgs), names(lock_pkgs))
+          common <- intersect(names(manifest_pkgs), names(lock_pkgs))
+          mismatch <- common[manifest_pkgs[common] != lock_pkgs[common]]
+          not_in_manifest <- setdiff(names(lock_pkgs), names(manifest_pkgs))
+
+          problems <- c(
+            if (length(missing)) paste("In manifest but not renv.lock:", toString(missing)),
+            if (length(mismatch)) {
+              paste0("Version mismatch: ", mismatch, " (manifest ", manifest_pkgs[mismatch],
+                     ", renv.lock ", lock_pkgs[mismatch], ")")
+            }
+          )
+
+          if (length(not_in_manifest)) {
+            message("Note: in renv.lock but not in manifest: ", toString(not_in_manifest))
+          }
+
+          if (length(problems)) {
+            stop("manifest.json is out of date. Re-run rsconnect::writeManifest().\n",
+                 paste(problems, collapse = "\n"), call. = FALSE)
+          }
+          message("manifest.json is up to date with renv.lock.")
