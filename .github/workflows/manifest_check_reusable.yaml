@@ -62,13 +62,37 @@ jobs:
           removed_files <- setdiff(manifest_files, bundle_files)
 
           common_files <- intersect(bundle_files, manifest_files)
-          current_md5 <- unname(tools::md5sum(file.path(dir, common_files)))
           manifest_md5 <- vapply(
             manifest$files[common_files],
             function(f) as.character(f$checksum),
             character(1)
           )
-          changed_files <- common_files[current_md5 != unname(manifest_md5)]
+
+          # The manifest may have been written on Windows (CRLF) while the
+          # runner checks out LF, so accept a match on either line ending.
+          matches_checksum <- function(path, expected) {
+            if (unname(tools::md5sum(path)) == expected) return(TRUE)
+            bytes <- readBin(path, "raw", file.info(path)$size)
+            if (as.raw(0) %in% bytes) return(FALSE)
+            text <- rawToChar(bytes)
+            variants <- c(
+              lf = gsub("\r\n", "\n", text, fixed = TRUE),
+              crlf = gsub("\n", "\r\n", gsub("\r\n", "\n", text, fixed = TRUE), fixed = TRUE)
+            )
+            any(vapply(variants, function(v) {
+              tmp <- tempfile()
+              on.exit(unlink(tmp))
+              writeBin(charToRaw(v), tmp)
+              unname(tools::md5sum(tmp)) == expected
+            }, logical(1)))
+          }
+
+          unchanged <- mapply(
+            matches_checksum,
+            file.path(dir, common_files),
+            unname(manifest_md5)
+          )
+          changed_files <- common_files[!unchanged]
 
           file_problems <- c(
             if (length(new_files)) paste("Files not in manifest:", toString(new_files)),
