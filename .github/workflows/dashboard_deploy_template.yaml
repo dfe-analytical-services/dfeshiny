@@ -79,4 +79,4 @@ jobs:
         shell: Rscript {0}
         run: |
           rsconnect::setAccountInfo(name = 'department-for-education', token = '${{secrets.SHINYAPPS_TOKEN}}', secret = '${{secrets.SHINYAPPS_SECRET}}')
-          rsconnect::deployApp(appName='${{env.SHINYAPP_NAME}}', forceUpdate = TRUE)
+          rsconnect::deployApp(appName='${{env.SHINYAPP_NAME}}', appMode = 'shiny', forceUpdate = TRUE)
